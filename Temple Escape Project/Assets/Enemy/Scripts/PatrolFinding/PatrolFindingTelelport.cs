@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolFinding_v2 : MonoBehaviour
+public class PatrolFindingTelelport : MonoBehaviour
 {
     [Header("patrol variables")]
     public List<GameObject> patrolPoints = new List<GameObject>();  // chuck in enemy game objects in unity and it will teleport to them

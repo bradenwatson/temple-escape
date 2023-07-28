@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 204880750}
   - component: {fileID: 204880749}
   - component: {fileID: 204880748}
-  - component: {fileID: 204880752}
+  - component: {fileID: 204880753}
   m_Layer: 0
   m_Name: monster
   m_TagString: Untagged
@@ -215,14 +215,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204880746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.82, y: 0, z: 0}
+  m_LocalPosition: {x: -22.07, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &204880752
+--- !u!114 &204880753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,19 +231,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 204880746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6b95dfa080b6d4da852c48856b88dc, type: 3}
+  m_Script: {fileID: 11500000, guid: a95b43b1825038946a84b75d2eb49fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterSpeed: 1
   patrolPoints:
-  - {fileID: 1746807784}
-  - {fileID: 1047124835}
-  - {fileID: 2107443763}
-  - {fileID: 388796425}
-  - {fileID: 1715520173}
-  - {fileID: 244757552}
-  timeSpentInBetweenPoints: 1
-  chanceOfMonsterChangingDirection: 30
+  - {fileID: 1746807785}
+  - {fileID: 1047124836}
+  - {fileID: 2107443764}
+  - {fileID: 388796426}
+  - {fileID: 1715520174}
+  - {fileID: 244757553}
   startingPatrolPoint: 0
+  timeStationaryEachPatrolPoint: 1
 --- !u!1 &244757552
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244757552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.82, y: 0.59, z: 0}
+  m_LocalPosition: {x: 8.61, y: 0.59, z: -8.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -393,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388796425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.98, y: 0.59, z: 0}
+  m_LocalPosition: {x: 11.98, y: 0.59, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -508,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047124835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4, y: 0.59, z: 0}
+  m_LocalPosition: {x: 4.4, y: 0.59, z: 4.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
