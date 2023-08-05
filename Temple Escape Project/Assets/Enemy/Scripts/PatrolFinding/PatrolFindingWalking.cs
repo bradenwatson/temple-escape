@@ -3,33 +3,45 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.AI;
 
 public class PatrolFindingWalking : MonoBehaviour
 {
-    public int monsterSpeed = 1;
-    public List<Transform> patrolPoints;
+    [SerializeField]
+    public NavMeshAgent agent;
+    bool moveToNewPatrolPoint = true;
+    public bool isIncreasingPatrolPoints = true;
 
-    public int startingPatrolPoint = 0;
-    private int currentPatrolPoint = 0;
+    [Header("chance variables")]
+    public float chanceOfChangingDirections = 30f;    
+    public float randomNumber = 0;          // have it linked to a random.range generator and if the number is less then the variable above it changes directions along the patrol route
 
-    public float timeStationaryEachPatrolPoint = 1;
-    private float timeSinceMovedPatrolPoint = 0;
+    [Header("patrol timings")]
+    public float howFarFromEachPoint = 1.5f;
+    public float timeAtEachPoint = 3f;
+    public float howLongBeenAtCurrentPoint = 0f;    
 
-    private bool isAtPatrolPoint = false;
-    private bool isMovingDirectlyToTarget = false;
-    private Vector3 whereSoundLocated;
-    private float howLongSearchingForTarget = 0;
+    [Header("patrol locations")]
+    public List<Transform> patrolPoints = new List<Transform>();
+    public int startingLocationIndex = 0;
+    int currentLocationIndex;
 
+    [Header("sound")]
+    public bool isSoundToMoveTo = false;
+    public float howCloseToSoundNeededToBe = 3f;
+    public float howLongToWaitAtSound = 5f;
+    public float howLongWaitedAtSound = 0f;
+    Vector3 locationOfSound;
 
     private void Start()
     {
-        currentPatrolPoint = startingPatrolPoint;
+        currentLocationIndex = startingLocationIndex;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        PatrolRoutine();
+    {        
+        PatrolRoutine();        
     }
 
     public void OnTriggerEnter(Collider collision)
@@ -42,83 +54,108 @@ public class PatrolFindingWalking : MonoBehaviour
 
     private void PatrolRoutine()
     {
-        if (!isMovingDirectlyToTarget)          // seeing if the monster is looking for the target already
-        {
-            MoveToPatrolPoint();
-            if (isAtPatrolPoint)
+        if (!isSoundToMoveTo)
+        {            
+            if (moveToNewPatrolPoint)
             {
-                if (timeSinceMovedPatrolPoint > timeStationaryEachPatrolPoint)
-                {
-                    currentPatrolPoint++;
-                    if (currentPatrolPoint >= patrolPoints.Count)
-                    {
-                        currentPatrolPoint = 0;
-                    }
-                    timeSinceMovedPatrolPoint = 0;
-                }
-                timeSinceMovedPatrolPoint += Time.deltaTime;
-                isAtPatrolPoint = false;
+                MoveToPatrolPoint();
             }
+            SeeIfAtDestination();
         }
-        else
+        if (isSoundToMoveTo)
         {
-            MoveToSound();          // moving to the sound and setting whether to get give up
+            MoveToSound();
         }
     }
 
     private void MoveToPatrolPoint()
     {
-        Transform target = patrolPoints[currentPatrolPoint].transform;
-
-        float distance = Vector3.Distance(transform.position, target.position);
-        if (distance > 0.1f)
-        {
-            Vector3 newPosition = Vector3.Lerp(transform.position, target.position, monsterSpeed * Time.deltaTime);
-            transform.position = newPosition;
-        }
-        else
-        {
-            isAtPatrolPoint = true;
-        }
+        Vector3 patrolPointToGoTo = patrolPoints[currentLocationIndex].transform.position;
+        agent.SetDestination(patrolPointToGoTo);
+        moveToNewPatrolPoint = false;
     }
 
-    public void SetSoundTriggered(Vector3 whereSoundTriggered)
+    private void SeeIfAtDestination()
     {
-        isMovingDirectlyToTarget = true;
-        whereSoundLocated = whereSoundTriggered;
+        float distance = Vector3.Distance(transform.position, patrolPoints[currentLocationIndex].position);
+        if (distance < howFarFromEachPoint)
+        {
+            if (howLongBeenAtCurrentPoint > timeAtEachPoint)
+            {
+                randomNumber = 0;
+                randomNumber = Random.Range(0, 101);
+                if (randomNumber < chanceOfChangingDirections)
+                {
+                    if (isIncreasingPatrolPoints)
+                    {
+                        isIncreasingPatrolPoints = false;
+                    }
+                    else
+                    {
+                        isIncreasingPatrolPoints = true;
+                    }
+                }
+                if (isIncreasingPatrolPoints)
+                {
+                    IncreasePatrolPointIndex();
+                }
+                if (!isIncreasingPatrolPoints)
+                {
+                    DecreasePatrolPointIndex();
+                }
+                moveToNewPatrolPoint = true;
+            }                               
+        }
+        howLongBeenAtCurrentPoint += Time.deltaTime;  
+        if (distance >= howFarFromEachPoint)
+        {
+            howLongBeenAtCurrentPoint = 0f;
+        }
+    }    
+
+    private void IncreasePatrolPointIndex()
+    {
+        currentLocationIndex++;
+        if (currentLocationIndex >= patrolPoints.Count)
+        {
+            currentLocationIndex = 0;
+        }
+    }   
+
+    private void DecreasePatrolPointIndex()
+    {
+        currentLocationIndex--;
+        if (currentLocationIndex < 0)
+        {
+            currentLocationIndex = patrolPoints.Count - 1;
+        }
     }
 
     private void MoveToSound()
     {
-        float distanceToSound = Vector3.Distance(transform.position, whereSoundLocated);
-        if (distanceToSound > 1f)
-        {
-            Vector3 newPosition = Vector3.Lerp(transform.position, whereSoundLocated, monsterSpeed * Time.deltaTime);
-            transform.position = newPosition;
-        }
-        else
-        {
-            howLongSearchingForTarget += Time.deltaTime;
-            if (howLongSearchingForTarget > 3f)
+        agent.SetDestination(locationOfSound);
+        SeeIfAtSoundSource();
+    }
+
+    private void SeeIfAtSoundSource()
+    {
+        howLongWaitedAtSound += Time.deltaTime;
+        float distance = Vector3.Distance(transform.position, locationOfSound);
+        if (distance < howCloseToSoundNeededToBe)
+        {            
+            if (howLongWaitedAtSound > howLongToWaitAtSound)
             {
-                whereSoundLocated = Vector3.zero;
-                isMovingDirectlyToTarget = false;
-                howLongSearchingForTarget = 0f;
-            }
+                isSoundToMoveTo = false;
+                howLongWaitedAtSound = 0;
+                locationOfSound = Vector3.zero;
+                MoveToPatrolPoint();
+            }            
         }
     }
-
-    private void OpenDoor()
+    
+    public void SetSoundTrigger(Vector3 soundLocated)
     {
-        bool isOpeningDoor = false;
-        if (isOpeningDoor)
-        {
-            PlayOpeningDoorSound();
-        }
-    }
-
-    private void PlayOpeningDoorSound()
-    {
-
+        locationOfSound = soundLocated;
+        isSoundToMoveTo = true;
     }
 }

@@ -13,8 +13,7 @@ public class TestPlayer : MonoBehaviour
         howLongUntillMakeSound += Time.deltaTime;
         if (howLongUntillMakeSound > 20)
         {
-            monsterReference.GetComponent<PatrolFindingWalking>().SetSoundTriggered(transform.position);
-            howLongUntillMakeSound = 0;
+            
         }
     }
 }
