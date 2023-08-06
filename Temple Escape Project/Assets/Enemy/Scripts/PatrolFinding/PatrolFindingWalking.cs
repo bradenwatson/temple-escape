@@ -44,14 +44,6 @@ public class PatrolFindingWalking : MonoBehaviour
         PatrolRoutine();        
     }
 
-    public void OnTriggerEnter(Collider collision)
-    {
-        if (collision.tag == "door")
-        {
-            print("triggered entering door");
-        }
-    }
-
     private void PatrolRoutine()
     {
         if (!isSoundToMoveTo)
@@ -138,8 +130,7 @@ public class PatrolFindingWalking : MonoBehaviour
     }
 
     private void SeeIfAtSoundSource()
-    {
-        howLongWaitedAtSound += Time.deltaTime;
+    {       
         float distance = Vector3.Distance(transform.position, locationOfSound);
         if (distance < howCloseToSoundNeededToBe)
         {            
@@ -149,7 +140,8 @@ public class PatrolFindingWalking : MonoBehaviour
                 howLongWaitedAtSound = 0;
                 locationOfSound = Vector3.zero;
                 MoveToPatrolPoint();
-            }            
+            }  
+            howLongWaitedAtSound += Time.deltaTime;           
         }
     }
     
@@ -157,5 +149,6 @@ public class PatrolFindingWalking : MonoBehaviour
     {
         locationOfSound = soundLocated;
         isSoundToMoveTo = true;
+        howLongWaitedAtSound = 0f;
     }
 }
