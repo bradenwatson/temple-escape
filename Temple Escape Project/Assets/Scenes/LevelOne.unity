@@ -1599,6 +1599,7 @@ GameObject:
   - component: {fileID: 933850332}
   - component: {fileID: 933850331}
   - component: {fileID: 933850330}
+  - component: {fileID: 933850334}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -2112,6 +2113,19 @@ MonoBehaviour:
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &933850334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933850328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d98f0c8f000214bb8b4627e3a05bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 1984657658}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,6 +3660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbbe764cab72ef4cbb87c3983b02066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
 --- !u!95 &1786833061
 Animator:
   serializedVersion: 4
@@ -3655,8 +3670,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786833059}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: d37fc92da0526634189fec826913a776, type: 3}
+  m_Controller: {fileID: 9100000, guid: 02e5c7f61415d314cb2cb660c8b7195d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3836,6 +3851,7 @@ GameObject:
   - component: {fileID: 1958373170}
   - component: {fileID: 1958373169}
   - component: {fileID: 1958373168}
+  - component: {fileID: 1958373172}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -4349,6 +4365,19 @@ MonoBehaviour:
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &1958373172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958373166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d98f0c8f000214bb8b4627e3a05bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 1786833060}
 --- !u!1001 &1984657654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5339,6 +5368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbbe764cab72ef4cbb87c3983b02066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1001 &2076631011
 PrefabInstance:
   m_ObjectHideFlags: 0
