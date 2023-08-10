@@ -8,4 +8,3 @@ Temple Escape is a VR game where the player travels between rooms to find puzzle
 - The individual branches under them are feature branches, these are used to work on tasks individually. They're to be named as the team's branch and your initials.
 
 ![github workflow image](/img/github_workflow_diagram.jpg)
-ghdshshs
