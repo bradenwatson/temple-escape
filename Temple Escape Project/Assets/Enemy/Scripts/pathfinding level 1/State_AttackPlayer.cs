@@ -13,7 +13,7 @@ public class State_AttackPlayer : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        
+        Debug.Log("attack state");
     }
 
     private void AttackRoutine()

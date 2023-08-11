@@ -23,6 +23,13 @@ public class mBrain_brain : MonoBehaviour
 
     public float distanceToAttackPlayer = 10f;
 
+    [Header("speed")]
+    public float maxSpeed = 10f;
+    public float startingSpeed = 3.5f;
+    public float increasePerCollectableLost = 1f;
+    public float currentSpeed;
+    public float chasingMultiplier = 1.25f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +48,8 @@ public class mBrain_brain : MonoBehaviour
         {
             currentState = initialState;
         }
+
+        currentSpeed = startingSpeed;
 
         currentState = initialState;
         initialState.OnStateEnter();
@@ -110,5 +119,30 @@ public class mBrain_brain : MonoBehaviour
     public void SetStartingState()
     {
         currentState = initialState;
+    }
+
+    public void MonsterSpeed(bool isCollectableInfluenced, bool chasingPlayer, bool lostPlayer)
+    {
+        if (isCollectableInfluenced)
+        {
+            agent.speed += increasePerCollectableLost;
+            currentSpeed = agent.speed;
+        }
+        if (chasingPlayer)
+        {
+            agent.speed *= chasingMultiplier;
+        }
+        if (lostPlayer)
+        {
+            agent.speed = currentSpeed;
+        }
+        if (agent.speed > maxSpeed)
+        {
+            if (!chasingPlayer)
+            {
+                currentSpeed = maxSpeed;
+            }
+            agent.speed = maxSpeed;
+        }
     }
 }

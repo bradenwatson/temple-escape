@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 698454180}
   - component: {fileID: 698454186}
   - component: {fileID: 698454187}
+  - component: {fileID: 698454188}
   - component: {fileID: 698454179}
   m_Layer: 0
   m_Name: monster
@@ -299,8 +300,8 @@ MonoBehaviour:
   distanceBufferToPatrolPoint: 5
   attackState: {fileID: 698454186}
   timeInbetweenPoints: 5
-  currentPatrolPoint: 0
-  lastPatrolPoint: 0
+  currentPatrolPoint: -1
+  lastPatrolPoint: -1
   howCloseToPatrolPoint: 5
   timeSinceaLastChangedPoints: 0
   chanceToGoBackLastPatrolPoint: 30
@@ -400,7 +401,12 @@ MonoBehaviour:
   player: {fileID: 1959493599}
   currentTarget: {fileID: 0}
   targetIsPlayer: 0
-  distanceToAttackPlayer: 10
+  distanceToAttackPlayer: 25
+  maxSpeed: 10
+  startingSpeed: 3.5
+  increasePerCollectableLost: 3
+  currentSpeed: 0
+  chasingMultiplier: 1.25
 --- !u!114 &698454186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,10 +434,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  patrolState: {fileID: 698454180}
   attackState: {fileID: 698454186}
+  collectableState: {fileID: 698454188}
   timeLookingForPlayer: 5
   timeLooked: 0
+--- !u!114 &698454188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698454178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5161c541b25b5b4c882a4bbb9ee53e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  patrolState: {fileID: 698454180}
+  collectables: []
 --- !u!1 &1122779060
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +514,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403216143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403216144}
+  m_Layer: 0
+  m_Name: collectable
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403216144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403216143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.6, y: 0.43, z: -37.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1411117238
 GameObject:
@@ -794,7 +846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959493599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.41, y: 0.66, z: 30.2}
+  m_LocalPosition: {x: 13.86, y: 0.76, z: 23.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -893,7 +945,7 @@ Transform:
   m_GameObject: {fileID: 1999200376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 10.5573, y: 10.5573, z: 10.5573}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

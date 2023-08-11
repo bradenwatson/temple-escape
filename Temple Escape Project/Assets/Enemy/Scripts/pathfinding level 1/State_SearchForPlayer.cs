@@ -5,8 +5,8 @@ using UnityEngine;
 public class State_SearchForPlayer : mBrain_base
 {
     [Header("states")]
-    public mBrain_base patrolState;
     public mBrain_base attackState;
+    public mBrain_base collectableState;
 
     public float timeLookingForPlayer = 5f;
     public float timeLooked = 0f;
@@ -18,21 +18,25 @@ public class State_SearchForPlayer : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-
+        Debug.Log("search state");
+        timeLooked = 0f;
     }
 
     private void LookForPlayer()
     {
-        if (brain.distanceToAttackPlayer > brain.GetDistanceToPlayer()) 
+        if (brain.distanceToAttackPlayer > brain.GetDistanceToPlayer())
         {
             TransitionToNextState(attackState);
             return;
         }
-        timeLooked += Time.deltaTime;
-        if (timeLooked > timeLookingForPlayer )
+        else
         {
-            TransitionToNextState(patrolState);
-            timeLooked = 0f;
+            timeLooked += Time.deltaTime;
+            if (timeLooked > timeLookingForPlayer)
+            {
+                TransitionToNextState(collectableState);
+                timeLooked = 0f;
+            }
         }
     }
 }

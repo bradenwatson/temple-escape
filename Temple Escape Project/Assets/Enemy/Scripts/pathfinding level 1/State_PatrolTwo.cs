@@ -18,28 +18,39 @@ public class State_PatrolTwo : mBrain_base
     public float timeSinceaLastChangedPoints = 0;
     public float chanceToGoBackLastPatrolPoint = 30;
 
+    internal override void OnStateEnterArgs()
+    {
+        Debug.Log("patrol state");
+        SetNewPatrolPoint();
+    }
+
+    public override void UpdateState()
+    {
+        PatrolRoutine();
+    }
+
     private void PatrolRoutine()
     {
         if (brain.GetDistanceToPlayer() < brain.distanceToAttackPlayer)
         {
-            //brain.RecieveNewState(gameObject.GetComponent<State_AttackPlayer>());
-            // brain.RecieveNewState(this);
             TransitionToNextState(attackState);
         }
-        if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint]) < howCloseToPatrolPoint)
+        else
         {
-            timeSinceaLastChangedPoints += Time.deltaTime;
+            if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint]) < howCloseToPatrolPoint)
+            {
+                timeSinceaLastChangedPoints += Time.deltaTime;
+            }
+            if (timeSinceaLastChangedPoints > timeInbetweenPoints)
+            {
+                SetNewPatrolPoint();
+                timeSinceaLastChangedPoints = 0;
+            }
         }
-        if (timeSinceaLastChangedPoints > timeInbetweenPoints)
-        {
-            SetNewPatrolPoint();
-            timeSinceaLastChangedPoints = 0;
-        }        
     }
 
     private void SetNewPatrolPoint()
-    {
-        
+    {        
         List<Transform> potentialPatrolPoints = GetClosestPatrolPoints();
         Transform newPatrolPoint = potentialPatrolPoints[Random.Range(0, potentialPatrolPoints.Count)];
         for (int i = 0; i < possiblePatrolPoints.Count; i++)
@@ -88,7 +99,7 @@ public class State_PatrolTwo : mBrain_base
             }       
         }        
 
-        Debug.Log($"closest patrol points count {closestPatrolPoints.Count}");
+        // Debug.Log($"closest patrol points count {closestPatrolPoints.Count}");
         return closestPatrolPoints;
     }
 
@@ -96,15 +107,5 @@ public class State_PatrolTwo : mBrain_base
     {
         brain.AssignTarget(possiblePatrolPoints[currentPatrolPoint].gameObject, false);
         brain.MoveToTarget();
-    }
-
-    internal override void OnStateEnterArgs()
-    {
-        SetNewPatrolPoint();
-    }
-
-    public override void UpdateState()
-    {
-        PatrolRoutine();
-    }
+    }    
 }
