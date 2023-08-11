@@ -5,6 +5,7 @@ using UnityEditor.AI;
 using UnityEngine.AI;
 using UnityEngine.Jobs;
 using System.Linq;
+using static UnityEditor.VersionControl.Asset;
 
 public class mBrain_brain : MonoBehaviour
 {
@@ -14,8 +15,13 @@ public class mBrain_brain : MonoBehaviour
     [SerializeField]
     NavMeshAgent agent;
 
+    [SerializeField]
+    public GameObject player;
+
     public GameObject currentTarget;
     public bool targetIsPlayer = false;
+
+    public float distanceToAttackPlayer = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +56,26 @@ public class mBrain_brain : MonoBehaviour
         return distance;
     }
 
+    public float GetDistance(Transform positionToGetDistanceFor)
+    {
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(transform.position, positionToGetDistanceFor.position, NavMesh.AllAreas, path);
+
+        float distance = 0f;
+        for (int i = 1; i < path.corners.Length; i++)
+        {
+            distance += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+        }
+
+        return distance;
+    }
+
+    public float GetDistanceToPlayer()
+    {
+        float distance = GetDistance(player.transform);
+        return distance;
+    }
+
     public void SetDestination(Vector3 destination)
     {
         agent.SetDestination(destination);
@@ -63,6 +89,10 @@ public class mBrain_brain : MonoBehaviour
     public void AssignTarget(GameObject target, bool isPlayer)
     {
         currentTarget = target;
+        if (isPlayer)
+        {
+            currentTarget = player;
+        }
         targetIsPlayer = isPlayer; 
     }
 
@@ -70,5 +100,15 @@ public class mBrain_brain : MonoBehaviour
     void Update()
     {
         currentState.UpdateState();
+    }
+
+    public void RecieveNewState(mBrain_base newState)
+    {
+        currentState = newState;
+    }
+
+    public void SetStartingState()
+    {
+        currentState = initialState;
     }
 }
