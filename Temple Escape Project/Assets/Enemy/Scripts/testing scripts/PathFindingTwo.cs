@@ -14,12 +14,14 @@ public class PathFindingTwo : MonoBehaviour
     [Header("timings")]
     public float timeInbetweenPoints = 5f;    
     public int currentPatrolPoint = 0;
-    float timeSinceaLastChangedPoints = 0;
+    public float howCloseToPatrolPoint = 5f;
+    public float timeSinceaLastChangedPoints = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        timeSinceaLastChangedPoints = timeInbetweenPoints;
+        SetNewPatrolPoint();
     }
 
     // Update is called once per frame
@@ -30,12 +32,20 @@ public class PathFindingTwo : MonoBehaviour
 
     private void PatrolRoutine()
     {
-        timeSinceaLastChangedPoints += Time.deltaTime;
+        TimerSinceLastMovedPatrolPoints();
         if (timeSinceaLastChangedPoints > timeInbetweenPoints)
         {
             SetNewPatrolPoint();
             timeSinceaLastChangedPoints = 0;
         }        
+    }
+
+    private void TimerSinceLastMovedPatrolPoints()
+    {
+        if (GetDistance(possiblePatrolPoints[currentPatrolPoint]) < howCloseToPatrolPoint)
+        {
+            timeSinceaLastChangedPoints += Time.deltaTime;
+        }
     }
 
     private void SetNewPatrolPoint()
@@ -45,8 +55,9 @@ public class PathFindingTwo : MonoBehaviour
         for (int i = 0; i < possiblePatrolPoints.Count; i++)
         {
             if (possiblePatrolPoints[i] == newPatrolPoint)
-            {
+            {              
                 currentPatrolPoint = i;
+                GoToPatrolPoint();
                 break;
             }
         }
@@ -71,7 +82,7 @@ public class PathFindingTwo : MonoBehaviour
         float closestDistance = 0;
         for (int i = 0; i < possiblePatrolPoints.Count; i++)
         {
-            if (i != 6)
+            if (i != currentPatrolPoint)
             {
                 float distanceFromPlayer = GetDistance(possiblePatrolPoints[i]);
                 if (distanceFromPlayer < closestDistance || closestDistance == 0)
@@ -83,7 +94,6 @@ public class PathFindingTwo : MonoBehaviour
 
         List<Transform> closestPatrolPoints = new List<Transform>();
         float neededDistance = closestDistance + distanceBufferToPatrolPoint;
-        Debug.Log(neededDistance);
         for (int i = 0; i < possiblePatrolPoints.Count; i++) 
         {
             if (GetDistance(possiblePatrolPoints[i]) <= neededDistance)
@@ -92,5 +102,10 @@ public class PathFindingTwo : MonoBehaviour
             }
         }
         return closestPatrolPoints;
+    }
+
+    private void GoToPatrolPoint()
+    {
+        agent.SetDestination(possiblePatrolPoints[currentPatrolPoint].position);
     }
 }
