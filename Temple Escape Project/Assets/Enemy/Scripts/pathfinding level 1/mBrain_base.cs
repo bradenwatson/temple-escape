@@ -6,6 +6,7 @@ public abstract class mBrain_base : MonoBehaviour
 {
     public bool isActive = false;
     internal mBrain_brain brain;
+
     public void OnStateEnter()
     {
         isActive = true;
@@ -27,7 +28,9 @@ public abstract class mBrain_base : MonoBehaviour
     public void TransitionToNextState(mBrain_base nextState)
     {
         OnStateExit();
+        brain.RecieveNewState(nextState);
         nextState.OnStateEnter();
+        
     }
 
     void OnStateExit() 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PathFinding_PatrolState : mBrain_base
+public class State_Patrol : mBrain_base
 {
     public List<Transform> patrolPoints = new List<Transform>();
     int currentPatrolPoint = 0;

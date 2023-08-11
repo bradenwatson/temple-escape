@@ -3,13 +3,12 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public class PathFindingTwo : MonoBehaviour
+public class State_PatrolTwo : mBrain_base
 {
-    public NavMeshAgent agent;
-
     [Header("patrol point positions")]
     public List<Transform> possiblePatrolPoints = new List<Transform>();
     public float distanceBufferToPatrolPoint = 5;
+    public mBrain_base attackState;
 
     [Header("timings")]
     public float timeInbetweenPoints = 5f;    
@@ -19,21 +18,15 @@ public class PathFindingTwo : MonoBehaviour
     public float timeSinceaLastChangedPoints = 0;
     public float chanceToGoBackLastPatrolPoint = 30;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetNewPatrolPoint();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        PatrolRoutine();
-    }
-
     private void PatrolRoutine()
     {
-        if (GetDistance(possiblePatrolPoints[currentPatrolPoint]) < howCloseToPatrolPoint)
+        if (brain.GetDistanceToPlayer() < brain.distanceToAttackPlayer)
+        {
+            //brain.RecieveNewState(gameObject.GetComponent<State_AttackPlayer>());
+            // brain.RecieveNewState(this);
+            TransitionToNextState(attackState);
+        }
+        if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint]) < howCloseToPatrolPoint)
         {
             timeSinceaLastChangedPoints += Time.deltaTime;
         }
@@ -46,6 +39,7 @@ public class PathFindingTwo : MonoBehaviour
 
     private void SetNewPatrolPoint()
     {
+        
         List<Transform> potentialPatrolPoints = GetClosestPatrolPoints();
         Transform newPatrolPoint = potentialPatrolPoints[Random.Range(0, potentialPatrolPoints.Count)];
         for (int i = 0; i < possiblePatrolPoints.Count; i++)
@@ -60,20 +54,6 @@ public class PathFindingTwo : MonoBehaviour
         }
     }
 
-    private float GetDistance(Transform positionToGetDistanceFor)
-    {
-        NavMeshPath path = new NavMeshPath();
-        NavMesh.CalculatePath(transform.position, positionToGetDistanceFor.position, NavMesh.AllAreas, path);
-
-        float distance = 0f;
-        for (int i = 1; i < path.corners.Length; i++)
-        {
-            distance += Vector3.Distance(path.corners[i - 1], path.corners[i]);
-        }
-
-        return distance;
-    }
-
     private List<Transform> GetClosestPatrolPoints()
     {
         float closestDistance = 0;
@@ -81,7 +61,7 @@ public class PathFindingTwo : MonoBehaviour
         {
             if (i != currentPatrolPoint && i != lastPatrolPoint)
             {
-                float distanceFromPlayer = GetDistance(possiblePatrolPoints[i]);
+                float distanceFromPlayer = brain.GetDistance(possiblePatrolPoints[i]);
                 if (distanceFromPlayer < closestDistance || closestDistance == 0)
                 {
                     closestDistance = distanceFromPlayer;
@@ -93,7 +73,6 @@ public class PathFindingTwo : MonoBehaviour
         if (lastPatrolPoint != -1)
         {
             int randomNumber = Random.Range(0, 101);
-            Debug.Log(randomNumber);
             if (randomNumber < chanceToGoBackLastPatrolPoint)
             {
                 closestPatrolPoints.Add(possiblePatrolPoints[lastPatrolPoint]);
@@ -103,7 +82,7 @@ public class PathFindingTwo : MonoBehaviour
         float neededDistance = closestDistance + distanceBufferToPatrolPoint;
         for (int i = 0; i < possiblePatrolPoints.Count; i++)
         {
-            if (GetDistance(possiblePatrolPoints[i]) <= neededDistance && i != currentPatrolPoint && i != lastPatrolPoint)
+            if (brain.GetDistance(possiblePatrolPoints[i]) <= neededDistance && i != currentPatrolPoint && i != lastPatrolPoint)
             {
                 closestPatrolPoints.Add(possiblePatrolPoints[i]);
             }       
@@ -115,6 +94,17 @@ public class PathFindingTwo : MonoBehaviour
 
     private void GoToPatrolPoint()
     {
-        agent.SetDestination(possiblePatrolPoints[currentPatrolPoint].position);
+        brain.AssignTarget(possiblePatrolPoints[currentPatrolPoint].gameObject, false);
+        brain.MoveToTarget();
+    }
+
+    internal override void OnStateEnterArgs()
+    {
+        SetNewPatrolPoint();
+    }
+
+    public override void UpdateState()
+    {
+        PatrolRoutine();
     }
 }
