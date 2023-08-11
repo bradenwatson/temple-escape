@@ -2,23 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorControl : MonoBehaviour
+public class SlidingDoorControl : MonoBehaviour
 {
     [Header("Options")]
-    public Vector3 endPosition;
-    public float openSpeed = 0.66f; // in seconds
+    //public Vector3 endPosition;
+    public Vector3 relativeEndPosition = new Vector3(0, 4.5f, 0);
+    public float openSpeed = 1.5f; // in seconds
     public float closeDelay = 1.5f; // in seconds
     public bool startOpen = false;
     public bool testOpeningAndClosing = false;
 
+    private Vector3 startPosition;
+    private Vector3 endPosition;
     private bool isMoving = false;
     private bool isOpening = true;
-    private Vector3 startPosition;
     private float delay = 0f;
 
     void Start()
     {
         startPosition = transform.position;
+        endPosition = new Vector3(
+            startPosition.x + relativeEndPosition.x,
+            startPosition.y + relativeEndPosition.y,
+            startPosition.z + relativeEndPosition.z);
+
         if (startOpen)
         {
             transform.position = endPosition;
@@ -57,10 +64,12 @@ public class DoorControl : MonoBehaviour
         {
             if (isOpening)
             {
+                // TODO: Hold door open if trigger still active
                 delay += Time.deltaTime;
 
                 if (delay > closeDelay)
                 {
+                    delay = 0;
                     isOpening = false;
                 }
             }
@@ -77,5 +86,11 @@ public class DoorControl : MonoBehaviour
     {
         get { return isMoving; }
         set { isMoving = value; }
+    }
+
+    public Vector3 EndPosition
+    {
+        get { return endPosition; }
+        set {  endPosition = value; }
     }
 }
