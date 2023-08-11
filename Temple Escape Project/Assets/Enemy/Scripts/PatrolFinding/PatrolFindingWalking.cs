@@ -49,6 +49,8 @@ public class PatrolFindingWalking : MonoBehaviour
         if (collision.tag == "door")
         {
             print("triggered entering door");
+            // trigger 'door open' sound effect when opening door
+            PlaySound.PlaySoundOnce("Door_Open", collision.GetComponentInParent<AudioSource>());
         }
     }
 
