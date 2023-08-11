@@ -32,28 +32,18 @@ public class PatrolFindingTelelport : MonoBehaviour
             int randomNumber = Random.Range(0, 101);
             Debug.Log(randomNumber.ToString());
 
-            bool changedDirections = false;
-
             if (randomNumber < chanceOfMonsterChangingDirection)
             {
-                changedDirections = true;
-            }
-
-            if (changedDirections)
-            {
-                if (isGoingForward)
-                {
-                    isGoingForward = false;
-                }
-                else
-                {
-                    isGoingForward = true;
-                }
+                isGoingForward != isGoingForward;
             }
             
             MovePatrolPoint(isGoingForward);
             timeSinceLastMovedPatrolPoint = 0;
         }
+
+        // TODO: Should this be at the top of the fuinction? Otherwise we're doing the processing
+        // on the frame after the condition becomes true, instead of doing it on the same frame
+        // --Alex S
         timeSinceLastMovedPatrolPoint += Time.deltaTime;
     }
 
