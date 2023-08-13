@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class State_AttackPlayer : mBrain_base
 {
-    public mBrain_base searchForTarget;
-
     public override void UpdateState()
     {
         AttackRoutine();
@@ -13,7 +11,7 @@ public class State_AttackPlayer : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        
+        Debug.Log("attack state");
     }
 
     private void AttackRoutine()
@@ -22,7 +20,7 @@ public class State_AttackPlayer : mBrain_base
         brain.MoveToTarget();
         if (brain.distanceToAttackPlayer <= brain.GetDistanceToPlayer())
         {
-            TransitionToNextState(searchForTarget);
+            TransitionToNextState(searchPlayerState);
         }
         else
         {
