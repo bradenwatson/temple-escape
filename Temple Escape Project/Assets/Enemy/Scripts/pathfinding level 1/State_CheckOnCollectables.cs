@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class State_CheckOnCollectables : mBrain_base
 {
-    public mBrain_base patrolState;
     public List<GameObject> collectables = new List<GameObject>();
 
     public override void UpdateState()
@@ -21,7 +20,7 @@ public class State_CheckOnCollectables : mBrain_base
     {
         if (SeeIfPieceMissing())
         {
-            brain.MonsterSpeed(SeeIfPieceMissing(), false, false);
+            brain.MonsterSpeed(SeeIfPieceMissing(), false, false, false);
         }
         TransitionToNextState(patrolState);
     }

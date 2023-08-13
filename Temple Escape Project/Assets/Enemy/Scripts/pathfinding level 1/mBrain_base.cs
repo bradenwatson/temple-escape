@@ -6,6 +6,10 @@ public abstract class mBrain_base : MonoBehaviour
 {
     public bool isActive = false;
     internal mBrain_brain brain;
+    internal mBrain_base patrolState;
+    internal mBrain_base attackState;
+    internal mBrain_base searchPlayerState;
+    internal mBrain_base searchCollectibleState;
 
     public void OnStateEnter()
     {
@@ -42,5 +46,13 @@ public abstract class mBrain_base : MonoBehaviour
     internal virtual void OnStateExitArgs()
     {
 
+    }
+
+    public void AssignStates(mBrain_base patrolState, mBrain_base attackState, mBrain_base searchForPlayer, mBrain_base checkCollectableState)
+    {
+        this.patrolState = patrolState;
+        this.attackState = attackState;
+        this.searchPlayerState = searchForPlayer;
+        this.searchCollectibleState = checkCollectableState;
     }
 }

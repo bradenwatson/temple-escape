@@ -8,7 +8,6 @@ public class State_PatrolTwo : mBrain_base
     [Header("patrol point positions")]
     public List<Transform> possiblePatrolPoints = new List<Transform>();
     public float distanceBufferToPatrolPoint = 5;
-    public mBrain_base attackState;
 
     [Header("timings")]
     public float timeInbetweenPoints = 5f;    

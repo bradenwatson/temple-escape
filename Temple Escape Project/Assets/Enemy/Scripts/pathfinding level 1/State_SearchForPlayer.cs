@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class State_SearchForPlayer : mBrain_base
 {
-    [Header("states")]
-    public mBrain_base attackState;
-    public mBrain_base collectableState;
-
     public float timeLookingForPlayer = 5f;
     public float timeLooked = 0f;
 
@@ -22,7 +18,7 @@ public class State_SearchForPlayer : mBrain_base
         timeLooked = 0f;
     }
 
-    private void LookForPlayer()
+    private void LookForPlayer()        // only goes to sound
     {
         if (brain.distanceToAttackPlayer > brain.GetDistanceToPlayer())
         {
@@ -34,7 +30,7 @@ public class State_SearchForPlayer : mBrain_base
             timeLooked += Time.deltaTime;
             if (timeLooked > timeLookingForPlayer)
             {
-                TransitionToNextState(collectableState);
+                TransitionToNextState(searchCollectibleState);
                 timeLooked = 0f;
             }
         }

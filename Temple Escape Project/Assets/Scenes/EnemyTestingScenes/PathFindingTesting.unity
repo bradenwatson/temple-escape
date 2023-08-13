@@ -298,7 +298,6 @@ MonoBehaviour:
   - {fileID: 1811699887}
   - {fileID: 1388767185}
   distanceBufferToPatrolPoint: 5
-  attackState: {fileID: 698454186}
   timeInbetweenPoints: 5
   currentPatrolPoint: -1
   lastPatrolPoint: -1
@@ -397,6 +396,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 698454180}
+  patrolState: {fileID: 698454180}
+  attackState: {fileID: 698454186}
+  searchPlayerState: {fileID: 698454187}
+  searchCollectibleState: {fileID: 698454188}
   agent: {fileID: 698454179}
   player: {fileID: 1959493599}
   currentTarget: {fileID: 0}
@@ -420,7 +423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  searchForTarget: {fileID: 698454187}
 --- !u!114 &698454187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,8 +436,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  attackState: {fileID: 698454186}
-  collectableState: {fileID: 698454188}
   timeLookingForPlayer: 5
   timeLooked: 0
 --- !u!114 &698454188
@@ -451,7 +451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  patrolState: {fileID: 698454180}
   collectables: []
 --- !u!1 &1122779060
 GameObject:
