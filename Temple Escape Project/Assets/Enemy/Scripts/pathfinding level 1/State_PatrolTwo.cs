@@ -30,7 +30,7 @@ public class State_PatrolTwo : mBrain_base
 
     private void PatrolRoutine()
     {
-        if (brain.GetDistanceToPlayer() < brain.distanceToAttackPlayer)
+        if (SeeIfPlayerSeen())
         {
             TransitionToNextState(attackState);
         }

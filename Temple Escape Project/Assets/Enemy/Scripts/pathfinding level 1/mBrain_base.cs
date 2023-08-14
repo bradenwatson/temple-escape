@@ -55,4 +55,13 @@ public abstract class mBrain_base : MonoBehaviour
         this.searchPlayerState = searchForPlayer;
         this.searchCollectibleState = checkCollectableState;
     }
+
+    public bool SeeIfPlayerSeen()
+    {
+        if (brain.distanceToAttackPlayer > brain.GetDistanceToPlayer())
+        {
+            return true;
+        }
+        return false;
+    }
 }
