@@ -5,24 +5,30 @@ using UnityEngine;
 public class SlidingDoorControl : MonoBehaviour
 {
     [Header("Options")]
-    //public Vector3 endPosition;
     [Tooltip("Set the relative position for the open state.\n\nExample: a y of 4.5 will move the door 4.5 up from its starting position.")]
     public Vector3 relativeEndPosition = new Vector3(0, 4.5f, 0);
+
     [Tooltip("Time it takes for the door to go from completely closed, to completely open, and visa versa")]
     public float openSpeed = 1.5f; // in seconds
+
     [Tooltip("The dealy before the door automatically closes.\n\nSet to -1 to disable automatic closing of the door.")]
     public float closeDelay = 1.5f; // in seconds
+
     [Tooltip("Triggers door to open if a triggering object is within this distance.\n\nSet to -1 to disable.")]
-    public float proximityTrigger = -1f;
+    public float proximityRadius = -1f;
+
     [Tooltip("Should this door begin in the open state")]
     public bool startOpen = false;
     public bool testOpeningAndClosing = false;
+    public bool testClosing = false;
+    public bool testOpening = false;
 
     private Vector3 startPosition;
     private Vector3 endPosition;
     private bool isMoving = false;
     private bool isOpening = true;
     private float delay = 0f;
+    private SphereCollider triggerSphere;
 
     void Start()
     {
@@ -31,6 +37,12 @@ public class SlidingDoorControl : MonoBehaviour
             startPosition.x + relativeEndPosition.x,
             startPosition.y + relativeEndPosition.y,
             startPosition.z + relativeEndPosition.z);
+
+        triggerSphere = GetComponent<SphereCollider>();
+        if (proximityRadius >= 0)
+        {
+            triggerSphere.radius = proximityRadius;
+        }
 
         if (startOpen)
         {
@@ -52,10 +64,40 @@ public class SlidingDoorControl : MonoBehaviour
                 MoveDoor(startPosition);
             }
         }
+
         else if (testOpeningAndClosing)
         {
-            isMoving = true;
+            if (isOpening)
+            {
+                OpenDoor(); 
+            }
+            else
+            {
+                CloseDoor();
+            }
         }
+
+        if (testClosing)
+        {
+            CloseDoor();
+        }
+
+        if (testOpening)
+        {
+            OpenDoor();
+        }
+    }
+
+    public void OpenDoor()
+    {
+        isOpening = true;
+        isMoving = true;
+    }
+
+    public void CloseDoor()
+    {
+        isOpening = false;
+        isMoving = true;
     }
 
     void MoveDoor(Vector3 newPosition)
@@ -68,9 +110,17 @@ public class SlidingDoorControl : MonoBehaviour
 
         else
         {
-            if (isOpening)
+            nextState();
+        }
+    }
+
+    void nextState()
+    {
+        if (isOpening)
+        {
+            // TODO: Hold door open if trigger still active
+            if (closeDelay >= 0)
             {
-                // TODO: Hold door open if trigger still active
                 delay += Time.deltaTime;
 
                 if (delay > closeDelay)
@@ -79,12 +129,17 @@ public class SlidingDoorControl : MonoBehaviour
                     isOpening = false;
                 }
             }
-
             else
             {
                 isMoving = false;
-                isOpening = true;
+                isOpening = false;
             }
+        }
+
+        else
+        {
+            isMoving = false;
+            isOpening = true;
         }
     }
 
