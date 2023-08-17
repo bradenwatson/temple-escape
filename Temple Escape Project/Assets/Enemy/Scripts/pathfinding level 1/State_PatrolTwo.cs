@@ -36,7 +36,7 @@ public class State_PatrolTwo : mBrain_base
         }
         else
         {
-            if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint]) < howCloseToPatrolPoint)
+            if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint].position) < howCloseToPatrolPoint)
             {
                 timeSinceaLastChangedPoints += Time.deltaTime;
             }
@@ -71,7 +71,7 @@ public class State_PatrolTwo : mBrain_base
         {
             if (i != currentPatrolPoint && i != lastPatrolPoint)
             {
-                float distanceFromPlayer = brain.GetDistance(possiblePatrolPoints[i]);
+                float distanceFromPlayer = brain.GetDistance(possiblePatrolPoints[i].position);
                 if (distanceFromPlayer < closestDistance || closestDistance == 0)
                 {
                     closestDistance = distanceFromPlayer;
@@ -92,7 +92,7 @@ public class State_PatrolTwo : mBrain_base
         float neededDistance = closestDistance + distanceBufferToPatrolPoint;
         for (int i = 0; i < possiblePatrolPoints.Count; i++)
         {
-            if (brain.GetDistance(possiblePatrolPoints[i]) <= neededDistance && i != currentPatrolPoint && i != lastPatrolPoint)
+            if (brain.GetDistance(possiblePatrolPoints[i].position) <= neededDistance && i != currentPatrolPoint && i != lastPatrolPoint)
             {
                 closestPatrolPoints.Add(possiblePatrolPoints[i]);
             }       

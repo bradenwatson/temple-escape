@@ -31,7 +31,7 @@ public class mBrain_brain : MonoBehaviour
     public float maxSpeed = 10f;
     public float startingSpeed = 3.5f;
     public float increasePerCollectableLost = 1f;
-    public float currentSpeed;
+    private float currentSpeed;
     public float chasingMultiplier = 1.25f;
 
     // Start is called before the first frame update
@@ -70,10 +70,10 @@ public class mBrain_brain : MonoBehaviour
         return distance;
     }
 
-    public float GetDistance(Transform positionToGetDistanceFor)        // gets distance from one object to another (one of the objects is what its attached to)
+    public float GetDistance(Vector3 positionToGetDistanceFor)        // gets distance from one object to another (one of the objects is what its attached to)
     {
         NavMeshPath path = new NavMeshPath();
-        NavMesh.CalculatePath(transform.position, positionToGetDistanceFor.position, NavMesh.AllAreas, path);
+        NavMesh.CalculatePath(transform.position, positionToGetDistanceFor, NavMesh.AllAreas, path);
 
         float distance = 0f;
         for (int i = 1; i < path.corners.Length; i++)
@@ -86,7 +86,7 @@ public class mBrain_brain : MonoBehaviour
 
     public float GetDistanceToPlayer()
     {
-        float distance = GetDistance(player.transform);
+        float distance = GetDistance(player.transform.position);
         return distance;
     }
 
@@ -133,16 +133,16 @@ public class mBrain_brain : MonoBehaviour
             agent.speed = startingSpeed;
         }
         
-        else if (isCollectableInfluenced)
+        if (isCollectableInfluenced)
         {
             agent.speed += increasePerCollectableLost;
             currentSpeed = agent.speed;
         }
-        else if (chasingPlayer)
+        if (chasingPlayer)
         {
             agent.speed *= chasingMultiplier;
         }
-        else if (lostPlayer)
+        if (lostPlayer)
         {
             agent.speed = currentSpeed;
         }
@@ -154,5 +154,6 @@ public class mBrain_brain : MonoBehaviour
             }
             agent.speed = maxSpeed;
         }
+        Debug.Log(currentSpeed);
     }
 }
