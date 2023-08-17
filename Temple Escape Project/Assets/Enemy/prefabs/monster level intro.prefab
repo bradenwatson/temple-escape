@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8034475565794134039}
   m_Layer: 0
   m_Name: monster level intro
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,13 +145,10 @@ MonoBehaviour:
   agent: {fileID: 0}
   isIncreasingPatrolPoints: 1
   chanceOfChangingDirections: 30
-  randomNumber: 0
   howFarFromEachPoint: 1.5
   timeAtEachPoint: 3
-  howLongBeenAtCurrentPoint: 0
   patrolPoints: []
   startingLocationIndex: 0
-  isSoundToMoveTo: 0
   howCloseToSoundNeededToBe: 3
   howLongToWaitAtSound: 5
   howLongWaitedAtSound: 0
