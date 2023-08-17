@@ -116,17 +116,16 @@ MonoBehaviour:
   agent: {fileID: 1517730128817868560}
   isIncreasingPatrolPoints: 1
   chanceOfChangingDirections: 30
-  randomNumber: 0
   howFarFromEachPoint: 1.5
   timeAtEachPoint: 3
-  howLongBeenAtCurrentPoint: 0
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   startingLocationIndex: 0
-  isSoundToMoveTo: 0
+  howCloseToSoundNeededToBe: 3
   howLongToWaitAtSound: 5
+  howLongWaitedAtSound: 0
 --- !u!114 &534708493656415664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f26971ed389df104bbe50682ef96ac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  makeSound: 1
+  forceMakeSound: 0
+  secondsBetweenEachSound: 10
+  timeSinceLastSound: 0
+  monster: {fileID: 0}
 --- !u!195 &1517730128817868560
 NavMeshAgent:
   m_ObjectHideFlags: 0
