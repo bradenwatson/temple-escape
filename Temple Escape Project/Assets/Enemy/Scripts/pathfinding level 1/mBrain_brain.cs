@@ -31,7 +31,7 @@ public class mBrain_brain : MonoBehaviour
     public float maxSpeed = 10f;
     public float startingSpeed = 3.5f;
     public float increasePerCollectableLost = 1f;
-    private float currentSpeed;
+    public float currentSpeed;
     public float chasingMultiplier = 1.25f;
 
     // Start is called before the first frame update
@@ -135,8 +135,8 @@ public class mBrain_brain : MonoBehaviour
         
         if (isCollectableInfluenced)
         {
-            agent.speed += increasePerCollectableLost;
-            currentSpeed = agent.speed;
+            currentSpeed += increasePerCollectableLost;
+            agent.speed = currentSpeed;
         }
         if (chasingPlayer)
         {

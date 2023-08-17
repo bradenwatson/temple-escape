@@ -404,10 +404,11 @@ MonoBehaviour:
   player: {fileID: 1959493599}
   currentTarget: {fileID: 0}
   targetIsPlayer: 0
-  distanceToAttackPlayer: 25
+  distanceToAttackPlayer: 10
   maxSpeed: 10
   startingSpeed: 5
   increasePerCollectableLost: 1
+  currentSpeed: 0
   chasingMultiplier: 1.25
 --- !u!114 &698454186
 MonoBehaviour:
@@ -453,7 +454,7 @@ MonoBehaviour:
   collectables:
   - {fileID: 1403216143}
   - {fileID: 1935349228}
-  distanceToObject: 3
+  distanceToObject: 1
   currentIndex: 0
   timeToStayAtEachCollectable: 1
   timeAtCollectable: 0
