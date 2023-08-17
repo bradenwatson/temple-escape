@@ -1592,7 +1592,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 1725982594}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1083012817
 PrefabInstance:
@@ -1805,6 +1805,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2702927408996735055, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2702927408996735055, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3431561218512405491, guid: 25d732fb4ac58c94ab0eb36396e92c28,
         type: 3}
       propertyPath: m_IsActive
@@ -1814,6 +1824,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 9 Room 4 Way
+      objectReference: {fileID: 0}
+    - target: {fileID: 6183121982550420185, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: startOpen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6183121982550420185, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: closeDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6183121982550420185, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: testOpeningAndClosing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7420391993229973353, guid: 25d732fb4ac58c94ab0eb36396e92c28,
         type: 3}
@@ -2540,6 +2565,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4 Room 3 Way
       objectReference: {fileID: 0}
+    - target: {fileID: 6702631336463604966, guid: af3faaa3b2f0f8747becf026633c59bd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6702631336463604966, guid: af3faaa3b2f0f8747becf026633c59bd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: af3faaa3b2f0f8747becf026633c59bd, type: 3}
@@ -2640,7 +2675,7 @@ GameObject:
   - component: {fileID: 2125752267}
   m_Layer: 0
   m_Name: PlayerTrigger
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

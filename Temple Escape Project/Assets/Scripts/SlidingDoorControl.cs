@@ -29,7 +29,7 @@ public class SlidingDoorControl : MonoBehaviour
     private float delay = 0f;
     private SphereCollider triggerSphere;
     private List<Collider> colliding;
-
+    private bool closeWhenReady = false;
     void Start()
     {
         startPosition = transform.position;
@@ -54,6 +54,7 @@ public class SlidingDoorControl : MonoBehaviour
         {
             colliding.Add(other);
             OpenDoor();
+            closeWhenReady = false;
         }
     }
 
@@ -116,8 +117,12 @@ public class SlidingDoorControl : MonoBehaviour
         isMoving = true;
     }
 
-    public void CloseDoor()
+    public void CloseDoor(bool waitUntilOpen = true)
     {
+        //if (waitUntilOpen && isMoving) {
+        //    TODO: make door wait until it's fully open before closing
+        //}
+
         isOpening = false;
         isMoving = true;
     }
