@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +28,7 @@ public class SlidingDoorControl : MonoBehaviour
     private bool isOpening = true;
     private float delay = 0f;
     private SphereCollider triggerSphere;
+    private List<Collider> colliding;
 
     void Start()
     {
@@ -39,10 +39,7 @@ public class SlidingDoorControl : MonoBehaviour
             startPosition.z + relativeEndPosition.z);
 
         triggerSphere = GetComponent<SphereCollider>();
-        if (proximityRadius >= 0)
-        {
-            triggerSphere.radius = proximityRadius;
-        }
+        colliding = new List<Collider>();
 
         if (startOpen)
         {
@@ -51,8 +48,33 @@ public class SlidingDoorControl : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+            colliding.Add(other);
+            OpenDoor();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if ((other.CompareTag("Player") || other.CompareTag("Enemy")) && colliding.Contains(other))
+        {
+            colliding.Remove(other);
+            if (colliding.Count <= 0)
+            {
+                CloseDoor();
+            }
+        }
+    }
+
     void Update()
     {
+        if (proximityRadius > 0f && triggerSphere.radius != proximityRadius) {
+            triggerSphere.radius = proximityRadius;
+        }
+
         if (isMoving)
         {
             if (isOpening)
