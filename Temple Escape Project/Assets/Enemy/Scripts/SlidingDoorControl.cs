@@ -6,9 +6,15 @@ public class SlidingDoorControl : MonoBehaviour
 {
     [Header("Options")]
     //public Vector3 endPosition;
+    [Tooltip("Set the relative position for the open state.\n\nExample: a y of 4.5 will move the door 4.5 up from its starting position.")]
     public Vector3 relativeEndPosition = new Vector3(0, 4.5f, 0);
+    [Tooltip("Time it takes for the door to go from completely closed, to completely open, and visa versa")]
     public float openSpeed = 1.5f; // in seconds
+    [Tooltip("The dealy before the door automatically closes.\n\nSet to -1 to disable automatic closing of the door.")]
     public float closeDelay = 1.5f; // in seconds
+    [Tooltip("Triggers door to open if a triggering object is within this distance.\n\nSet to -1 to disable.")]
+    public float proximityTrigger = -1f;
+    [Tooltip("Should this door begin in the open state")]
     public bool startOpen = false;
     public bool testOpeningAndClosing = false;
 
