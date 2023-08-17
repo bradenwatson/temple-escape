@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class InteractWithDoor : MonoBehaviour
 {
+
+
+
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "door")
+        if (other.CompareTag("DoorTrigger"))
         {
             print("enter door");
         }
@@ -14,7 +17,7 @@ public class InteractWithDoor : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "door")
+        if (other.CompareTag("DoorTrigger"))
         {
             print("exit door");
         }
