@@ -125,12 +125,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3793243546640952901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a835ab1d7e868240937f53fae334485, type: 3}
+  m_Script: {fileID: 11500000, guid: fee339c78d2f9244cbb13ec958416391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   relativeEndPosition: {x: 0, y: 4.5, z: 0}
   openSpeed: 1.5
-  closeDelay: 0.5
+  closeDelay: 1.5
   proximityRadius: 1
   startOpen: 0
   testOpeningAndClosing: 0
