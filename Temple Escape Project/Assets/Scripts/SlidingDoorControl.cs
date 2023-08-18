@@ -49,7 +49,7 @@ public class SlidingDoorControl : MonoBehaviour
             isOpening = false;
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (proximityRadius > 0)
