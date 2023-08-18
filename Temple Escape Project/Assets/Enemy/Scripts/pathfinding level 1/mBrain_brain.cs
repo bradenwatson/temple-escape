@@ -86,8 +86,12 @@ public class mBrain_brain : MonoBehaviour
 
     public float GetDistanceToPlayer()
     {
-        float distance = GetDistance(player.transform.position);
-        return distance;
+        if (player != null)
+        {
+            float distance = GetDistance(player.transform.position);
+            return distance;
+        }
+        return 0;
     }
 
     public void SetDestination(Vector3 destination)
@@ -97,7 +101,10 @@ public class mBrain_brain : MonoBehaviour
 
     public void MoveToTarget()
     {
-        agent.SetDestination(currentTarget.transform.position);
+        if (currentTarget != null)
+        {
+            agent.SetDestination(currentTarget.transform.position);
+        }
     }
 
     public void AssignTarget(GameObject target, bool isPlayer)

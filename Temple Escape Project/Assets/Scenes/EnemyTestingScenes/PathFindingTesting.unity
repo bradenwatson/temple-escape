@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  timeInBetweenEachAttack: 1
 --- !u!114 &698454187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +808,7 @@ GameObject:
   - component: {fileID: 1959493602}
   - component: {fileID: 1959493601}
   - component: {fileID: 1959493600}
+  - component: {fileID: 1959493604}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -893,6 +895,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1959493604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959493599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34730fc9e78a8084990760cf4714a536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
 --- !u!1 &1999200376
 GameObject:
   m_ObjectHideFlags: 0
