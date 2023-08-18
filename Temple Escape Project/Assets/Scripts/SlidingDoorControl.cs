@@ -39,6 +39,8 @@ public class SlidingDoorControl : MonoBehaviour
             startPosition.z + relativeEndPosition.z);
 
         triggerSphere = GetComponent<SphereCollider>();
+        //SphereCollider sc = new SphereCollider();
+        //triggerSphere = gameObject.AddComponent<SphereCollider>();
         colliding = new List<Collider>();
 
         if (startOpen)
