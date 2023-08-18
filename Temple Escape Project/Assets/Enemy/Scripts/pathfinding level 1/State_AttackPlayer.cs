@@ -18,15 +18,15 @@ public class State_AttackPlayer : mBrain_base
     }
 
     private void AttackRoutine()
-    {
-        brain.AssignTarget(brain.player, true);
-        brain.MoveToTarget();
-        if (brain.distanceToAttackPlayer <= brain.GetDistanceToPlayer())
+    {       
+        if (!brain.SeeIfPlayerIsSeen())
         {
             TransitionToNextState(searchPlayerState);
         }
         else
-        {
+        { 
+            brain.AssignTarget(brain.player, true);
+            brain.MoveToTarget();
             AttackPlayer();
         }
     }

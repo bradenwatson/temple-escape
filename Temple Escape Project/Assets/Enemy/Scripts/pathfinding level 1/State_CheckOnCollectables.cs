@@ -41,8 +41,8 @@ public class State_CheckOnCollectables : mBrain_base
         {
             TransitionToNextState(patrolState);
             return;
-        }
-        if (SeeIfPlayerSeen())
+        }        
+        if (!brain.SeeIfPlayerIsSeen())
         {
             TransitionToNextState(attackState);
         }

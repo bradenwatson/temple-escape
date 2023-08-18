@@ -29,8 +29,8 @@ public class State_PatrolTwo : mBrain_base
     }
 
     private void PatrolRoutine()
-    {
-        if (SeeIfPlayerSeen())
+    {        
+        if (brain.SeeIfPlayerIsSeen())
         {
             TransitionToNextState(attackState);
         }

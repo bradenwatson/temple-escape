@@ -20,7 +20,7 @@ public class State_SearchForPlayer : mBrain_base
 
     private void LookForPlayer()        // only goes to sound
     {
-        if (SeeIfPlayerSeen())
+        if (brain.SeeIfPlayerIsSeen())
         {
             TransitionToNextState(attackState);
             return;

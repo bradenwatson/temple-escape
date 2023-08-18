@@ -14,6 +14,7 @@ public class mBrain_brain : MonoBehaviour
     public mBrain_base attackState;
     public mBrain_base searchPlayerState;
     public mBrain_base searchCollectibleState;
+    public mBrain_base searchSoundState;
     mBrain_base currentState;
 
     [SerializeField]
@@ -34,6 +35,10 @@ public class mBrain_brain : MonoBehaviour
     public float currentSpeed;
     public float chasingMultiplier = 1.25f;
 
+    [Header("sight")]
+    public LayerMask thingsThatBlockSight;
+    public float distanceMonsterCanSee = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +48,7 @@ public class mBrain_brain : MonoBehaviour
         {
             states[i].isActive = false;
             states[i].AssignBrain(this);
-            states[i].AssignStates(patrolState, attackState, searchPlayerState, searchCollectibleState);
+            states[i].AssignStates(patrolState, attackState, searchPlayerState, searchCollectibleState, searchSoundState);
         }
         if (initialState == null)
         {
@@ -82,6 +87,23 @@ public class mBrain_brain : MonoBehaviour
         }
 
         return distance;
+    }
+
+    public bool SeeIfPlayerIsSeen()
+    {       
+        if (player != null)
+        {
+            RaycastHit hit;
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsThatBlockSight))
+            {
+                if (hit.transform.position == player.transform.position)
+                {
+                    return true;
+                }                
+            }
+        }
+        return false;
     }
 
     public float GetDistanceToPlayer()
@@ -162,5 +184,10 @@ public class mBrain_brain : MonoBehaviour
             agent.speed = maxSpeed;
         }
         Debug.Log(currentSpeed);
+    }
+
+    public bool SeeIfSeachForSound()
+    {
+        return true;
     }
 }

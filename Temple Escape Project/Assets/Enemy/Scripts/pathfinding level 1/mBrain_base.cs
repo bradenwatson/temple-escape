@@ -10,6 +10,7 @@ public abstract class mBrain_base : MonoBehaviour
     internal mBrain_base attackState;
     internal mBrain_base searchPlayerState;
     internal mBrain_base searchCollectibleState;
+    internal mBrain_base searchSoundState;
 
     public void OnStateEnter()
     {
@@ -48,13 +49,13 @@ public abstract class mBrain_base : MonoBehaviour
 
     }
 
-    public void AssignStates(mBrain_base patrolState, mBrain_base attackState, mBrain_base searchForPlayer, mBrain_base checkCollectableState)
+    public void AssignStates(mBrain_base patrolState, mBrain_base attackState, mBrain_base searchForPlayer, mBrain_base checkCollectableState, mBrain_base searchSoundState)
     {
         this.patrolState = patrolState;
         this.attackState = attackState;
         this.searchPlayerState = searchForPlayer;
         this.searchCollectibleState = checkCollectableState;
-        
+        this.searchSoundState = searchSoundState;
     }
 
     public bool SeeIfPlayerSeen()
@@ -64,5 +65,19 @@ public abstract class mBrain_base : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public Vector3 sourceOfSoundBase;
+
+    public virtual void SearchSound(Vector3 sourceOfSound)
+    {
+        print("base");
+        if (brain.SeeIfSeachForSound())
+        {
+            Debug.Log("arguemnt: " + sourceOfSound);
+            sourceOfSoundBase = sourceOfSound;
+            Debug.Log("parent: " + sourceOfSoundBase);
+            TransitionToNextState(searchSoundState);
+        }
     }
 }

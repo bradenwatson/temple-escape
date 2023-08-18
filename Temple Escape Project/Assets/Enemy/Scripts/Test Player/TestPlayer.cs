@@ -11,9 +11,16 @@ public class TestPlayer : MonoBehaviour
     void Update()
     {
         howLongUntillMakeSound += Time.deltaTime;
-        if (howLongUntillMakeSound > 20)
+        if (howLongUntillMakeSound > 5)
         {
-            
+            mBrain_base monster = monsterReference.GetComponent<mBrain_base>();
+            Vector3 thisPosition = transform.position;
+            if (thisPosition.y == 0 && thisPosition.x == 0 && thisPosition.z == 0)
+            {
+                Debug.Log("empty");
+            }
+            monster.SearchSound(thisPosition);           
+            howLongUntillMakeSound = 0f;
         }
     }
 }
