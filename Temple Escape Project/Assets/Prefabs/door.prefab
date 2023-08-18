@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3793243546640952900}
   - component: {fileID: 3793243546640952952}
   - component: {fileID: 4965263042593610991}
-  - component: {fileID: 6299996824024316500}
   m_Layer: 0
   m_Name: door
   m_TagString: door
@@ -130,19 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relativeEndPosition: {x: 0, y: 4.5, z: 0}
   openSpeed: 1.5
-  closeDelay: 1.5
-  proximityRadius: 0.66
+  closeDelay: 0.5
+  enemyProximity: 0.66
   startOpen: 0
---- !u!135 &6299996824024316500
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793243546640952901}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.66
-  m_Center: {x: 0, y: 0, z: 0}

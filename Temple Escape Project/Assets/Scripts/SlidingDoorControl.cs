@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlidingDoorControl : MonoBehaviour
@@ -27,7 +28,7 @@ public class SlidingDoorControl : MonoBehaviour
     private bool isMoving = false;
     private bool isOpening = true;
     private float delay = 0f;
-    private SphereCollider triggerSphere;
+    private SphereCollider enemyTriggerSphere;
     private List<Collider> colliding;
 
     void Start()
@@ -38,7 +39,10 @@ public class SlidingDoorControl : MonoBehaviour
             startPosition.y + relativeEndPosition.y,
             startPosition.z + relativeEndPosition.z);
 
-        triggerSphere = GetComponent<SphereCollider>();
+        enemyTriggerSphere = gameObject.AddComponent<SphereCollider>();
+        enemyTriggerSphere.center = Vector3.zero;
+        enemyTriggerSphere.isTrigger = true;
+
         colliding = new List<Collider>();
 
         if (startOpen)
@@ -60,8 +64,8 @@ public class SlidingDoorControl : MonoBehaviour
 
     void Update()
     {
-        if (triggerSphere.radius != enemyProximity) {
-            triggerSphere.radius = Mathf.Clamp(enemyProximity, 0, float.MaxValue);
+        if (enemyTriggerSphere.radius != enemyProximity) {
+            enemyTriggerSphere.radius = Mathf.Clamp(enemyProximity, 0, float.MaxValue);
         }
 
         if (isMoving)
