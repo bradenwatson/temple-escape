@@ -11,16 +11,16 @@ public class SlidingDoorControl : MonoBehaviour
     public float openSpeed = 1.5f; // in seconds
 
     [Tooltip("The dealy before the door automatically closes.\n\nSet to -1 to disable automatic closing of the door.")]
-    public float closeDelay = 1.5f; // in seconds
+    public float closeDelay = 0.5f; // in seconds
 
     [Tooltip("Triggers door to open if a triggering object is within this distance.\n\nSet to -1 to disable.")]
-    public float proximityRadius = 1f;
+    public float proximityRadius = 0.66f;
 
     [Tooltip("Should this door begin in the open state\n\nOnly really useful if automatic closing is disabled (close delay < 0)")]
     public bool startOpen = false;
-    public bool testOpeningAndClosing = false;
-    public bool testClosing = false;
-    public bool testOpening = false;
+    //public bool testOpeningAndClosing = false;
+    //public bool testClosing = false;
+    //public bool testOpening = false;
 
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -39,8 +39,6 @@ public class SlidingDoorControl : MonoBehaviour
             startPosition.z + relativeEndPosition.z);
 
         triggerSphere = GetComponent<SphereCollider>();
-        //SphereCollider sc = new SphereCollider();
-        //triggerSphere = gameObject.AddComponent<SphereCollider>();
         colliding = new List<Collider>();
 
         if (startOpen)
@@ -91,27 +89,27 @@ public class SlidingDoorControl : MonoBehaviour
             }
         }
 
-        else if (testOpeningAndClosing)
-        {
-            if (isOpening)
-            {
-                OpenDoor(); 
-            }
-            else
-            {
-                CloseDoor();
-            }
-        }
+        //else if (testOpeningAndClosing)
+        //{
+        //    if (isOpening)
+        //    {
+        //        OpenDoor(); 
+        //    }
+        //    else
+        //    {
+        //        CloseDoor();
+        //    }
+        //}
 
-        if (testClosing)
-        {
-            CloseDoor();
-        }
+        //if (testClosing)
+        //{
+        //    CloseDoor();
+        //}
 
-        if (testOpening)
-        {
-            OpenDoor();
-        }
+        //if (testOpening)
+        //{
+        //    OpenDoor();
+        //}
     }
 
     public void OpenDoor()
@@ -144,7 +142,6 @@ public class SlidingDoorControl : MonoBehaviour
     {
         if (isOpening)
         {
-            // TODO: Hold door open if trigger still active
             if (closeDelay >= 0 && colliding.Count == 0)
             {
                 delay += Time.deltaTime;

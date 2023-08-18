@@ -131,11 +131,8 @@ MonoBehaviour:
   relativeEndPosition: {x: 0, y: 4.5, z: 0}
   openSpeed: 1.5
   closeDelay: 1.5
-  proximityRadius: 0.33
+  proximityRadius: 0.66
   startOpen: 0
-  testOpeningAndClosing: 0
-  testClosing: 0
-  testOpening: 0
 --- !u!135 &6299996824024316500
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -147,5 +144,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.66
   m_Center: {x: 0, y: 0, z: 0}
