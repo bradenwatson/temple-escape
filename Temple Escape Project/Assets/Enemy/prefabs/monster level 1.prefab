@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1376894356524724918}
   m_Layer: 0
   m_Name: monster level 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,9 +114,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 8663777356116870367}
+  patrolState: {fileID: 0}
+  attackState: {fileID: 0}
+  searchPlayerState: {fileID: 0}
+  searchCollectibleState: {fileID: 0}
   agent: {fileID: 1376894356524724918}
+  player: {fileID: 0}
   currentTarget: {fileID: 0}
   targetIsPlayer: 0
+  distanceToAttackPlayer: 10
+  maxSpeed: 10
+  startingSpeed: 3.5
+  increasePerCollectableLost: 1
+  currentSpeed: 0
+  chasingMultiplier: 1.25
 --- !u!114 &8663777356116870367
 MonoBehaviour:
   m_ObjectHideFlags: 0

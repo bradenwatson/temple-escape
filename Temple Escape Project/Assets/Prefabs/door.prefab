@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3793243546640952900}
   - component: {fileID: 3793243546640952952}
   - component: {fileID: 4965263042593610991}
-  - component: {fileID: 1680106962654075502}
+  - component: {fileID: 6299996824024316500}
   m_Layer: 0
   m_Name: door
   m_TagString: door
@@ -131,12 +131,12 @@ MonoBehaviour:
   relativeEndPosition: {x: 0, y: 4.5, z: 0}
   openSpeed: 1.5
   closeDelay: 1.5
-  proximityRadius: 1
+  proximityRadius: 0.33
   startOpen: 0
   testOpeningAndClosing: 0
   testClosing: 0
   testOpening: 0
---- !u!135 &1680106962654075502
+--- !u!135 &6299996824024316500
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
