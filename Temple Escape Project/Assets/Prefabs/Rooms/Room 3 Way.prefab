@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 6373879200412570915}
   - component: {fileID: 7215931810991776006}
   - component: {fileID: 6996814364713308693}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Teleportation Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
