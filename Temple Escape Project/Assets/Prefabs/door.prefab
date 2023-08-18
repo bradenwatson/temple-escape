@@ -131,7 +131,7 @@ MonoBehaviour:
   relativeEndPosition: {x: 0, y: 4.5, z: 0}
   openSpeed: 1.5
   closeDelay: 0.5
-  proximityRadius: -1
+  proximityRadius: 1
   startOpen: 0
   testOpeningAndClosing: 0
   testClosing: 0

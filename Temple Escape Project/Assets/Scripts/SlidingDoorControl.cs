@@ -14,9 +14,9 @@ public class SlidingDoorControl : MonoBehaviour
     public float closeDelay = 1.5f; // in seconds
 
     [Tooltip("Triggers door to open if a triggering object is within this distance.\n\nSet to -1 to disable.")]
-    public float proximityRadius = -1f;
+    public float proximityRadius = 1f;
 
-    [Tooltip("Should this door begin in the open state")]
+    [Tooltip("Should this door begin in the open state\n\nOnly really useful if automatic closing is disabled (close delay < 0)")]
     public bool startOpen = false;
     public bool testOpeningAndClosing = false;
     public bool testClosing = false;
@@ -50,15 +50,20 @@ public class SlidingDoorControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if (proximityRadius > 0)
         {
-            colliding.Add(other);
-            OpenDoor();
+            if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+            {
+                colliding.Add(other);
+                OpenDoor();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        // Don't need to check for proximityRadius here as the only way this will
+        // trigger, is if there was an OnTriggerEnter earlier, which does the check for us
         if ((other.CompareTag("Player") || other.CompareTag("Enemy")) && colliding.Contains(other))
         {
             colliding.Remove(other);
@@ -68,8 +73,8 @@ public class SlidingDoorControl : MonoBehaviour
 
     void Update()
     {
-        if (proximityRadius > 0f && triggerSphere.radius != proximityRadius) {
-            triggerSphere.radius = proximityRadius;
+        if (triggerSphere.radius != proximityRadius) {
+            triggerSphere.radius = Mathf.Clamp(proximityRadius, 0, float.MaxValue);
         }
 
         if (isMoving)
