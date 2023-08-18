@@ -29,7 +29,7 @@ public class SlidingDoorControl : MonoBehaviour
     private float delay = 0f;
     private SphereCollider triggerSphere;
     private List<Collider> colliding;
-    private bool closeWhenReady = false;
+
     void Start()
     {
         startPosition = transform.position;
@@ -54,7 +54,6 @@ public class SlidingDoorControl : MonoBehaviour
         {
             colliding.Add(other);
             OpenDoor();
-            closeWhenReady = false;
         }
     }
 
@@ -63,10 +62,7 @@ public class SlidingDoorControl : MonoBehaviour
         if ((other.CompareTag("Player") || other.CompareTag("Enemy")) && colliding.Contains(other))
         {
             colliding.Remove(other);
-            if (colliding.Count <= 0)
-            {
-                CloseDoor();
-            }
+            // Closing of door is handled in the NextState method, so that the door fully opens before closing
         }
     }
 
@@ -117,12 +113,8 @@ public class SlidingDoorControl : MonoBehaviour
         isMoving = true;
     }
 
-    public void CloseDoor(bool waitUntilOpen = true)
+    public void CloseDoor()
     {
-        //if (waitUntilOpen && isMoving) {
-        //    TODO: make door wait until it's fully open before closing
-        //}
-
         isOpening = false;
         isMoving = true;
     }
@@ -137,16 +129,16 @@ public class SlidingDoorControl : MonoBehaviour
 
         else
         {
-            nextState();
+            NextState();
         }
     }
 
-    void nextState()
+    void NextState()
     {
         if (isOpening)
         {
             // TODO: Hold door open if trigger still active
-            if (closeDelay >= 0)
+            if (closeDelay >= 0 && colliding.Count == 0)
             {
                 delay += Time.deltaTime;
 
