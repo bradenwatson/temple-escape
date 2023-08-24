@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Class which contains the list of all audio clips, and methods which can be called from other scripts to trigger sounds
+/// Class which contains the list of all audio clips, and methods which can be called from other scripts to trigger or stop sounds
 /// </summary>
 public class PlaySound : MonoBehaviour
 {
@@ -31,7 +31,7 @@ public class PlaySound : MonoBehaviour
         }
     }
 
-    // play sound on repeat for a specified duration, i.e. music
+    // play sound on repeat for a specified duration, i.e. footsteps
     public static IEnumerator PlaySoundOnRepeat(string clipName, AudioSource source, float durationInSeconds)
     {
         if (source == null) { yield return null; } // if no source exists, no sound will play
@@ -53,10 +53,10 @@ public class PlaySound : MonoBehaviour
         source.Stop();
     }
 
-    // play sound on repeat until stopped, i.e. footsteps
-    public static IEnumerator PlaySoundOnRepeat(string clipName, AudioSource source)
+    // play sound on repeat until stopped, i.e. music
+    public static void PlaySoundOnRepeat(string clipName, AudioSource source)
     {
-        if (source == null) { yield return null; } // if no source exists, no sound will play
+        if (source == null) { return; } // if no source exists, no sound will play
         // find sound clip by name 
         foreach (AudioClip c in allClips)
         {
@@ -68,8 +68,15 @@ public class PlaySound : MonoBehaviour
         }
         // start playing sound on loop
         source.Play();
-        source.loop = true;
-        yield return null;
-        // end sound by stopping the coroutine created on starting sound i.e. StopCoroutine(x);
+        source.loop = true;    
+    }
+
+    // end a sound started by PlaySoundOnRepeat without a set duration, or end one with a set duration early
+    public static void StopSound(AudioSource source)
+    {
+        if (source != null && source.isPlaying) // if no source exists or not playing sound, nothing will happen
+        {
+            source.Stop();
+        }
     }
 }
