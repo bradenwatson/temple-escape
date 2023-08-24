@@ -162,9 +162,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Backwards Move Activate",
+                    "type": "Button",
+                    "id": "749e1b70-bba3-4e6b-9557-b97280042a8a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Teleport Mode Cancel",
                     "type": "Button",
                     "id": "89ce8348-6001-41a3-85b9-f8f2e2dcad7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Backwards Move Cancel",
+                    "type": "Button",
+                    "id": "da68066e-93ca-4945-ab72-d14b2a710ae2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -386,17 +404,6 @@
                 },
                 {
                     "name": "",
-                    "id": "99cb7ad1-51ec-4611-af68-92a85f2c17d6",
-                    "path": "<XRController>{LeftHand}/Primary2DAxis",
-                    "interactions": "Sector(directions=12,sweepBehavior=1),Sector(directions=2,sweepBehavior=2)",
-                    "processors": "",
-                    "groups": "Noncontinuous Move",
-                    "action": "Turn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8e383b1a-270f-4c20-819b-89a59cffb498",
                     "path": "<XRController>{LeftHand}/Primary2DAxis",
                     "interactions": "",
@@ -568,6 +575,50 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "UI Press Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39b750c8-2064-41ed-9d23-82ec11d1b347",
+                    "path": "<XRController>{LeftHand}/Primary2DAxis",
+                    "interactions": "Sector(directions=12,sweepBehavior=1),Sector(directions=2,sweepBehavior=2)",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1a7463b-d33a-4831-b1ae-e15484db5b7a",
+                    "path": "<XRController>{LeftHand}/Primary2DAxis",
+                    "interactions": "Sector(directions=2)",
+                    "processors": "",
+                    "groups": "Noncontinuous Move",
+                    "action": "Backwards Move Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c2089332-f5be-4336-918f-bf5ae06dbb93",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Backwards Move Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ec4d63a-57ae-49c9-98f7-310b6a4efd34",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Backwards Move Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
