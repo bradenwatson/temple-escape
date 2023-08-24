@@ -20,9 +20,9 @@ public class PlaySound : MonoBehaviour
     {
         if (source == null) { return; } // if no source exists, no sound will play
         // find sound clip by name 
-        foreach(AudioClip c in allClips)
+        foreach (AudioClip c in allClips)
         {
-            if(c.name == clipName)
+            if (c.name == clipName)
             {
                 // play sound clip from given source
                 source.PlayOneShot(c);
