@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorControlPlayerProximity : MonoBehaviour
+public class DoorProximitySensor : MonoBehaviour
 {
     private DoorControl parentDoorScript;
 
@@ -18,18 +18,16 @@ public class DoorControlPlayerProximity : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("door_proxy_trigger"))
         {
-            Debug.Log("Player proximity on enter 1");
             parentDoorScript.ProximityOnEnter(other);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("door_proxy_trigger"))
         {
-            Debug.Log("Player proximity on exit 1");
             parentDoorScript.ProximityOnExit(other);
         }
     }

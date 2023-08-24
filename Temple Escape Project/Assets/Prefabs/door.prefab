@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7881486399967137155}
   - component: {fileID: 8659887618193617719}
   m_Layer: 0
-  m_Name: playerCollider
+  m_Name: proximitySensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 4054558051857951525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 3, y: 2, z: 21}
+  m_LocalScale: {x: 0.01, y: 2, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3793243546640952953}
