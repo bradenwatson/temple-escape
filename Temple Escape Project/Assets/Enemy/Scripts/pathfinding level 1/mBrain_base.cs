@@ -67,17 +67,25 @@ public abstract class mBrain_base : MonoBehaviour
         return false;
     }
 
-    public Vector3 sourceOfSoundBase;
-
-    public virtual void SearchSound(Vector3 sourceOfSound)
+    private Vector3 sourceOfSoundBase;
+    public void SearchSound(Vector3 sourceOfSound)
     {
-        print("base");
+        sourceOfSoundBase = sourceOfSound;
+        print(sourceOfSoundBase);
         if (brain.SeeIfSeachForSound())
         {
-            Debug.Log("arguemnt: " + sourceOfSound);
-            sourceOfSoundBase = sourceOfSound;
-            Debug.Log("parent: " + sourceOfSoundBase);
-            TransitionToNextState(searchSoundState);
+            brain.SetDestination(sourceOfSound);
+            TransitionToNextState(searchSoundState);            
         }
+    }
+
+    public bool IsAtSound()
+    {
+        print(sourceOfSoundBase);
+        if (brain.GetDistance(sourceOfSoundBase) < 10f)
+        {            
+            return true;
+        }
+        return false;
     }
 }

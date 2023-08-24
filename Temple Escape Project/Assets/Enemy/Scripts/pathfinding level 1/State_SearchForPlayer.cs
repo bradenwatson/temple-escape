@@ -18,7 +18,7 @@ public class State_SearchForPlayer : mBrain_base
         timeLooked = 0f;
     }
 
-    private void LookForPlayer()        // only goes to sound
+    private void LookForPlayer()
     {
         if (brain.SeeIfPlayerIsSeen())
         {

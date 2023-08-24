@@ -188,6 +188,10 @@ public class mBrain_brain : MonoBehaviour
 
     public bool SeeIfSeachForSound()
     {
-        return true;
+        if (currentState != attackState)
+        {
+            return true;
+        }
+        return false;
     }
 }

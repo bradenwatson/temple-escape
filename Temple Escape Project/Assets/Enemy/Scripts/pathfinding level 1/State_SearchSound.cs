@@ -5,13 +5,10 @@ using UnityEngine.iOS;
 
 public class State_SearchSound : mBrain_base
 {
-    public bool isSearchingSound = false;
-    private float lastSinceCheckedIfAtSound = 0f;
-    private float rateAtCheckingIfAtSound = 0.5f;
-
-    public Vector3 sourceToCheck;
-    public float howLongToCheckSoundSource = 10f;
-    public float timeAtSoundSource = 0f;
+    public float timeSpentAtSound = 0f;
+    public float timeSpentSearching = 0f;
+    public float howLongToCheckForSound = 20f;
+    public float howLongToWaitAtSound = 3f;
 
     public override void UpdateState()
     {
@@ -24,42 +21,21 @@ public class State_SearchSound : mBrain_base
     }
 
     private void SearchRoutine()
-    {
-        if (!isSearchingSound)
-        { 
-            isSearchingSound = true;
-            GoToSoundSource(sourceOfSoundBase);
-        }
+    {        
+        timeSpentSearching += Time.deltaTime;
         if (brain.SeeIfPlayerIsSeen())
         {
             TransitionToNextState(attackState);
         }
-        if (brain.GetDistance(sourceToCheck) < 10f)
+        if (timeSpentAtSound > howLongToWaitAtSound || timeSpentSearching > howLongToCheckForSound)
         {
-            timeAtSoundSource += Time.deltaTime;
-            if (timeAtSoundSource > howLongToCheckSoundSource)
-            {
-                TransitionToNextState(patrolState);
-                timeAtSoundSource = 0f;
-            }
+            timeSpentAtSound = 0f;
+            timeSpentSearching = 0f;
+            TransitionToNextState(patrolState);
         }
-    }
-
-    public override void SearchSound(Vector3 sourceOfSound)
-    {
-        if (brain.SeeIfSeachForSound())
+        if (IsAtSound())
         {
-            Debug.Log("arguemnt: " + sourceOfSound);
-            //sourceOfSoundBase = sourceOfSound;
-            Debug.Log("parent: " + sourceOfSoundBase);
-            //TransitionToNextState(searchSoundState);
-            GoToSoundSource(sourceOfSound);
-        }  
-    }
-
-    public void GoToSoundSource(Vector3 sourceOfSound)
-    {
-        Debug.Log("go to source: " + sourceOfSound);
-        brain.SetDestination(sourceOfSound);
+            timeSpentAtSound += Time.deltaTime;
+        }
     }
 }
