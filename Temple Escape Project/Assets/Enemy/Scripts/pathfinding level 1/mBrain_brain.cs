@@ -97,9 +97,10 @@ public class mBrain_brain : MonoBehaviour
         {
             RaycastHit hit;
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsThatBlockSight))
+            if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsThatBlockSight, QueryTriggerInteraction.Collide))
             {
-                if (hit.transform.position == player.transform.position)
+                print("Raycast test " + hit.collider.gameObject.name);
+                if (hit.collider.gameObject == player)
                 {
                     return true;
                 }                
@@ -185,7 +186,6 @@ public class mBrain_brain : MonoBehaviour
             }
             agent.speed = maxSpeed;
         }
-        Debug.Log(currentSpeed);
     }
 
     public bool SeeIfSeachForSound()

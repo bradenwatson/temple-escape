@@ -39,11 +39,13 @@ public class State_CheckOnCollectables : mBrain_base
     {
         if (collectables.Count == 0)
         {
+            print(42);
             TransitionToNextState(patrolState);
             return;
         }        
-        if (!brain.SeeIfPlayerIsSeen())
+        if (brain.SeeIfPlayerIsSeen())
         {
+            print(48);
             TransitionToNextState(attackState);
         }
         if (SeeIfPieceMissing())
@@ -85,6 +87,7 @@ public class State_CheckOnCollectables : mBrain_base
                 currentIndex++;
                 if (currentIndex >= collectables.Count)
                 {
+                    print(90);
                     TransitionToNextState(patrolState);
                 }
                 timeAtCollectable = 0;            

@@ -11,7 +11,7 @@ public class MakeSoundTest : MonoBehaviour
     void Update()
     {
         howLongUntillMakeSound += Time.deltaTime;
-        if (howLongUntillMakeSound > 20)
+        if (howLongUntillMakeSound > 100)
         {
             mBrain_base monster = monsterReference.GetComponent<mBrain_base>();
             Vector3 thisPosition = transform.position;

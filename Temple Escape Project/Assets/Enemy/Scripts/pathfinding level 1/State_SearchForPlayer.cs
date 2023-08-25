@@ -6,6 +6,8 @@ public class State_SearchForPlayer : mBrain_base
 {
     public float timeLookingForPlayer = 5f;
     public float timeLooked = 0f;
+    private bool isGoingToPlayer = false;
+    public Vector3 PlayersLastKnownPosition;
 
     public override void UpdateState()
     {
@@ -16,6 +18,7 @@ public class State_SearchForPlayer : mBrain_base
     {
         Debug.Log("search state");
         timeLooked = 0f;
+        PlayersLastKnownPosition = brain.player.transform.position;
     }
 
     private void LookForPlayer()
@@ -27,6 +30,11 @@ public class State_SearchForPlayer : mBrain_base
         }
         else
         {
+            if (!isGoingToPlayer)
+            {
+                isGoingToPlayer = true;
+                brain.SetDestination(PlayersLastKnownPosition);
+            }
             timeLooked += Time.deltaTime;
             if (timeLooked > timeLookingForPlayer)
             {

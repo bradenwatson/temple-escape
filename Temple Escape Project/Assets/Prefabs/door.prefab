@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3793243546640952903}
   - component: {fileID: 3793243546640952952}
   - component: {fileID: 4965263042593610991}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: door
   m_TagString: door
   m_Icon: {fileID: 0}
@@ -117,8 +117,6 @@ MonoBehaviour:
   relativeEndPosition: {x: 0, y: 4.5, z: 0}
   openSpeed: 1.5
   closeDelay: 0.5
-  enemyProximity: 0.66
-  playerProximityTrigger: 1
   startOpen: 0
 --- !u!1 &4054558051857951525
 GameObject:
@@ -131,7 +129,7 @@ GameObject:
   - component: {fileID: 8795611796433208579}
   - component: {fileID: 7881486399967137155}
   - component: {fileID: 8659887618193617719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: proximitySensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

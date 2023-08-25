@@ -21,6 +21,7 @@ public class State_AttackPlayer : mBrain_base
     {       
         if (!brain.SeeIfPlayerIsSeen())
         {
+            print(24);
             TransitionToNextState(searchPlayerState);
         }
         else
