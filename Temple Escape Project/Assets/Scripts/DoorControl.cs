@@ -15,6 +15,9 @@ public class DoorControl : MonoBehaviour
     [Tooltip("The dealy before the door automatically closes\n\nSet to -1 to disable automatic closing of the door")]
     public float closeDelay = 0.5f; // in seconds
 
+    [Tooltip("Radius to look for enemies to notify when a door sound is triggered")]
+    public float soundTriggerRadius = 10f;
+
     //[Tooltip("Comma seperated tags to ignore when cheking for proximity triggers")]
     //public string proximityBlacklist = "";
 
@@ -84,6 +87,7 @@ public class DoorControl : MonoBehaviour
 
     public void OpenDoor()
     {
+        TriggerDoorSound();
         isOpening = true;
         isMoving = true;
     }
@@ -153,6 +157,23 @@ public class DoorControl : MonoBehaviour
         {
             isMoving = false;
             isOpening = true;
+        }
+    }
+
+    void TriggerDoorSound()
+    {
+        if (!isMoving)
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, soundTriggerRadius);
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.CompareTag("Enemy"))
+                {
+                    mBrain_base monster = collider.gameObject.GetComponent<mBrain_base>();
+                    monster.SearchSound(transform.position);
+                }
+            }
         }
     }
 
