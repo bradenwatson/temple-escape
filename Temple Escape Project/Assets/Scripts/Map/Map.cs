@@ -9,15 +9,16 @@ public class Map : MonoBehaviour
     //Properties
 
     /*
+     * Need to define cartesian
      * Tree of rooms:
         * Nodes = room
         * Lines = (Distance, Direction : N, S, E, W)
     * Max number of rooms
-    * Current number of rooms discovered
     * Count regular rooms
     * Count puzzle rooms
     * Count secret rooms
     * Count saferooms
+    * IsTeleportable?
     */
 
 
@@ -32,11 +33,7 @@ public class Map : MonoBehaviour
     {
         
     }
-    //Initialise Node
-    //Insert room
-    //Insert path
-    //Calculate total distance
-    //Calculate resultant vector of select nodes
+    //Connect rooms by tree
     //Change teleportable
 
 }
