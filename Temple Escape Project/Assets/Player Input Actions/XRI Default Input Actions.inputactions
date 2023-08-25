@@ -223,6 +223,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Thumbstick Touched",
+                    "type": "Button",
+                    "id": "c38a27f3-4924-4979-b67c-30ae34264615",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -300,17 +309,6 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Teleport Mode Activate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b8aebee7-fa03-43d4-bfb7-77a3f87452cc",
-                    "path": "<XRController>{LeftHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Teleport Mode Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -621,6 +619,28 @@
                     "action": "Backwards Move Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec8b08cc-19a6-43f1-8c47-25764353b084",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Teleport Mode Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d23a23f-03a8-4e95-aa30-651a1f497bfb",
+                    "path": "<XRController>{LeftHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Thumbstick Touched",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -798,6 +818,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Thumbstick Touched",
+                    "type": "Button",
+                    "id": "41f505ad-4a37-4935-bf1a-8b6ef25658e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1194,6 +1223,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Backwards Move Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31b22dcf-6985-4f23-992d-ca1d331e85b0",
+                    "path": "<XRController>{RightHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Thumbstick Touched",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

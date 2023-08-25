@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Animator))]
 public class HandObject : MonoBehaviour
 {
+    public float speed = 10;
     private Animator animator;
-    private string gripAnimatorName = "Grip";
-    private string triggerAnimatorName = "Trigger";
 
+    private string gripAnimatorName = "Grip";
     private float gripTarget;
     private float gripCurrent;
+
+    private string triggerAnimatorName = "Trigger";
     private float triggerTarget;
     private float triggerCurrent;
-    public float speed = 10;
+
+    private string teleportAnimatorName = "Teleport";
+    private float teleportTarget;
+    private float teleportCurrent;
 
     private void Start()
     {
@@ -33,6 +39,12 @@ public class HandObject : MonoBehaviour
             triggerCurrent = Mathf.MoveTowards(triggerCurrent, triggerTarget, Time.deltaTime * speed);
             animator.SetFloat(triggerAnimatorName, triggerCurrent);
         }
+
+        if (teleportCurrent != teleportTarget)
+        {
+            teleportCurrent = Mathf.MoveTowards(teleportCurrent, teleportTarget, Time.deltaTime * speed);
+            animator.SetFloat(teleportAnimatorName, teleportCurrent);
+        }
     }
 
     private void Update()
@@ -48,5 +60,10 @@ public class HandObject : MonoBehaviour
     internal void SetTrigger(float value)
     {
         triggerTarget = value;
+    }
+
+    internal void SetTeleport(float value)
+    {
+       teleportTarget = value;
     }
 }
