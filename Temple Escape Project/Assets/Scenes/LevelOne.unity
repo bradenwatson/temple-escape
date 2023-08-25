@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffad6f349c85314e97710bddb8c7aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handControl: {fileID: 933850334}
   targetController: 1
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
@@ -2539,6 +2540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffad6f349c85314e97710bddb8c7aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handControl: {fileID: 1958373172}
   targetController: 0
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
@@ -3393,8 +3395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1300939028}
-  inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
 --- !u!114 &933850335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5655,8 +5655,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1207615197}
-  inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
 --- !u!114 &1958373173
 MonoBehaviour:
   m_ObjectHideFlags: 0

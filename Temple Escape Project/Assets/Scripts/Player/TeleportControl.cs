@@ -14,6 +14,8 @@ public class TeleportControl : MonoBehaviour
         LeftHand
     }
 
+    public HandControl handControl;
+
     public ControllerType targetController;
     public InputActionAsset inputAction;
     public XRRayInteractor rayInteractor;
@@ -61,6 +63,8 @@ public class TeleportControl : MonoBehaviour
         {
             return;
         }
+
+        handControl.ActivateTeleportHandMovement();
 
         if (!rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit))
         {
