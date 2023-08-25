@@ -1,16 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
-    List<GameObject> slots = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
+    public InputActionReference secondaryButtonInputActionRef;
+
+    private bool _inventoryVisible = false;
+
+
+    private void Update()
     {
-        slots.Add(GameObject.FindGameObjectsWithTag("Slot1")[0]);
-        slots.Add(GameObject.FindGameObjectsWithTag("Slot2")[0]);
-        slots.Add(GameObject.FindGameObjectsWithTag("Slot3")[0]);
+        if(SecondaryButtonPressed())
+        {
+            if (!_inventoryVisible)
+            {
+                ToggleInventory(true);
+            }
+        } else
+        {
+            if(_inventoryVisible)
+            {
+                ToggleInventory(false);
+            }
+        }
     }
 
+    //Toggles the inventory to be seen if supplied true, hides if false.
+    private void ToggleInventory(bool visible)
+    {
+        this.gameObject.SetActive(visible);
+        _inventoryVisible = visible;
+    }
+    //Returns true if the secondary button is being pressed.
+    private bool SecondaryButtonPressed() { return secondaryButtonInputActionRef.action.ReadValue<int>() == 1; }
 }
