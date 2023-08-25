@@ -1103,6 +1103,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.301}
+--- !u!4 &383503238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 846918625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408433907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,11 +1911,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 52372d337dc6a6f4084fe3f4585fdb36, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 0.517
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2509,6 +2515,82 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 952259358}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &846918625
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 909511309}
+    m_Modifications:
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 45.772766
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189124486357547338, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534300135066903536, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_Name
+      value: Brazier Small w- Fire Lge
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e98a1e2c73d878428292c57f6ab9fc5, type: 3}
 --- !u!1001 &847290164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2618,6 +2700,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1076753548}
+  - {fileID: 383503238}
   - {fileID: 622305765}
   - {fileID: 1337529372}
   - {fileID: 265441231}
@@ -6103,7 +6186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1872392857
 Transform:
   m_ObjectHideFlags: 0
@@ -13277,6 +13360,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 909511309}
     m_Modifications:
+    - target: {fileID: 58708639, guid: 0e98a1e2c73d878428292c57f6ab9fc5, type: 3}
+      propertyPath: m_Intensity
+      value: 461.11343
+      objectReference: {fileID: 0}
+    - target: {fileID: 58708641, guid: 0e98a1e2c73d878428292c57f6ab9fc5, type: 3}
+      propertyPath: m_Intensity
+      value: 36.69424
+      objectReference: {fileID: 0}
+    - target: {fileID: 58708641, guid: 0e98a1e2c73d878428292c57f6ab9fc5, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 5376
+      objectReference: {fileID: 0}
     - target: {fileID: 1965005953, guid: 0e98a1e2c73d878428292c57f6ab9fc5, type: 3}
       propertyPath: Loop
       value: 1
@@ -13292,6 +13387,11 @@ PrefabInstance:
     - target: {fileID: 1965005953, guid: 0e98a1e2c73d878428292c57f6ab9fc5, type: 3}
       propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234537410167783903, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2234537410167783903, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
         type: 3}
@@ -13361,7 +13461,12 @@ PrefabInstance:
     - target: {fileID: 7534300135066903536, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
         type: 3}
       propertyPath: m_Name
-      value: Brazier Small w- Fire Lge
+      value: Brazier Small w- Fire Lge NOT PREFAB
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534300135066903536, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8581702902928448546, guid: 0e98a1e2c73d878428292c57f6ab9fc5,
         type: 3}
