@@ -21,7 +21,7 @@ public class State_SearchSound : mBrain_base
     }
 
     private void SearchRoutine()
-    {        
+    {
         timeSpentSearching += Time.deltaTime;
         if (brain.SeeIfPlayerIsSeen())
         {

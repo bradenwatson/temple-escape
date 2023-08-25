@@ -39,6 +39,8 @@ public class mBrain_brain : MonoBehaviour
     public LayerMask thingsThatBlockSight;
     public float distanceMonsterCanSee = 20f;
 
+    public Vector3 source;
+
     // Start is called before the first frame update
     void Start()
     {
