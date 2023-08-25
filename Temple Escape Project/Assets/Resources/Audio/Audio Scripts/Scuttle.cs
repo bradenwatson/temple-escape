@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Scuttle : MonoBehaviour
@@ -12,6 +13,9 @@ public class Scuttle : MonoBehaviour
         {
             source = gameObject.GetComponent<AudioSource>();
         } 
-        PlaySound.PlaySoundOnce("Bugs", source);        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        PlaySound.PlaySoundOnce("Bugs", source);
     }
 }
