@@ -16,6 +16,7 @@ public class BackwardsMovementControl : MonoBehaviour
         LeftHand
     }
 
+    public Camera playerCamera;
     public Rigidbody playerBody;
     public ControllerType targetController;
     public InputActionAsset inputAction;
@@ -59,7 +60,7 @@ public class BackwardsMovementControl : MonoBehaviour
             return;
         }
 
-        playerBody.velocity = Vector3.back * movementSpeed;
+        playerBody.velocity = -playerCamera.transform.forward * movementSpeed;
         
         _movementIsActive = false;
     }
