@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
@@ -56,8 +57,9 @@ public class NTree : MonoBehaviour
     
     public NTree()
     {
-        root = null;
+        root = null;    //should be the center OR the saferoom in order for the tree/map to be balanced
         counter = 0;
+        //List of heads (2) for player and enemy to 
     }
 
     public NTree(Object data)
@@ -108,6 +110,12 @@ public class NTree : MonoBehaviour
             }
         }
         return node;
+    }
+
+    public void SetHeadTo(Node node)    //Wrapper method
+    {
+        //calls A* function which returns indexes
+        //move the head until the index returns none
     }
 
 }
