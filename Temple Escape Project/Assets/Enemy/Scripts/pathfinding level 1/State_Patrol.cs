@@ -38,22 +38,34 @@ public class State_Patrol : mBrain_base
 
     public override void UpdateState()
     {
-        if (waiting && Time.time >= nextMoveTime)
+        PatrolRoutine();
+    }
+
+    private void PatrolRoutine()
+    {
+        if (brain.SeeIfPlayerIsSeen())
         {
-            waiting = false;            
-            GoToNextPatrolPoint();
-            nextDistanceCheck = Time.time + distanceCheckFrequency;
+            TransitionToNextState(attackState);
         }
-        else if (!waiting && Time.time >= nextDistanceCheck)
+        else
         {
-            if (brain.GetDistanceToDestination() <= minStoppingDistance)
+            if (waiting && Time.time >= nextMoveTime)
             {
-                waiting = true;
-                nextMoveTime += Time.time + waitTime;
-            }
-            else
-            {
+                waiting = false;
+                GoToNextPatrolPoint();
                 nextDistanceCheck = Time.time + distanceCheckFrequency;
+            }
+            else if (!waiting && Time.time >= nextDistanceCheck)
+            {
+                if (brain.GetDistanceToDestination() <= minStoppingDistance)
+                {
+                    waiting = true;
+                    nextMoveTime += Time.time + waitTime;
+                }
+                else
+                {
+                    nextDistanceCheck = Time.time + distanceCheckFrequency;
+                }
             }
         }
     }

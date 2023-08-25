@@ -12,11 +12,16 @@ GameObject:
   - component: {fileID: 8034475565794134037}
   - component: {fileID: 8034475565794134034}
   - component: {fileID: 8034475565794134035}
-  - component: {fileID: -3471361493984280501}
-  - component: {fileID: 6964783018718143593}
+  - component: {fileID: 4592730163762686523}
+  - component: {fileID: 9024037969571100600}
+  - component: {fileID: 5050805591772076273}
+  - component: {fileID: -3027635878731466688}
+  - component: {fileID: -414230052251418764}
+  - component: {fileID: 7786169062654771099}
+  - component: {fileID: 5684691076201330311}
   - component: {fileID: 8034475565794134039}
   m_Layer: 0
-  m_Name: monster level intro
+  m_Name: monster level 0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +35,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8034475565794134032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1149588, y: 2.61, z: 21.396866}
+  m_LocalPosition: {x: -10.237734, y: 1.21, z: 0.04210949}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -102,23 +107,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &-3471361493984280501
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034475565794134032}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &6964783018718143593
+--- !u!114 &4592730163762686523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,19 +116,128 @@ MonoBehaviour:
   m_GameObject: {fileID: 8034475565794134032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95b43b1825038946a84b75d2eb49fb7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7445fb2354eb2634ba10ffb9810fe15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  isIncreasingPatrolPoints: 1
-  chanceOfChangingDirections: 30
-  howFarFromEachPoint: 1.5
-  timeAtEachPoint: 3
+  initialState: {fileID: 9024037969571100600}
+  patrolState: {fileID: 9024037969571100600}
+  attackState: {fileID: 5050805591772076273}
+  searchPlayerState: {fileID: -3027635878731466688}
+  searchCollectibleState: {fileID: -414230052251418764}
+  searchSoundState: {fileID: 7786169062654771099}
+  agent: {fileID: 8034475565794134039}
+  player: {fileID: 0}
+  currentTarget: {fileID: 0}
+  targetIsPlayer: 0
+  distanceToAttackPlayer: 10
+  maxSpeed: 10
+  startingSpeed: 3.5
+  increasePerCollectableLost: 1
+  currentSpeed: 0
+  chasingMultiplier: 1.25
+  thingsThatBlockSight:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  distanceMonsterCanSee: 20
+  source: {x: 0, y: 0, z: 0}
+--- !u!114 &9024037969571100600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034475565794134032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fd41ed6168d14386c0b718f6b1df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
   patrolPoints: []
-  startingLocationIndex: 0
-  howCloseToSoundNeededToBe: 3
-  howLongToWaitAtSound: 5
-  howLongWaitedAtSound: 0
+  minStoppingDistance: 0.1
+  distanceCheckFrequency: 0.1
+  waitTime: 0.3
+--- !u!114 &5050805591772076273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034475565794134032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1cdb5094e1d9147972e735d961bc4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  timeInBetweenEachAttack: 1
+--- !u!114 &-3027635878731466688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034475565794134032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd48d3865180014a97ec4163a8e5c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  timeLookingForPlayer: 5
+  timeLooked: 0
+  PlayersLastKnownPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &-414230052251418764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034475565794134032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5161c541b25b5b4c882a4bbb9ee53e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  collectables: []
+  distanceToObject: 1
+  currentIndex: 0
+  timeToStayAtEachCollectable: 1
+  timeAtCollectable: 0
+  goingToCollectable: 0
+  totalCollectablesFound: 0
+  randomInts: 
+  collectablesTransform: []
+--- !u!114 &7786169062654771099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034475565794134032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d421d8c53d8f417438ef7aa38fb2d69e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  timeSpentAtSound: 0
+  timeSpentSearching: 0
+  howLongToCheckForSound: 5
+  howLongToWaitAtSound: 3
+--- !u!114 &5684691076201330311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034475565794134032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68cf5b23799c124ca36a2edd83cfa3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &8034475565794134039
 NavMeshAgent:
   m_ObjectHideFlags: 0
