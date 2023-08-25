@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 157323294}
   - component: {fileID: 157323296}
   - component: {fileID: 157323295}
+  - component: {fileID: 157323297}
   m_Layer: 0
   m_Name: ScarabRight
   m_TagString: Untagged
@@ -369,6 +370,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &157323297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157323293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87efae4c31be7f4488febb36abea7609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedPuzzleManager: {fileID: 2109732342}
+  CorrectPuzzlePiece: {fileID: 714250516}
 --- !u!1001 &187666999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -883,6 +898,7 @@ GameObject:
   - component: {fileID: 471224254}
   - component: {fileID: 471224256}
   - component: {fileID: 471224255}
+  - component: {fileID: 471224257}
   m_Layer: 0
   m_Name: ScarabTop
   m_TagString: Untagged
@@ -969,6 +985,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &471224257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471224253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87efae4c31be7f4488febb36abea7609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedPuzzleManager: {fileID: 2109732342}
+  CorrectPuzzlePiece: {fileID: 625914707}
 --- !u!1 &479764353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1043,7 @@ GameObject:
   - component: {fileID: 484617598}
   - component: {fileID: 484617600}
   - component: {fileID: 484617599}
+  - component: {fileID: 484617601}
   m_Layer: 0
   m_Name: ScarabLeft
   m_TagString: Untagged
@@ -1099,6 +1130,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &484617601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484617597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87efae4c31be7f4488febb36abea7609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedPuzzleManager: {fileID: 2109732342}
+  CorrectPuzzlePiece: {fileID: 929900201}
 --- !u!1001 &519409932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1589,7 +1634,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 625914707}
-  - component: {fileID: 625914711}
   - component: {fileID: 625914710}
   - component: {fileID: 625914709}
   - component: {fileID: 625914708}
@@ -1760,20 +1804,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &625914711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625914706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87efae4c31be7f4488febb36abea7609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedPuzzleManager: {fileID: 1432650277}
-  CorrectPuzzlePiece: {fileID: 471224254}
 --- !u!1 &650958064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,7 +2098,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714250516}
-  - component: {fileID: 714250520}
   - component: {fileID: 714250519}
   - component: {fileID: 714250518}
   - component: {fileID: 714250517}
@@ -2239,20 +2268,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &714250520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714250515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87efae4c31be7f4488febb36abea7609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedPuzzleManager: {fileID: 1432650277}
-  CorrectPuzzlePiece: {fileID: 157323294}
 --- !u!1001 &801224347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2409,7 +2424,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 929900201}
-  - component: {fileID: 929900205}
   - component: {fileID: 929900204}
   - component: {fileID: 929900203}
   - component: {fileID: 929900202}
@@ -2580,20 +2594,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &929900205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929900200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87efae4c31be7f4488febb36abea7609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedPuzzleManager: {fileID: 1432650277}
-  CorrectPuzzlePiece: {fileID: 484617598}
 --- !u!1001 &995980169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3818,7 +3818,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1432650275}
   - component: {fileID: 1432650276}
-  - component: {fileID: 1432650277}
   m_Layer: 0
   m_Name: Pedestal
   m_TagString: Untagged
@@ -3863,35 +3862,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1432650277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432650274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72efac4af900dcc4e80c0a3b8c93af6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberOfTasksToComplete: 3
-  currentlyCompletedTasks: 3
-  onPuzzleCompletion:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1432650276}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activate
-          m_BoolArgument: 0
-        m_CallState: 1
 --- !u!1001 &1452251754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4634,6 +4604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2109732341}
+  - component: {fileID: 2109732342}
   m_Layer: 0
   m_Name: ScarabPuzzle
   m_TagString: Untagged
@@ -4653,11 +4624,40 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 404088007}
   - {fileID: 1432650275}
+  - {fileID: 404088007}
   m_Father: {fileID: 1608364393}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2109732342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109732340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72efac4af900dcc4e80c0a3b8c93af6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTasksToComplete: 3
+  currentlyCompletedTasks: 0
+  onPuzzleCompletion:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1432650276}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activate
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2123581230
 PrefabInstance:
   m_ObjectHideFlags: 0
