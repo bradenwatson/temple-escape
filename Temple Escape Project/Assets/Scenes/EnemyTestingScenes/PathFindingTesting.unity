@@ -406,7 +406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  sourceOfSoundBase: {x: 0, y: 0, z: 0}
   possiblePatrolPoints:
   - {fileID: 1122779061}
   - {fileID: 78708868}
@@ -530,6 +529,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   distanceMonsterCanSee: 20
+  source: {x: 0, y: 0, z: 0}
 --- !u!114 &698454186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  sourceOfSoundBase: {x: 0, y: 0, z: 0}
   timeInBetweenEachAttack: 1
 --- !u!114 &698454187
 MonoBehaviour:
@@ -558,7 +557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  sourceOfSoundBase: {x: 0, y: 0, z: 0}
   timeLookingForPlayer: 5
   timeLooked: 0
 --- !u!114 &698454188
@@ -574,7 +572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  sourceOfSoundBase: {x: 0, y: 0, z: 0}
   collectables:
   - {fileID: 1403216143}
   - {fileID: 1935349228}
@@ -599,11 +596,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  sourceOfSoundBase: {x: 0, y: 0, z: 0}
-  isSearchingSound: 0
-  sourceToCheck: {x: 0, y: 0, z: 0}
-  howLongToCheckSoundSource: 10
-  timeAtSoundSource: 0
+  timeSpentAtSound: 0
+  timeSpentSearching: 0
+  howLongToCheckForSound: 20
+  howLongToWaitAtSound: 3
 --- !u!1 &1122779060
 GameObject:
   m_ObjectHideFlags: 0
