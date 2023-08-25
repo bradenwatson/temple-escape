@@ -6,17 +6,27 @@ using UnityEngine;
 public class DoorControl : MonoBehaviour
 {
     [Header("Options")]
-    [Tooltip("Set the relative position for the open state.\n\nExample: a y of 4.5 will move the door 4.5 up from its starting position.")]
+    [Tooltip("Set the relative position for the open state.\n\nExample: a y of 4.5 will move the door 4.5 up from its starting position")]
     public Vector3 relativeEndPosition = new Vector3(0, 4.5f, 0);
 
     [Tooltip("Time it takes for the door to go from completely closed, to completely open, and visa versa")]
     public float openSpeed = 1.5f; // in seconds
 
-    [Tooltip("The dealy before the door automatically closes.\n\nSet to -1 to disable automatic closing of the door.")]
+    [Tooltip("The dealy before the door automatically closes\n\nSet to -1 to disable automatic closing of the door")]
     public float closeDelay = 0.5f; // in seconds
+
+    //[Tooltip("Comma seperated tags to ignore when cheking for proximity triggers")]
+    //public string proximityBlacklist = "";
+
+    [Tooltip("Player can trigger proximity sensor?")]
+    public bool playerProxyTrigger = true;
+
+    [Tooltip("Enemies can trigger proximity sensor?")]
+    public bool enemyProxyTrigger = true;
 
     [Tooltip("Should this door begin in the open state\n\nOnly really useful if automatic closing is disabled (close delay < 0)")]
     public bool startOpen = false;
+
     //public bool testOpeningAndClosing = false;
     //public bool testClosing = false;
     //public bool testOpening = false;
@@ -27,6 +37,7 @@ public class DoorControl : MonoBehaviour
     private bool isOpening = true;
     private float delay = 0f;
     private List<Collider> colliding;
+    //private List<string> blacklist;
 
     void Start()
     {
@@ -37,6 +48,11 @@ public class DoorControl : MonoBehaviour
             startPosition.z + relativeEndPosition.z);
 
         colliding = new List<Collider>();
+        //blacklist = new List<string>();
+        //foreach (string tag in proximityBlacklist.Split(","))
+        //{
+        //    blacklist.Add(tag.Trim());
+        //}
 
         if (startOpen)
         {
@@ -47,6 +63,11 @@ public class DoorControl : MonoBehaviour
 
     public void ProximityOnEnter(Collider other)
     {
+        //if (blacklist.Contains(other.gameObject.tag)) { return; }
+        Transform otherParent = other.gameObject.transform.parent;
+        if ((!playerProxyTrigger && otherParent.CompareTag("Player")) ||
+            (!enemyProxyTrigger  && otherParent.CompareTag("Enemy"))) { return; }
+
         colliding.Add(other);
         OpenDoor();
     }
