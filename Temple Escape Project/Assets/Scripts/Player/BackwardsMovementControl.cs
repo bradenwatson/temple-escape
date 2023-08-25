@@ -16,8 +16,10 @@ public class BackwardsMovementControl : MonoBehaviour
         LeftHand
     }
 
+    public Rigidbody playerBody;
     public ControllerType targetController;
     public InputActionAsset inputAction;
+    public float movementSpeed = 3.0f;
 
     private InputAction _thumbstickInputAction;
     private InputAction _movementActive;
@@ -25,6 +27,8 @@ public class BackwardsMovementControl : MonoBehaviour
 
     private void Start()
     {
+        playerBody.GetComponent<Rigidbody>();
+
         _movementActive = inputAction.FindActionMap("XRI " + targetController.ToString()).FindAction("Backwards Move Activate");
         _movementActive.Enable();
         _movementActive.performed += OnMovementActive;
@@ -55,7 +59,8 @@ public class BackwardsMovementControl : MonoBehaviour
             return;
         }
 
-        Debug.Log("BACK");
+        playerBody.velocity = Vector3.back * movementSpeed;
+        
         _movementIsActive = false;
     }
 

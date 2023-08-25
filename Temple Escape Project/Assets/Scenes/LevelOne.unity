@@ -3406,9 +3406,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b044412628c60409034b7be8c65da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 241676286}
   targetController: 1
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  movementSpeed: 3
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
