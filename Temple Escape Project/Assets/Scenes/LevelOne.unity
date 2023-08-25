@@ -3406,6 +3406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b044412628c60409034b7be8c65da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCamera: {fileID: 963194227}
   playerBody: {fileID: 241676286}
   targetController: 1
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
@@ -4233,7 +4234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_System: {fileID: 1329390910}
   m_TurnAmount: 35
-  m_DebounceTime: 0.6
+  m_DebounceTime: 0.5
   m_EnableTurnLeftRight: 1
   m_EnableTurnAround: 0
   m_LeftHandSnapTurnAction:
@@ -5356,6 +5357,7 @@ GameObject:
   - component: {fileID: 1958373169}
   - component: {fileID: 1958373168}
   - component: {fileID: 1958373172}
+  - component: {fileID: 1958373173}
   m_Layer: 3
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -5882,6 +5884,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1207615197}
+--- !u!114 &1958373173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958373166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b044412628c60409034b7be8c65da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 963194227}
+  playerBody: {fileID: 241676286}
+  targetController: 0
+  inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  movementSpeed: 3
 --- !u!1001 &2076631011
 PrefabInstance:
   m_ObjectHideFlags: 0

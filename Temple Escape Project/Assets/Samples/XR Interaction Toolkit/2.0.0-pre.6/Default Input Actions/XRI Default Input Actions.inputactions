@@ -737,9 +737,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Backwards Move Activate",
+                    "type": "Button",
+                    "id": "6bc3a678-4b80-49fa-8684-665fec6a3406",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Teleport Mode Cancel",
                     "type": "Button",
                     "id": "d587b60c-39a0-4365-8075-477ce484ba0f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Backwards Move Cancel",
+                    "type": "Button",
+                    "id": "e85e8bdf-2a3a-4677-b462-cd4ef834625b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1143,6 +1161,39 @@
                     "processors": "StickDeadzone",
                     "groups": "Continuous Move",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5851337b-96f8-4a0c-998e-ba7f604aa1eb",
+                    "path": "<XRController>{RightHand}/Primary2DAxis",
+                    "interactions": "Sector(directions=2)",
+                    "processors": "",
+                    "groups": "Noncontinuous Move",
+                    "action": "Backwards Move Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bc7cbfe5-a9f8-4f04-8955-e05b4d4bd0b0",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Backwards Move Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31a68b1b-265e-4073-a0cc-746d55977a57",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Backwards Move Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
