@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class State_Patrol : mBrain_base
 {
+    [Header("patrol points")]
     public List<Transform> patrolPoints = new List<Transform>();
     int currentPatrolPoint = 0;
-    public float minStoppingDistance = 0.1f;
-    public float distanceCheckFrequency = 0.1f;
-    float nextDistanceCheck = 0;
-    public float waitTime = 0.3f;
-    bool waiting = false;
-    float nextMoveTime = 0;
+
+    [Header("timings")]
+    public float minTimeToWaitAtPatrolPoint = 1f;
+    public float maxTimeToWaitAtPatrolPoint = 3f;
+    float timeToWaitAtPatrolPoint = 0f;
+    float timeSinceAtPatrolPoint = 0f;
+
+    [Header("other")]
+    public float distanceFromPatrolPoint = 1f;
+
 
     internal override void OnStateEnterArgs()
     {
@@ -49,22 +54,18 @@ public class State_Patrol : mBrain_base
         }
         else
         {
-            if (waiting && Time.time >= nextMoveTime)
+            if (brain.GetDistance(patrolPoints[currentPatrolPoint].position) < distanceFromPatrolPoint)
             {
-                waiting = false;
-                GoToNextPatrolPoint();
-                nextDistanceCheck = Time.time + distanceCheckFrequency;
-            }
-            else if (!waiting && Time.time >= nextDistanceCheck)
-            {
-                if (brain.GetDistanceToDestination() <= minStoppingDistance)
+                if (timeToWaitAtPatrolPoint <= 0f)
                 {
-                    waiting = true;
-                    nextMoveTime += Time.time + waitTime;
+                    timeToWaitAtPatrolPoint = Random.Range(minTimeToWaitAtPatrolPoint, maxTimeToWaitAtPatrolPoint);
                 }
-                else
+                timeSinceAtPatrolPoint += Time.deltaTime;
+                if (timeSinceAtPatrolPoint > timeToWaitAtPatrolPoint)
                 {
-                    nextDistanceCheck = Time.time + distanceCheckFrequency;
+                    timeToWaitAtPatrolPoint = 0f;
+                    timeSinceAtPatrolPoint = 0f;
+                    GoToNextPatrolPoint();
                 }
             }
         }

@@ -37,7 +37,7 @@ public class mBrain_brain : MonoBehaviour
 
     [Header("sight")]
     public LayerMask thingsThatBlockSight;
-    public float distanceMonsterCanSee = 20f;
+    public float distanceMonsterCanSee = float.PositiveInfinity;
 
     public Vector3 source;
 
@@ -99,7 +99,6 @@ public class mBrain_brain : MonoBehaviour
             Vector3 direction = (player.transform.position - transform.position).normalized;
             if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsThatBlockSight, QueryTriggerInteraction.Collide))
             {
-                print("Raycast test " + hit.collider.gameObject.name);
                 if (hit.collider.gameObject == player)
                 {
                     return true;

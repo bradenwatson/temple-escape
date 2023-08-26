@@ -6,6 +6,8 @@ TagManager:
   tags:
   - door
   - scene
+  - door_proxy_trigger
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - scene
   - door
-  - 
+  - capsule
   - 
   - 
   - 

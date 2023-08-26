@@ -18,7 +18,10 @@ public class State_SearchForPlayer : mBrain_base
     {
         Debug.Log("search state");
         timeLooked = 0f;
-        PlayersLastKnownPosition = brain.player.transform.position;
+        if (brain.player != null)
+        {
+            PlayersLastKnownPosition = brain.player.transform.position;
+        }
     }
 
     private void LookForPlayer()
