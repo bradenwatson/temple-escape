@@ -5,17 +5,20 @@ TagManager:
   serializedVersion: 2
   tags:
   - 'Grabbable '
+  - door
+  - door_proxy_trigger
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Capsule
   - Water
   - UI
   - Player
   - 'Grabbable '
-  - 
-  - 
+  - Enemy
+  - Door
   - 
   - 
   - 
