@@ -720,6 +720,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 667714460}
+  - {fileID: 1004251805}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &548247074
@@ -1464,7 +1465,9 @@ Transform:
   m_Children:
   - {fileID: 548247075}
   - {fileID: 1671974388}
+  - {fileID: 1376252646}
   - {fileID: 1627617171}
+  - {fileID: 996823753}
   m_Father: {fileID: 504084920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &676055046
@@ -1882,7 +1885,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1627617171}
+  m_Father: {fileID: 667714460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &996823754
 MonoBehaviour:
@@ -1901,6 +1904,54 @@ MonoBehaviour:
   m_UseLocalSpace: 0
   m_AngleStabilization: 20
   m_PositionStabilization: 0.25
+--- !u!1 &1004251804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004251805}
+  - component: {fileID: 1004251806}
+  m_Layer: 0
+  m_Name: Teleport Locomotion System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1004251805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004251804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1163844857}
+  - {fileID: 1285806466}
+  m_Father: {fileID: 504084920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1004251806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004251804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Timeout: 10
+  m_XROrigin: {fileID: 504084919}
 --- !u!1 &1129873580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,6 +2183,68 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1163844856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1163844857}
+  m_Layer: 0
+  m_Name: Move
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1163844857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163844856}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1004251805}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1285806465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285806466}
+  m_Layer: 0
+  m_Name: Turn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285806466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285806465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1004251805}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1376252645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,12 +2270,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376252645}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1671974388}
+  m_Father: {fileID: 667714460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1376252647
 MonoBehaviour:
@@ -2193,7 +2306,7 @@ GameObject:
   - component: {fileID: 1465430065}
   - component: {fileID: 1465430064}
   m_Layer: 0
-  m_Name: RightHand Interactor
+  m_Name: RightHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2335,6 +2448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627617171}
   - component: {fileID: 1627617176}
+  - component: {fileID: 1627617177}
   m_Layer: 0
   m_Name: Right Controller
   m_TagString: Untagged
@@ -2357,7 +2471,6 @@ Transform:
   m_Children:
   - {fileID: 1465430063}
   - {fileID: 596492617}
-  - {fileID: 996823753}
   - {fileID: 676055047}
   m_Father: {fileID: 667714460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2584,7 +2697,7 @@ MonoBehaviour:
       m_Name: Scale Toggle
       m_Type: 1
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 3e5a1bb1-a71a-4519-a427-4d99a7cbcc61
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -2596,13 +2709,35 @@ MonoBehaviour:
       m_Name: Scale Delta
       m_Type: 0
       m_ExpectedControlType: Vector2
-      m_Id: 
+      m_Id: 7238f2ae-4eee-42da-ab42-e8bc6a671531
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_ButtonPressPoint: 0.5
+--- !u!114 &1627617177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627617170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a50d88b55b45648927679791f472de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GroupName: Right
+  m_InteractionManager: {fileID: 1673398776}
+  m_StartingGroupMembers:
+  - {fileID: 1465430064}
+  - {fileID: 596492621}
+  - {fileID: 676055048}
+  m_StartingInteractionOverridesMap:
+  - groupMember: {fileID: 676055048}
+    overrideGroupMembers:
+    - {fileID: 1465430064}
 --- !u!1 &1671974387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,6 +2748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671974388}
   - component: {fileID: 1671974393}
+  - component: {fileID: 1671974394}
   m_Layer: 0
   m_Name: Left Controller
   m_TagString: Untagged
@@ -2635,7 +2771,6 @@ Transform:
   m_Children:
   - {fileID: 1957629499}
   - {fileID: 165256409}
-  - {fileID: 1376252646}
   - {fileID: 1896236356}
   m_Father: {fileID: 667714460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2881,6 +3016,30 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_ButtonPressPoint: 0.5
+--- !u!114 &1671974394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671974387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a50d88b55b45648927679791f472de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_GroupName: Left
+  m_InteractionManager: {fileID: 1673398776}
+  m_StartingGroupMembers:
+  - {fileID: 1957629500}
+  - {fileID: 165256413}
+  - {fileID: 1896236357}
+  m_StartingInteractionOverridesMap:
+  - groupMember: {fileID: 1896236357}
+    overrideGroupMembers:
+    - {fileID: 1957629500}
+  - groupMember: {fileID: 1957629500}
+    overrideGroupMembers: []
 --- !u!1 &1673398775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,7 +3315,7 @@ GameObject:
   - component: {fileID: 1957629501}
   - component: {fileID: 1957629500}
   m_Layer: 0
-  m_Name: LeftHand Interactor
+  m_Name: LeftHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
