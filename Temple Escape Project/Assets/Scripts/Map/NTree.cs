@@ -1,4 +1,10 @@
-
+/************************************************************************************************************************************************************************************/
+/*  Name: Tony Bui
+ *  Purpose: A generic n-list tree made for Unity
+ *  Last updated: 31/08/23
+ *  Notes: 
+/************************************************************************************************************************************************************************************/
+using NUnit.Framework.Constraints;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,82 +16,41 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem.Android;
 using UnityEngine.SceneManagement;
-using UObject = UnityEngine.Object;
 
 public class NTree : MonoBehaviour
 {
-    public class Node
-    {
-        int index;
-        UObject data;
-        List<Node> children { get; set; }
+/************************************************************************************************************************************************************************************/
+/*  Class: NTree 
+ *  Purpose: Manages the creation and search for nodes of any Unity data type within the network.
+ *  Properties:
+    *   root (Node)
+    *   counter (int)
+    *   Tracker (List<Node>): Referrence points within the network
+ *  Notes:
+    * Assumes nodes are fixed and will not be deleted
+    * Assumes existence of central node and is not optimised for unbalanced trees
+/************************************************************************************************************************************************************************************/
 
-        public Node()
-        {
-            index = -1;
-            data = null;
-            children = null;
-        }
-
-        public Node(UObject data)
-        {
-            this.data = data;
-            this.children = new List<Node>();
-        }
-
-        public Node(int index, UObject data)
-        {
-            this.index = index;
-            this.data = data;
-            this.children = new List<Node>();
-        }
-
-        public Node(UObject data, List<Node> children) 
-        {
-            this.data = data;
-            this.children = children;
-        }
-
-        public Node(Node _node)
-        {
-            this.index = _node.index;
-            this.data = _node.data;
-            this.children = _node.children;
-        }
-
-        //Getters & Setters
-        public int GetIndex()   { return index; }
-        public void SetIndex(int _index) { index = _index; } 
-
-        public UObject GetData() { return data; }
-        public void SetData(UObject data) { this.data = data; }
-        public List<Node> GetChildren() { return children; }
-        
-        
-        //Methods
-        public void InsertChildren(Node node) { this.children.Add(node); }
-        
-    }
-
-
-
+    //PROPERTIES
     Node root;
     int counter;
     List<Node> tracker;
     
+
+    //CONSTRUCTORS
     public NTree()
     {
-        root = null;    //should be the center OR the saferoom in order for the tree/map to be balanced
+        root = null;        //Root node should be central to all the data
         counter = 0;
         tracker = null;
     }
 
-    public NTree(UObject data)
+    public NTree(GameObject data)
     {
         this.root = new Node(this.counter++, data);     //Counter increments after method runs     
     }
 
-    public NTree(UObject data, int amount)
+    public NTree(GameObject data, int amount)
     {
         this.root = new Node(this.counter++, data);     //Counter increments after method runs
         this.tracker = new List<Node>();
@@ -95,45 +60,69 @@ public class NTree : MonoBehaviour
         }
     }
 
-    //Getters & Setters
+
+    //GETTERS
     public Node GetRoot() { return this.root; }
+    public int GetCount() { return counter; }
+    
+
+    //SETTERS
     public void SetRoot(Node root) {  this.root = root; }
 
-    public int GetCount() { return counter; }
 
+
+    //METHODS
+    /***************************************************************************************/
+    /* Method: SelectTracker
+     * Input: index(int)
+     * Output: targetNode(Node)
+     * Purpose: Checks whether tracker(Node) variables exist and returns with same index
+    /***************************************************************************************/
     public Node SelectTracker(int index) 
     {
         Node targetNode = null; 
-        if(tracker != null)
+        if(this.tracker == null)
         {
-            if (index < tracker.Count)
+            throw new NoNullAllowedException("Tracker node has not been instantiated.");
+        }
+        else 
+        { 
+            if (index < 0 || index >= tracker.Count)
             {
-                targetNode = tracker[index];
+                throw new IndexOutOfRangeException("Tracker does not exist.");
             }
             else
             {
-                Debug.Log("Tracker does not exist.");
-            }
+                targetNode = tracker[index];
+            } 
         }
-        else { Debug.Log("Tracker node has not been instantiated."); }
         return targetNode;
     }
 
+    /***************************************************************************************/
+    /* Method: InsertTracker
+     * Input: amount(int)
+     * Output: N/A
+     * Purpose: Checks whether tracker(Node) variables exist and creates them based on the 
+     *          amount desired.
+    /***************************************************************************************/
     public void InsertTracker(int amount)
     {
         if(this.tracker == null) { this.tracker = new List<Node>(); }
-
 
         for (int i = 0; i < amount; i++)
         {
             this.tracker.Add(new Node());
         }
-
     }
 
-
-    //Methods
-    public void Insert(int key, UObject data) 
+    /***************************************************************************************/
+    /* Method: InsertNode
+     * Input: key(int), data (GameObject)  
+     * Output: N/A
+     * Purpose: Inserts node within the tree at a specific key
+    /***************************************************************************************/
+    public void InsertNode(int key, GameObject data) 
     {
         if(root == null) 
         {
@@ -148,9 +137,15 @@ public class NTree : MonoBehaviour
     }
 
 
-    //This filters nodes that were created within the tree class as their index correlates with the counter.                        
-    //External nodes do not connect or contribute to the tree counter and always has an index of -1. 
-    private bool CheckNodeWithinTree(int key)
+    /***************************************************************************************/
+    /* Method: CheckNodeExists
+     * Input: key(int)
+     * Output: isFound(bool)
+     * Purpose: This filters nodes that were created within the tree class as their index 
+     *          correlates with the counter. External nodes do not connect or contribute to 
+     *          the tree counter and always has an index of -1. 
+    /***************************************************************************************/
+    private bool CheckNodeExists(int key)
     {
         bool isFound = false;
         if (key >= 0 && key <= this.counter) 
@@ -160,51 +155,149 @@ public class NTree : MonoBehaviour
         return isFound;
     }
 
-    //Finds a node within the tree by traversing through a queue of node indexes starting from the root node and its children until their index matches with the key
-    public Node FindNode(int key)    //Search by row
+    /***************************************************************************************/
+    /* Method: FindNode
+     * Input: key(int)
+     * Output: node(Node)
+     * Purpose: Finds a node within the tree by traversing through a queue of node indexes 
+     *          starting from the root node and its children (by row) until their index 
+     *          matches with the key
+    /***************************************************************************************/
+    public Node FindNode(int key)    
     {
         Node node = null;
-        if(root != null)
+        if(root == null)
         {
-            if (CheckNodeWithinTree(key))
-            {
-                List<Node> queue = new List<Node>();
-                queue.Add(root);
-                while (queue != null || node != null)    //Queue children at end, pop parent
-                {
-                    if (queue.First().GetIndex() == key)
-                    {
-                        node = queue.First();
-                    }
-                    else
-                    {
-                        foreach (Node n in queue.First().GetChildren())
-                        {
-                            queue.Add((Node)n);     //Queue children
-                        }
-                        queue.RemoveAt(0);      //Pop parent
-                    }
-                }
-            }
-            {
-                Debug.Log("Node does not exist.");
-            }
+            throw new NoNullAllowedException("Tree has not been built.");
         }
         else
         {
-            Debug.Log("Tree has not been built.");
+            if (!CheckNodeExists(key))
+            {
+                throw new NullReferenceException("Node does not exist.");
+            }
+            else
+            {
+                List<Node> queue = new List<Node>();
+                queue.Add(root);
+                while (queue != null || node != null)    //Queue children at end, pop parent until either queue
+                                                         //is empty or node has been found
+                {
+                    if (queue.First().GetIndex() == key)   //If the first node in the queue matches
+                    {
+                        node = queue.First();              //Select the first node in the queue
+                    }
+                    else                                   //If keys dont match
+                    {
+                        foreach (Node n in queue.First().GetChildren())     //Add child nodes to the back of the queue
+                        {
+                            queue.Add((Node)n);     //Queue children
+                        }
+                        queue.RemoveAt(0);      //Pop parent to restart the process
+                    }
+                }
+
+                if(node == null)        //If node could not be found throw exception
+                {
+                    throw new NoNullAllowedException("The node could not be found.");
+                }
+            }
         }
         return node;
     }
 
+
+    /***************************************************************************************/
+    /* Method: SetTrackerTo
+     * Input: index(int), node (Node)
+     * Output: N/A
+     * Purpose: Select a tracker(node) and assign to a specific node within the tree
+    /***************************************************************************************/
     public void SetTrackerTo(int index, Node node)    
     {
-        if (CheckNodeWithinTree(node.GetIndex()))
+        if(index < 0 || index >= this.counter) 
         {
-            Node copy = new Node(node);
-            this.tracker[index] = copy;  
+            throw new IndexOutOfRangeException("Tracker node does not exist.");  
         }
-        else { Debug.Log("Node does not belong within tree.");  } 
+        else
+        {
+            if (!CheckNodeExists(node.GetIndex()))
+            {
+                throw new NullReferenceException("Node does not belong within tree.");
+            }
+            else
+            {
+                Node copy = new Node(node);
+                this.tracker[index] = copy;
+            }
+        }
     }
+/************************************************************************************************************************************************************************************/
+
+
+
+
+/************************************************************************************************************************************************************************************/
+/*  Class: Node 
+ *  Properties:
+    *   index (int)
+    *   data (GameObject)
+    *   children (List<Node>)
+/************************************************************************************************************************************************************************************/
+    public class Node
+    {
+        //PROPERTIES
+        int index;
+        GameObject data;
+        List<Node> children { get; set; }
+
+
+        //CONSTRUCTORS
+        public Node()
+        {
+            index = -1;     //Defaults to 1 if node is not connected to the tree
+            data = null;
+            children = null;
+        }
+        public Node(GameObject data)
+        {
+            this.data = data;
+            this.children = new List<Node>();
+        }
+        public Node(int index, GameObject data)
+        {
+            this.index = index;
+            this.data = data;
+            this.children = new List<Node>();
+        }
+        public Node(GameObject data, List<Node> children)
+        {
+            this.data = data;
+            this.children = children;
+        }
+        public Node(Node _node)
+        {
+            this.index = _node.index;
+            this.data = _node.data;
+            this.children = _node.children;
+        }
+
+
+        //GETTERS
+        public int GetIndex() { return index; } 
+        public GameObject GetData() { return data; } 
+        public List<Node> GetChildren() { return children; }
+
+        
+        //SETTERS
+        public void SetIndex(int _index) { index = _index; }
+        public void SetData(GameObject data) { this.data = data; }
+
+
+        //METHODS
+        public void InsertChildren(Node node) { this.children.Add(node); }
+
+    }
+/************************************************************************************************************************************************************************************/
 
 }
