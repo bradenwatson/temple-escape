@@ -22,6 +22,9 @@ public class State_SearchForPlayer : mBrain_base
         {
             PlayersLastKnownPosition = brain.player.transform.position;
         }
+        animator.SetBool("walking", true);
+        animator.SetBool("playerFound", false);
+        animator.SetBool("stopped", false);
     }
 
     private void LookForPlayer()

@@ -23,6 +23,9 @@ public class mBrain_brain : MonoBehaviour
     [SerializeField]
     public GameObject player;
 
+    [SerializeField]
+    public Animator animator;
+
     public GameObject currentTarget;
     public bool targetIsPlayer = false;
 
@@ -50,7 +53,7 @@ public class mBrain_brain : MonoBehaviour
         {
             states[i].isActive = false;
             states[i].AssignBrain(this);
-            states[i].AssignStates(patrolState, attackState, searchPlayerState, searchCollectibleState, searchSoundState);
+            states[i].AssignStates(patrolState, attackState, searchPlayerState, searchCollectibleState, searchSoundState, animator);
         }
         if (initialState == null)
         {

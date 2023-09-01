@@ -28,6 +28,9 @@ public class State_CheckOnCollectables : mBrain_base
         totalCollectablesFound = 0;
         timeAtCollectable = 0;
         currentIndex = 0;
+        animator.SetBool("walking", true);
+        animator.SetBool("playerFound", false);
+        animator.SetBool("stopped", false);
     }
 
     private void Start()

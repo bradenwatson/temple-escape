@@ -11,6 +11,7 @@ public abstract class mBrain_base : MonoBehaviour
     internal mBrain_base searchPlayerState;
     internal mBrain_base searchCollectibleState;
     internal mBrain_base searchSoundState;
+    internal Animator animator;
 
     public void OnStateEnter()
     {
@@ -49,13 +50,14 @@ public abstract class mBrain_base : MonoBehaviour
 
     }
 
-    public void AssignStates(mBrain_base patrolState, mBrain_base attackState, mBrain_base searchForPlayer, mBrain_base checkCollectableState, mBrain_base searchSoundState)
+    public void AssignStates(mBrain_base patrolState, mBrain_base attackState, mBrain_base searchForPlayer, mBrain_base checkCollectableState, mBrain_base searchSoundState, Animator animator)
     {
         this.patrolState = patrolState;
         this.attackState = attackState;
         this.searchPlayerState = searchForPlayer;
         this.searchCollectibleState = checkCollectableState;
         this.searchSoundState = searchSoundState;
+        this.animator = animator;
     }
 
     public void SearchSound(Vector3 sourceOfSound)

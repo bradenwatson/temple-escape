@@ -17,7 +17,10 @@ public class State_SearchSound : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        Debug.Log("search sound");        
+        Debug.Log("search sound");
+        animator.SetBool("walking", true);
+        animator.SetBool("playerFound", false);
+        animator.SetBool("stopped", false);
     }
 
     private void SearchRoutine()

@@ -17,6 +17,10 @@ public class State_AttackPlayer : mBrain_base
     internal override void OnStateEnterArgs()
     {
         Debug.Log("attack state");
+        animator.SetBool("walking", true);
+        animator.SetBool("playerFound", true);
+        animator.SetBool("stopped", false);
+        animator.SetBool("closeEnoughToPlayer", false);
     }
 
     private void AttackRoutine()
@@ -24,34 +28,45 @@ public class State_AttackPlayer : mBrain_base
         if (!brain.SeeIfPlayerIsSeen())
         {
             TransitionToNextState(searchPlayerState);
+            animator.SetBool("playerFound", false);
         }
         else
         {
+            animator.SetBool("playerFound", true);
             if (brain.GetDistance(brain.player.transform.position) > distanceToStopFromPlayer)
             {
+                animator.SetBool("closeEnoughToPlayer", true);
                 brain.AssignTarget(brain.player, true);
                 brain.MoveToTarget();
             }
             else
             {
+                animator.SetBool("closeEnoughToPlayer", false);
                 brain.AssignTarget(gameObject, false); 
                 brain.MoveToTarget();
             }
-            //AttackPlayer();
+            AttackPlayer();
         }
     }
 
-    //private void AttackPlayer()
-    //{
-    //    if (timeInBetweenEachAttack < timeSinceLastAttack && brain.player != null)
-    //    {
-    //        PlayerHealthTest playerHealth = brain.player.GetComponent<PlayerHealthTest>();
-    //        if (playerHealth != null && brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
-    //        {
-    //            playerHealth.TakeDamage();
-    //        }
-    //        timeSinceLastAttack = 0;
-    //    }
-    //    timeSinceLastAttack += Time.deltaTime;
-    //}
+    private void AttackPlayer()
+    {
+        if (timeInBetweenEachAttack < timeSinceLastAttack && brain.player != null)
+        {
+            var playerHealth = brain.player.GetComponent<DoorControl>(); // replace with player health script just using a random script
+            if (playerHealth != null && brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
+            {
+                animator.SetBool("closeEnoughToPlayer", true);
+                animator.SetBool("stopped", true);
+                // playerHealth.TakeDamage();
+            }
+            else
+            {
+                animator.SetBool("closeEnoughToPlayer", false);
+                animator.SetBool("stopped", false);
+            }
+            timeSinceLastAttack = 0;
+        }
+        timeSinceLastAttack += Time.deltaTime;
+    }
 }

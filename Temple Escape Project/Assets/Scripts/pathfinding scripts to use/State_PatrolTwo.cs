@@ -7,20 +7,24 @@ public class State_PatrolTwo : mBrain_base
 {
     [Header("patrol point positions")]
     public List<Transform> possiblePatrolPoints = new List<Transform>();
-    public float distanceBufferToPatrolPoint = 5;
+    public float distanceBufferChosingPatrolPoint = 5f;
 
     [Header("timings")]
-    public float timeInbetweenPoints = 5f;    
-    public int currentPatrolPoint = -1; 
-    public int lastPatrolPoint = -1;
-    public float howCloseToPatrolPoint = 5f;
-    public float timeSinceaLastChangedPoints = 0;
+    public float defaultTimeInbetweenPoints = 5f;   
+    public float howCloseToPatrolPoint = 1f;    
     public float chanceToGoBackLastPatrolPoint = 30;
+    private float timeSinceaLastChangedPoints = 0; 
+    private int currentPatrolPoint = -1; 
+    private int lastPatrolPoint = -1;
+    private float patrolPointTime = -1;
 
     internal override void OnStateEnterArgs()
     {
         Debug.Log("patrol state");
         SetNewPatrolPoint();
+        animator.SetBool("walking", true);
+        animator.SetBool("playerFound", false);
+        animator.SetBool("stopped", false);
     }
 
     public override void UpdateState()
@@ -36,13 +40,24 @@ public class State_PatrolTwo : mBrain_base
         }
         else
         {
+            if (patrolPointTime == -1)
+            {
+                patrolPointTime = possiblePatrolPoints[currentPatrolPoint].GetComponent<PatrolPoint>().timeToStay();
+            }
+            if (patrolPointTime == -1)
+            {
+                patrolPointTime = defaultTimeInbetweenPoints;
+            }
             if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint].position) < howCloseToPatrolPoint)
             {
+                animator.SetBool("stopped", true);
+                animator.SetBool("walking", false);
                 timeSinceaLastChangedPoints += Time.deltaTime;
             }
-            if (timeSinceaLastChangedPoints > timeInbetweenPoints)
+            if (timeSinceaLastChangedPoints > patrolPointTime)
             {
                 SetNewPatrolPoint();
+                patrolPointTime = -1f;
                 timeSinceaLastChangedPoints = 0;
             }
         }
@@ -89,7 +104,7 @@ public class State_PatrolTwo : mBrain_base
             }
         }
 
-        float neededDistance = closestDistance + distanceBufferToPatrolPoint;
+        float neededDistance = closestDistance + distanceBufferChosingPatrolPoint;
         for (int i = 0; i < possiblePatrolPoints.Count; i++)
         {
             if (brain.GetDistance(possiblePatrolPoints[i].position) <= neededDistance && i != currentPatrolPoint && i != lastPatrolPoint)
@@ -106,5 +121,7 @@ public class State_PatrolTwo : mBrain_base
     {
         brain.AssignTarget(possiblePatrolPoints[currentPatrolPoint].gameObject, false);
         brain.MoveToTarget();
+        animator.SetBool("walking", true);
+        animator.SetBool("stopped", false);
     }    
 }

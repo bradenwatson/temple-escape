@@ -10,9 +10,8 @@ public class State_Patrol : mBrain_base
     int currentPatrolPoint = 0;
 
     [Header("timings")]
-    public float minTimeToWaitAtPatrolPoint = 1f;
-    public float maxTimeToWaitAtPatrolPoint = 3f;
-    private float timeToWaitAtPatrolPoint = 0f;
+    public float defaultTimeAtPatrolPoint = 2;
+    private float patrolPointTime = -1;
     private float timeSinceAtPatrolPoint = 0f;
 
     [Header("other")]
@@ -56,14 +55,18 @@ public class State_Patrol : mBrain_base
         {
             if (brain.GetDistance(patrolPoints[currentPatrolPoint].position) < distanceFromPatrolPoint)
             {
-                if (timeToWaitAtPatrolPoint <= 0f)
+                if (patrolPointTime == -1)
                 {
-                    timeToWaitAtPatrolPoint = Random.Range(minTimeToWaitAtPatrolPoint, maxTimeToWaitAtPatrolPoint);
+                    patrolPointTime = patrolPoints[currentPatrolPoint].GetComponent<PatrolPoint>().timeToStay();
+                }
+                if (patrolPointTime == -1)
+                {
+                    patrolPointTime = defaultTimeAtPatrolPoint;
                 }
                 timeSinceAtPatrolPoint += Time.deltaTime;
-                if (timeSinceAtPatrolPoint > timeToWaitAtPatrolPoint)
+                if (timeSinceAtPatrolPoint > patrolPointTime)
                 {
-                    timeToWaitAtPatrolPoint = 0f;
+                    patrolPointTime = -1;
                     timeSinceAtPatrolPoint = 0f;
                     GoToNextPatrolPoint();
                 }
