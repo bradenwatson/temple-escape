@@ -58,6 +58,7 @@ public class State_AttackPlayer : mBrain_base
             {
                 animator.SetBool("closeEnoughToPlayer", true);
                 animator.SetBool("stopped", true);
+                animator.SetBool("killedPlayer", true);
                 // playerHealth.TakeDamage();
             }
             else
