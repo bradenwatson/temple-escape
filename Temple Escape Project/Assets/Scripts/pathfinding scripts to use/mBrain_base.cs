@@ -61,7 +61,6 @@ public abstract class mBrain_base : MonoBehaviour
     public void SearchSound(Vector3 sourceOfSound)
     {
         brain.source = sourceOfSound;
-        print(brain.source);
         if (brain.SeeIfSeachForSound())
         {
             brain.SetDestination(brain.source);
@@ -71,12 +70,10 @@ public abstract class mBrain_base : MonoBehaviour
 
     public bool IsAtSound()
     {
-        print(brain.source);
-        if (brain.GetDistance(brain.source) < 10f)
+        if (brain.GetDistance(brain.source) < brain.distanceToStopFromSound)
         {
             return true;
         }
-
         return false;
     }
 }

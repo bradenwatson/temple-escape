@@ -6,16 +6,16 @@ using UnityEngine;
 public class State_CheckOnCollectables : mBrain_base
 {
     public List<GameObject> collectables = new List<GameObject>();
-    public float distanceToObject = 1f;
-    public int currentIndex = 0;    
+    public float distanceStopFromTarget = 1f;        
     public float timeToStayAtEachCollectable = 1f;
+    private int currentIndex = 0;
 
-    public float timeAtCollectable = 0f;
-    public bool goingToCollectable = false;
-    public int totalCollectablesFound = 0;
+    private float timeAtCollectable = 0f;
+    private bool goingToCollectable = false;
+    private int totalCollectablesFound = 0;
 
-    public List<int> randomInts = new List<int>();     
-    public List<Vector3> collectablesTransform = new List<Vector3>();
+    private List<int> randomInts = new List<int>();     
+    private List<Vector3> collectablesTransform = new List<Vector3>();
 
     public override void UpdateState()
     {
@@ -72,12 +72,12 @@ public class State_CheckOnCollectables : mBrain_base
         {
             GoToCollectable();
         }
-        if (brain.GetDistance(collectablesTransform[randomInts[currentIndex]]) < distanceToObject)
+        if (brain.GetDistance(collectablesTransform[randomInts[currentIndex]]) < distanceStopFromTarget)
         {            
             timeAtCollectable += Time.deltaTime;
             if (timeAtCollectable > timeToStayAtEachCollectable)
             {  
-                if (brain.GetDistance(collectables[randomInts[currentIndex]].transform.position) > distanceToObject)
+                if (brain.GetDistance(collectables[randomInts[currentIndex]].transform.position) > distanceStopFromTarget)
                 {
                     Debug.Log("missing collectable" + currentIndex);
                     whatToReturn = true;

@@ -29,15 +29,17 @@ public class mBrain_brain : MonoBehaviour
     [Header("speed")]
     public float maxSpeed = 10f;
     public float startingSpeed = 3.5f;
-    public float increasePerCollectableLost = 1f;
-    public float currentSpeed;
+    public float increasePerCollectableLost = 1f;    
     public float chasingMultiplier = 1.25f;
+    private float currentSpeed;
 
     [Header("sight")]
-    public LayerMask thingsThatBlockSight;
+    public LayerMask thingsMonsterCanSee;
     public float distanceMonsterCanSee = float.PositiveInfinity;
 
+    [Header("sound")]
     public Vector3 source;
+    public float distanceToStopFromSound = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -95,7 +97,7 @@ public class mBrain_brain : MonoBehaviour
         {
             RaycastHit hit;
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsThatBlockSight, QueryTriggerInteraction.Collide))
+            if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
             {
                 if (hit.collider.gameObject == player)
                 {

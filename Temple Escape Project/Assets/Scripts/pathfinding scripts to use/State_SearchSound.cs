@@ -5,10 +5,10 @@ using UnityEngine.iOS;
 
 public class State_SearchSound : mBrain_base
 {
-    public float timeSpentAtSound = 0f;
-    public float timeSpentSearching = 0f;
     public float howLongToCheckForSound = 20f;
     public float howLongToWaitAtSound = 3f;
+    private float timeSpentAtSound = 0f;
+    private float timeSpentSearching = 0f;    
 
     public override void UpdateState()
     {

@@ -17,11 +17,6 @@ public class State_PatrolTwo : mBrain_base
     public float timeSinceaLastChangedPoints = 0;
     public float chanceToGoBackLastPatrolPoint = 30;
 
-    [Header("debuging")]
-    public Dictionary<int, int> timesPatrolPointsVisited = new Dictionary<int, int>();
-    public List<int> keys = new List<int>();
-    public List <int> values = new List<int>();
-
     internal override void OnStateEnterArgs()
     {
         Debug.Log("patrol state");
@@ -62,22 +57,7 @@ public class State_PatrolTwo : mBrain_base
             if (possiblePatrolPoints[i] == newPatrolPoint)
             {
                 lastPatrolPoint = currentPatrolPoint;
-                currentPatrolPoint = i;
-                if (!timesPatrolPointsVisited.ContainsKey(currentPatrolPoint))
-                {
-                    timesPatrolPointsVisited[currentPatrolPoint] = 1;                                       
-                }
-                else
-                {
-                    timesPatrolPointsVisited[currentPatrolPoint]++;
-                }
-                keys.Clear();
-                values.Clear();
-                foreach (var key in timesPatrolPointsVisited.Keys)
-                {
-                    keys.Add(key);
-                    values.Add(timesPatrolPointsVisited[key]);
-                }
+                currentPatrolPoint = i;              
                 GoToPatrolPoint();
                 break;
             }

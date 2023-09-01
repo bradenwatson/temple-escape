@@ -1028,8 +1028,6 @@ MonoBehaviour:
   howCloseToPatrolPoint: 5
   timeSinceaLastChangedPoints: 0
   chanceToGoBackLastPatrolPoint: 30
-  keys: 
-  values: 
 --- !u!114 &229389349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,8 +1041,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  timeSpentAtSound: 0
-  timeSpentSearching: 0
   howLongToCheckForSound: 20
   howLongToWaitAtSound: 3
 --- !u!114 &229389350
@@ -1060,9 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  timeLookingForPlayer: 5
-  timeLooked: 0
-  PlayersLastKnownPosition: {x: 0, y: 0, z: 0}
+  timeToLookForPlayer: 5
 --- !u!114 &229389351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,14 +1071,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   collectables: []
-  distanceToObject: 1
-  currentIndex: 0
+  distanceStopFromTarget: 1
   timeToStayAtEachCollectable: 1
-  timeAtCollectable: 0
-  goingToCollectable: 0
-  totalCollectablesFound: 0
-  randomInts: 
-  collectablesTransform: []
 --- !u!114 &229389352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1126,13 +1114,13 @@ MonoBehaviour:
   maxSpeed: 10
   startingSpeed: 3.5
   increasePerCollectableLost: 1
-  currentSpeed: 0
   chasingMultiplier: 1.25
-  thingsThatBlockSight:
+  thingsMonsterCanSee:
     serializedVersion: 2
     m_Bits: 2039
   distanceMonsterCanSee: Infinity
   source: {x: 0, y: 0, z: 0}
+  distanceToStopFromSound: 10
 --- !u!114 &229389354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6889,8 +6877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  timeSpentAtSound: 0
-  timeSpentSearching: 0
   howLongToCheckForSound: 20
   howLongToWaitAtSound: 3
 --- !u!114 &1322605457
@@ -6908,14 +6894,8 @@ MonoBehaviour:
   isActive: 0
   collectables:
   - {fileID: 1024010854}
-  distanceToObject: 1
-  currentIndex: 0
+  distanceStopFromTarget: 1
   timeToStayAtEachCollectable: 1
-  timeAtCollectable: 0
-  goingToCollectable: 0
-  totalCollectablesFound: 0
-  randomInts: 
-  collectablesTransform: []
 --- !u!114 &1322605458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6929,9 +6909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  timeLookingForPlayer: 5
-  timeLooked: 0
-  PlayersLastKnownPosition: {x: 0, y: 0, z: 0}
+  timeToLookForPlayer: 5
 --- !u!114 &1322605459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6974,8 +6952,6 @@ MonoBehaviour:
   howCloseToPatrolPoint: 5
   timeSinceaLastChangedPoints: 0
   chanceToGoBackLastPatrolPoint: 30
-  keys: 
-  values: 
 --- !u!114 &1322605461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7001,13 +6977,13 @@ MonoBehaviour:
   maxSpeed: 10
   startingSpeed: 3.5
   increasePerCollectableLost: 1
-  currentSpeed: 0
   chasingMultiplier: 1.25
-  thingsThatBlockSight:
+  thingsMonsterCanSee:
     serializedVersion: 2
-    m_Bits: 1015
+    m_Bits: 0
   distanceMonsterCanSee: Infinity
   source: {x: 0, y: 0, z: 0}
+  distanceToStopFromSound: 10
 --- !u!1 &1329390907
 GameObject:
   m_ObjectHideFlags: 0

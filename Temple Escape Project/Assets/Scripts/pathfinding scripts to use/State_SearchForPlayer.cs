@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class State_SearchForPlayer : mBrain_base
 {
-    public float timeLookingForPlayer = 5f;
-    public float timeLooked = 0f;
+    public float timeToLookForPlayer = 5f;
+    private float timeLooked = 0f;
     private bool isGoingToPlayer = false;
-    public Vector3 PlayersLastKnownPosition;
+    private Vector3 PlayersLastKnownPosition;
 
     public override void UpdateState()
     {
@@ -39,7 +39,7 @@ public class State_SearchForPlayer : mBrain_base
                 brain.SetDestination(PlayersLastKnownPosition);
             }
             timeLooked += Time.deltaTime;
-            if (timeLooked > timeLookingForPlayer)
+            if (timeLooked > timeToLookForPlayer)
             {
                 TransitionToNextState(searchCollectibleState);
                 timeLooked = 0f;

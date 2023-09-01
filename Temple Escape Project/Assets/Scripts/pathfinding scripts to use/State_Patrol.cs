@@ -12,8 +12,8 @@ public class State_Patrol : mBrain_base
     [Header("timings")]
     public float minTimeToWaitAtPatrolPoint = 1f;
     public float maxTimeToWaitAtPatrolPoint = 3f;
-    float timeToWaitAtPatrolPoint = 0f;
-    float timeSinceAtPatrolPoint = 0f;
+    private float timeToWaitAtPatrolPoint = 0f;
+    private float timeSinceAtPatrolPoint = 0f;
 
     [Header("other")]
     public float distanceFromPatrolPoint = 1f;
