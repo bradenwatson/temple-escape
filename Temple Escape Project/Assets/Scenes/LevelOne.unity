@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  timeInBetweenEachAttack: 1
+  timeInBetweenEachAttack: 5
   distanceMonsterCanAttackPlayerFrom: 3
   distanceToStopFromPlayer: 1
 --- !u!114 &229389353
@@ -8396,7 +8396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471798913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33, y: 0, z: -12.48}
+  m_LocalPosition: {x: 0.33, y: 0.97, z: -12.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

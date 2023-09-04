@@ -35,13 +35,13 @@ public class State_AttackPlayer : mBrain_base
             animator.SetBool("playerFound", true);
             if (brain.GetDistance(brain.player.transform.position) > distanceToStopFromPlayer)
             {
-                animator.SetBool("closeEnoughToPlayer", true);
+                animator.SetBool("closeEnoughToPlayer", false);
                 brain.AssignTarget(brain.player, true);
                 brain.MoveToTarget();
             }
             else
             {
-                animator.SetBool("closeEnoughToPlayer", false);
+                animator.SetBool("closeEnoughToPlayer", true);
                 brain.AssignTarget(gameObject, false); 
                 brain.MoveToTarget();
             }
@@ -50,21 +50,12 @@ public class State_AttackPlayer : mBrain_base
     }
 
     private void AttackPlayer()
-    {
+    {        
         if (timeInBetweenEachAttack < timeSinceLastAttack && brain.player != null)
         {
-            var playerHealth = brain.player.GetComponent<DoorControl>(); // replace with player health script just using a random script
-            if (playerHealth != null && brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
+            if (brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
             {
-                animator.SetBool("closeEnoughToPlayer", true);
-                animator.SetBool("stopped", true);
-                animator.SetBool("killedPlayer", true);
-                // playerHealth.TakeDamage();
-            }
-            else
-            {
-                animator.SetBool("closeEnoughToPlayer", false);
-                animator.SetBool("stopped", false);
+                animator.SetTrigger("killedPlayer");
             }
             timeSinceLastAttack = 0;
         }
