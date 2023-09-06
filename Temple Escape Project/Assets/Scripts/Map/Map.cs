@@ -41,7 +41,7 @@ public class Map : MonoBehaviour
     //CONSTRUCTORS
     public Map() 
     {
-        map = new NTree();
+        //map = new NTree();
         totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
         isFinalLevel = false;
     }

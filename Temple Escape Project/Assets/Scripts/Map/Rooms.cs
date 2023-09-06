@@ -9,8 +9,14 @@ public class Rooms : MonoBehaviour
     public enum RoomType { Normal, Puzzle, Secret, Safe, Exit, };
     //dropdown
     public RoomType roomType;
-    
-    
+
+    //FUTURE
+    //https://docs.unity3d.com/Manual/InstantiatingPrefabs.html
+    //https://discussions.unity.com/t/custom-class-reference-not-recognized/243032
+    //Automatically create room
+    //Create asset
+
+
     //PROPERTIES
     //Should it get doors?
     //Should it be able to lock and unlock doors
