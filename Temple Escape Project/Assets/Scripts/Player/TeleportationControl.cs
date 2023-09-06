@@ -62,7 +62,7 @@ public class TeleportationControl : MonoBehaviour
             return;
         }
 
-        if (_thumbstickInputAction.triggered)
+        if (_thumbstickInputAction.IsPressed())
         {
             return;
         }
