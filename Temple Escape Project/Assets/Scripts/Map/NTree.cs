@@ -54,25 +54,6 @@ public class NTree
             
     }
 
-    //Create Tree with root and trackers
-    public NTree(GameObject data, int amount)
-    {
-        if (this.root != null)
-        {
-            throw new NotSupportedException("Tree instantiated with root already exists.");
-        }
-        else
-        {
-            this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs
-            this.tracker = new List<CustomNode>();
-            for(int i = 0; i < amount; i++)
-            {
-                this.tracker.Add(new CustomNode());
-            }
-        }
-    }
-
-
     //GETTERS
     public  CustomNode GetRoot() { return this.root; }
     public int GetCount() { return counter; }
@@ -88,19 +69,16 @@ public class NTree
     
     /***************************************************************************************/
     /* Method: InsertTracker
-     * Input: amount(int)
+     * Input: data (GameObject)
      * Output: N/A
-     * Purpose: Checks whether tracker(Node) variables exist and creates them based on the 
-     *          amount desired.
+     * Purpose: Creates a unique node separate to the tree containing GameObject data
     /***************************************************************************************/
-    public void InsertTracker(int amount)
+    public void InsertTracker(GameObject data)
     {
         if(this.tracker == null) { this.tracker = new List<CustomNode>(); }
 
-        for (int i = 0; i < amount; i++)
-        {
-            this.tracker.Add(new CustomNode());
-        }
+        CustomNode tmp = new CustomNode(data);
+        this.tracker.Add(tmp);
     }
     
     /***************************************************************************************/
@@ -137,11 +115,12 @@ public class NTree
      * Purpose: This filters nodes that were created within the tree class as their index 
      *          correlates with the counter. External nodes do not connect or contribute to 
      *          the tree counter and always has an index of -1. 
+     *          
     /***************************************************************************************/
     public bool CheckNodeExists(int key)
     {
         bool isFound = false;
-        if (key >= 0 && key <= this.counter) 
+        if (key >= 0 && key < this.counter) 
         { 
             isFound = true; 
         }    
@@ -188,9 +167,12 @@ public class NTree
                     }
                     else                                   //If keys dont match
                     {
-                        foreach (CustomNode n in queue.Peek().GetChildren())     //Add child nodes to the back of the queue
+                        if (queue.Peek().GetChildren() != null)
                         {
-                            queue.Enqueue((CustomNode)n);     //Queue children
+                            foreach (CustomNode n in queue.Peek().GetChildren())     //Add child nodes to the back of the queue
+                            {
+                                queue.Enqueue((CustomNode)n);     //Queue children
+                            }
                         }
                         queue.Dequeue();      //Pop parent to restart the process
                     }
@@ -229,26 +211,29 @@ public class NTree
 
     /***************************************************************************************/
     /* Method: SetTrackerTo
-     * Input: index(int), node (Node)
+     * Input: trackerIdx(int), nodeIdx (int)
      * Output: N/A
      * Purpose: Select a tracker(node) and assign to a specific node within the tree
     /***************************************************************************************/
-    public void SetTrackerTo(int index, CustomNode node)    
+    public void SetTrackerTo(int trackerIdx, int nodeIdx)    
     {
-        if(index < 0 || index >= this.counter) 
+        if(trackerIdx < 0 || trackerIdx >= this.counter) 
         {
             throw new IndexOutOfRangeException("Tracker node does not exist.");  
         }
         else
         {
-            if (!CheckNodeExists(node.GetIndex()))
+            if (!CheckNodeExists(nodeIdx))
             {
                 throw new NullReferenceException("Node does not belong within tree.");
             }
             else
-            {
-                CustomNode copy = new CustomNode(node);
-                this.tracker[index] = copy;
+            { 
+                //Copy node details except for data as the tracker's data is its own entity
+                CustomNode tmp = this.FindNode(nodeIdx);
+                this.tracker[trackerIdx].SetIndex(tmp.GetIndex());
+                this.tracker[trackerIdx].SetParent(tmp.GetParent());
+                this.tracker[trackerIdx].SetChildren(tmp.GetChildren());
             }
         }
     }
@@ -272,7 +257,8 @@ public class NTree
 /*  Class: CustomNode 
     *  Properties:
     *   index (int)
-    *   _data (GameObject)
+    *   data (GameObject)
+    *   parent (CustomNode)
     *   children (List<CustomNode>)
 /************************************************************************************************************************************************************************************/
     public class CustomNode
@@ -280,6 +266,7 @@ public class NTree
         //PROPERTIES
         int index;
         GameObject data;
+        CustomNode parent;      // For traversal
         List<CustomNode> children { get; set; }
 
 
@@ -288,26 +275,24 @@ public class NTree
         {
             index = -1;     //Defaults to 1 if node is not connected to the tree
             data = null;
+            parent = null;
             children = null;
         }
         public CustomNode(GameObject _data)
         {
             this.data = _data;
-            this.children = new List<CustomNode>();
         }
 
         public CustomNode(GameObject _data, int limit)
         {
             this.data = _data;
             this.children = new List<CustomNode>(limit);
-
         }
 
         public CustomNode(int _index, GameObject _data)
         {
             this.index = _index;
             this.data = _data;
-            this.children = new List<CustomNode>();
         }
 
         public CustomNode(int _index, GameObject _data, int limit)
@@ -316,15 +301,12 @@ public class NTree
             this.data = _data;
             this.children = new List<CustomNode>(limit);
         }
-        public CustomNode(GameObject _data, List<CustomNode> _children)
-        {
-            this.data = _data;
-            this.children = _children;
-        }
+
         public CustomNode(CustomNode _node)
         {
             this.index = _node.index;
             this.data = _node.data;
+            this.parent = _node.parent;
             this.children = _node.children;
         }
 
@@ -332,13 +314,16 @@ public class NTree
         //GETTERS
         public int GetIndex() { return index; } 
         public GameObject GetData() { return data; } 
+        public CustomNode GetParent() { return parent; }
         public List<CustomNode> GetChildren() { return children; }
         public int GetNodeLimit() {  return this.children.Capacity; }
 
         
         //SETTERS
         public void SetIndex(int _index) { index = _index; }
-        public void SetData(GameObject data) { this.data = data; }
+        public void SetData(GameObject _data) { this.data = _data; }
+        public void SetParent(CustomNode _parent) {  this.parent = _parent; }
+        public void SetChildren(List<CustomNode> _children) {  this.children = _children; }
         public void SetNodeLimit(int limit)
         {
             if(limit < 0)
@@ -376,6 +361,7 @@ public class NTree
            if(this.children.Count == 0 || this.children.Count < this.children.Capacity) 
             {
                 this.children.Add(node);
+                this.children.Last().parent = new CustomNode(this);         //Assign child to parent node
             }
             else
             {

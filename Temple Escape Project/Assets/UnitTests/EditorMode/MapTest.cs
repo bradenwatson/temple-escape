@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using JetBrains.Annotations;
 using NUnit.Framework;
@@ -15,9 +16,8 @@ public class MapTest
     GameObject obj;
     List<GameObject> listObj;
 
-
     /*********************************************************/
-    /*                  NTREE TESTS BELOW
+    /*              CUSTOMNODE TESTS BELOW
     /*********************************************************/
     [Test]
     public void Make_Node()
@@ -64,7 +64,6 @@ public class MapTest
         obj = new GameObject();
         node = new NTree.CustomNode(obj);
         NTree.CustomNode node2 = new NTree.CustomNode(node);
-        Assert.IsTrue(node.GetNodeLimit() == 0);
         node.InsertChildren(node2);
         Assert.IsFalse(node.GetNodeLimit() == 0);
         Assert.IsTrue(node.GetChildren().Count > 0);
@@ -89,40 +88,27 @@ public class MapTest
         Assert.Throws<ArgumentOutOfRangeException>(() => node.InsertChildren(node4));
     }
 
+    /*********************************************************/
+    /*                  NTREE TESTS BELOW
+    /*********************************************************/
 
-    /*********************************************************/
-    /*              CUSTOMNODE TESTS BELOW
-    /*********************************************************/
     [Test]
-    public void Tree_Insert()
+    public void Tree_Instantiate()
     {
         obj = new GameObject();
         tree = new NTree(obj);
         Assert.NotNull(tree.GetRoot());
-    }
-
-
-    [Test]
-    public void Tree_Insert_Trackers()
-    {
-        int count = 2;
-        obj = new GameObject();
-        tree = new NTree(obj, count);
-        Assert.NotNull(tree.GetRoot());
-        Assert.IsTrue(tree.GetTrackers().Count == count);
     }
 
     [Test]
     public void Insert_Tracker()
     {
-        int count = 3;
         obj = new GameObject();
         tree = new NTree(obj);
-        tree.InsertTracker(count);
+        tree.InsertTracker(obj);
         Assert.NotNull(tree.GetRoot());
-        Assert.IsTrue(tree.GetTrackers().Count == count);
+        Assert.IsTrue(tree.GetTrackers().Count == 1);
     }
-
 
     [Test]
     public void Select_Tracker()
@@ -130,7 +116,11 @@ public class MapTest
         int count = 4;
         int pick = 2;
         obj = new GameObject();
-        tree = new NTree(obj, count);
+        tree = new NTree(obj);
+        for(int i = 0; i < count; i++)
+        {
+            tree.InsertTracker(obj);
+        }
         NTree.CustomNode tmp = tree.SelectTracker(pick);
         Assert.NotNull(tree.GetRoot());
         Assert.IsTrue(tree.GetTrackers().Count == count);
@@ -182,6 +172,41 @@ public class MapTest
         Assert.IsTrue(tree.GetCount() == max+1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
     }
-    
+
+    [Test]
+    public void Set_Tracker_To_Fail()
+    {
+        int max = 4;
+        obj = new GameObject();
+        tree = new NTree(obj);
+        for (int i = 0; i < max; i++)
+        {
+            tree.InsertNode(0, obj);
+        }
+        Assert.IsTrue(tree.GetCount() == max + 1);
+        Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
+        tree.InsertTracker(obj);
+        Assert.IsTrue(tree.GetTrackers().Count == 1);
+        Assert.Throws<IndexOutOfRangeException>(() => tree.SetTrackerTo(-1, 2));
+        Assert.Throws<NullReferenceException>(() => tree.SetTrackerTo(0, 5));
+    }
+
+    [Test]
+    public void Set_Tracker_To_Pass()
+    {
+        int max = 4;
+        obj = new GameObject();
+        tree = new NTree(obj);
+        for (int i = 0; i < max; i++)
+        {
+            tree.InsertNode(0, obj);
+        }
+        Assert.IsTrue(tree.GetCount() == max + 1);
+        Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
+        tree.InsertTracker(obj);
+        Assert.IsTrue(tree.GetTrackers().Count == 1);
+        tree.SetTrackerTo(0, 3);
+        Assert.IsTrue(tree.SelectTracker(0).GetIndex() == 3);
+    }
     
 }
