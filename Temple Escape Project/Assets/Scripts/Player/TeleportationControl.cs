@@ -75,12 +75,12 @@ public class TeleportationControl : MonoBehaviour
             return;
         }
 
-        //TeleportRequest teleportRequest = new TeleportRequest()
-        //{
-        //    destinationPosition = raycastHit.point
-        //};
+        TeleportRequest teleportRequest = new TeleportRequest()
+        {
+            destinationPosition = raycastHit.point
+        };
 
-        //teleportationProvider.QueueTeleportRequest(teleportRequest);
+        teleportationProvider.QueueTeleportRequest(teleportRequest);
 
         rayInteractor.enabled = false;
         _teleportIsActive = false;
