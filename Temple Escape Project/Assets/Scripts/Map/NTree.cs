@@ -33,7 +33,7 @@ public class NTree
     
 
     //CONSTRUCTORS
-    private NTree()
+    public NTree()
     {
         root = null;        //Root node should be central to all the _data
         counter = 0;

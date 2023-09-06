@@ -9,6 +9,7 @@
     * Uses NTree and Room class
     * Uses enum called Compass which is used to indicate how list of child rooms are connected by index
 /************************************************************************************************************************************************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,45 +21,98 @@ public class Map : MonoBehaviour
 {
     //PROPERTIES
     [SerializeField]
-    NTree map;
+    public NTree map;
+    public GameObject Enemy;
+    public GameObject Player;
 
     [Header("Pick central room")]
     public GameObject centralRoom;      //Manually set
 
     [Header("Room Count")]
-    int totalRooms;
-    int normalRooms;
-    int puzzleRooms;
-    int secretRooms;
-    int safeRooms;
+    int totalRooms = 0;
+    int normalRooms = 0;
+    int puzzleRooms = 0;
+    int secretRooms = 0;
+    int safeRooms = 0;
 
     [Header("Other options")]
-    public bool isFinalLevel;
+    public bool isFinalLvl;
 
     //Dropdown room to inspect and debug????
 
 
     //CONSTRUCTORS
+    //Awake()?
+    //https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html
+    //https://gamedevbeginner.com/start-vs-awake-in-unity/
     public Map() 
     {
-        //map = new NTree();
-        totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
-        isFinalLevel = false;
+        try
+        {
+            map = new NTree(centralRoom);
+            map.InsertTracker(Enemy);
+            map.InsertTracker(Player);
+            this.totalRooms = map.GetCount();
+            //totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
+        }
+        catch(NullReferenceException e)
+        {
+            Debug.LogWarning("Caught in Map(): " + e.Message);
+        }
+        catch(Exception e) 
+        {
+            Debug.LogError(e.Message);
+        }
     }
 
 
+    //GETTERS
+    public NTree GetMap() { return map; }
+    public int GetTotalRooms() { return totalRooms; }
+    public int GetNormalRooms() { return normalRooms; }
+    public int GetPuzzleRooms() { return puzzleRooms; }
+    public int GetSecretRooms() { return secretRooms; }
+    public int GetSafeRooms() { return safeRooms; }
+    public bool CheckIsFinalLevel() { return isFinalLvl; }
+
+    //SETTERS
 
     //METHODS
     /* define collision detection direction
      * insert room by collider overlap based on door direction
-     * Room type at the node
-     * get room at?
-     * add tracker if enemy and player exist == marker (dynamic)
-     * get tracker location
-     * add marker (fixed)
-     * update tracker if moved
-     * update room status
      */
+    //Room type at the node
+    public Room.RoomType GetRoomType(NTree.CustomNode node)
+    {
+        return node.GetData().GetComponent<Room.RoomType>();
+    }
+
+    //get room at?
+    public Room GetRoom(int idx)
+    {
+         return this.map.FindNode(idx).GetData().GetComponent<Room>();
+    }
+
+     /* add tracker if enemy and player exist == marker (dynamic)
+     * get tracker location
+     */
+    //add marker (fixed)
+    public void AddMarker(GameObject gameObject)
+    {
+        this.map.InsertTracker(gameObject);
+    }
+
+
+     // update tracker if moved => you need to pass in direction
+     //                             reference from player or enemy
+
+     // update room status => passby reference if current overlap with player/enemy
+    public void ChangeTeleport(int idx, bool state)
+    {
+        Room tmp = this.map.FindNode(idx).GetData().GetComponent<Room>();
+        tmp.IsTeleportable = state;
+    }
+     
 
 
 

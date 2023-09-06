@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
 
-public class Rooms : MonoBehaviour
+public class Room : MonoBehaviour
 {
     public enum RoomType { Normal, Puzzle, Secret, Safe, Exit, };
     //dropdown
