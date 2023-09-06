@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class TeleportControl : MonoBehaviour
+public class TeleportationControl : MonoBehaviour
 {
     static private bool _teleportIsActive = false;
 
     public enum ControllerType
     {
-        RightHand,
-        LeftHand
+        LeftHand,
+        RightHand
     }
 
     [Header("Inputs")]
@@ -75,12 +75,12 @@ public class TeleportControl : MonoBehaviour
             return;
         }
 
-        TeleportRequest teleportRequest = new TeleportRequest()
-        {
-            destinationPosition = raycastHit.point
-        };
+        //TeleportRequest teleportRequest = new TeleportRequest()
+        //{
+        //    destinationPosition = raycastHit.point
+        //};
 
-        teleportationProvider.QueueTeleportRequest(teleportRequest);
+        //teleportationProvider.QueueTeleportRequest(teleportRequest);
 
         rayInteractor.enabled = false;
         _teleportIsActive = false;
