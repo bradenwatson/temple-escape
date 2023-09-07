@@ -472,7 +472,7 @@
                     "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Generic XR Controller",
                     "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false

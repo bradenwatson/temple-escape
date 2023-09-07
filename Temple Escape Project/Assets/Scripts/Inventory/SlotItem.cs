@@ -7,4 +7,5 @@ public class SlotItem : MonoBehaviour
     public string ItemName;
     [SerializeField]
     public bool grabbable = true;
+    public bool inInventory = false;
 }
