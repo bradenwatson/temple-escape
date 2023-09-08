@@ -1,50 +1,56 @@
 using System.Collections;
 using UnityEngine;
+using UnityEditor;
 
 
-public class FadeToBlack : MonoBehaviour
+[CreateAssetMenuAttribute()]
+public class FadeToBlack : ScriptableObject
 {
 
-    private readonly float finalFogDensity = 1f;
-    private readonly float finalLightIntensity = 0f;
-    private float fadeTime;
-    private Light[] light;
+    [Header("Fog Settings")]
+    public bool fogExists;
+    public Color fogColor;
+    public FogMode mode;
+    public float fogDensity;
 
-    public FadeToBlack(float fadeTime, Light[] light) 
+    public float startingFogDensity;
+
+    private float finalFogDensity = 1f;
+
+    [Header("Light Settings")]
+    public Light[] light;
+
+    private float finalLightIntensity = 0f;
+
+    [Header("Fade Settings")]
+    public float fadeTime;
+    public float waitTime;
+
+    public bool isFade;
+    public float fogAcceleration;
+    
+
+    public void EnableFog()
     {
-        this.fadeTime = fadeTime;
-        this.light = light;
-    }   
-
-
-    public void EnableFog(bool fog)
-    {
-        RenderSettings.fog = fog;
+        RenderSettings.fog = fogExists;
     }
 
-    public void SetFogColor(Color fogColor)
+    public void SetFogColor()
     {
         RenderSettings.fogColor = fogColor;
     }
 
-    public void SetFogMode(FogMode mode)
+    public void SetFogMode()
     {
         RenderSettings.fogMode = mode;
     }
 
-    public void SetFogDensity(float density)
+    public void SetFogDensity()
     {
-        RenderSettings.fogDensity = density;
+        RenderSettings.fogDensity = fogDensity;
     }
 
-    public void SetLightIntensity(float intensity)
-    {
-        print(light);
-        foreach(Light lightSource in light)
-        {
-            lightSource.intensity = intensity;
-        }
-    }
+    
 
     // 0.6 starting fog, + x increase every frame = 1
     // 0.6 + 0.4 = 1
@@ -56,7 +62,7 @@ public class FadeToBlack : MonoBehaviour
     //based on the above, these methods hold the acceleration per second; need to convert to frame per second still
     // when you forget bimdas goddamn embaressing but funny as hell
 
-    public float SetFogAcceleration(float startingFogDensity)
+    public float SetFogAcceleration()
     {
         return (finalFogDensity - startingFogDensity) / fadeTime;
     }
@@ -66,16 +72,19 @@ public class FadeToBlack : MonoBehaviour
         return (finalLightIntensity - startingLightIntensity) / fadeTime;
     }
 
+
+    public void ChangeLightIntensityPerSecond()
+    {
+        foreach (Light lightSource in light)
+        {
+            lightSource.intensity += SetLightAcceleration(lightSource.intensity) * Time.deltaTime;
+        }
+    }
+
     public void ChangeFogDensityPerSecond(float fogDensityAcceleration)
     {
         RenderSettings.fogDensity += fogDensityAcceleration * Time.deltaTime;
     }
 
-    public void ChangeLightIntensityPerSecond(float lightIntensityAcceleration)
-    {
-        foreach (Light lightSource in light)
-        {
-            lightSource.intensity += lightIntensityAcceleration * Time.deltaTime;
-        }
-    }
+
 }
