@@ -36,6 +36,7 @@ public class PathFinding_PatrolState : mBrain_base
         }
     }
 
+    //UPDATE ON PLAYER MOVE
     public override void UpdateState()
     {
         if (waiting && Time.time >= nextMoveTime)

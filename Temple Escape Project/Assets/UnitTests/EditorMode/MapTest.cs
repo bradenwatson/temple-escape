@@ -88,6 +88,47 @@ public class MapTest
         Assert.Throws<ArgumentOutOfRangeException>(() => node.InsertChildren(node4));
     }
 
+    /*
+    [Test]
+    public void InsertChildrenByIndex_Fail()
+    {
+        int max = 4;
+        obj = new GameObject();
+        node = new NTree.CustomNode(obj);
+        NTree.CustomNode node2 = new NTree.CustomNode(node);
+
+        Assert.Throws<NullReferenceException>(() => node.InsertChildren(node2, 3));
+        node.SetNodeLimit(max);
+        Assert.IsTrue(node.GetNodeLimit() == max);
+        node.InsertChildren(node2, 3);
+        Assert.AreSame(node.GetChildren()[3], node2);
+
+        Assert.Throws<NotSupportedException>(() =>node.InsertChildren(node2, 3));
+    }
+
+    [Test]
+    public void InsertChildrenByIndex_Pass()
+    {
+        int max = 4;
+        obj = new GameObject();
+        node = new NTree.CustomNode(obj);
+        NTree.CustomNode node2 = new NTree.CustomNode(node);
+        NTree.CustomNode node3 = new NTree.CustomNode(node2);
+        NTree.CustomNode node4 = new NTree.CustomNode(node2);
+        
+        node.SetNodeLimit(max);
+        Assert.IsTrue(node.GetNodeLimit() == max);
+        node.InsertChildren(node2, 3);
+        Assert.AreSame(node.GetChildren()[3], node2);
+
+        
+        node.InsertChildren(node2, 0);
+        node.InsertChildren(node3, 1);
+        Assert.IsTrue(node.GetChildren().Count == 3); 
+    }
+    */
+
+
     /*********************************************************/
     /*                  NTREE TESTS BELOW
     /*********************************************************/
@@ -167,10 +208,25 @@ public class MapTest
         tree = new NTree(obj);
         for(int i = 0; i < max; i++)
         {
-            tree.InsertNode(0,obj);
+            tree.InsertNodeAt(0,obj);
         }
         Assert.IsTrue(tree.GetCount() == max+1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
+    }
+
+    [Test]
+    public void Insert_Node_At()
+    {
+        int max = 4;
+        obj = new GameObject();
+        tree = new NTree(obj);
+        for(int i = 0; i < max; i++)
+        {
+            tree.InsertNodeAt(i,obj);
+        }
+        Assert.IsTrue(tree.GetCount() == max+1);
+        tree.InsertNodeAt(tree.GetRoot(), obj);
+        Assert.IsTrue(tree.GetRoot().GetChildren().Count == 2);
     }
 
     [Test]
@@ -181,7 +237,7 @@ public class MapTest
         tree = new NTree(obj);
         for (int i = 0; i < max; i++)
         {
-            tree.InsertNode(0, obj);
+            tree.InsertNodeAt(0, obj);
         }
         Assert.IsTrue(tree.GetCount() == max + 1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
@@ -199,7 +255,7 @@ public class MapTest
         tree = new NTree(obj);
         for (int i = 0; i < max; i++)
         {
-            tree.InsertNode(0, obj);
+            tree.InsertNodeAt(0, obj);
         }
         Assert.IsTrue(tree.GetCount() == max + 1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);

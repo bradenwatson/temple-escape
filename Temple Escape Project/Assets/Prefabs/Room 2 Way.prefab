@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1239916778125598362}
   m_Layer: 0
   m_Name: LHS Wall
-  m_TagString: Untagged
+  m_TagString: Accessible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -431,9 +431,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5048766542219839635}
+  - component: {fileID: 5627249971768026626}
+  - component: {fileID: 3896874605106505058}
   m_Layer: 0
   m_Name: Room 2 Way
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -454,68 +456,35 @@ Transform:
   - {fileID: 6266387348116901330}
   - {fileID: 5808721769378064694}
   - {fileID: 1239916778125598362}
-  - {fileID: 6237681602742608365}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2401177871859278767
-GameObject:
+--- !u!114 &5627249971768026626
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6237681602742608365}
-  - component: {fileID: 5549686621753826944}
-  - component: {fileID: 7714272088264926226}
-  m_Layer: 0
-  m_Name: Area
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &6237681602742608365
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401177871859278767}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5048766542219839635}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5549686621753826944
+  m_GameObject: {fileID: 1817809191289445111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a888a2215909849872b2abb20076e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomType: 0
+--- !u!65 &3896874605106505058
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401177871859278767}
+  m_GameObject: {fileID: 1817809191289445111}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 11, y: 10, z: 11}
   m_Center: {x: 0, y: 5, z: 0}
---- !u!114 &7714272088264926226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401177871859278767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a888a2215909849872b2abb20076e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3467325180750115860
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +593,7 @@ GameObject:
   - component: {fileID: 8443378568304626885}
   m_Layer: 0
   m_Name: Front Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -656,7 +625,7 @@ GameObject:
   - component: {fileID: 6266387348116901330}
   m_Layer: 0
   m_Name: Back Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -882,7 +851,7 @@ GameObject:
   - component: {fileID: 5808721769378064694}
   m_Layer: 0
   m_Name: RHS Wall
-  m_TagString: Untagged
+  m_TagString: Accessible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

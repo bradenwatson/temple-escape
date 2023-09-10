@@ -5,11 +5,9 @@
  *  Notes: 
 /************************************************************************************************************************************************************************************/
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class NTree
@@ -66,7 +64,6 @@ public class NTree
 
 
     //METHODS
-    
     /***************************************************************************************/
     /* Method: InsertTracker
      * Input: data (GameObject)
@@ -187,14 +184,13 @@ public class NTree
         return node;
     }
 
-
     /***************************************************************************************/
     /* Method: InsertNode
      * Input: key(int), _data (GameObject)  
      * Output: N/A
      * Purpose: Inserts node within the tree at a specific key
     /***************************************************************************************/
-    public void InsertNode(int key, GameObject data) 
+    public void InsertNodeAt(int key, GameObject data) 
     {
         if(root == null) 
         {
@@ -208,6 +204,25 @@ public class NTree
         }
     }
 
+    /***************************************************************************************/
+    /* Method: InsertNode
+     * Input: node(CustomNode), _data (GameObject)  
+     * Output: N/A
+     * Purpose: Inserts node within the tree at a specific node
+    /***************************************************************************************/
+    public void InsertNodeAt(CustomNode node, GameObject data)
+    {
+        if (root == null)
+        {
+            this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs    
+        }
+        else
+        {
+            //Add child node at index
+            CustomNode child = new CustomNode(this.counter++, data);
+            node.InsertChildren(child);
+        }
+    }
 
     /***************************************************************************************/
     /* Method: SetTrackerTo
@@ -348,7 +363,7 @@ public class NTree
             }
         }
 
-
+        
 
         //METHODS
         public void InsertChildren(CustomNode node) 
@@ -358,8 +373,9 @@ public class NTree
                 this.children = new List<CustomNode>();
             }
 
-           if(this.children.Count == 0 || this.children.Count < this.children.Capacity) 
+           if(this.children.Capacity == 0 || this.children.Count < this.children.Capacity) 
             {
+
                 this.children.Add(node);
                 this.children.Last().parent = new CustomNode(this);         //Assign child to parent node
             }
@@ -368,7 +384,6 @@ public class NTree
                 throw new ArgumentOutOfRangeException("List has reached its maximum already.");
             }
         }
-
     }
 
 /***************************************************************************************/
