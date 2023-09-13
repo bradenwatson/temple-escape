@@ -24,7 +24,7 @@ public class Map : MonoBehaviour
     //PROPERTIES
     [SerializeField]
     private static NTree map;
-    private BoxCollider Area;
+    //private BoxCollider Area;
 
     //Use FindObjectType<Enemy>
     [Header("Enemy Details")]
@@ -63,10 +63,16 @@ public class Map : MonoBehaviour
         try
         {
             map = new NTree(centralRoom);
+            /*
             //map.InsertTracker(Enemy);
             //map.InsertTracker(Player);
-            Area = centralRoom.GetComponent<BoxCollider>();
-            Debug.Log(Area);
+            //Area = centralRoom.GetComponent<BoxCollider>();
+            //Debug.Log("Position = " + Area.transform.position); //gets global
+            Debug.Log("Center = " + Area.center); //is referenced
+            */
+
+
+
             this.totalRooms = map.GetCount();
             //totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
             Debug.Log("Map made in awake.");
@@ -125,14 +131,44 @@ public class Map : MonoBehaviour
     // define collision detection direction
     // if box collider overlaps with door > take center of box and center of door and calc vector
     // if vector matches direction respective to enum : assign door's room to current room
-    
-    
-    
+    // https://docs.unity3d.com/ScriptReference/RectInt.Overlaps.html
+    // https://discussions.unity.com/t/detecting-overlapping-room-in-a-dungeon-generator/201543
+    // https://forum.unity.com/threads/check-for-overlaps-among-many-simultaneously-spawned-gameobjects-solved.874141/
+
+
+    //EXPERIMENT:
+    // Version 1:
+    // Find all rooms
+    // Get Vector of central room center
+    // Calculate the shortest distance of all the rooms centers relative to central
+    // pick the first 4 closest centers and get the parent object
+    // In each of the 4 parent objects get their walls
+    // compare the walls if overlap with central and have tag accessible
+    //
+
+
+    //Version 2
+    /*
+     * Get central room and wall positions
+     * Since room center are snapped in the cartesian plane, this means neighbouring rooms will share same axis
+     * Can determine the the next room, by comparing the axis that has the smallest difference to the centre
+     * So if we project a line in steps in 4 directions and if that line intersects with another rooms center, add to current room
+     * then we start 1 direction (in the queue) with the next node and repeat prev steps using projectionasnd add to the remaning queue for 
+     */
+
+    //https://www.reddit.com/r/roguelikedev/comments/7xmxt2/resources_for_creating_a_map_of_randomly/
+    private bool TestOverlap(Rect other)
+    {
+        //GameObject.FindWithTag
+        //GameObject.FindGameObjectsWithTag
+        return false;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if(other != null)
         {
-            Debug.Log("Collided with " + other.name);
+            Debug.Log("Collided with " + other.name); //does not detect
         }
 
         //If the map's central room collider touches a room 
