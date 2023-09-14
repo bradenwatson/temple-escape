@@ -72,7 +72,7 @@ public class NTree
     /***************************************************************************************/
     public void InsertTracker(GameObject data)
     {
-        if(this.tracker == null) { this.tracker = new List<CustomNode>(); }
+        if (this.tracker == null) { this.tracker = new List<CustomNode>(); }
 
         CustomNode tmp = new CustomNode(data);
         this.tracker.Add(tmp);
@@ -193,7 +193,6 @@ public class NTree
         //Add child node at index
         CustomNode node = new CustomNode(this.counter++, data);
         FindNode(key).InsertChildren(node);
-
     }
 
     /***************************************************************************************/

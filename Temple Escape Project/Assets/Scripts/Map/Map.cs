@@ -205,7 +205,8 @@ public class Map : MonoBehaviour
                         //then run a pass on each of these once and check if on of the walls in the direciton of axis istouching and accessible
                 
                 //on the next step (away from the first step)
-                //repeat above for any connected through the central room
+                //repeat above for any connected through the central room and check if they are connected to other outside rooms by comparing axis from any order front or back
+                    //test connected if another line from the other list on the axis beam if first intersect of centre or wall matches the current central
                 //otherwise for all the other rooms found assignt o the list of queues respectively
                 //compare the last queue with its previous and if compare the room axis perpendicular to the current for both 
                     //if they match, then those rooms are connected (and then pop the queue) 
@@ -213,8 +214,8 @@ public class Map : MonoBehaviour
                         //to fix this both must have the central rooms in the list of queues
             
             
-            //when reached end (cerntral rookms
-                //
+            //when reached end 
+                //check number of rooms
         
         //NOTE:might need to track order found, or found respective to their orientation 
             //Question how to reassemble into tree now that each room has its connection?   Maybe a queue in the order of orientation for every room
