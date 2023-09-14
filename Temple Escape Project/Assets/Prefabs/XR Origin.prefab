@@ -680,7 +680,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.005
+    widthMultiplier: 0.02
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -691,8 +691,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1482,7 +1491,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.005
+    widthMultiplier: 0.02
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1493,8 +1502,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1696,6 +1714,76 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1160991195967522938}
+--- !u!1 &2080032486029341990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1dd168b813cc1b849a6518df2fa82f8d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160991195967522935}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699565881274494876}
+  - component: {fileID: 1160991195967522938}
+  - component: {fileID: 5924979031746407766}
+  m_Layer: 0
+  m_Name: 'RightHand (Missing Prefab with guid: 1dd168b813cc1b849a6518df2fa82f8d)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1699565881274494876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1dd168b813cc1b849a6518df2fa82f8d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160991195967522935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080032486029341990}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.0104, y: -0.0036, z: -0.0435}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1160991195594494607}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &2080032486887796743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1dd168b813cc1b849a6518df2fa82f8d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160991195618676054}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699565881589787325}
+  - component: {fileID: 1160991195618676057}
+  - component: {fileID: 1160991195618676058}
+  m_Layer: 0
+  m_Name: 'LeftHand (Missing Prefab with guid: 1dd168b813cc1b849a6518df2fa82f8d)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1699565881589787325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -9089615444713831131, guid: 1dd168b813cc1b849a6518df2fa82f8d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160991195618676054}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080032486887796743}
+  m_LocalRotation: {x: 0.2459623, y: 0.945037, z: -0.031994287, w: 0.21303521}
+  m_LocalPosition: {x: 0.026298406, y: -0.041470297, z: 0.020564148}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1160991194572331385}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1160991195618676054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2782,18 +2870,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dd168b813cc1b849a6518df2fa82f8d, type: 3}
---- !u!4 &1699565881589787325 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1dd168b813cc1b849a6518df2fa82f8d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1160991195618676054}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2080032486887796743 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1dd168b813cc1b849a6518df2fa82f8d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1160991195618676054}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1160991195618676057
 Animator:
   serializedVersion: 4
@@ -3053,18 +3129,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dd168b813cc1b849a6518df2fa82f8d, type: 3}
---- !u!4 &1699565881274494876 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1dd168b813cc1b849a6518df2fa82f8d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1160991195967522935}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2080032486029341990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1dd168b813cc1b849a6518df2fa82f8d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1160991195967522935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1160991195967522938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3078,3 +3142,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!95 &5924979031746407766
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080032486029341990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
