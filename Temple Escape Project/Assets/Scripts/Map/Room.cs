@@ -45,14 +45,6 @@ public class Room : MonoBehaviour
         isTeleportable = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other != null)
-        {
-            Debug.Log("Collided with " + other.name); //does not detect
-        }
-    }
-
     public int RoomID { get; set; } 
     public bool HasPlayerVisited { get; set; }
     public bool HasEnemyVisisted { get; set; }

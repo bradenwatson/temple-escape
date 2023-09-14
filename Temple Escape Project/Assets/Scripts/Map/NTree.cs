@@ -91,17 +91,13 @@ public class NTree
         {
             throw new NoNullAllowedException("Tracker node has not been instantiated.");
         }
-        else 
-        { 
-            if (index < 0 || index >= tracker.Count)
-            {
-                throw new IndexOutOfRangeException("Tracker does not exist.");
-            }
-            else
-            {
-                targetNode = tracker[index];
-            } 
+
+        if (index < 0 || index >= tracker.Count)
+        {
+            throw new IndexOutOfRangeException("Tracker does not exist.");
         }
+
+        targetNode = tracker[index];
         return targetNode;
     }
 
@@ -145,42 +141,39 @@ public class NTree
         {
             throw new NoNullAllowedException("Tree has not been built.");
         }
-        else
+        
+        if (!CheckNodeExists(key))
         {
-            if (!CheckNodeExists(key))
-            {
-                throw new NullReferenceException("Node does not exist.");
-            }
-            else
-            {
-                Queue<CustomNode> queue = new Queue<CustomNode>();
-                queue.Enqueue(this.root);
-                while (queue.Count > 0 && node == null)    //Queue children at end, pop parent until either queue
-                                                         //is empty or node has been found
-                {
-                    if (queue.Peek().GetIndex() == key)   //If the first node in the queue matches
-                    {
-                        node = queue.Peek();              //Copy the matching node in the queue
-                    }
-                    else                                   //If keys dont match
-                    {
-                        if (queue.Peek().GetChildren() != null)
-                        {
-                            foreach (CustomNode n in queue.Peek().GetChildren())     //Add child nodes to the back of the queue
-                            {
-                                queue.Enqueue((CustomNode)n);     //Queue children
-                            }
-                        }
-                        queue.Dequeue();      //Pop parent to restart the process
-                    }
-                }
+            throw new NullReferenceException("Node does not exist.");
+        }
 
-                if (node == null)        //If node could not be found throw exception
+        Queue<CustomNode> queue = new Queue<CustomNode>();
+        queue.Enqueue(this.root);
+        while (queue.Count > 0 && node == null)    //Queue children at end, pop parent until either queue
+                                                    //is empty or node has been found
+        {
+            if (queue.Peek().GetIndex() == key)   //If the first node in the queue matches
+            {
+                node = queue.Peek();              //Copy the matching node in the queue
+            }
+            else                                   //If keys dont match
+            {
+                if (queue.Peek().GetChildren() != null)
                 {
-                    throw new NoNullAllowedException("The node could not be found.");
+                    foreach (CustomNode n in queue.Peek().GetChildren())     //Add child nodes to the back of the queue
+                    {
+                        queue.Enqueue((CustomNode)n);     //Queue children
+                    }
                 }
+                queue.Dequeue();      //Pop parent to restart the process
             }
         }
+
+        if (node == null)        //If node could not be found throw exception
+        {
+            throw new NoNullAllowedException("The node could not be found.");
+        }
+       
         return node;
     }
 
@@ -194,14 +187,13 @@ public class NTree
     {
         if(root == null) 
         {
-            this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs    
+            throw new NoNullAllowedException("Tree has not been built."); 
         }
-        else
-        {
-            //Add child node at index
-            CustomNode node = new CustomNode(this.counter++, data);
-            FindNode(key).InsertChildren(node);
-        }
+
+        //Add child node at index
+        CustomNode node = new CustomNode(this.counter++, data);
+        FindNode(key).InsertChildren(node);
+
     }
 
     /***************************************************************************************/
@@ -214,14 +206,12 @@ public class NTree
     {
         if (root == null)
         {
-            this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs    
+            throw new NoNullAllowedException("Tree has not been built.");
         }
-        else
-        {
-            //Add child node at index
-            CustomNode child = new CustomNode(this.counter++, data);
-            node.InsertChildren(child);
-        }
+
+        //Add child node at index
+        CustomNode child = new CustomNode(this.counter++, data);
+        node.InsertChildren(child);
     }
 
     /***************************************************************************************/
@@ -236,21 +226,17 @@ public class NTree
         {
             throw new IndexOutOfRangeException("Tracker node does not exist.");  
         }
-        else
+
+        if (!CheckNodeExists(nodeIdx))
         {
-            if (!CheckNodeExists(nodeIdx))
-            {
-                throw new NullReferenceException("Node does not belong within tree.");
-            }
-            else
-            { 
-                //Copy node details except for data as the tracker's data is its own entity
-                CustomNode tmp = this.FindNode(nodeIdx);
-                this.tracker[trackerIdx].SetIndex(tmp.GetIndex());
-                this.tracker[trackerIdx].SetParent(tmp.GetParent());
-                this.tracker[trackerIdx].SetChildren(tmp.GetChildren());
-            }
+            throw new NullReferenceException("Node does not belong within tree.");
         }
+
+        //Copy node details except for data as the tracker's data is its own entity
+        CustomNode tmp = this.FindNode(nodeIdx);
+        this.tracker[trackerIdx].SetIndex(tmp.GetIndex());
+        this.tracker[trackerIdx].SetParent(tmp.GetParent());
+        this.tracker[trackerIdx].SetChildren(tmp.GetChildren());
     }
 /***************************************************************************************/
 /*
@@ -345,21 +331,19 @@ public class NTree
             {
                 throw new ArgumentException("Capacity cannot be negative.");
             }
+
+            if(this.children == null)
+            {
+                this.children= new List<CustomNode>();
+            }
+
+            if (limit == 0 || this.children.Count <= limit)
+            {
+                this.children.Capacity = limit;
+            }
             else
             {
-                if(this.children == null)
-                {
-                    this.children= new List<CustomNode>();
-                }
-
-                if (limit == 0 || this.children.Count <= limit)
-                {
-                    this.children.Capacity = limit;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("Cannot reduce existing capacity.");
-                }
+                throw new ArgumentOutOfRangeException("Cannot reduce existing capacity.");
             }
         }
 
@@ -373,7 +357,7 @@ public class NTree
                 this.children = new List<CustomNode>();
             }
 
-           if(this.children.Capacity == 0 || this.children.Count < this.children.Capacity) 
+            if(this.children.Capacity == 0 || this.children.Count < this.children.Capacity) 
             {
 
                 this.children.Add(node);

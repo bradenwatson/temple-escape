@@ -13,6 +13,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
 using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 //using System.Numerics;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class Map : MonoBehaviour
 {
     //PROPERTIES
     [SerializeField]
-    private static NTree map;
+    private static NTree tree;
     //private BoxCollider Area;
 
     //Use FindObjectType<Enemy>
@@ -62,7 +63,7 @@ public class Map : MonoBehaviour
     {
         try
         {
-            map = new NTree(centralRoom);
+            tree = new NTree(centralRoom);
             /*
             //map.InsertTracker(Enemy);
             //map.InsertTracker(Player);
@@ -73,7 +74,7 @@ public class Map : MonoBehaviour
 
 
 
-            this.totalRooms = map.GetCount();
+            this.totalRooms = tree.GetCount();
             //totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
             Debug.Log("Map made in awake.");
         }
@@ -117,7 +118,7 @@ public class Map : MonoBehaviour
 
 
     //GETTERS
-    public NTree GetMap() { return map; }
+    public NTree GetMap() { return tree; }
     public int GetTotalRooms() { return totalRooms; }
     public int GetNormalRooms() { return normalRooms; }
     public int GetPuzzleRooms() { return puzzleRooms; }
@@ -136,17 +137,6 @@ public class Map : MonoBehaviour
     // https://forum.unity.com/threads/check-for-overlaps-among-many-simultaneously-spawned-gameobjects-solved.874141/
 
 
-    //EXPERIMENT:
-    // Version 1:
-    // Find all rooms
-    // Get Vector of central room center
-    // Calculate the shortest distance of all the rooms centers relative to central
-    // pick the first 4 closest centers and get the parent object
-    // In each of the 4 parent objects get their walls
-    // compare the walls if overlap with central and have tag accessible
-    //
-
-
     //Version 2
     /*
      * Get central room and wall positions
@@ -156,45 +146,88 @@ public class Map : MonoBehaviour
      * then we start 1 direction (in the queue) with the next node and repeat prev steps using projectionasnd add to the remaning queue for 
      */
 
+
+
+    //METHODS
+    /***************************************************************************************/
+    /* Method: TestOverlap (WIP)
+     * Input: N/A
+     * Output: isOverlapping(bool)
+     * Purpose: Check if central node walls overlaps with other acdcessible walls within delta range
+    /***************************************************************************************/
+
     //https://www.reddit.com/r/roguelikedev/comments/7xmxt2/resources_for_creating_a_map_of_randomly/
-    private bool TestOverlap(Rect other)
+    private bool TestOverlap()
     {
-        //GameObject.FindWithTag
-        //GameObject.FindGameObjectsWithTag
-        return false;
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other != null)
+        bool isOverlapping = false;
+        //Check room is assigned
+        if(centralRoom == null)
         {
-            Debug.Log("Collided with " + other.name); //does not detect
+            throw new ArgumentNullException("Central room has not been assigned");
+
         }
 
-        //If the map's central room collider touches a room 
-        if(other.tag == "Room") 
-        {
-            Debug.Log("Collided with room");
 
 
-            //Get walls in the central room that are accessible
-            GameObject[] walls = centralRoom.GetComponentsInChildren<GameObject>();
-            foreach(GameObject wall in walls)
-            {
-                if (wall.tag == "Accessible")
-                {
-                    //Pass the wall's position and the collider to the 
-                    //insert room in respective direction and index
-                    Vector3 position = wall.transform.localPosition;
-                    InsertRoom(centralRoom, other, position);
-                }
-            }
-            //Get Collision vector when triggered with central room's collider
+        //Consecutive detection-too slow
+        //Get alls the walls 
+        //Get get their center
+        //Project line perpendicular to the wall center for all 
+        //Queue accessible rooms in order of orientation (code set up in order)
+        //assign rooms to central room and each of the detected rooms add central room on prev in the correct global orientation (not local rotation)
+        //Get next room in queue
+        //push new rooms at front of queue in order of orientation
+        //repeat until queue is empty
+
+
+        //By per axis per room detection-tricky
+        //Project vertical and horizontal lines from center
+        //Store new all accessible rooms into respective list of queues based on orientation
+            //if new room has no room perpendicular to the current axis ignore
+            //otherwise enqueue room to the front in the respective list of queues (Test enqueue at start and enqueue at end)
+            //(Test try simultaneously all at the same time)
+            //test until all the queues are empty
+
+
+
+        //By per axis detection-tricky
+        //Project vertical and horizontal lines lines from center from 2 axis and count number of time triggers in each room center
+        //Count which direction is least from the 2 axis
+        //Using the chosen axis, create 2 queues as positive or negative side
+        //each element stored (steps in the axis) is a list with all the rooms stored from negative to positive (similar to index based but includes negatives)
+            //optional sort by the absolute displacement from the central axis (but do not change vector)
+        //do the same with the other axis
+            //for every element in the new axis check each element in the queue of the other axis
+                //if they share common axis on the first element on the new axis it means the previous rooms (at start is center room) is connected
+                    //add rooms that are common together
+                //otherwise located away from center
+                    //create list of queues these rooms in 2 queues positive and negative
+                        //then run a pass on each of these once and check if on of the walls in the direciton of axis istouching and accessible
+                
+                //on the next step (away from the first step)
+                //repeat above for any connected through the central room
+                //otherwise for all the other rooms found assignt o the list of queues respectively
+                //compare the last queue with its previous and if compare the room axis perpendicular to the current for both 
+                    //if they match, then those rooms are connected (and then pop the queue) 
+                    //(NOTE: there is a case where the axis through the center contains nodes which is shared by both sides of list of queues(pos and neg)
+                        //to fix this both must have the central rooms in the list of queues
             
-        }
+            
+            //when reached end (cerntral rookms
+                //
+        
+        //NOTE:might need to track order found, or found respective to their orientation 
+            //Question how to reassemble into tree now that each room has its connection?   Maybe a queue in the order of orientation for every room
+                
+
+            //Note if there are multiple detected on the new axis and close together, do not assume they are
+
+
+
+        return isOverlapping;
     }
 
-    //Wrapper RotationChanged()
+
 
     
     private void SetToGlobalOrientation(GameObject obj)
@@ -205,7 +238,7 @@ public class Map : MonoBehaviour
             throw new NullReferenceException("Room component missing from object.");
         }
 
-        NTree.CustomNode objNode = map.FindNode(obj.GetComponent<Room>().RoomID);
+        NTree.CustomNode objNode = tree.FindNode(obj.GetComponent<Room>().RoomID);
         //Check node capacity has been set
         if (objNode.GetNodeLimit() <= 0 || objNode.GetNodeLimit() > maxDirections) 
         {
@@ -295,14 +328,14 @@ public class Map : MonoBehaviour
     //Room type at the node
     public string GetRoomType(int idx)
     {
-        GameObject room = map.FindNode(idx).GetData();
+        GameObject room = tree.FindNode(idx).GetData();
         return room.GetComponent<Room>().roomType.ToString();
     }
 
     //get room at?
     public Room GetRoom(int idx)
     {
-        GameObject room = map.FindNode(idx).GetData();
+        GameObject room = tree.FindNode(idx).GetData();
         return room.GetComponent<Room>();
     }
 
@@ -312,7 +345,7 @@ public class Map : MonoBehaviour
     //add marker (fixed)
     public void AddMarker(GameObject gameObject)
     {
-        map.InsertTracker(gameObject);
+        tree.InsertTracker(gameObject);
     }
     //Pass by ref https://forum.unity.com/threads/what-is-out-syntax-of-c-and-what-does-it-actually-do.404585/
     //Use ref in parameter to input variable and change it simultaneously 
@@ -332,7 +365,7 @@ public class Map : MonoBehaviour
     // update room status => passby reference if current overlap with player/enemy
     public void ChangeTeleport(int idx, bool state)
     {
-        GameObject room = map.FindNode(idx).GetData();
+        GameObject room = tree.FindNode(idx).GetData();
         room.GetComponent<Room>().IsTeleportable = state;
     }
      
