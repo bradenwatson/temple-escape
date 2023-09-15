@@ -98,7 +98,7 @@ public class ScreenShakeVR : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && debug)
+        if (debug)
         {
             Shake(0.5f, 1.0f);
             Debug.Log("Space bar pressed");
