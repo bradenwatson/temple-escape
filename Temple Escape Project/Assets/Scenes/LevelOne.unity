@@ -19716,9 +19716,15 @@ Transform:
   m_GameObject: {fileID: 1945252372}
   serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 5.156, z: 0}
   m_LocalScale: {x: 0.7, y: 0.20000036, z: 0.7}
+=======
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 3, y: 8, z: -2}
+  m_LocalScale: {x: 0.19999996, y: 0.20000018, z: 1.6500013}
+>>>>>>> parent of cecbb25 (Update LevelOne.unity)
 =======
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 3, y: 8, z: -2}
