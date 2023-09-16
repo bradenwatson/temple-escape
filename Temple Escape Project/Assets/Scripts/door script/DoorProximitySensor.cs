@@ -18,7 +18,7 @@ public class DoorProximitySensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("door_proxy_trigger") && parentDoorScript != null)
+        if (other.CompareTag("door_proxy_trigger"))
         {
             parentDoorScript.ProximityOnEnter(other);
         }
@@ -26,7 +26,7 @@ public class DoorProximitySensor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("door_proxy_trigger") && parentDoorScript != null)
+        if (other.CompareTag("door_proxy_trigger"))
         {
             parentDoorScript.ProximityOnExit(other);
         }
