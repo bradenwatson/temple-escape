@@ -21,7 +21,8 @@ public class State_PatrolTwo : mBrain_base
     internal override void OnStateEnterArgs()
     {
         Debug.Log("patrol state");
-        SetNewPatrolPoint();
+        SetNewPatrolPoint(); 
+        lastPatrolPoint = currentPatrolPoint;
         //animator.SetBool("walking", true);
         //animator.SetBool("playerFound", false);
         //animator.SetBool("stopped", false);
@@ -40,6 +41,10 @@ public class State_PatrolTwo : mBrain_base
         }
         else
         {
+            if (possiblePatrolPoints.Count == 0)
+            {
+                return;
+            }
             if (patrolPointTime == -1)
             {
                 patrolPointTime = possiblePatrolPoints[currentPatrolPoint].GetComponent<PatrolPoint>().timeToStay();
@@ -114,6 +119,12 @@ public class State_PatrolTwo : mBrain_base
         }        
 
         // Debug.Log($"closest patrol points count {closestPatrolPoints.Count}");
+
+        if (closestPatrolPoints.Count == 0)
+        {
+            closestPatrolPoints.Add(possiblePatrolPoints[lastPatrolPoint]);
+        }
+
         return closestPatrolPoints;
     }
 

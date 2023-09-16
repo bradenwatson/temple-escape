@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - door
+  - door_proxy_trigger
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - Enemy
   - Teleport
   - Door
-  - 
-  - 
+  - DoorProxy
+  - Enemy
   - 
   - 
   - 
