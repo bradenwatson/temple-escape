@@ -56,6 +56,11 @@ public class State_AttackPlayer : mBrain_base
             if (brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
             {
                 //animator.SetTrigger("killedPlayer");
+                PlayerHealth playerHealth = brain.player.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage();
+                }
             }
             timeSinceLastAttack = 0;
         }
