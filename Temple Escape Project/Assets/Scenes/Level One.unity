@@ -2271,8 +2271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ddccbeb4d23db4c9bdb1a751c0a59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToStayAtPatrolPoint: 0
-  maxTimeToStayAtPatrolPoint: 0
+  minTimeToStayAtPatrolPoint: 2
+  maxTimeToStayAtPatrolPoint: 4
 --- !u!1 &694714129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,8 +2654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ddccbeb4d23db4c9bdb1a751c0a59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToStayAtPatrolPoint: 0
-  maxTimeToStayAtPatrolPoint: 0
+  minTimeToStayAtPatrolPoint: 6
+  maxTimeToStayAtPatrolPoint: 7
 --- !u!1001 &811630999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5007,8 +5007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ddccbeb4d23db4c9bdb1a751c0a59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToStayAtPatrolPoint: 0
-  maxTimeToStayAtPatrolPoint: 0
+  minTimeToStayAtPatrolPoint: 1
+  maxTimeToStayAtPatrolPoint: 2
 --- !u!1001 &1624787239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6232,8 +6232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ddccbeb4d23db4c9bdb1a751c0a59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToStayAtPatrolPoint: 0
-  maxTimeToStayAtPatrolPoint: 0
+  minTimeToStayAtPatrolPoint: 3
+  maxTimeToStayAtPatrolPoint: 6
 --- !u!4 &2001813094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3855791895903078856, guid: af3faaa3b2f0f8747becf026633c59bd,

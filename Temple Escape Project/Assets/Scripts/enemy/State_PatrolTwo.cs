@@ -23,9 +23,9 @@ public class State_PatrolTwo : mBrain_base
         Debug.Log("patrol state");
         SetNewPatrolPoint(); 
         lastPatrolPoint = currentPatrolPoint;
-        //animator.SetBool("walking", true);
-        //animator.SetBool("playerFound", false);
-        //animator.SetBool("stopped", false);
+        animator.SetBool("walking", true);
+        animator.SetBool("playerSeen", false);
+        animator.SetBool("closeEnoughToPlayer", false);
     }
 
     public override void UpdateState()
@@ -55,12 +55,12 @@ public class State_PatrolTwo : mBrain_base
             }
             if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint].position) < howCloseToPatrolPoint)
             {
-                //animator.SetBool("stopped", true);
-                //animator.SetBool("walking", false);
+                animator.SetBool("walking", false);
                 timeSinceaLastChangedPoints += Time.deltaTime;
             }
             if (timeSinceaLastChangedPoints > patrolPointTime)
             {
+                animator.SetBool("walking", true);
                 SetNewPatrolPoint();
                 patrolPointTime = -1f;
                 timeSinceaLastChangedPoints = 0;
