@@ -20,6 +20,9 @@ public class State_Patrol : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
+        animator.SetBool("walking", true);
+        animator.SetBool("playerSeen", false);
+        animator.SetBool("closeEnoughToPlayer", false);
         if (patrolPoints.Count > 0)
         {
             int closestPoint = 0;
@@ -55,6 +58,7 @@ public class State_Patrol : mBrain_base
         {
             if (brain.GetDistance(patrolPoints[currentPatrolPoint].position) < distanceFromPatrolPoint)
             {
+                animator.SetBool("walking", false);
                 if (patrolPointTime == -1)
                 {
                     patrolPointTime = patrolPoints[currentPatrolPoint].GetComponent<PatrolPoint>().timeToStay();
@@ -83,5 +87,6 @@ public class State_Patrol : mBrain_base
         }
         brain.AssignTarget(patrolPoints[currentPatrolPoint].gameObject, false);
         brain.MoveToTarget();
+        animator.SetBool("walking", true);
     }
 }
