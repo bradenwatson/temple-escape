@@ -41,7 +41,7 @@ public class State_AttackPlayer : mBrain_base
                 brain.AssignTarget(gameObject, false); 
                 brain.MoveToTarget();
             }
-            animator.SetBool("closeEnoughToTarget", true);
+            animator.SetBool("closeEnoughToPlayer", true);
             AttackPlayer();
         }
     }
@@ -52,6 +52,11 @@ public class State_AttackPlayer : mBrain_base
         {
             if (brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
             {
+                var playerHealth = brain.player.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage();
+                }
                 animator.SetBool("stopAnimation", true);
             }
             timeSinceLastAttack = 0;
