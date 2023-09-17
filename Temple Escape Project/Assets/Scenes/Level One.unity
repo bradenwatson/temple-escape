@@ -858,6 +858,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1191921796}
+    - target: {fileID: 3180212385651168598, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
+        type: 3}
+      propertyPath: thingsMonsterCanSee.m_Bits
+      value: 1289
+      objectReference: {fileID: 0}
     - target: {fileID: 3359501438878964157, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
         type: 3}
       propertyPath: m_Layer
@@ -997,6 +1002,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197988465017987480, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
+        type: 3}
+      propertyPath: distanceToStopFromPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6342899750193674725, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
         type: 3}
@@ -1388,6 +1398,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1094942069}
     m_Modifications:
+    - target: {fileID: 4870022144260574419, guid: 87791a0285915fa4988c5e7d5025b239,
+        type: 3}
+      propertyPath: enemyProxyTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5907403062897986085, guid: 87791a0285915fa4988c5e7d5025b239,
         type: 3}
       propertyPath: m_Name
@@ -3938,7 +3953,7 @@ Transform:
   m_GameObject: {fileID: 1191921796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.08, y: 0.41, z: -0.68}
+  m_LocalPosition: {x: -0.53, y: 0.41, z: -10.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13295,7 +13310,7 @@ PrefabInstance:
     - target: {fileID: 4887376541257660512, guid: 1cb26cc80d4ffec4fb4628f2bc83b76c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4887376541257660512, guid: 1cb26cc80d4ffec4fb4628f2bc83b76c,
         type: 3}

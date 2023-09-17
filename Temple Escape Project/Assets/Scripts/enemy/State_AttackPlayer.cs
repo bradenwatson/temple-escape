@@ -17,34 +17,31 @@ public class State_AttackPlayer : mBrain_base
     internal override void OnStateEnterArgs()
     {
         Debug.Log("attack state");
-        //animator.SetBool("walking", true);
-        //animator.SetBool("playerFound", true);
-        //animator.SetBool("stopped", false);
-        //animator.SetBool("closeEnoughToPlayer", false);
+        animator.SetBool("walking", true);
+        animator.SetBool("playerSeen", false);
+        animator.SetBool("closeEnoughToPlayer", false);
     }
 
     private void AttackRoutine()
     {       
         if (!brain.SeeIfPlayerIsSeen())
         {
-            TransitionToNextState(searchPlayerState);
-            //animator.SetBool("playerFound", false);
+            TransitionToNextState(searchPlayerState);           
         }
         else
         {
-            //animator.SetBool("playerFound", true);
+            animator.SetBool("playerSeen", true);
             if (brain.GetDistance(brain.player.transform.position) > distanceToStopFromPlayer)
             {
-                //animator.SetBool("closeEnoughToPlayer", false);
                 brain.AssignTarget(brain.player, true);
                 brain.MoveToTarget();
             }
             else
             {
-                //animator.SetBool("closeEnoughToPlayer", true);
                 brain.AssignTarget(gameObject, false); 
                 brain.MoveToTarget();
             }
+            animator.SetBool("closeEnoughToTarget", true);
             AttackPlayer();
         }
     }
@@ -55,7 +52,7 @@ public class State_AttackPlayer : mBrain_base
         {
             if (brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
             {
-                //animator.SetTrigger("killedPlayer");
+                animator.SetBool("stopAnimation", true);
             }
             timeSinceLastAttack = 0;
         }

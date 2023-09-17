@@ -28,9 +28,9 @@ public class State_CheckOnCollectables : mBrain_base
         totalCollectablesFound = 0;
         timeAtCollectable = 0;
         currentIndex = 0;
-        //animator.SetBool("walking", true);
-        //animator.SetBool("playerFound", false);
-        //animator.SetBool("stopped", false);
+        animator.SetBool("walking", true);
+        animator.SetBool("playerSeen", false);
+        animator.SetBool("closeEnoughToPlayer", false);
     }
 
     private void Start()
@@ -42,13 +42,11 @@ public class State_CheckOnCollectables : mBrain_base
     {
         if (collectables.Count == 0)
         {
-            print(42);
             TransitionToNextState(patrolState);
             return;
         }        
         if (brain.SeeIfPlayerIsSeen())
         {
-            print(48);
             TransitionToNextState(attackState);
         }
         if (SeeIfPieceMissing())
@@ -76,7 +74,8 @@ public class State_CheckOnCollectables : mBrain_base
             GoToCollectable();
         }
         if (brain.GetDistance(collectablesTransform[randomInts[currentIndex]]) < distanceStopFromTarget)
-        {            
+        {
+            animator.SetBool("walking", false);
             timeAtCollectable += Time.deltaTime;
             if (timeAtCollectable > timeToStayAtEachCollectable)
             {  
@@ -90,7 +89,6 @@ public class State_CheckOnCollectables : mBrain_base
                 currentIndex++;
                 if (currentIndex >= collectables.Count)
                 {
-                    print(90);
                     TransitionToNextState(patrolState);
                 }
                 timeAtCollectable = 0;            
@@ -104,7 +102,8 @@ public class State_CheckOnCollectables : mBrain_base
         goingToCollectable = true;        
         if (currentIndex < collectables.Count)
         {
-            brain.SetDestination(collectablesTransform[randomInts[currentIndex]]);            
+            brain.SetDestination(collectablesTransform[randomInts[currentIndex]]);
+            animator.SetBool("walking", true);
         }             
         if (currentIndex >= collectables.Count)
         {

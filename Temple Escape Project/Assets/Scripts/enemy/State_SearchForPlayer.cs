@@ -22,9 +22,9 @@ public class State_SearchForPlayer : mBrain_base
         {
             PlayersLastKnownPosition = brain.player.transform.position;
         }
-        //animator.SetBool("walking", true);
-        //animator.SetBool("playerFound", false);
-        //animator.SetBool("stopped", false);
+        animator.SetBool("walking", true);
+        animator.SetBool("playerSeen", false);
+        animator.SetBool("closeEnoughToPlayer", false);
     }
 
     private void LookForPlayer()
@@ -41,6 +41,12 @@ public class State_SearchForPlayer : mBrain_base
                 isGoingToPlayer = true;
                 brain.SetDestination(PlayersLastKnownPosition);
             }
+
+            if (brain.GetDistance(PlayersLastKnownPosition) < 1)
+            {
+                animator.SetBool("walking", false);
+            }
+
             timeLooked += Time.deltaTime;
             if (timeLooked > timeToLookForPlayer)
             {
