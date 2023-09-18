@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   relativeEndPosition: {x: 0, y: 4.5, z: 0}
-  openSpeed: 1.5
+  openSpeed: 1.8
   closeDelay: 0.5
   playerProxyTrigger: 1
   enemyProxyTrigger: 1
