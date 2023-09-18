@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -860,6 +860,11 @@ PrefabInstance:
       objectReference: {fileID: 1191921796}
     - target: {fileID: 3180212385651168598, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
         type: 3}
+      propertyPath: targetIsPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180212385651168598, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
+        type: 3}
       propertyPath: thingsMonsterCanSee.m_Bits
       value: 1289
       objectReference: {fileID: 0}
@@ -897,6 +902,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862784280765515587, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorProxy Anubis
       objectReference: {fileID: 0}
     - target: {fileID: 4906891991285199674, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
         type: 3}
@@ -2938,6 +2948,89 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7366785567823285456}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &912623588
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1191921800}
+    m_Modifications:
+    - target: {fileID: 487333685968743158, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.96160084
+      objectReference: {fileID: 0}
+    - target: {fileID: 487333685968743158, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536023830556917424, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorProxy Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536023830556917424, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d4cac0f8a3f30e349b728dd4f5944348, type: 3}
 --- !u!1001 &920232084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3865,9 +3958,9 @@ GameObject:
   - component: {fileID: 1191921797}
   - component: {fileID: 1191921801}
   - component: {fileID: 1191921802}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3902,7 +3995,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191921796}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3953,12 +4046,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191921796}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.53, y: 0.41, z: -10.95}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.7076, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
+  m_Children:
+  - {fileID: 1312263641}
+  m_Father: {fileID: 4807975096079442824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1191921801
 MonoBehaviour:
@@ -4433,6 +4527,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6534898319475773599, guid: 87791a0285915fa4988c5e7d5025b239,
     type: 3}
   m_PrefabInstance: {fileID: 1291212443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1312263641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
+    type: 3}
+  m_PrefabInstance: {fileID: 912623588}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1313230511 stripped
 Transform:
@@ -11826,7 +11926,7 @@ GameObject:
   - component: {fileID: 5867432078671320917}
   - component: {fileID: 1984118913805469498}
   - component: {fileID: 2895053226828426122}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -13014,7 +13114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6811723738175927412}
   - component: {fileID: 1233221144939944458}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Right Poke Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13416,7 +13516,7 @@ GameObject:
   - component: {fileID: 7924204539882741316}
   - component: {fileID: 925101776382486490}
   - component: {fileID: 9110928287386707522}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Right Interactable Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13554,7 +13654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7532923741180300900}
   - component: {fileID: 6076810955964616562}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Right Ray Stabalizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13674,7 +13774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7282013922958029934}
   - component: {fileID: 4093141042798054662}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Left Poke Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13999,7 +14099,7 @@ GameObject:
   - component: {fileID: 5053334099267050273}
   - component: {fileID: 2879306247331440681}
   - component: {fileID: 4846249604710282555}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RightHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14368,7 +14468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4807975096079442824}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14462,7 +14562,7 @@ GameObject:
   - component: {fileID: 4957457393564078120}
   - component: {fileID: 2381019235609116403}
   - component: {fileID: 5823777102215837502}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Right Teleportation Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14547,7 +14647,7 @@ GameObject:
   - component: {fileID: 5304588353007120793}
   - component: {fileID: 2864649485025900093}
   - component: {fileID: 1023002252209339697}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14715,7 +14815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3769465706988442104}
   - component: {fileID: 5595425628758137782}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Left Ray Stabalizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14733,7 +14833,7 @@ GameObject:
   - component: {fileID: 7419716946688074201}
   - component: {fileID: 4717177199848104871}
   - component: {fileID: 6222629002762683223}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Left Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15337,6 +15437,7 @@ Transform:
   - {fileID: 5304588353007120793}
   - {fileID: 5129695132825087514}
   - {fileID: 7532923741180300900}
+  - {fileID: 1191921800}
   m_Father: {fileID: 5760002568354056898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4827884196005401139
@@ -15350,7 +15451,7 @@ GameObject:
   - component: {fileID: 144658994328217293}
   - component: {fileID: 6597365401739402399}
   - component: {fileID: 4599151577719978096}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: LeftHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15744,7 +15845,7 @@ GameObject:
   - component: {fileID: 2249209766692488705}
   - component: {fileID: 866897443800680444}
   - component: {fileID: 2384709214489960126}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Left Teleportation Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16638,7 +16739,7 @@ GameObject:
   - component: {fileID: 1477306450832935387}
   - component: {fileID: 8445839750459689960}
   - component: {fileID: 110380848947424448}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Left Interactable Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16866,7 +16967,6 @@ SceneRoots:
   - {fileID: 603626357}
   - {fileID: 369136500}
   - {fileID: 1136466088256275528}
-  - {fileID: 1191921800}
   - {fileID: 524879438}
   - {fileID: 1648417206}
   - {fileID: 1897882050}
