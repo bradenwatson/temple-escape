@@ -197,12 +197,12 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.8666667, b: 0, a: 1}
   m_Intensity: 2
-  m_Range: 4
+  m_Range: 6
   m_SpotAngle: 179
   m_InnerSpotAngle: 145.06352
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
@@ -283,8 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 0}
   minIntensity: 2
-  maxIntensity: 12
-  smoothing: 5
+  maxIntensity: 8
+  smoothing: 4
 --- !u!1 &8198550107195429207
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 0.8666667, b: 0, a: 1}
   m_Intensity: 2
-  m_Range: 4
+  m_Range: 6
   m_SpotAngle: 179
   m_InnerSpotAngle: 145.06352
   m_CookieSize: 10
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 1
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0
