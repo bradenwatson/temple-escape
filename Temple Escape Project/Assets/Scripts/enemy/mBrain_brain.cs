@@ -9,6 +9,7 @@ using static UnityEditor.VersionControl.Asset;
 
 public class mBrain_brain : MonoBehaviour
 {
+    [Header("gameObject components")]
     public mBrain_base initialState;
     public mBrain_base patrolState;
     public mBrain_base attackState;
@@ -21,11 +22,13 @@ public class mBrain_brain : MonoBehaviour
     NavMeshAgent agent;
 
     [SerializeField]
-    public GameObject player;
-
-    [SerializeField]
     public Animator animator;
 
+    [Header("links to other gameObject")]
+    [SerializeField]
+    public GameObject player;
+
+    [Header("leave alone variables")]
     public GameObject currentTarget;
     public bool targetIsPlayer = false;
 

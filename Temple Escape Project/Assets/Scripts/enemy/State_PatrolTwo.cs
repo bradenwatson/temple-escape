@@ -132,7 +132,5 @@ public class State_PatrolTwo : mBrain_base
     {
         brain.AssignTarget(possiblePatrolPoints[currentPatrolPoint].gameObject, false);
         brain.MoveToTarget();
-        //animator.SetBool("walking", true);
-        //animator.SetBool("stopped", false);
     }    
 }
