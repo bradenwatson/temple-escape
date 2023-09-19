@@ -56,8 +56,9 @@ public class State_AttackPlayer : mBrain_base
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage();
+                    brain.ResetEnemy();
+                    TransitionToNextState(patrolState);
                 }
-                animator.SetBool("stopAnimation", true);
             }
             timeSinceLastAttack = 0;
         }

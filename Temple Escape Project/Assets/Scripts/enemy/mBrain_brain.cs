@@ -31,6 +31,7 @@ public class mBrain_brain : MonoBehaviour
     [Header("leave alone variables")]
     public GameObject currentTarget;
     public bool targetIsPlayer = false;
+    Vector3 startingPosition;
 
     [Header("speed")]
     public float maxSpeed = 10f;
@@ -68,6 +69,7 @@ public class mBrain_brain : MonoBehaviour
         }
 
         currentSpeed = startingSpeed;
+        startingPosition = transform.position;
 
         currentState = initialState;
         initialState.OnStateEnter();
@@ -200,5 +202,11 @@ public class mBrain_brain : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void ResetEnemy()
+    {
+        gameObject.transform.position = startingPosition;
+        agent.speed = startingSpeed;
     }
 }
