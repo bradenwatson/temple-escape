@@ -18,6 +18,7 @@ using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 //using System.Numerics;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public enum Compass { N, S, E, W};      //Global orientation assigned to respective index
 public class Map : MonoBehaviour
@@ -31,22 +32,22 @@ public class Map : MonoBehaviour
     [Header("Enemy Details")]
     public GameObject Enemy;
     public NTree.CustomNode SetEnemyAt;
-    private int EnemyInRoomID;
-    private RoomType EnemyAtType;
+    int EnemyInRoomID;
+    RoomType EnemyAtType;
 
-    private NTree.CustomNode TargetRoom;
-    private int TargetRoomID;
-    private RoomType TargetRoomType;
+    NTree.CustomNode TargetRoom;
+    int TargetRoomID;
+    RoomType TargetRoomType;
 
     //Use FindObjectType<PLayer>
     [Header("Player Details")]
     public GameObject Player;
     public NTree.CustomNode SetPLayerAt;
-    private int PlayerInRoomID;
-    private RoomType PlayerAtType;
+    int PlayerInRoomID;
+    RoomType PlayerAtType;
 
-    [Header("Pick central room")]
-    public GameObject centralRoom;      //Manually set
+    [Header("Central room")]
+    private GameObject centralRoom;      
 
     [Header("Room Count")]
     int totalRooms = 0;
@@ -63,20 +64,23 @@ public class Map : MonoBehaviour
     {
         try
         {
-            tree = new NTree(centralRoom);
-            /*
-            //map.InsertTracker(Enemy);
-            //map.InsertTracker(Player);
-            //Area = centralRoom.GetComponent<BoxCollider>();
-            //Debug.Log("Position = " + Area.transform.position); //gets global
-            Debug.Log("Center = " + Area.center); //is referenced
-            */
 
+            //GameObject[] test = FindObjectsOfType<GameObject>();
+            //foreach (GameObject testObj in test) 
+            //{
+            //    if(testObj.CompareTag("Room"))
+            //    {
+            //        this.totalRooms++;
+            //    }
+            //}
 
+            //Debug.Log("Rooms present = " + this.totalRooms);            //Gameobjects in awake method
 
-            this.totalRooms = tree.GetCount();
+            DetectRooms();
+
+            //this.totalRooms = tree.GetCount();
             //totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
-            Debug.Log("Map made in awake.");
+            //Debug.Log("Map made in awake.");
         }
         catch (NullReferenceException e)
         {
@@ -91,30 +95,6 @@ public class Map : MonoBehaviour
 
     //https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html
     //https://gamedevbeginner.com/start-vs-awake-in-unity/
-    /*
-    public Map() 
-    {
-        
-        try
-        {
-            map = new NTree(centralRoom);
-            //map.InsertTracker(Enemy);
-            //map.InsertTracker(Player);
-            Area = centralRoom.GetComponent<BoxCollider>();
-            this.totalRooms = map.GetCount();
-            //totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
-        }
-        catch(NullReferenceException e)
-        {
-            Debug.LogWarning("Caught in Map(): " + e.Message);
-        }
-        catch(Exception e) 
-        {
-            Debug.LogError(e.Message);
-        }
-        
-    }
-    */
 
 
     //GETTERS
@@ -157,17 +137,6 @@ public class Map : MonoBehaviour
     /***************************************************************************************/
 
     //https://www.reddit.com/r/roguelikedev/comments/7xmxt2/resources_for_creating_a_map_of_randomly/
-    private bool TestOverlap()
-    {
-        bool isOverlapping = false;
-        //Check room is assigned
-        if(centralRoom == null)
-        {
-            throw new ArgumentNullException("Central room has not been assigned");
-
-        }
-
-
 
         //Consecutive detection-too slow
         //Get alls the walls 
@@ -225,106 +194,133 @@ public class Map : MonoBehaviour
 
 
 
-        return isOverlapping;
-    }
+    /* TLDR:
+     * Project 2 lines parallel to wall from center of central room along same axis and stop at every new point of contact/centers
+     * For each step loo through 2 other parallel lines and queue list of room when both lines intersect at one's center
+     * 
+     */
+     
 
+    //Version3 - simpler
+    //what if sort distance from centre and re-arrange and angle and nearest neighbour by shortest distance
+    //split by semi circle, get room with vector and angle from list sorted, then use a ref point as that so next one get shortest distance
+    private void DetectRooms()
+    {
+        //Get all rooms
+        List<GameObject> rooms = GameObject.FindGameObjectsWithTag("Room").ToList<GameObject>();
+        //https://discussions.unity.com/t/sorting-an-array-of-gameobjects-by-their-position/86640
+        //rooms = rooms.OrderBy(rooms => rooms.transform.position.sqrMagnitude).ToList();     //sort rooms by shortest distance from origin
+        rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ToList();
+        //foreach(GameObject pos in rooms) 
+        //{
+        //    Debug.Log(pos.name + " = " + pos.transform.position);
+        //}
+        this.centralRoom = rooms.First();
+        tree = new NTree(this.centralRoom);
+        if(tree.GetRoot() != null)
+        {
+            Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
+        }
+        this.totalRooms = rooms.Count;
+        Debug.Log("Rooms present = " + this.totalRooms);
+
+        List<GameObject> noLinks = new List<GameObject>();
+        for (int i = 1; i < this.totalRooms; i++)
+        {
+            GameObject currRoom = rooms[i];
+            noLinks.Add(currRoom);
+            //Check if angle and distance matches from queue list
+            float dist = Vector3.Distance(this.centralRoom.transform.position, currRoom.transform.position);
+
+
+            float angle = Vector3.SignedAngle(Vector3.right, rooms[i].transform.position, Vector3.down);
+            bool north = angle >= 45 && angle <= 135;
+            bool south = angle <= -45 && angle >= -135;
+            bool east = angle < 45 && angle > -45;
+            bool west = angle > 135 || angle < -135;
+
+            if(north)
+            {
+
+            }
+
+            if(south)
+            {
+
+            }
+
+            if(east)
+            { 
+            }
+
+            if(west)
+            {
+
+            }
+
+        }
+
+
+
+        //Switch directions via NE, NW etc rounding eg >45 or <135 is N to assign direction, then match distance too
+        //otherwise rotate with magnitude to the angle and then calc its rooms shortest distance from current placement to previous rooms and then assign
+
+    }
 
 
     
     private void SetToGlobalOrientation(GameObject obj)
     {
-        int maxDirections = 4;
-        if(obj.GetComponent<Room>() == null)
-        {
-            throw new NullReferenceException("Room component missing from object.");
-        }
+        //Count accessible walls and change their orientation
 
-        NTree.CustomNode objNode = tree.FindNode(obj.GetComponent<Room>().RoomID);
-        //Check node capacity has been set
-        if (objNode.GetNodeLimit() <= 0 || objNode.GetNodeLimit() > maxDirections) 
-        {
-            throw new NotSupportedException("List capacity needs to be set correctly.");
-        }
-        else
-        {
-            objNode.SetNodeLimit(maxDirections);
-            int angle = 90;
-            int turn = (int)obj.GetComponent<Quaternion>().y / angle;
-            var queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
-            switch (turn)
-            {
-                case -2:case 2: //Shift all child nodes by 2
-                    //queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
-                    queue.Enqueue(queue.Dequeue());
-                    queue.Enqueue(queue.Dequeue());
-                    objNode.SetChildren(queue.ToList<NTree.CustomNode>());
-                    Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
-                    break;
-                case -1:
-                    //var queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
-                    queue.Enqueue(queue.Dequeue());
-                    objNode.SetChildren(queue.ToList<NTree.CustomNode>());
-                    Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
-                    break;
-                case 0:
-                    Debug.Log("No change to Room" + objNode.GetIndex().ToString());
-                    break;
-                case 1:
-                    queue.Enqueue(queue.Dequeue());
-                    queue.Enqueue(queue.Dequeue());
-                    queue.Enqueue(queue.Dequeue());
-                    objNode.SetChildren(queue.ToList<NTree.CustomNode>());
-                    Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
-                    break;
-                default:
-                    throw new NotSupportedException("Unable to set rotation.");
-            }
-        }
-        objNode.GetChildren().TrimExcess();
+        //int maxDirections = 4;
+        //if(obj.GetComponent<Room>() == null)
+        //{
+        //    throw new NullReferenceException("Room component missing from object.");
+        //}
+
+        //NTree.CustomNode objNode = tree.FindNode(obj.GetComponent<Room>().RoomID);
+        ////Check node capacity has been set
+        //if (objNode.GetNodeLimit() <= 0 || objNode.GetNodeLimit() > maxDirections) 
+        //{
+        //    throw new NotSupportedException("List capacity needs to be set correctly.");
+        //}
+       
+        //objNode.SetNodeLimit(maxDirections);
+        //int angle = 90;
+        //int turn = (int)obj.GetComponent<Quaternion>().y / angle;
+        //Queue<NTree.CustomNode> queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
+        //switch (turn)
+        //{
+        //    case -2:case 2: //Shift all child nodes by 2
+        //        //queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
+        //        queue.Enqueue(queue.Dequeue());
+        //        queue.Enqueue(queue.Dequeue());
+        //        objNode.SetChildren(queue.ToList<NTree.CustomNode>());
+        //        Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
+        //        break;
+        //    case -1:
+        //        //var queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
+        //        queue.Enqueue(queue.Dequeue());
+        //        objNode.SetChildren(queue.ToList<NTree.CustomNode>());
+        //        Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
+        //        break;
+        //    case 0:
+        //        Debug.Log("No change to Room" + objNode.GetIndex().ToString());
+        //        break;
+        //    case 1:
+        //        queue.Enqueue(queue.Dequeue());
+        //        queue.Enqueue(queue.Dequeue());
+        //        queue.Enqueue(queue.Dequeue());
+        //        objNode.SetChildren(queue.ToList<NTree.CustomNode>());
+        //        Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
+        //        break;
+        //    default:
+        //        throw new NotSupportedException("Unable to set rotation.");
+        //}
+        //objNode.GetChildren().TrimExcess();
     }
     
-
-    // insert room by collider overlap based on door direction
-    private void InsertRoom(GameObject currObj, Collider other, Vector3 location)
-    {
-        //Check both objects rotation and assign to global orientation
-        //queue in the respective order
-
-        int index = -1;
-        //Reduce to vector to magnitude of 1
-        location.Normalize();
-        //Get node key that contains current object
-        //Insert the room or the door's room (children) to the central room (node)
-        //if it has not been occupied
-        if (location == Vector3.forward) //N
-        {
-            index = (int)Compass.N;
-            //Insert the other at the node's key
-            Debug.Log(index);
-        }
-        else if (location == Vector3.back) //S
-        {
-            index = (int)Compass.S;
-            Debug.Log(index);
-        }
-        else if (location == Vector3.right) //E
-        {
-            index = (int)Compass.E;
-            Debug.Log(index);
-        }
-        else if (location == Vector3.left) //W
-        {
-            index = (int)Compass.W;
-            Debug.Log(index);
-        }
-        else
-        {
-            throw new NotSupportedException("Vector out of line.");
-        }
-
-        SetToGlobalOrientation(currObj);
-        SetToGlobalOrientation(other.gameObject);
-    }
 
     //Room type at the node
     public string GetRoomType(int idx)
