@@ -7,6 +7,9 @@ TagManager:
   - door
   - door_proxy_trigger
   - Enemy
+  - ScarabRight
+  - ScarabLeft
+  - ScarabTop
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Door
   - DoorProxy
   - Enemy
-  - 
+  - Grabbable
   - 
   - 
   - 
