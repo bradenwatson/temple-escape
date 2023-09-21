@@ -209,12 +209,12 @@ public class Map : MonoBehaviour
         //Get all rooms
         List<GameObject> rooms = GameObject.FindGameObjectsWithTag("Room").ToList<GameObject>();
         //https://discussions.unity.com/t/sorting-an-array-of-gameobjects-by-their-position/86640
-        //rooms = rooms.OrderBy(rooms => rooms.transform.position.sqrMagnitude).ToList();     //sort rooms by shortest distance from origin
-        rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ToList();
-        //foreach(GameObject pos in rooms) 
-        //{
-        //    Debug.Log(pos.name + " = " + pos.transform.position);
-        //}
+        //Sort rooms from closest to center on x, then shortest distance from center
+        rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ThenBy(rooms => rooms.transform.position.sqrMagnitude).ToList();
+        foreach (GameObject pos in rooms)
+        {
+            Debug.Log(pos.name + " = " + pos.transform.position);
+        }
         this.centralRoom = rooms.First();
         tree = new NTree(this.centralRoom);
         if(tree.GetRoot() != null)
@@ -223,6 +223,24 @@ public class Map : MonoBehaviour
         }
         this.totalRooms = rooms.Count;
         Debug.Log("Rooms present = " + this.totalRooms);
+
+        //Central room obtained and sorted by abs(x) and shortest distance from center
+        //Iterate rooms
+            /* Get current room from room list
+             * then get all the distances with same value of x (in a list) of current room and get shortest distance and assign to current room (or both?) in directions (may need to make unique node and update index)
+             * alter the Tree class to return current node of the insertion for ease of access
+             * Go to next room in list
+                * if next room connections add all other remaining rooms, keep reference of last node connected for simplicity
+                * else for no connections make new queue for them called noLinks
+                    * for different x value, check if any last connections to tree (new function returns current list of tree updated every new x)
+                    * otherwise if  add to noLinks
+             * repeat
+             */
+        
+
+
+
+
 
         List<GameObject> noLinks = new List<GameObject>();
         for (int i = 1; i < this.totalRooms; i++)
