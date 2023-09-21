@@ -30,18 +30,21 @@ public class State_AttackPlayer : mBrain_base
         }
         else
         {
+            brain.MonsterSpeed(false, true, false, false);
             animator.SetBool("playerSeen", true);
             if (brain.GetDistance(brain.player.transform.position) > distanceToStopFromPlayer)
             {
                 brain.AssignTarget(brain.player, true);
                 brain.MoveToTarget();
+                animator.SetBool("closeEnoughToPlayer", false);
             }
             else
             {
-                brain.AssignTarget(gameObject, false); 
+                brain.AssignTarget(gameObject, false);
                 brain.MoveToTarget();
+                animator.SetBool("closeEnoughToPlayer", true);
             }
-            animator.SetBool("closeEnoughToPlayer", true);
+            
             AttackPlayer();
         }
     }
