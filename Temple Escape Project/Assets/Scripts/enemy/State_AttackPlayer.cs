@@ -41,10 +41,8 @@ public class State_AttackPlayer : mBrain_base
             else
             {
                 brain.AssignTarget(gameObject, false);
-                brain.MoveToTarget();
-                animator.SetBool("closeEnoughToPlayer", true);
+                brain.MoveToTarget();               
             }
-            
             AttackPlayer();
         }
     }
@@ -58,6 +56,7 @@ public class State_AttackPlayer : mBrain_base
                 var playerHealth = brain.player.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
+                    animator.SetBool("closeEnoughToPlayer", true);
                     playerHealth.TakeDamage();
                     brain.ResetEnemy();
                     TransitionToNextState(patrolState);

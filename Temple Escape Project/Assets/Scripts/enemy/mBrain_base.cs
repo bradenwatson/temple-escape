@@ -11,6 +11,7 @@ public abstract class mBrain_base : MonoBehaviour
     internal mBrain_base searchPlayerState;
     internal mBrain_base searchCollectibleState;
     internal mBrain_base searchSoundState;
+    internal PlaySound soundController;
     internal Animator animator;
 
     public void OnStateEnter()

@@ -14,6 +14,7 @@ public class mBrain_brain : MonoBehaviour
     public mBrain_base searchPlayerState;
     public mBrain_base searchCollectibleState;
     public mBrain_base searchSoundState;
+    public GameObject soundManager;
     mBrain_base currentState;
 
     [SerializeField]
@@ -45,6 +46,11 @@ public class mBrain_brain : MonoBehaviour
     [Header("sound")]
     public Vector3 source;
     public float distanceToStopFromSound = 10f;
+
+    [Header("audio source")]
+    public AudioSource footSteps;
+    public AudioSource growling;
+    public AudioSource attacking;
 
     // Start is called before the first frame update
     void Start()
@@ -206,5 +212,11 @@ public class mBrain_brain : MonoBehaviour
     {
         gameObject.transform.position = startingPosition;
         agent.speed = startingSpeed;
+    }
+
+    public void PlayFootSteps()
+    {
+        var soundManage = soundManager.GetComponent<PlaySound>();
+        soundManage.GetComponentInParent<AudioSource>().Play();
     }
 }

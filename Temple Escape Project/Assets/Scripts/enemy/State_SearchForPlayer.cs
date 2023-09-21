@@ -24,7 +24,7 @@ public class State_SearchForPlayer : mBrain_base
         }
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
-        animator.SetBool("closeEnoughToPlayer", false);
+        animator.SetBool("closeEnoughToPlayer", false);       
     }
 
     private void LookForPlayer()

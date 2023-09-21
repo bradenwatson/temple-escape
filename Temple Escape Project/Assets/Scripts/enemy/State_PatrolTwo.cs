@@ -26,6 +26,7 @@ public class State_PatrolTwo : mBrain_base
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);
+        brain.PlayFootSteps();
     }
 
     public override void UpdateState()
