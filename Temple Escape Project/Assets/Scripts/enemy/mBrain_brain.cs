@@ -177,7 +177,7 @@ public class mBrain_brain : MonoBehaviour
         }
         if (chasingPlayer)
         {
-            agent.speed *= chasingMultiplier;
+            agent.speed = currentSpeed * chasingMultiplier;
         }
         if (lostPlayer)
         {
