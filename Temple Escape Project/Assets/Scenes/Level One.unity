@@ -741,7 +741,7 @@ PrefabInstance:
     - target: {fileID: 9115853573453876636, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.71
+      value: -22.7
       objectReference: {fileID: 0}
     - target: {fileID: 9115853573453876636, guid: d868bcdc3f1c8964a8105c8c8a4462ae,
         type: 3}
@@ -3418,7 +3418,7 @@ Transform:
   m_GameObject: {fileID: 1142434334}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09, y: 0.14, z: 11}
+  m_LocalPosition: {x: 0.09, y: 0.14, z: 1.8100004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3711,13 +3711,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191921796}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.7076, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5760002568354056898}
   - {fileID: 1312263641}
-  m_Father: {fileID: 4807975096079442824}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1191921801
 MonoBehaviour:
@@ -11561,7 +11562,7 @@ GameObject:
   - component: {fileID: 5867432078671320917}
   - component: {fileID: 1984118913805469498}
   - component: {fileID: 2895053226828426122}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -12749,7 +12750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6811723738175927412}
   - component: {fileID: 1233221144939944458}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Poke Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13151,7 +13152,7 @@ GameObject:
   - component: {fileID: 7924204539882741316}
   - component: {fileID: 925101776382486490}
   - component: {fileID: 9110928287386707522}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Interactable Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13289,7 +13290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7532923741180300900}
   - component: {fileID: 6076810955964616562}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Ray Stabalizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13409,7 +13410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7282013922958029934}
   - component: {fileID: 4093141042798054662}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Poke Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13734,7 +13735,7 @@ GameObject:
   - component: {fileID: 5053334099267050273}
   - component: {fileID: 2879306247331440681}
   - component: {fileID: 4846249604710282555}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14103,9 +14104,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4807975096079442824}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera Offset
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14161,7 +14162,7 @@ Transform:
   m_GameObject: {fileID: 24299575833221727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -9.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14197,7 +14198,7 @@ GameObject:
   - component: {fileID: 4957457393564078120}
   - component: {fileID: 2381019235609116403}
   - component: {fileID: 5823777102215837502}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Teleportation Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14282,7 +14283,7 @@ GameObject:
   - component: {fileID: 5304588353007120793}
   - component: {fileID: 2864649485025900093}
   - component: {fileID: 1023002252209339697}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14450,7 +14451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3769465706988442104}
   - component: {fileID: 5595425628758137782}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Ray Stabalizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14468,7 +14469,7 @@ GameObject:
   - component: {fileID: 7419716946688074201}
   - component: {fileID: 4717177199848104871}
   - component: {fileID: 6222629002762683223}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15072,7 +15073,6 @@ Transform:
   - {fileID: 5304588353007120793}
   - {fileID: 5129695132825087514}
   - {fileID: 7532923741180300900}
-  - {fileID: 1191921800}
   m_Father: {fileID: 5760002568354056898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4827884196005401139
@@ -15086,7 +15086,7 @@ GameObject:
   - component: {fileID: 144658994328217293}
   - component: {fileID: 6597365401739402399}
   - component: {fileID: 4599151577719978096}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15480,7 +15480,7 @@ GameObject:
   - component: {fileID: 2249209766692488705}
   - component: {fileID: 866897443800680444}
   - component: {fileID: 2384709214489960126}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Teleportation Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15713,7 +15713,7 @@ Transform:
   - {fileID: 2182120884844092043}
   - {fileID: 3104974444197389659}
   - {fileID: 4807975096079442824}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1191921800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &5777431618688220118
 MeshCollider:
@@ -16374,7 +16374,7 @@ GameObject:
   - component: {fileID: 1477306450832935387}
   - component: {fileID: 8445839750459689960}
   - component: {fileID: 110380848947424448}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Interactable Ray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16574,7 +16574,7 @@ GameObject:
   - component: {fileID: 7758305332047624279}
   m_Layer: 3
   m_Name: XR Origin (XR Rig)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16596,7 +16596,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1673398777}
-  - {fileID: 5760002568354056898}
+  - {fileID: 1191921800}
   - {fileID: 652770674}
   - {fileID: 694714130}
   - {fileID: 603626357}
