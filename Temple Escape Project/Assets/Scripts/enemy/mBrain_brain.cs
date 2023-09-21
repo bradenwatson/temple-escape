@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.AI;
 using UnityEngine.AI;
 using UnityEngine.Jobs;
 using System.Linq;
-using static UnityEditor.VersionControl.Asset;
 
 public class mBrain_brain : MonoBehaviour
 {
