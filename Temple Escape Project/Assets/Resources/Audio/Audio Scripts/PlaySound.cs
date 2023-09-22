@@ -18,8 +18,11 @@ public class PlaySound : MonoBehaviour
     public static void PlaySoundOnce(string clipName, AudioSource source)
     {
         if (source == null) { return; } // if no source exists, no sound will play
-        // play sound clip from given source       
-        source.PlayOneShot(FindSound(clipName)); 
+        // play sound clip from given source
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(FindSound(clipName));
+        }
     }
 
     // play sound on repeat for a specified duration, i.e. footsteps
@@ -29,7 +32,10 @@ public class PlaySound : MonoBehaviour
         // find sound clip by name         
         source.clip = FindSound(clipName);
         // start playing sound on loop
-        source.Play();
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
         source.loop = true;
         // wait for specified duration
         yield return new WaitForSeconds(durationInSeconds);
@@ -44,7 +50,10 @@ public class PlaySound : MonoBehaviour
         // find sound clip by name 
         source.clip = FindSound(clipName);
         // start playing sound on loop
-        source.Play();
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
         source.loop = true;    
     }
 
