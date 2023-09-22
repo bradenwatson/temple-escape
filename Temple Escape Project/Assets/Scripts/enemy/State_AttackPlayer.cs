@@ -48,7 +48,8 @@ public class State_AttackPlayer : mBrain_base
             brain.MonsterSpeed(chasingPlayer:true);
             animator.SetBool("closeEnoughToPlayer", false);
             animator.SetBool("playerSeen", true);
-            if (brain.GetDistance(brain.player.transform.position) > distanceToStopFromPlayer)
+            float distance = brain.GetDistance(brain.player.transform.position);
+            if (distance > distanceToStopFromPlayer && distance != -1)
             {
                 brain.AssignTarget(brain.player, true);
                 brain.MoveToTarget();               

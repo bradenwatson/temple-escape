@@ -8,7 +8,7 @@ public class Fade : MonoBehaviour
 {
     public Image fadeScreen;
     public bool finishedFading = true;
-    public float valueToBeDividedByDeltaTimeForSpeedChanging = 5f;
+    public float valueToBeDividedByDeltaTimeForSpeedChanging = 2f;
 
     bool isFading;
     float alphaValue;
@@ -16,7 +16,8 @@ public class Fade : MonoBehaviour
     private void Start()
     {
         alphaValue = fadeScreen.color.a;
-        UnFadeScreen();
+        finishedFading = false;
+        isFading = false;
     }
 
     void Update()

@@ -92,24 +92,29 @@ public class mBrain_brain : MonoBehaviour
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(transform.position, positionToGetDistanceFor, NavMesh.AllAreas, path);
 
+        if (path.status == NavMeshPathStatus.PathPartial)
+        {
+            return -1;
+        }
+
         float distance = 0f;
-        bool changed = false;
         for (int i = 1; i < path.corners.Length; i++)
         {
             distance += Vector3.Distance(path.corners[i - 1], path.corners[i]);
-            changed = true;
         }
-        if (changed)
-        {
-            return distance;
-        }     
-        return float.PositiveInfinity;      
+
+        return distance;      
     }
 
     public bool SeeIfPlayerIsSeen()
     {       
         if (player != null)
         {
+            if (GetDistance(player.transform.position) == -1)
+            {
+                return false;
+            }
+
             RaycastHit hit;
             Vector3 direction = (player.transform.position - transform.position).normalized;
             if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
