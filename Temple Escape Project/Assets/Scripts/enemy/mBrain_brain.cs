@@ -93,12 +93,17 @@ public class mBrain_brain : MonoBehaviour
         NavMesh.CalculatePath(transform.position, positionToGetDistanceFor, NavMesh.AllAreas, path);
 
         float distance = 0f;
+        bool changed = false;
         for (int i = 1; i < path.corners.Length; i++)
         {
             distance += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+            changed = true;
         }
-
-        return distance;
+        if (changed)
+        {
+            return distance;
+        }     
+        return float.PositiveInfinity;      
     }
 
     public bool SeeIfPlayerIsSeen()
@@ -167,7 +172,7 @@ public class mBrain_brain : MonoBehaviour
         currentState = initialState;
     }
 
-    public void MonsterSpeed(bool isCollectableInfluenced, bool chasingPlayer, bool lostPlayer, bool reset)         // increases the monster speed based off a multiplier or increasing basespeed
+    public void MonsterSpeed(bool isCollectableInfluenced=false, bool chasingPlayer=false, bool lostPlayer=false, bool reset=false)         // increases the monster speed based off a multiplier or increasing basespeed
     {
         if (reset)
         {
@@ -209,7 +214,7 @@ public class mBrain_brain : MonoBehaviour
     public void ResetEnemy()
     {
         gameObject.transform.position = startingPosition;
-        agent.speed = startingSpeed;
+        MonsterSpeed(reset:true);
     }
 
     public void PlayFootSteps()

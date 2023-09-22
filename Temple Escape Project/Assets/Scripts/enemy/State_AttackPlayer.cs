@@ -55,8 +55,10 @@ public class State_AttackPlayer : mBrain_base
     {        
         if (timeInBetweenEachAttack < timeSinceLastAttack && brain.player != null)
         {
-            if (brain.GetDistance(brain.player.transform.position) < distanceMonsterCanAttackPlayerFrom)
+            var distance = brain.GetDistance(brain.player.transform.position);
+            if (distance < distanceMonsterCanAttackPlayerFrom)
             {
+                print(distance);
                 var playerHealth = brain.player.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
