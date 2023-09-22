@@ -227,7 +227,7 @@ public class mBrain_brain : MonoBehaviour
         PlaySound.StopSound(footSteps);
     }
 
-    public void PlaygrowlingAndAttack()
+    public void PlayGrowling()
     {
         PlaySound.PlaySoundOnce("Enemy_Growl", growlingAndAttack);
     }

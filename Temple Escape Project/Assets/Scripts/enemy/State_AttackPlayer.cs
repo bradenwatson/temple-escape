@@ -84,6 +84,7 @@ public class State_AttackPlayer : mBrain_base
                     animator.SetBool("closeEnoughToPlayer", true);
                     brain.PlayerAttackingSound();
                     playerHealth.TakeDamage();
+                    brain.PlayerAttackingSound();
                     paused = true;
                 }
             }
