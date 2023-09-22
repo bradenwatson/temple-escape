@@ -23,6 +23,7 @@ public class State_Patrol : mBrain_base
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);
+        brain.PlayFootSteps();
         if (patrolPoints.Count > 0)
         {
             int closestPoint = 0;
@@ -59,6 +60,7 @@ public class State_Patrol : mBrain_base
             if (brain.GetDistance(patrolPoints[currentPatrolPoint].position) < distanceFromPatrolPoint)
             {
                 animator.SetBool("walking", false);
+                brain.StopFootSteps();
                 if (patrolPointTime == -1)
                 {
                     patrolPointTime = patrolPoints[currentPatrolPoint].GetComponent<PatrolPoint>().timeToStay();
@@ -88,5 +90,6 @@ public class State_Patrol : mBrain_base
         brain.AssignTarget(patrolPoints[currentPatrolPoint].gameObject, false);
         brain.MoveToTarget();
         animator.SetBool("walking", true);
+        brain.PlayFootSteps();
     }
 }

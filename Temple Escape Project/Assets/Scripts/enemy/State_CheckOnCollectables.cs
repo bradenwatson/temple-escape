@@ -31,6 +31,7 @@ public class State_CheckOnCollectables : mBrain_base
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);
+        brain.PlayFootSteps();
     }
 
     private void Start()
@@ -76,6 +77,7 @@ public class State_CheckOnCollectables : mBrain_base
         if (brain.GetDistance(collectablesTransform[randomInts[currentIndex]]) < distanceStopFromTarget)
         {
             animator.SetBool("walking", false);
+            brain.StopFootSteps();
             timeAtCollectable += Time.deltaTime;
             if (timeAtCollectable > timeToStayAtEachCollectable)
             {  
@@ -104,6 +106,7 @@ public class State_CheckOnCollectables : mBrain_base
         {
             brain.SetDestination(collectablesTransform[randomInts[currentIndex]]);
             animator.SetBool("walking", true);
+            brain.PlayFootSteps();
         }             
         if (currentIndex >= collectables.Count)
         {

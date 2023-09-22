@@ -14,7 +14,6 @@ public class mBrain_brain : MonoBehaviour
     public mBrain_base searchPlayerState;
     public mBrain_base searchCollectibleState;
     public mBrain_base searchSoundState;
-    public GameObject soundManager;
     mBrain_base currentState;
 
     [SerializeField]
@@ -49,8 +48,7 @@ public class mBrain_brain : MonoBehaviour
 
     [Header("audio source")]
     public AudioSource footSteps;
-    public AudioSource growling;
-    public AudioSource attacking;
+    public AudioSource growlingAndAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -216,7 +214,21 @@ public class mBrain_brain : MonoBehaviour
 
     public void PlayFootSteps()
     {
-        var soundManage = soundManager.GetComponent<PlaySound>();
-        soundManage.GetComponentInParent<AudioSource>().Play();
+        PlaySound.PlaySoundOnRepeat("Enemy_Footstep", footSteps);
+    }
+
+    public void StopFootSteps()
+    {
+        PlaySound.StopSound(footSteps);
+    }
+
+    public void PlaygrowlingAndAttack()
+    {
+        PlaySound.PlaySoundOnce("Enemy_Growl", growlingAndAttack);
+    }
+
+    public void PlayerAttackingSound()
+    {
+        PlaySound.PlaySoundOnce("Staff_Knock", growlingAndAttack);
     }
 }

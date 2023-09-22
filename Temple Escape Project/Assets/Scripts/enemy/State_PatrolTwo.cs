@@ -57,11 +57,13 @@ public class State_PatrolTwo : mBrain_base
             if (brain.GetDistance(possiblePatrolPoints[currentPatrolPoint].position) < howCloseToPatrolPoint)
             {
                 animator.SetBool("walking", false);
+                brain.StopFootSteps();
                 timeSinceaLastChangedPoints += Time.deltaTime;
             }
             if (timeSinceaLastChangedPoints > patrolPointTime)
             {
                 animator.SetBool("walking", true);
+                brain.PlayFootSteps();
                 SetNewPatrolPoint();
                 patrolPointTime = -1f;
                 timeSinceaLastChangedPoints = 0;

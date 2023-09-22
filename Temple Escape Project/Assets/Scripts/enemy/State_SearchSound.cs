@@ -20,6 +20,7 @@ public class State_SearchSound : mBrain_base
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);
+        brain.PlayFootSteps();
     }
 
     private void SearchRoutine()
@@ -38,6 +39,7 @@ public class State_SearchSound : mBrain_base
         if (IsAtSound())
         {
             animator.SetBool("walking", false);
+            brain.StopFootSteps();
             timeSpentAtSound += Time.deltaTime;
         }
     }

@@ -20,6 +20,7 @@ public class State_AttackPlayer : mBrain_base
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);
+        brain.PlayFootSteps();
     }
 
     private void AttackRoutine()
@@ -37,11 +38,14 @@ public class State_AttackPlayer : mBrain_base
                 brain.AssignTarget(brain.player, true);
                 brain.MoveToTarget();
                 animator.SetBool("closeEnoughToPlayer", false);
+                brain.PlayFootSteps();
             }
             else
             {
                 brain.AssignTarget(gameObject, false);
-                brain.MoveToTarget();               
+                animator.SetBool("walking", false);
+                brain.MoveToTarget();
+                brain.StopFootSteps();
             }
             AttackPlayer();
         }
@@ -57,6 +61,7 @@ public class State_AttackPlayer : mBrain_base
                 if (playerHealth != null)
                 {
                     animator.SetBool("closeEnoughToPlayer", true);
+                    brain.PlayerAttackingSound();
                     playerHealth.TakeDamage();
                     brain.ResetEnemy();
                     TransitionToNextState(patrolState);

@@ -24,7 +24,8 @@ public class State_SearchForPlayer : mBrain_base
         }
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
-        animator.SetBool("closeEnoughToPlayer", false);       
+        animator.SetBool("closeEnoughToPlayer", false);      
+        brain.PlayFootSteps();
     }
 
     private void LookForPlayer()
@@ -45,6 +46,7 @@ public class State_SearchForPlayer : mBrain_base
             if (brain.GetDistance(PlayersLastKnownPosition) < 1)
             {
                 animator.SetBool("walking", false);
+                brain.StopFootSteps();
             }
 
             timeLooked += Time.deltaTime;
