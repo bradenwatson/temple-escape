@@ -41,6 +41,7 @@ public class State_SearchForPlayer : mBrain_base
             {
                 isGoingToPlayer = true;
                 brain.SetDestination(PlayersLastKnownPosition);
+                brain.PlayGrowling();
             }
 
             if (brain.GetDistance(PlayersLastKnownPosition) < 1)
@@ -54,6 +55,7 @@ public class State_SearchForPlayer : mBrain_base
             {
                 TransitionToNextState(searchCollectibleState);
                 timeLooked = 0f;
+                brain.PlayGrowling();
             }
         }
     }

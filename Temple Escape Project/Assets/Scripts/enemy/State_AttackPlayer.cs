@@ -49,7 +49,12 @@ public class State_AttackPlayer : mBrain_base
             animator.SetBool("closeEnoughToPlayer", false);
             animator.SetBool("playerSeen", true);
             float distance = brain.GetDistance(brain.player.transform.position);
-            if (distance > distanceToStopFromPlayer && distance != -1)
+            print(distance);
+            if (distance == 0f)
+            {
+                TransitionToNextState(patrolState);
+            }
+            if (distance > distanceToStopFromPlayer)
             {
                 brain.AssignTarget(brain.player, true);
                 brain.MoveToTarget();               
@@ -79,6 +84,7 @@ public class State_AttackPlayer : mBrain_base
                     animator.SetBool("closeEnoughToPlayer", true);
                     brain.PlayerAttackingSound();
                     playerHealth.TakeDamage();
+                    brain.PlayerAttackingSound();
                     paused = true;
                 }
             }
