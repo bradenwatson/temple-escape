@@ -3224,7 +3224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1032986300}
   m_Layer: 0
-  m_Name: ScarabPieces
+  m_Name: Scarab Puzzle Pieces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3239,9 +3239,9 @@ Transform:
   m_GameObject: {fileID: 1032986299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.71, z: 0.01}
-  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4702253526669686126}
   - {fileID: 3992363374621596513}
@@ -11857,7 +11857,7 @@ GameObject:
   - component: {fileID: 2189266287686522262}
   - component: {fileID: 3511794370402811051}
   m_Layer: 11
-  m_Name: ScarabLeft
+  m_Name: Scarab Left Piece
   m_TagString: ScarabLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19697,7 +19697,7 @@ GameObject:
   - component: {fileID: 3928051477728334378}
   - component: {fileID: 9214529072689742130}
   m_Layer: 11
-  m_Name: ScarabRight
+  m_Name: Scarab Right Piece
   m_TagString: ScarabRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20064,7 +20064,7 @@ Transform:
   m_GameObject: {fileID: 3379218600477507440}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 13.5, y: 0, z: -13.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20165,7 +20165,7 @@ Transform:
   m_GameObject: {fileID: 5160987950419172563}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20804,7 +20804,7 @@ Transform:
   m_GameObject: {fileID: 318084945362061010}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -25, y: 0, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21536,7 +21536,7 @@ GameObject:
   - component: {fileID: 8178480888855942938}
   - component: {fileID: 8542682168795663635}
   m_Layer: 11
-  m_Name: ScarabTop
+  m_Name: Scarab Top Piece
   m_TagString: ScarabTop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
