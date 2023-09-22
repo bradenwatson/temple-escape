@@ -92,11 +92,6 @@ public class mBrain_brain : MonoBehaviour
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(transform.position, positionToGetDistanceFor, NavMesh.AllAreas, path);
 
-        if (path.status == NavMeshPathStatus.PathPartial)
-        {
-            return -1;
-        }
-
         float distance = 0f;
         for (int i = 1; i < path.corners.Length; i++)
         {
@@ -110,7 +105,7 @@ public class mBrain_brain : MonoBehaviour
     {       
         if (player != null)
         {
-            if (GetDistance(player.transform.position) == -1)
+            if (GetDistance(player.transform.position) == 0)
             {
                 return false;
             }
