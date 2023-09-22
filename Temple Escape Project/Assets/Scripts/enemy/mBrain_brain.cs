@@ -99,10 +99,12 @@ public class mBrain_brain : MonoBehaviour
             distance += Vector3.Distance(path.corners[i - 1], path.corners[i]);
             changed = true;
         }
+        print(distance);
         if (changed)
         {
             return distance;
-        }     
+        }
+        print("changed");
         return float.PositiveInfinity;      
     }
 
