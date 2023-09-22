@@ -1999,7 +1999,7 @@ GameObject:
   - component: {fileID: 696678487}
   - component: {fileID: 696678486}
   - component: {fileID: 696678485}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3616,6 +3616,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4266677686959244367}
     m_Modifications:
+    - target: {fileID: 5071098944911088819, guid: e1e67dfe88837204da7166a54ede7a9e,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 3282055585543517927, guid: 8c86cb1b1cfefd742a278557560d0d65,
+        type: 3}
     - target: {fileID: 5432302688682650451, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
       propertyPath: m_Name
@@ -4805,6 +4811,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5071098944911088819, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 3282055585543517927, guid: 8c86cb1b1cfefd742a278557560d0d65,
+        type: 3}
+    - target: {fileID: 5071098944911088819, guid: e1e67dfe88837204da7166a54ede7a9e,
+        type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 0.07002851
       objectReference: {fileID: 0}
@@ -4975,6 +4987,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4702253526669686126}
     m_Modifications:
+    - target: {fileID: 5071098944911088819, guid: e1e67dfe88837204da7166a54ede7a9e,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 3282055585543517927, guid: 8c86cb1b1cfefd742a278557560d0d65,
+        type: 3}
     - target: {fileID: 5071098944911088819, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -21621,7 +21639,7 @@ GameObject:
   - component: {fileID: 6162263750223242922}
   - component: {fileID: 7377308819585382403}
   - component: {fileID: 6331621227990320456}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ScarabRight
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: cf632ed80bf1f46c980de6b1b8b903ef, type: 3}
@@ -23124,7 +23142,7 @@ GameObject:
   - component: {fileID: 265677288274613869}
   - component: {fileID: 7041585852650166826}
   - component: {fileID: 6301710538583680511}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ScarabTop
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: cf632ed80bf1f46c980de6b1b8b903ef, type: 3}
@@ -24139,7 +24157,7 @@ GameObject:
   - component: {fileID: 6039307803506466735}
   - component: {fileID: 2186914156348621178}
   - component: {fileID: 5654510618553239087}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ScarabLeft
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: cf632ed80bf1f46c980de6b1b8b903ef, type: 3}
@@ -30777,7 +30795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9123075709771342096}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SocketInteractors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
