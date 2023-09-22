@@ -38,6 +38,8 @@ public class DoorControl : MonoBehaviour
     private List<Collider> colliding;
     //private List<string> blacklist;
 
+    public AudioSource doorMoving;
+
     void Start()
     {
         startPosition = transform.position;
@@ -83,12 +85,14 @@ public class DoorControl : MonoBehaviour
 
     public void OpenDoor()
     {
+        PlaySound.PlaySoundOnce("Door_Open", doorMoving);
         isOpening = true;
         isMoving = true;
     }
 
     public void CloseDoor()
     {
+        PlaySound.PlaySoundOnce("Door_Open", doorMoving);
         isOpening = false;
         isMoving = true;
     }

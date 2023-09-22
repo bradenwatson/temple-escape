@@ -16,6 +16,7 @@ public class State_AttackPlayer : mBrain_base
     {
         if (!paused)
         {
+            animator.SetBool("walking", true);
             AttackRoutine();
         }
         else
