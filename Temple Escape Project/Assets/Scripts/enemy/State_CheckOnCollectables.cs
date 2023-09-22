@@ -52,7 +52,7 @@ public class State_CheckOnCollectables : mBrain_base
         }
         if (SeeIfPieceMissing())
         {
-            brain.MonsterSpeed(true, false, false, false);
+            brain.MonsterSpeed(isCollectableInfluenced:true);
         }       
     }
 
