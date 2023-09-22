@@ -217,7 +217,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: df05ca2d74edcfe479764cdaa80fb8bd, type: 2}
+      objectReference: {fileID: 2100000, guid: 47d2f0f5e6b62dc478f754809aeb33b4, type: 2}
     - target: {fileID: 33359836789569404, guid: 1609fc045200fb14294bfdd17cc92469,
         type: 3}
       propertyPath: m_Mesh
@@ -231,6 +231,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1397527558}
+    - targetCorrespondingSourceObject: {fileID: 1027414351357864, guid: 1609fc045200fb14294bfdd17cc92469,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1397527559}
   m_SourcePrefab: {fileID: 100100000, guid: 1609fc045200fb14294bfdd17cc92469, type: 3}
 --- !u!1001 &101059505
 PrefabInstance:
@@ -13144,11 +13148,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72efac4af900dcc4e80c0a3b8c93af6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfTasksToComplete: 0
+  numberOfTasksToComplete: 4
   currentlyCompletedTasks: 0
   onPuzzleCompletion:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1635669078}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: set_tag
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Glow
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1137799296
 Transform:
   m_ObjectHideFlags: 0
@@ -13889,6 +13905,21 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 636947fcb3e254d43a43841f4d8f4962, type: 2}
+--- !u!114 &1397527559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397527553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d2bc33a2bbad2498f0e68a4d035139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalMaterial: {fileID: 2100000, guid: 47d2f0f5e6b62dc478f754809aeb33b4, type: 2}
+  glowMaterial: {fileID: 2100000, guid: df05ca2d74edcfe479764cdaa80fb8bd, type: 2}
+  parent: {fileID: 1635669078}
 --- !u!1001 &1400993112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14863,6 +14894,12 @@ Transform:
   - {fileID: 2071403761}
   m_Father: {fileID: 1137799296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1635669078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1682282789023726, guid: 1609fc045200fb14294bfdd17cc92469,
+    type: 3}
+  m_PrefabInstance: {fileID: 76474732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1672273456 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4607074935013193693, guid: 6dfbeea7f9237474197b5505616d6b79,
@@ -26265,10 +26302,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1137799296}
     m_Modifications:
+    - target: {fileID: 1617887287611555647, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916930554269152448, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3682476473276671836, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
         type: 3}
       propertyPath: m_Name
       value: LapisLazuliCatStatue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682476473276671836, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5413254026854213634, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
         type: 3}
@@ -26280,6 +26332,11 @@ PrefabInstance:
       propertyPath: linkedPuzzleManager
       value: 
       objectReference: {fileID: 1137799295}
+    - target: {fileID: 7118868999661394310, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7584375762305335588, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26708,22 +26765,22 @@ PrefabInstance:
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.38
+      value: 3.83
       objectReference: {fileID: 0}
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13265583
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.58
+      value: -3.513
       objectReference: {fileID: 0}
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
@@ -26733,7 +26790,7 @@ PrefabInstance:
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
@@ -26748,7 +26805,7 @@ PrefabInstance:
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5535980188176404737, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
