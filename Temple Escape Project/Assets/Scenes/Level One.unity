@@ -19089,7 +19089,7 @@ GameObject:
   - component: {fileID: 3368471044891841244}
   - component: {fileID: 1322282717412017088}
   m_Layer: 0
-  m_Name: FadeImage
+  m_Name: Fade Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30559,7 +30559,7 @@ GameObject:
   - component: {fileID: 6614422000763549401}
   - component: {fileID: 1751680319640222081}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Fade Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
