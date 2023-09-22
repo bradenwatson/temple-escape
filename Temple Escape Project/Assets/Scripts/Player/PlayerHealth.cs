@@ -13,28 +13,46 @@ public class PlayerHealth : MonoBehaviour
     Vector3 startingPosition;
     List<GameObject> collectables = new List<GameObject>();
 
+    Fade fadeScript;
+    public bool isRespawning = false;
+
 
     void Start()
     {
         startingPosition = transform.position;
         currentHealth = maxHealth;
         gameObject.transform.position = startingPosition;
+        fadeScript = gameObject.GetComponent<Fade>();
+    }
+
+    private void Update()
+    {
+        if (isRespawning && fadeScript.finishedFading)
+        {
+            MovePlayerBackToSpawn();
+            fadeScript.SetFading(false);
+            isRespawning=false;
+        }
     }
 
     public void TakeDamage(int damage = 1)
     {
-        currentHealth -= damage;
-        ResetPlayer();
-        if (currentHealth == 0)
+        if (!isRespawning)
         {
-            GameOverState();
+            currentHealth -= damage;
+            ResetPlayer();
+            if (currentHealth == 0)
+            {
+                GameOverState();
+            }
         }
     }
 
     private void ResetPlayer()
     {
         MoveCollectablesBack();
-        MovePlayerBackToSpawn();
+        isRespawning = true;
+        fadeScript.SetFading(true);
     }
 
     private void MovePlayerBackToSpawn()
