@@ -31469,7 +31469,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  collectables: []
+  collectables:
+  - {fileID: 318084945362061010}
+  - {fileID: 3379218600477507440}
+  - {fileID: 5160987950419172563}
   distanceStopFromTarget: 1
   timeToStayAtEachCollectable: 1
 --- !u!114 &8178480888855942938
