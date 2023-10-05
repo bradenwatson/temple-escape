@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnterNextLevelControl : MonoBehaviour
 {
+    [SerializeField]
+    private int _nextSceneIndex;
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.Log("NEXT LEVEL!");
+            SceneManager.LoadScene(_nextSceneIndex);
         }
     }
 }
