@@ -179,11 +179,11 @@ public class NTree
 
     /***************************************************************************************/
     /* Method: InsertNode
-     * Input: key(int), _data (GameObject)  
-     * Output: N/A
+     * Input: key(int), data (GameObject)  
+     * Output: nodeInserted (CustomNode)
      * Purpose: Inserts node within the tree at a specific key
     /***************************************************************************************/
-    public void InsertNodeAt(int key, GameObject data) 
+    public CustomNode InsertNodeAt(int key, GameObject data) 
     {
         if(root == null) 
         {
@@ -191,17 +191,30 @@ public class NTree
         }
 
         //Add child node at index
-        CustomNode node = new CustomNode(this.counter++, data);
-        FindNode(key).InsertChildren(node);
+        CustomNode child = new CustomNode(this.counter++, data);
+        CustomNode nodeToFind = FindNode(key);
+        if (nodeToFind == null) 
+        {
+            throw new NullReferenceException("Node does not exist.");
+        }
+        nodeToFind.InsertChildren(child);
+
+        //Get the inserted node through the located node's children.
+        CustomNode nodeInserted = nodeToFind.GetChildren().Find(x => x.Equals(child));
+        if(nodeInserted == null)
+        {
+            throw new NullReferenceException("Node does not exist.");
+        }
+        return nodeInserted;
     }
 
     /***************************************************************************************/
     /* Method: InsertNode
-     * Input: node(CustomNode), _data (GameObject)  
+     * Input: node(CustomNode), data (GameObject)  
      * Output: N/A
      * Purpose: Inserts node within the tree at a specific node
     /***************************************************************************************/
-    public void InsertNodeAt(CustomNode node, GameObject data)
+    public CustomNode InsertNodeAt(CustomNode node, GameObject data)
     {
         if (root == null)
         {
@@ -211,6 +224,14 @@ public class NTree
         //Add child node at index
         CustomNode child = new CustomNode(this.counter++, data);
         node.InsertChildren(child);
+
+        //Get the inserted node through the located node's children.
+        CustomNode nodeInserted = node.GetChildren().Find(x => x.Equals(child));
+        if (nodeInserted == null)
+        {
+            throw new NullReferenceException("Node does not exist.");
+        }
+        return nodeInserted;
     }
 
     /***************************************************************************************/
@@ -366,6 +387,9 @@ public class NTree
             {
                 throw new ArgumentOutOfRangeException("List has reached its maximum already.");
             }
+
+            //Should not return node for ease of access because it must only exists
+            //if conditions are met.
         }
     }
 
