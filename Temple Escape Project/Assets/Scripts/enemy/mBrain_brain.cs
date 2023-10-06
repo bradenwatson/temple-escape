@@ -112,7 +112,8 @@ public class mBrain_brain : MonoBehaviour
 
             RaycastHit hit;
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
+            Vector3 startingPosition = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
+            if (Physics.Raycast(startingPosition, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
             {
                 if (hit.collider.gameObject == player)
                 {
