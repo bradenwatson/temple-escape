@@ -24,7 +24,6 @@ public class State_CheckOnCollectables : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        Debug.Log("collectable state");
         totalCollectablesFound = 0;
         timeAtCollectable = 0;
         currentIndex = 0;

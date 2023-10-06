@@ -31,7 +31,6 @@ public class State_AttackPlayer : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        Debug.Log("attack state");
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);

@@ -16,7 +16,6 @@ public class State_SearchForPlayer : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        Debug.Log("search state");
         timeLooked = 0f;
         if (brain.player != null)
         {
