@@ -54,7 +54,6 @@ public class mBrain_brain : MonoBehaviour
     void Start()
     {
         mBrain_base[] states = GetComponents<mBrain_base>();
-        print($"states count {states.Count()}");
         for (int i = 0; i < states.Length; i++)
         {
             states[i].isActive = false;
@@ -157,13 +156,12 @@ public class mBrain_brain : MonoBehaviour
         targetIsPlayer = isPlayer; 
     }
 
-    // Update is called once per frame
-    void Update()       // used as the update for all states
+    void Update()
     {
         currentState.UpdateState();
     }
 
-    public void RecieveNewState(mBrain_base newState)       // used to say what state the user is on
+    public void RecieveNewState(mBrain_base newState)
     {
         currentState = newState;
     }
