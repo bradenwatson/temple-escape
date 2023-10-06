@@ -7462,7 +7462,7 @@ PrefabInstance:
     - target: {fileID: 2243354028318232223, guid: 24faf8885a587f647ac83f565769555c,
         type: 3}
       propertyPath: m_Name
-      value: Room 1 Way (3)
+      value: Room 1 Way (3) SAFE ROOM
       objectReference: {fileID: 0}
     - target: {fileID: 4614794500899003643, guid: 24faf8885a587f647ac83f565769555c,
         type: 3}
