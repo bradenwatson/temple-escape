@@ -13,6 +13,19 @@ public class MenuFollower : MonoBehaviour
         centered = false;
     }
 
+    void Update()
+    {
+        if (!centered)
+        {
+            Vector3 targetPosition = FindTargetPosition();
+            MoveTowards(targetPosition);
+            if (ReachedPosition(targetPosition))
+            {
+                centered = true;
+            }
+        }
+    }
+
     private Vector3 FindTargetPosition()
     {
         return cameraTransform.position + (cameraTransform.forward * distance);
@@ -26,18 +39,5 @@ public class MenuFollower : MonoBehaviour
     private bool ReachedPosition(Vector3 targetPosition)
     {
         return Vector3.Distance(targetPosition, transform.position) < 0.1F;
-    }
-
-    void Update()
-    {
-        if (!centered)
-        {
-            Vector3 targetPosition = FindTargetPosition();
-            MoveTowards(targetPosition);
-            if (ReachedPosition(targetPosition))
-            {
-                centered = true;
-            }
-        }
     }
 }
