@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 37124994}
   - component: {fileID: 37124993}
   - component: {fileID: 37124992}
+  - component: {fileID: 37124995}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -279,7 +280,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 37124993}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 37124995}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadSceneByIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &37124993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +331,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37124990}
   m_CullTransparentMesh: 1
+--- !u!114 &37124995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37124990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ac0163fd2251d45aeb77698ad6ed41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &58169754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3674,13 +3699,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889146037}
+  - component: {fileID: 889146038}
   m_Layer: 0
   m_Name: Pause Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &889146037
 Transform:
   m_ObjectHideFlags: 0
@@ -3697,6 +3723,18 @@ Transform:
   - {fileID: 422054637}
   m_Father: {fileID: 8680505941026341966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &889146038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889146036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13046311fcb3dc549a4a93ca03c19155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &906735641 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6534898319475773599, guid: 87791a0285915fa4988c5e7d5025b239,
@@ -6535,6 +6573,7 @@ GameObject:
   - component: {fileID: 1604294991}
   - component: {fileID: 1604294990}
   - component: {fileID: 1604294989}
+  - component: {fileID: 1604294992}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -6605,7 +6644,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1604294990}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1604294992}
+        m_TargetAssemblyTypeName: DisableMenu, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1604294990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6644,6 +6695,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604294987}
   m_CullTransparentMesh: 1
+--- !u!114 &1604294992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604294987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d769bfc9d1f0354f8a9d589c729b6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuToClose: {fileID: 889146036}
 --- !u!4 &1620889678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 382426111913498800, guid: 49f0fe4c8eb34aa488ccbcc93db9fd61,
@@ -24147,6 +24211,7 @@ GameObject:
   - component: {fileID: 7419716946688074201}
   - component: {fileID: 4717177199848104871}
   - component: {fileID: 6222629002762683223}
+  - component: {fileID: 7419716946688074202}
   m_Layer: 3
   m_Name: Left Controller
   m_TagString: Untagged
@@ -32212,6 +32277,21 @@ Transform:
   - {fileID: 7282013922958029934}
   m_Father: {fileID: 4807975096079442824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7419716946688074202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551218668494768508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78620d7a1b0449438c17daca7ac7bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  pauseMenu: {fileID: 889146036}
 --- !u!4 &7439738052810691699
 Transform:
   m_ObjectHideFlags: 0

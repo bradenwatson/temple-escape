@@ -1,23 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseControl : MonoBehaviour
 {
+    [Header("Inputs")]
+    public InputActionAsset inputAction;
+
+    [Header("State")]
+    private InputAction _menuButtonInputAction;
+
+    [Header("Pause Menu")]
     public GameObject pauseMenu;
     bool paused = false;
 
+    private void Start()
+    {
+        _menuButtonInputAction = inputAction.FindActionMap(string.Format("XRI LeftHand Interaction"))
+            .FindAction("Pause Press");
+        _menuButtonInputAction.Enable();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (_menuButtonInputAction.triggered)
         {
-            if (!paused)
+            if (paused)
             {
-                Pause();
+                Resume();
             }
             else
             {
-                Resume();
+                Pause();
             }
         }
     }
