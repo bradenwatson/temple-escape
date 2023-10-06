@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PauseControl : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class PauseControl : MonoBehaviour
     [Header("Pause Menu")]
     public GameObject pauseMenu;
     bool paused = false;
+
+    [Header("Input Controls to Disable")]
+    public GameObject leftTeleportRay;
+    public GameObject rightTeleportRay;
 
     private void Start()
     {
@@ -44,6 +49,9 @@ public class PauseControl : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
 
+        leftTeleportRay.gameObject.SetActive(false);
+        rightTeleportRay.gameObject.SetActive(false);
+
         Vector3 headPosition = mainCamera.transform.position;
         Vector3 headDirection = mainCamera.transform.forward;
         pauseMenu.transform.position = (headPosition + headDirection * -3f)
@@ -59,5 +67,8 @@ public class PauseControl : MonoBehaviour
         paused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+
+        leftTeleportRay.gameObject.SetActive(true);
+        rightTeleportRay.gameObject.SetActive(true);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class TeleportationControl : MonoBehaviour
 {
-    static private bool _teleportIsActive = false;
+    static private bool _isTeleportActive = false;
 
     public enum ControllerType
     {
@@ -52,7 +52,7 @@ public class TeleportationControl : MonoBehaviour
 
     private void Update()
     {
-        if (!_teleportIsActive)
+        if (!_isTeleportActive)
         {
             return;
         }
@@ -70,7 +70,7 @@ public class TeleportationControl : MonoBehaviour
         if (!rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit))
         {
             rayInteractor.enabled = false;
-            _teleportIsActive = false;
+            _isTeleportActive = false;
 
             return;
         }
@@ -83,24 +83,24 @@ public class TeleportationControl : MonoBehaviour
         teleportationProvider.QueueTeleportRequest(teleportRequest);
 
         rayInteractor.enabled = false;
-        _teleportIsActive = false;
+        _isTeleportActive = false;
     }
 
     private void OnTeleportActive(InputAction.CallbackContext context)
     {
-        if (!_teleportIsActive)
+        if (!_isTeleportActive)
         {
             rayInteractor.enabled = true;
-            _teleportIsActive = true;
+            _isTeleportActive = true;
         }
     }
 
     private void OnTeleportCancel(InputAction.CallbackContext context)
     {
-        if (_teleportIsActive && rayInteractor.enabled)
+        if (_isTeleportActive && rayInteractor.enabled)
         {
             rayInteractor.enabled = false;
-            _teleportIsActive = false;
+            _isTeleportActive = false;
         }
     }
 }

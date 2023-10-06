@@ -1634,7 +1634,7 @@ PrefabInstance:
     - target: {fileID: 5907403062897986085, guid: 87791a0285915fa4988c5e7d5025b239,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6534898319475773599, guid: 87791a0285915fa4988c5e7d5025b239,
         type: 3}
@@ -3716,7 +3716,7 @@ Transform:
   m_GameObject: {fileID: 889146036}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.89, y: 10.92, z: -13.15}
+  m_LocalPosition: {x: -12.4, y: 10.5, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32293,6 +32293,8 @@ MonoBehaviour:
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   pauseMenu: {fileID: 889146036}
+  leftTeleportRay: {fileID: 5139326287630266928}
+  rightTeleportRay: {fileID: 3849572864787006053}
 --- !u!4 &7439738052810691699
 Transform:
   m_ObjectHideFlags: 0
