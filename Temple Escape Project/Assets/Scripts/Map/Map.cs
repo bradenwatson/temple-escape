@@ -117,14 +117,7 @@ public class Map : MonoBehaviour
     // https://forum.unity.com/threads/check-for-overlaps-among-many-simultaneously-spawned-gameobjects-solved.874141/
 
 
-    //Version 2
-    /*
-     * Get central room and wall positions
-     * Since room center are snapped in the cartesian plane, this means neighbouring rooms will share same axis
-     * Can determine the the next room, by comparing the axis that has the smallest difference to the centre
-     * So if we project a line in steps in 4 directions and if that line intersects with another rooms center, add to current room
-     * then we start 1 direction (in the queue) with the next node and repeat prev steps using projectionasnd add to the remaning queue for 
-     */
+    
 
 
 
@@ -136,78 +129,12 @@ public class Map : MonoBehaviour
      * Purpose: Check if central node walls overlaps with other acdcessible walls within delta range
     /***************************************************************************************/
 
-    //https://www.reddit.com/r/roguelikedev/comments/7xmxt2/resources_for_creating_a_map_of_randomly/
-
-        //Consecutive detection-too slow
-        //Get alls the walls 
-        //Get get their center
-        //Project line perpendicular to the wall center for all 
-        //Queue accessible rooms in order of orientation (code set up in order)
-        //assign rooms to central room and each of the detected rooms add central room on prev in the correct global orientation (not local rotation)
-        //Get next room in queue
-        //push new rooms at front of queue in order of orientation
-        //repeat until queue is empty
-
-
-        //By per axis per room detection-tricky
-        //Project vertical and horizontal lines from center
-        //Store new all accessible rooms into respective list of queues based on orientation
-            //if new room has no room perpendicular to the current axis ignore
-            //otherwise enqueue room to the front in the respective list of queues (Test enqueue at start and enqueue at end)
-            //(Test try simultaneously all at the same time)
-            //test until all the queues are empty
-
-
-
-        //By per axis detection-tricky
-        //Project vertical and horizontal lines lines from center from 2 axis and count number of time triggers in each room center
-        //Count which direction is least from the 2 axis
-        //Using the chosen axis, create 2 queues as positive or negative side
-        //each element stored (steps in the axis) is a list with all the rooms stored from negative to positive (similar to index based but includes negatives)
-            //optional sort by the absolute displacement from the central axis (but do not change vector)
-        //do the same with the other axis
-            //for every element in the new axis check each element in the queue of the other axis
-                //if they share common axis on the first element on the new axis it means the previous rooms (at start is center room) is connected
-                    //add rooms that are common together
-                //otherwise located away from center
-                    //create list of queues these rooms in 2 queues positive and negative
-                        //then run a pass on each of these once and check if on of the walls in the direciton of axis istouching and accessible
-                
-                //on the next step (away from the first step)
-                //repeat above for any connected through the central room and check if they are connected to other outside rooms by comparing axis from any order front or back
-                    //test connected if another line from the other list on the axis beam if first intersect of centre or wall matches the current central
-                //otherwise for all the other rooms found assignt o the list of queues respectively
-                //compare the last queue with its previous and if compare the room axis perpendicular to the current for both 
-                    //if they match, then those rooms are connected (and then pop the queue) 
-                    //(NOTE: there is a case where the axis through the center contains nodes which is shared by both sides of list of queues(pos and neg)
-                        //to fix this both must have the central rooms in the list of queues
-            
-            
-            //when reached end 
-                //check number of rooms
-        
-        //NOTE:might need to track order found, or found respective to their orientation 
-            //Question how to reassemble into tree now that each room has its connection?   Maybe a queue in the order of orientation for every room
-                
-
-            //Note if there are multiple detected on the new axis and close together, do not assume they are
-
-
-
-    /* TLDR:
-     * Project 2 lines parallel to wall from center of central room along same axis and stop at every new point of contact/centers
-     * For each step loo through 2 other parallel lines and queue list of room when both lines intersect at one's center
-     * 
-     */
-     
-
-    //Version3 - simpler
-    //what if sort distance from centre and re-arrange and angle and nearest neighbour by shortest distance
-    //split by semi circle, get room with vector and angle from list sorted, then use a ref point as that so next one get shortest distance
+   
     private void DetectRooms()
     {
         //Get all rooms
         List<GameObject> rooms = GameObject.FindGameObjectsWithTag("Room").ToList<GameObject>();
+        
         //https://discussions.unity.com/t/sorting-an-array-of-gameobjects-by-their-position/86640
         //Sort rooms from closest to center on x, then shortest distance from center
         rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ThenBy(rooms => rooms.transform.position.sqrMagnitude).ToList();
@@ -215,34 +142,51 @@ public class Map : MonoBehaviour
         {
             Debug.Log(pos.name + " = " + pos.transform.position);
         }
-        this.centralRoom = rooms.First();
-        tree = new NTree(this.centralRoom);
-        if(tree.GetRoot() != null)
-        {
-            Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
-        }
+        
+
+        //Set field total rooms
         this.totalRooms = rooms.Count;
         Debug.Log("Rooms present = " + this.totalRooms);
 
-        //Central room obtained and sorted by abs(x) and shortest distance from center
-        //Iterate rooms
-            /* Get current room from room list
-             * then get all the distances with same value of x (in a list) of current room and get shortest distance and assign to current room (or both?) in directions (may need to make unique node and update index)
-             * alter the Tree class to return current node of the insertion for ease of access
-             * Go to next room in list
-                * if next room connections add all other remaining rooms, keep reference of last node connected for simplicity
-                * else for no connections make new queue for them called noLinks
-                    * for different x value, check if any last connections to tree (new function returns current list of tree updated every new x)
-                    * otherwise if  add to noLinks
-             * repeat
-             */
+
+
+        //Sorted by x then magnitude => Check the following:
+        // For every x, check shortest vector from to origin OR last inserted vector. Otherwise tmp store it away in next pass
+        // Check overlapping walls 
+
+        GameObject lastInserted = null;
+        List<GameObject> unattached = new List<GameObject>();
+        foreach (GameObject room in rooms)
+        {
+            if(tree == null)
+            {
+                //Assign central room
+                this.centralRoom = rooms.First();
+                lastInserted = this.centralRoom;
+                tree = new NTree(this.centralRoom);
+                Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
+            }
+            // Rooms after the root node
+            else
+            {
+                //Get all containing same x element and insert up to max of 4 directions (based on doors)
+                List<GameObject> roomsAtX = rooms.FindAll(i => Math.Abs(i.transform.position.x) == lastInserted.transform.position.x);
+                roomsAtX = (List<GameObject>)roomsAtX.OrderBy(rooms => rooms.transform.position.sqrMagnitude);
+                int maxDoors = 4;
+                int count = 0;
+                //Loop through roomsAtX and get up to max of 4 with shortest distance and 
+                for(int i = 0; i < roomsAtX.Count && count <= maxDoors; i++) 
+                { 
+
+                }
+
+            }
+        }
         
 
 
 
-
-
-        List<GameObject> noLinks = new List<GameObject>();
+        
         for (int i = 1; i < this.totalRooms; i++)
         {
             GameObject currRoom = rooms[i];
@@ -252,92 +196,47 @@ public class Map : MonoBehaviour
 
 
             float angle = Vector3.SignedAngle(Vector3.right, rooms[i].transform.position, Vector3.down);
+            //Note: By default max angle [-180,180]
             bool north = angle >= 45 && angle <= 135;
             bool south = angle <= -45 && angle >= -135;
             bool east = angle < 45 && angle > -45;
-            bool west = angle > 135 || angle < -135;
+            bool west = angle > 135 && angle < -135;
 
             if(north)
             {
 
             }
 
-            if(south)
+            else if(south)
             {
 
             }
 
-            if(east)
+            else if(east)
             { 
             }
 
-            if(west)
+            else if(west)
             {
 
+            }
+
+            else
+            {
+                throw new Exception("Something strange happened!");
             }
 
         }
 
 
 
-        //Switch directions via NE, NW etc rounding eg >45 or <135 is N to assign direction, then match distance too
-        //otherwise rotate with magnitude to the angle and then calc its rooms shortest distance from current placement to previous rooms and then assign
+        //Shift each direction based on room's scene rotation
 
     }
 
 
     
-    private void SetToGlobalOrientation(GameObject obj)
-    {
-        //Count accessible walls and change their orientation
 
-        //int maxDirections = 4;
-        //if(obj.GetComponent<Room>() == null)
-        //{
-        //    throw new NullReferenceException("Room component missing from object.");
-        //}
-
-        //NTree.CustomNode objNode = tree.FindNode(obj.GetComponent<Room>().RoomID);
-        ////Check node capacity has been set
-        //if (objNode.GetNodeLimit() <= 0 || objNode.GetNodeLimit() > maxDirections) 
-        //{
-        //    throw new NotSupportedException("List capacity needs to be set correctly.");
-        //}
-       
-        //objNode.SetNodeLimit(maxDirections);
-        //int angle = 90;
-        //int turn = (int)obj.GetComponent<Quaternion>().y / angle;
-        //Queue<NTree.CustomNode> queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
-        //switch (turn)
-        //{
-        //    case -2:case 2: //Shift all child nodes by 2
-        //        //queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
-        //        queue.Enqueue(queue.Dequeue());
-        //        queue.Enqueue(queue.Dequeue());
-        //        objNode.SetChildren(queue.ToList<NTree.CustomNode>());
-        //        Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
-        //        break;
-        //    case -1:
-        //        //var queue = new Queue<NTree.CustomNode>(objNode.GetChildren());
-        //        queue.Enqueue(queue.Dequeue());
-        //        objNode.SetChildren(queue.ToList<NTree.CustomNode>());
-        //        Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
-        //        break;
-        //    case 0:
-        //        Debug.Log("No change to Room" + objNode.GetIndex().ToString());
-        //        break;
-        //    case 1:
-        //        queue.Enqueue(queue.Dequeue());
-        //        queue.Enqueue(queue.Dequeue());
-        //        queue.Enqueue(queue.Dequeue());
-        //        objNode.SetChildren(queue.ToList<NTree.CustomNode>());
-        //        Debug.Log("Room " + objNode.GetIndex().ToString() + "adjusted.");
-        //        break;
-        //    default:
-        //        throw new NotSupportedException("Unable to set rotation.");
-        //}
-        //objNode.GetChildren().TrimExcess();
-    }
     
 
     //Room type at the node

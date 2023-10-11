@@ -276,7 +276,7 @@ public class NTree
      * Purpose: Displays all nodes and its children
     /***************************************************************************************/
 
-    //Issue with dupicates
+    //Needs testing
 
     public string OutputString()
     {
