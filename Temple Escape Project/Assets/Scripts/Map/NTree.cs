@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 public class NTree
@@ -128,6 +130,8 @@ public class NTree
      *          starting from the root node and its children (by row) until their index 
      *          matches with the key
     /***************************************************************************************/
+    
+    //THIS MAY NEVER FINISH DUE TO REPEATED CONNECTIONS-WIP
     public CustomNode FindNode(int key)
     {
         CustomNode node = null;
@@ -148,7 +152,9 @@ public class NTree
         }
 
         Queue<CustomNode> queue = new Queue<CustomNode>();
+        Queue<CustomNode> allPrevNodes  = new Queue<CustomNode>();
         queue.Enqueue(this.root);
+
         while (queue.Count > 0 && node == null)    //Queue children at end, pop parent until either queue
                                                     //is empty or node has been found
         {
@@ -162,10 +168,13 @@ public class NTree
                 {
                     foreach (CustomNode n in queue.Peek().GetChildren())     //Add child nodes to the back of the queue
                     {
-                        queue.Enqueue((CustomNode)n);     //Queue children
+                        if(!allPrevNodes.Contains(n))       //Prevent duplicates from being re-added
+                        {
+                            queue.Enqueue(n);     //Queue children
+                        }  
                     }
                 }
-                queue.Dequeue();      //Pop parent to restart the process
+                allPrevNodes.Enqueue(queue.Dequeue());      //Pop parent to restart the process & store its history
             }
         }
 
@@ -258,11 +267,89 @@ public class NTree
         this.tracker[trackerIdx].SetParent(tmp.GetParent());
         this.tracker[trackerIdx].SetChildren(tmp.GetChildren());
     }
-/***************************************************************************************/
-/*
-*                      END     OF      CLASS!
-*/
-/************************************************************************************************************************************************************************************/
+
+
+    /***************************************************************************************/
+    /* Method: Display()
+     * Input: N/A
+     * Output: output(string)
+     * Purpose: Displays all nodes and its children
+    /***************************************************************************************/
+
+    //Issue with dupicates
+
+    public string OutputString()
+    {
+
+        if (root == null)
+        {
+            throw new NoNullAllowedException("Tree has not been built.");
+        }
+
+        CustomNode currNode = null;
+        Queue<CustomNode> currLvl = new Queue<CustomNode>();
+        Queue<CustomNode> nextLvl = new Queue<CustomNode>();
+        Queue<CustomNode> allPrevNodes = new Queue<CustomNode>();
+        //List<string> output = new List<string>();
+        string data = string.Empty;
+        currLvl.Enqueue(this.GetRoot());
+        allPrevNodes.Enqueue(this.GetRoot());
+        //Loop until last node contains no children
+        while (currLvl.Count > 0 && nextLvl.Count > 0)
+        {
+            //Get front of currLvl
+            currNode = currLvl.Dequeue();
+            //Enqueue all currLvl children onto the nextLvl for next cycle
+            foreach (CustomNode node in currNode.GetChildren())
+            {
+                nextLvl.Enqueue(node);
+                allPrevNodes.Enqueue(node);
+            }
+
+
+            data.Concat($"{currNode.GetIndex()}(");
+            foreach (CustomNode node in currNode.GetChildren())
+            {
+                if (node.Equals(currNode.GetChildren().Last()))
+                {
+                    data.Concat($"{node.GetIndex()})\t");
+                }
+                else
+                {
+                    data.Concat($"{node.GetIndex()},");
+                }
+            }
+
+            //If currLvl has none left, move onto next one and add data string
+            if (currLvl.Count == 0)
+            {
+                //Add data string to output to re-order later
+                //output.Add(data);
+                //Reset string OR add new line
+                data.Concat("\n");
+  
+
+                //When currLvl is empty, transfer from nextLvl
+                while (nextLvl.Count != 0)
+                {
+                    CustomNode tmp = nextLvl.Dequeue();
+                    //Prevents repeated nodes from reoccurring and lock loop
+                    if (!allPrevNodes.Contains(tmp))     
+                    {
+                        currLvl.Enqueue(tmp);
+                    }
+                }
+            }
+        }
+
+        return data;
+    }
+
+    /***************************************************************************************/
+    /*
+    *                      END     OF      CLASS!
+    */
+    /************************************************************************************************************************************************************************************/
 
 
 
@@ -270,18 +357,18 @@ public class NTree
 
 
 
-/***************************************************************************************/
-/*
-*                  NEW     CLASS   BEGINS  HERE!
-*/
-/************************************************************************************************************************************************************************************/
-/*  Class: CustomNode 
-    *  Properties:
-    *   index (int)
-    *   data (GameObject)
-    *   parent (CustomNode)
-    *   children (List<CustomNode>)
-/************************************************************************************************************************************************************************************/
+    /***************************************************************************************/
+    /*
+    *                  NEW     CLASS   BEGINS  HERE!
+    */
+    /************************************************************************************************************************************************************************************/
+    /*  Class: CustomNode 
+        *  Properties:
+        *   index (int)
+        *   data (GameObject)
+        *   parent (CustomNode)
+        *   children (List<CustomNode>)
+    /************************************************************************************************************************************************************************************/
     public class CustomNode
     {
         //PROPERTIES
