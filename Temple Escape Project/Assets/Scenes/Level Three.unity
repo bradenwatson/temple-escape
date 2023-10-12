@@ -2943,6 +2943,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4607074935013551101, guid: 6dfbeea7f9237474197b5505616d6b79,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607074935013551101, guid: 6dfbeea7f9237474197b5505616d6b79,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607074935013551101, guid: 6dfbeea7f9237474197b5505616d6b79,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607074935013551101, guid: 6dfbeea7f9237474197b5505616d6b79,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.015105486
       objectReference: {fileID: 0}
@@ -17363,17 +17378,17 @@ PrefabInstance:
     - target: {fileID: 8131117508314230446, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 1.0261743
       objectReference: {fileID: 0}
     - target: {fileID: 8131117508314230446, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 1.0437055
       objectReference: {fileID: 0}
     - target: {fileID: 8131117508314230446, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 1.02633
       objectReference: {fileID: 0}
     - target: {fileID: 8131117508314230446, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
@@ -17383,7 +17398,7 @@ PrefabInstance:
     - target: {fileID: 8131117508314230446, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.048651338
+      value: 0.0416
       objectReference: {fileID: 0}
     - target: {fileID: 8131117508314230446, guid: e1e67dfe88837204da7166a54ede7a9e,
         type: 3}
@@ -23933,8 +23948,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.030743122, y: 0.023370445, z: 0.030306578}
-  m_Center: {x: -0.015235424, y: 0.049516946, z: 0.00034105778}
+  m_Size: {x: 0.104046926, y: 0.082916304, z: 0.1008422}
+  m_Center: {x: -0.014500498, y: 0.049306475, z: 0.0014619641}
 --- !u!114 &2115727895
 MonoBehaviour:
   m_ObjectHideFlags: 0
