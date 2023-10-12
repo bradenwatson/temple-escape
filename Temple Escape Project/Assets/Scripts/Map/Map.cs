@@ -159,7 +159,7 @@ public class Map : MonoBehaviour
         foreach (GameObject room in rooms)
         {
             //Transform direction of every room individually : https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html
-           
+            int maxDoors = 4;
 
             if (tree == null)
             {
@@ -170,7 +170,8 @@ public class Map : MonoBehaviour
                 //Check if its children (doors/rooms) have connections
                 unlinkedRooms.Add(room);
                 tree = new NTree(this.centralRoom);
-
+                
+                room.GetComponent<NTree.CustomNode>().SetChildren(new List<NTree.CustomNode>(maxDoors));
                 Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
             }
             // Rooms after the root node
@@ -182,19 +183,22 @@ public class Map : MonoBehaviour
                 //Use function to check connected
                 foreach(GameObject prevRoom in unlinkedRooms)
                 {
-                    int maxDoors = 4;
-                    //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre
+                    
+                    //Initialise rooms children
+                    //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre and world rotation
+                    //Only insertion in the correct following order N,S,E,W
                     // https://docs.unity3d.com/ScriptReference/Vector3.Dot.html
                     //do dot product of 4 directions (Change later once know how many doors but assume 4 for now)
                     //Do dot product of direction upon displacement vector between current and previous room
                     //Some will have direction, but some will not contact
+                    room.GetComponent<NTree.CustomNode>().SetChildren(new List<NTree.CustomNode>(maxDoors));
 
-                   
+
+                   //If distance between walls is within distance betwwen centres, they are connected rooms
                 }
 
 
                 
-                int count = 0;
                 //Loop through roomsAtX and get up to max of 4 with shortest distance and 
                 
                     //Create function that inserts in direction of last inserted-WARNING REPEATS MIGHT OCCUR
