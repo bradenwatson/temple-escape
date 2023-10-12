@@ -138,6 +138,10 @@ public class Map : MonoBehaviour
         //https://discussions.unity.com/t/sorting-an-array-of-gameobjects-by-their-position/86640
         //Sort rooms from closest to center on x, then shortest distance from center
         rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ThenBy(rooms => rooms.transform.position.sqrMagnitude).ToList();
+
+        //Tranform all rooms fast: https://docs.unity3d.com/ScriptReference/Transform.TransformDirections.html
+        
+
         foreach (GameObject pos in rooms)
         {
             Debug.Log(pos.name + " = " + pos.transform.position);
@@ -149,95 +153,107 @@ public class Map : MonoBehaviour
         Debug.Log("Rooms present = " + this.totalRooms);
 
 
-
-        //Sorted by x then magnitude => Check the following:
-        // For every x, check shortest vector from to origin OR last inserted vector. Otherwise tmp store it away in next pass
-        // Check overlapping walls 
-
-        GameObject lastInserted = null;
-        List<GameObject> unattached = new List<GameObject>();
+        //List<GameObject> unattached = new List<GameObject>();
+        //Use queue as FIRST COME FIRST SERVED SINCE CLOSEST TO CENTRE
+        List<GameObject> unlinkedRooms = new List<GameObject>();       //Determined by how many door objects -> create function to detect
         foreach (GameObject room in rooms)
         {
-            if(tree == null)
+            //Transform direction of every room individually : https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html
+           
+
+            if (tree == null)
             {
                 //Assign central room
                 this.centralRoom = rooms.First();
-                lastInserted = this.centralRoom;
+                
+
+                //Check if its children (doors/rooms) have connections
+                unlinkedRooms.Add(room);
                 tree = new NTree(this.centralRoom);
+
                 Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
             }
             // Rooms after the root node
             else
             {
-                //Get all containing same x element and insert up to max of 4 directions (based on doors)
-                List<GameObject> roomsAtX = rooms.FindAll(i => Math.Abs(i.transform.position.x) == lastInserted.transform.position.x);
-                roomsAtX = (List<GameObject>)roomsAtX.OrderBy(rooms => rooms.transform.position.sqrMagnitude);
-                int maxDoors = 4;
+                //Check if room currently connects to any in the list. If disconnected room becomes fully connected, remove from list.
+                //Add current to disconnected if still has connections remaining
+
+                //Use function to check connected
+                foreach(GameObject prevRoom in unlinkedRooms)
+                {
+                    int maxDoors = 4;
+                    //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre
+                    // https://docs.unity3d.com/ScriptReference/Vector3.Dot.html
+                    //do dot product of 4 directions (Change later once know how many doors but assume 4 for now)
+                    //Do dot product of direction upon displacement vector between current and previous room
+                    //Some will have direction, but some will not contact
+
+                   
+                }
+
+
+                
                 int count = 0;
                 //Loop through roomsAtX and get up to max of 4 with shortest distance and 
-                for(int i = 0; i < roomsAtX.Count && count <= maxDoors; i++) 
-                { 
+                
+                    //Create function that inserts in direction of last inserted-WARNING REPEATS MIGHT OCCUR
+                    //for (int j = 1; i < this.totalRooms; i++)
+                    //{
+                    //    GameObject currRoom = rooms[i];
+                    //    //noLinks.Add(currRoom);
+                    //    //Check if angle and distance matches from queue list
+                    //    float dist = Vector3.Distance(this.centralRoom.transform.position, currRoom.transform.position);
 
+
+                    //    float angle = Vector3.SignedAngle(Vector3.right, rooms[i].transform.position, Vector3.down);
+                    //    //Note: By default max angle [-180,180]
+                    //    bool north = angle >= 45 && angle <= 135;
+                    //    bool south = angle <= -45 && angle >= -135;
+                    //    bool east = angle < 45 && angle > -45;
+                    //    bool west = angle > 135 && angle < -135;
+
+                    //    if (north)
+                    //    {
+
+                    //    }
+
+                    //    else if (south)
+                    //    {
+
+                    //    }
+
+                    //    else if (east)
+                    //    {
+                    //    }
+
+                    //    else if (west)
+                    //    {
+
+                    //    }
+
+                    //    else
+                    //    {
+                    //        throw new Exception("Something strange happened!");
+                    //    }
+
+                    //}
                 }
 
             }
-        }
-        
-
-
-
-        
-        for (int i = 1; i < this.totalRooms; i++)
-        {
-            GameObject currRoom = rooms[i];
-            noLinks.Add(currRoom);
-            //Check if angle and distance matches from queue list
-            float dist = Vector3.Distance(this.centralRoom.transform.position, currRoom.transform.position);
-
-
-            float angle = Vector3.SignedAngle(Vector3.right, rooms[i].transform.position, Vector3.down);
-            //Note: By default max angle [-180,180]
-            bool north = angle >= 45 && angle <= 135;
-            bool south = angle <= -45 && angle >= -135;
-            bool east = angle < 45 && angle > -45;
-            bool west = angle > 135 && angle < -135;
-
-            if(north)
-            {
-
-            }
-
-            else if(south)
-            {
-
-            }
-
-            else if(east)
-            { 
-            }
-
-            else if(west)
-            {
-
-            }
-
-            else
-            {
-                throw new Exception("Something strange happened!");
-            }
-
-        }
-
-
-
         //Shift each direction based on room's scene rotation
-
     }
 
 
-    
 
-    
+
+
+
+
+
+
+
+
 
     //Room type at the node
     public string GetRoomType(int idx)
@@ -282,9 +298,6 @@ public class Map : MonoBehaviour
         GameObject room = tree.FindNode(idx).GetData();
         room.GetComponent<Room>().IsTeleportable = state;
     }
-     
-
-
 
 
 }
