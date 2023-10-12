@@ -10,6 +10,8 @@ TagManager:
   - ScarabRight
   - ScarabLeft
   - ScarabTop
+  - Gem
+  - Glow
   layers:
   - Default
   - TransparentFX
