@@ -6,8 +6,15 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PauseControl : MonoBehaviour
 {
+    public enum ControllerType
+    {
+        LeftHand,
+        RightHand
+    }
+
     [Header("Inputs")]
     public Camera mainCamera;
+    public ControllerType targetController;
     public InputActionAsset inputAction;
 
     [Header("State")]
@@ -23,7 +30,7 @@ public class PauseControl : MonoBehaviour
 
     private void Start()
     {
-        _menuButtonInputAction = inputAction.FindActionMap(string.Format("XRI LeftHand Interaction"))
+        _menuButtonInputAction = inputAction.FindActionMap(string.Format("XRI {0} Interaction", targetController))
             .FindAction("Pause Press");
         _menuButtonInputAction.Enable();
     }
