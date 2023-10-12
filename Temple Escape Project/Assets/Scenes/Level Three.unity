@@ -4478,7 +4478,7 @@ PrefabInstance:
         type: 3}
       propertyPath: CorrectPuzzlePiece
       value: 
-      objectReference: {fileID: 451429089}
+      objectReference: {fileID: 2115727893}
     - target: {fileID: 2612826497757222495, guid: f4e8c9ebcfe10ab4aa338eb915f0706a,
         type: 3}
       propertyPath: linkedPuzzleManager
@@ -5588,6 +5588,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1821694364}
     m_Modifications:
+    - target: {fileID: 1203588831409860824, guid: f223cbbebc81450458922c9d1c625a4f,
+        type: 3}
+      propertyPath: CorrectPuzzlePiece
+      value: 
+      objectReference: {fileID: 46842816}
+    - target: {fileID: 1203588831409860824, guid: f223cbbebc81450458922c9d1c625a4f,
+        type: 3}
+      propertyPath: linkedPuzzleManager
+      value: 
+      objectReference: {fileID: 1821694363}
     - target: {fileID: 2545828964919559450, guid: f223cbbebc81450458922c9d1c625a4f,
         type: 3}
       propertyPath: m_Name
@@ -6963,7 +6973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedPuzzleManager: {fileID: 1821694363}
-  CorrectPuzzlePiece: {fileID: 948890355}
+  CorrectPuzzlePiece: {fileID: 1343050927}
 --- !u!135 &822988387
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18875,7 +18885,7 @@ PrefabInstance:
         type: 3}
       propertyPath: CorrectPuzzlePiece
       value: 
-      objectReference: {fileID: 838379211}
+      objectReference: {fileID: 1148429540}
     - target: {fileID: 5413254026854213634, guid: 7bd3733ce5cbb924c94c7316e3496c1a,
         type: 3}
       propertyPath: linkedPuzzleManager
