@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DisableMenu : MonoBehaviour
 {
-    public PauseControl pauseControl;
+    public PauseControl leftControllerPauseControl;
+    public PauseControl rightControllerPauseControl;
     public GameObject menuToClose;
 
     public void Disable()
     {
-        pauseControl.Resume();
+        leftControllerPauseControl.Resume();
+        rightControllerPauseControl.Resume();
         menuToClose.SetActive(false);
     }
 }

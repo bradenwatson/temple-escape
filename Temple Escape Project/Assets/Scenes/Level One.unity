@@ -7568,7 +7568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d769bfc9d1f0354f8a9d589c729b6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseControl: {fileID: 7419716946688074202}
+  leftControllerPauseControl: {fileID: 7419716946688074202}
+  rightControllerPauseControl: {fileID: 5304588353007120794}
   menuToClose: {fileID: 889146036}
 --- !u!4 &1620889678 stripped
 Transform:
@@ -24531,6 +24532,7 @@ GameObject:
   - component: {fileID: 5304588353007120793}
   - component: {fileID: 2864649485025900093}
   - component: {fileID: 1023002252209339697}
+  - component: {fileID: 5304588353007120794}
   m_Layer: 3
   m_Name: Right Controller
   m_TagString: Untagged
@@ -26215,6 +26217,25 @@ Transform:
   - {fileID: 660503808}
   m_Father: {fileID: 4807975096079442824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5304588353007120794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114338767345850162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78620d7a1b0449438c17daca7ac7bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 6925174858657640798}
+  targetController: 1
+  inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  pauseMenu: {fileID: 889146036}
+  leftTeleportRay: {fileID: 5139326287630266928}
+  rightTeleportRay: {fileID: 3849572864787006053}
 --- !u!4 &5312403582879662551
 Transform:
   m_ObjectHideFlags: 0
@@ -27085,9 +27106,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_StartingInteractionOverridesMap:
-  - groupMember: {fileID: 0}
-    overrideGroupMembers:
-    - {fileID: 4599151577719978096}
   - groupMember: {fileID: 4599151577719978096}
     overrideGroupMembers: []
 --- !u!33 &6289114530062462342
@@ -32951,6 +32969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 6925174858657640798}
+  targetController: 0
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
   pauseMenu: {fileID: 889146036}
