@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 37124994}
   - component: {fileID: 37124993}
   - component: {fileID: 37124992}
+  - component: {fileID: 37124996}
   - component: {fileID: 37124995}
   m_Layer: 5
   m_Name: Quit Button
@@ -281,6 +282,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 37124996}
+        m_TargetAssemblyTypeName: DisableMenu, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 37124995}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadSceneByIndex
@@ -343,6 +356,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ac0163fd2251d45aeb77698ad6ed41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &37124996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37124990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d769bfc9d1f0354f8a9d589c729b6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftControllerPauseControl: {fileID: 7419716946688074202}
+  rightControllerPauseControl: {fileID: 5304588353007120794}
+  menuToClose: {fileID: 889146036}
 --- !u!1001 &58169754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1601,6 +1629,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1094942069}
     m_Modifications:
+    - target: {fileID: 2555746488280105387, guid: 87791a0285915fa4988c5e7d5025b239,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555746488280105387, guid: 87791a0285915fa4988c5e7d5025b239,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 2555746488280105387, guid: 87791a0285915fa4988c5e7d5025b239,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4870022144260574419, guid: 87791a0285915fa4988c5e7d5025b239,
         type: 3}
       propertyPath: m_Enabled
@@ -3251,6 +3294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTasksToComplete: 3
   currentlyCompletedTasks: 0
+  exitRoomFloor: {fileID: 1789493918}
   onPuzzleCompletion:
     m_PersistentCalls:
       m_Calls:
@@ -8103,7 +8147,8 @@ PrefabInstance:
       value: 16 Room 3 Way
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7845821795291348490, guid: af3faaa3b2f0f8747becf026633c59bd, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3855791895903078856, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
@@ -8464,6 +8509,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 382426111913498800, guid: 49f0fe4c8eb34aa488ccbcc93db9fd61,
     type: 3}
   m_PrefabInstance: {fileID: 666877454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1789493918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7126943354544432948, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7324375645202300395}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1795029813 stripped
 Transform:
@@ -32864,6 +32915,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Room 1 Way
+      objectReference: {fileID: 0}
+    - target: {fileID: 7126943354544432948, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172632944338536790, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
