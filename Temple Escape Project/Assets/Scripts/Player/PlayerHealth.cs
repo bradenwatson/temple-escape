@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
 
     Fade fadeScript;
     public bool isRespawning = false;
+    public bool playerIsDead = false;
 
 
     void Start()
@@ -40,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
         if (!isRespawning)
         {
             currentHealth -= damage;
+            Debug.Log("Player Hit!, Health = " + currentHealth);
             ResetPlayer();
             if (currentHealth == 0)
             {
@@ -74,6 +76,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void GameOverState()
     {
-
+        Debug.Log("Player Died");
+        playerIsDead = true;
     }
 }
