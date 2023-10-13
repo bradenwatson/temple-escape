@@ -1,6 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
+
+public class PauseControl : MonoBehaviour
+{
+    public GameObject pauseMenu;
+    bool paused = false;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!paused)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+=======
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -46,6 +65,7 @@ public class PauseControl : MonoBehaviour
             else
             {
                 Pause();
+>>>>>>> 4d4016b46a62a115229e2e0d3e8b94da4959829d
             }
         }
     }
@@ -55,6 +75,8 @@ public class PauseControl : MonoBehaviour
         paused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
+<<<<<<< HEAD
+=======
 
         leftTeleportRay.gameObject.SetActive(false);
         rightTeleportRay.gameObject.SetActive(false);
@@ -67,6 +89,7 @@ public class PauseControl : MonoBehaviour
         Vector3 headRotation = mainCamera.transform.eulerAngles;
         headRotation.z = 0;
         pauseMenu.transform.eulerAngles = headRotation; 
+>>>>>>> 4d4016b46a62a115229e2e0d3e8b94da4959829d
     }
 
     public void Resume()
@@ -74,8 +97,11 @@ public class PauseControl : MonoBehaviour
         paused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
+<<<<<<< HEAD
+=======
 
         leftTeleportRay.gameObject.SetActive(true);
         rightTeleportRay.gameObject.SetActive(true);
+>>>>>>> 4d4016b46a62a115229e2e0d3e8b94da4959829d
     }
 }

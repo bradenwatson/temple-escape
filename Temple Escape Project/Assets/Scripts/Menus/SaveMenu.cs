@@ -12,16 +12,17 @@ public class SaveMenus : MonoBehaviour
     {
         if (GameOverMenu != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         if (LevelMenu != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         if (PauseMenu != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-        GameObject.DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
+        // need assign when == null
     }
 }

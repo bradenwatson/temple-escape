@@ -25,6 +25,13 @@ public class SerializableSettings
         get { return movement; }
     }
 
+<<<<<<< HEAD
+    public SerializableSettings()
+    {
+
+    }
+=======
+>>>>>>> 4d4016b46a62a115229e2e0d3e8b94da4959829d
     public SerializableSettings(float _brightness, float _volume, int _movement)
     {
         brightness = _brightness;
