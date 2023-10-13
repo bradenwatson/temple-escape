@@ -5882,6 +5882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTasksToComplete: 3
   currentlyCompletedTasks: 0
+  exitRoomFloor: {fileID: 0}
   onPuzzleCompletion:
     m_PersistentCalls:
       m_Calls:
@@ -7705,9 +7706,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 786434601}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 923654654}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1884987357}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7732,9 +7745,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 786434601}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 923654654}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1884987357}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16187,6 +16212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTasksToComplete: 4
   currentlyCompletedTasks: 4
+  exitRoomFloor: {fileID: 0}
   onPuzzleCompletion:
     m_PersistentCalls:
       m_Calls:
@@ -17058,6 +17084,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc5e405dd8cdb147a89eb2f066372bb, type: 3}
+--- !u!199 &1884987357 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 3211582347032837123, guid: e1e67dfe88837204da7166a54ede7a9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1509204805}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1897850602
 GameObject:
   m_ObjectHideFlags: 0
