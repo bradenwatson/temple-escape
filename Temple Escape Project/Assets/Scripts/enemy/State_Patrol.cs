@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.XR.CoreUtils;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ public class State_Patrol : mBrain_base
 {
     [Header("patrol points")]
     public List<Transform> patrolPoints = new List<Transform>();
+    public GameObject patrolPointGroupings;
     int currentPatrolPoint = 0;
 
     [Header("timings")]
@@ -17,9 +20,21 @@ public class State_Patrol : mBrain_base
     [Header("other")]
     public float distanceFromPatrolPoint = 1f;
 
+    void AddEachChildElementFromGameObjectToPatrolPoints()
+    {
+        foreach (Transform gameObject in patrolPointGroupings.transform)
+        {
+            if (!patrolPoints.Contains(gameObject))
+            {
+                patrolPoints.Add(gameObject);
+            }
+        }
+    }
 
     internal override void OnStateEnterArgs()
     {
+        AddEachChildElementFromGameObjectToPatrolPoints();
+
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);

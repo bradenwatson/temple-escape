@@ -2871,6 +2871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTasksToComplete: 3
   currentlyCompletedTasks: 0
+  exitRoomFloor: {fileID: 0}
   onPuzzleCompletion:
     m_PersistentCalls:
       m_Calls:
@@ -22963,8 +22964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7445fb2354eb2634ba10ffb9810fe15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 5650530446698563427}
-  patrolState: {fileID: 5650530446698563427}
+  initialState: {fileID: 9115853573555661017}
+  patrolState: {fileID: 9115853573555661017}
   attackState: {fileID: 6197988464847127763}
   searchPlayerState: {fileID: 3463503154198628743}
   searchCollectibleState: {fileID: 8152325471217314628}
@@ -25838,41 +25839,6 @@ Transform:
   - {fileID: 6122798736321715211}
   m_Father: {fileID: 6815581712048551854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5650530446698563427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8487548251337323117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1705723a738d2994db0eac89090a5f74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  possiblePatrolPoints:
-  - {fileID: 172491320}
-  - {fileID: 1620889678}
-  - {fileID: 2133499066}
-  - {fileID: 625415026}
-  - {fileID: 1065003146}
-  - {fileID: 1312432748}
-  - {fileID: 1951784029}
-  - {fileID: 1174141837}
-  - {fileID: 1499794072}
-  - {fileID: 1367172377}
-  - {fileID: 1541232720}
-  - {fileID: 939819216}
-  - {fileID: 1593494854}
-  - {fileID: 1456184369}
-  - {fileID: 1775328630}
-  - {fileID: 640157196}
-  - {fileID: 1353384543}
-  distanceBufferChosingPatrolPoint: 5
-  defaultTimeInbetweenPoints: 5
-  howCloseToPatrolPoint: 1
-  chanceToGoBackLastPatrolPoint: 5
 --- !u!114 &5654510618553239087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33256,7 +33222,7 @@ GameObject:
   - component: {fileID: 9115853573555661015}
   - component: {fileID: 1011007730950232145}
   - component: {fileID: 3180212385826353181}
-  - component: {fileID: 5650530446698563427}
+  - component: {fileID: 9115853573555661017}
   - component: {fileID: 6197988464847127763}
   - component: {fileID: 3463503154198628743}
   - component: {fileID: 8152325471217314628}
@@ -33507,6 +33473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   isRespawning: 0
+  playerIsDead: 0
 --- !u!114 &8875287342334554462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33942,6 +33909,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9115853573555661017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487548251337323117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fd41ed6168d14386c0b718f6b1df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  patrolPoints: []
+  patrolPointGroupings: {fileID: 1366153494}
+  defaultTimeAtPatrolPoint: 2
+  distanceFromPatrolPoint: 1
 --- !u!4 &9123075709771342096
 Transform:
   m_ObjectHideFlags: 0

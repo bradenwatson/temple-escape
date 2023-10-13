@@ -8,6 +8,7 @@ public class State_PatrolTwo : mBrain_base
     [Header("patrol point positions")]
     public List<Transform> possiblePatrolPoints = new List<Transform>();
     public float distanceBufferChosingPatrolPoint = 5f;
+    public GameObject patrolPointGroupings;
 
     [Header("timings")]
     public float defaultTimeInbetweenPoints = 5f;   
@@ -20,12 +21,24 @@ public class State_PatrolTwo : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
+        AddEachChildElementFromGameObjectToPatrolPoints();
         SetNewPatrolPoint(); 
         lastPatrolPoint = currentPatrolPoint;
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);
         brain.PlayFootSteps();
+    }
+
+    void AddEachChildElementFromGameObjectToPatrolPoints()
+    {
+        foreach (Transform gameObject in patrolPointGroupings.transform)
+        {
+            if (!possiblePatrolPoints.Contains(gameObject))
+            { 
+                possiblePatrolPoints.Add(gameObject);
+            }
+        }
     }
 
     public override void UpdateState()
