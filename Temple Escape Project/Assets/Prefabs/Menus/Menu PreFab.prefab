@@ -945,7 +945,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6079840580974467164}
+<<<<<<< HEAD
   - component: {fileID: 2526483248210445155}
+=======
+  - component: {fileID: 6743518124946624519}
+>>>>>>> 4d4016b46a62a115229e2e0d3e8b94da4959829d
   m_Layer: 0
   m_Name: Menu PreFab
   m_TagString: Untagged
@@ -969,7 +973,11 @@ Transform:
   - {fileID: 2874543580364106928}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &2526483248210445155
+=======
+--- !u!114 &6743518124946624519
+>>>>>>> 4d4016b46a62a115229e2e0d3e8b94da4959829d
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
