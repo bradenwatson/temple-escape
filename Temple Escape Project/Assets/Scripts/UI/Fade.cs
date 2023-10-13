@@ -39,7 +39,7 @@ public class Fade : MonoBehaviour
     {
         if (alphaValue < 1)
         {
-            alphaValue += Time.deltaTime / valueToBeDividedByDeltaTimeForSpeedChanging;
+            alphaValue += Time.deltaTime * valueToBeDividedByDeltaTimeForSpeedChanging;
         }
         else
         {
@@ -53,7 +53,7 @@ public class Fade : MonoBehaviour
     {
         if (alphaValue > 0)
         {
-            alphaValue -= Time.deltaTime / valueToBeDividedByDeltaTimeForSpeedChanging;
+            alphaValue -= Time.deltaTime * valueToBeDividedByDeltaTimeForSpeedChanging;
         }
         else
         {

@@ -20,7 +20,6 @@ public class State_PatrolTwo : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        Debug.Log("patrol state");
         SetNewPatrolPoint(); 
         lastPatrolPoint = currentPatrolPoint;
         animator.SetBool("walking", true);
@@ -120,8 +119,6 @@ public class State_PatrolTwo : mBrain_base
                 closestPatrolPoints.Add(possiblePatrolPoints[i]);
             }       
         }        
-
-        // Debug.Log($"closest patrol points count {closestPatrolPoints.Count}");
 
         if (closestPatrolPoints.Count == 0)
         {

@@ -54,7 +54,6 @@ public class mBrain_brain : MonoBehaviour
     void Start()
     {
         mBrain_base[] states = GetComponents<mBrain_base>();
-        print($"states count {states.Count()}");
         for (int i = 0; i < states.Length; i++)
         {
             states[i].isActive = false;
@@ -102,18 +101,21 @@ public class mBrain_brain : MonoBehaviour
     }
 
     public bool SeeIfPlayerIsSeen()
-    {       
+    {        
         if (player != null)
         {
             if (GetDistance(player.transform.position) == 0)
             {
+                print("distance equal to 0");
                 return false;
             }
 
             RaycastHit hit;
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            if (Physics.Raycast(transform.position, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
+            Vector3 startingPosition = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
+            if (Physics.Raycast(startingPosition, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
             {
+                print(hit.collider.gameObject.layer);
                 if (hit.collider.gameObject == player)
                 {
                     return true;
@@ -156,13 +158,12 @@ public class mBrain_brain : MonoBehaviour
         targetIsPlayer = isPlayer; 
     }
 
-    // Update is called once per frame
-    void Update()       // used as the update for all states
+    void Update()
     {
         currentState.UpdateState();
     }
 
-    public void RecieveNewState(mBrain_base newState)       // used to say what state the user is on
+    public void RecieveNewState(mBrain_base newState)
     {
         currentState = newState;
     }
