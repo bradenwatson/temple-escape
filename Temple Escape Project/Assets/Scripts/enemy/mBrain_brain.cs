@@ -101,11 +101,12 @@ public class mBrain_brain : MonoBehaviour
     }
 
     public bool SeeIfPlayerIsSeen()
-    {       
+    {        
         if (player != null)
         {
             if (GetDistance(player.transform.position) == 0)
             {
+                print("distance equal to 0");
                 return false;
             }
 
@@ -114,6 +115,7 @@ public class mBrain_brain : MonoBehaviour
             Vector3 startingPosition = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
             if (Physics.Raycast(startingPosition, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
             {
+                print(hit.collider.gameObject.layer);
                 if (hit.collider.gameObject == player)
                 {
                     return true;
