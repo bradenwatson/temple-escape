@@ -2741,7 +2741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTasksToComplete: 3
   currentlyCompletedTasks: 0
-  exitRoomFloor: {fileID: 0}
+  exitRoomFloor: {fileID: 7324375645202300396}
   onPuzzleCompletion:
     m_PersistentCalls:
       m_Calls:
@@ -31958,13 +31958,19 @@ PrefabInstance:
     - target: {fileID: 7048872352203895241, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
         type: 3}
       propertyPath: m_Name
-      value: Room 1 Way
+      value: Room 1 Way EXIT
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45df189cb00277d4a99b0e3fb2cb18e4, type: 3}
+--- !u!1 &7324375645202300396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7126943354544432948, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7324375645202300395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!195 &7358805402801168567
 NavMeshAgent:
   m_ObjectHideFlags: 0
