@@ -180,7 +180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &102726302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7439,6 +7439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   isRespawning: 0
+  playerIsDead: 0
 --- !u!114 &1851782352
 MonoBehaviour:
   m_ObjectHideFlags: 0
