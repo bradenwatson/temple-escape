@@ -53,6 +53,8 @@ public class NTree : MonoBehaviour
         else
         {
             this.SetRoot(data);
+            Debug.Log($"NTree instantiated with root as ({data.name}) "
+                + $"@ [{this.root.GetIndex()}].");
         }
     }
 
@@ -82,8 +84,16 @@ public class NTree : MonoBehaviour
     public void SetRoot(CustomNode root) {  this.root = root; Debug.Log($"Set root to node({root.GetData()})"); }
     public void SetRoot(GameObject data) 
     {
-        this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs 
-        Debug.Log($"NTree instantiated with root as ({data.name}) @ [{this.root.GetIndex()}].");
+        //this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs 
+        this.root = gameObject.AddComponent<CustomNode>();
+        CustomNode(this.root, data);
+        Debug.Log($"NTree root set as ({data.name}) @ [{this.root.GetIndex()}].");
+    }
+
+    private void CustomNode(CustomNode node, GameObject data)
+    {
+        node.SetIndex(this.counter++);
+        node.SetData(data);
     }
 
 
@@ -98,7 +108,7 @@ public class NTree : MonoBehaviour
     {
         if (this.tracker == null) { this.tracker = new List<CustomNode>(); }
 
-        CustomNode tmp = new CustomNode();
+        CustomNode tmp = gameObject.AddComponent<CustomNode>();
         this.tracker.Add(tmp);
     }
     
@@ -222,7 +232,9 @@ public class NTree : MonoBehaviour
         }
 
         //Add child node at index
-        CustomNode child = new CustomNode(this.counter++, data);
+        //CustomNode child = new CustomNode(this.counter++, data);
+        CustomNode child = gameObject.AddComponent<CustomNode>();
+        CustomNode(child, data);
         CustomNode nodeToFind = FindNode(key);
         if (nodeToFind == null) 
         {
@@ -253,7 +265,9 @@ public class NTree : MonoBehaviour
         }
 
         //Add child node at index
-        CustomNode child = new CustomNode(this.counter++, data);
+        //CustomNode child = new CustomNode(this.counter++, data);
+        CustomNode child = gameObject.AddComponent<CustomNode>();
+        CustomNode(child, data);
         node.InsertChildren(child);
 
         //Get the inserted node through the located node's children.
@@ -269,7 +283,7 @@ public class NTree : MonoBehaviour
      * Method: SetTrackerTo
      * Input: trackerIdx(int), nodeIdx (int)
      * Output: N/A
-     * Purpose: Select a tracker(node) and assign to a specific node within the tree
+     * Purpose: Retain a reference to desired node
      ***************************************************************************************/
     public void SetTrackerTo(int trackerIdx, int nodeIdx)    
     {
@@ -284,8 +298,7 @@ public class NTree : MonoBehaviour
         }
 
         //Copy node details except for data as the tracker's data is its own entity
-        CustomNode tmp = this.FindNode(nodeIdx);
-        this.tracker[trackerIdx] = new CustomNode(tmp);
+        this.tracker[trackerIdx] = this.FindNode(nodeIdx);
     }
 
 

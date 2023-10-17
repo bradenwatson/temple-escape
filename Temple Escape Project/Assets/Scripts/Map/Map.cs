@@ -64,11 +64,11 @@ public class Map : MonoBehaviour
         }
         catch (NullReferenceException e)
         {
-            Debug.LogWarning("Caught in Map(): " + e.Message);
+            Debug.LogWarning("Caught in Map(): " + e);
         }
         catch (Exception e)
         {
-            Debug.LogError(e.Message);
+            Debug.LogError(e);
         }
     }
 
@@ -122,10 +122,10 @@ public class Map : MonoBehaviour
         //Tranform all rooms fast: https://docs.unity3d.com/ScriptReference/Transform.TransformDirections.html
         
 
-        foreach (GameObject pos in rooms)
-        {
-            Debug.Log(pos.name + " = " + pos.transform.position);
-        }
+        //foreach (GameObject pos in rooms)
+        //{
+        //    Debug.Log(pos.name + " = " + pos.transform.position);
+        //}
         
 
         //Set field total rooms
@@ -143,17 +143,17 @@ public class Map : MonoBehaviour
         {
             //Transform direction of every room individually : https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html
             int maxDoors = 4;
-            Debug.Log($"Room = {room.name}");
+
 
             //if (tree == null)
-            if(room.Equals(rooms.First()))
+            if (room.Equals(rooms.First()))
             {
-
+                Debug.Log($"Room = {room.name}");
                 //Assign central room
                 this.centralRoom = rooms.First();
 
                 //Create tree with central room
-                //tree = gameObject.AddComponent<NTree>();
+                tree = gameObject.AddComponent<NTree>();
                 tree.SetRoot(this.centralRoom);
 
 
@@ -167,81 +167,114 @@ public class Map : MonoBehaviour
                 //          ####TMP#####
                 tree.GetRoot().SetChildren(new List<CustomNode>(maxDoors));     //Edit to insert only amount of door attached to GameObject OR detected in the Room class
                 unlinkedRooms.Add(room);    //TMP: Immediately add to unlinkedRooms since it will be connected somehow (START WITH 4 ROOMS)
-                unlinkedNodes.Add(tree.GetRoot());
-                Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
+                //unlinkedNodes.Add(tree.GetRoot());
+                Debug.Log("Root node set to central room at (" + rooms.First().name + ") @ " + rooms.First().transform.position);
             }
             // Rooms after the root node
             else
             {
+                //Create a node for room object and initialise its children
+                //CustomNode node = gameObject.AddComponent<CustomNode>();
+                ////if(room.GetComponent<Room>() != null )
+                ////{
+                ////    maxDoors = room.GetComponent<Room>().doors;
+                ////    node.SetChildren(new List<CustomNode>(maxDoors));
+                ////}
+                //node.SetChildren(new List<CustomNode>(maxDoors));   //TMP
+
+
+
+
+
                 //Check if room currently connects to any in the list. If disconnected room becomes fully connected, remove from list.
                 //Add current to disconnected if still has connections remaining
 
+
+
                 //Use function to check connected
-                foreach(GameObject prevRoom in unlinkedRooms)
+                foreach (GameObject prevRoom in unlinkedRooms)
                 {
-                    //Initialise rooms children
+
                     //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre and world rotation
                     //Only insertion in the correct following order N,S,E,W
                     // https://docs.unity3d.com/ScriptReference/Vector3.Dot.html
                     //do dot product of 4 directions (Change later once know how many doors but assume 4 for now)
                     //Do dot product of direction upon displacement vector between current and previous room
                     //Some will have direction, but some will not contact
-                    room.GetComponent<CustomNode>().SetChildren(new List<CustomNode>(maxDoors));
+
+                    //Dot product test-if truly connected then they are alteat beside each other so the dot product is 0
+                    //Obtain dot of 1 mean in same direction
+                    Debug.Log($"C:{room.name} ({room.transform.position})\tP:{prevRoom.name} ({prevRoom.transform.position})");
+                    //Vector3 displacement = room.transform.position - prevRoom.transform.position;
+                    Vector3 displacement = prevRoom.transform.position - room.transform.position;
 
 
-                   //(1)If distance between walls is within distance betwwen centres, they are connected rooms OR
-                   //(2)Share the same door
-                   //(3)Wall Contact
-                }
+
+                    Debug.Log($"{room.name} ({displacement})");
 
 
-                
-                //Loop through roomsAtX and get up to max of 4 with shortest distance and 
-                
-                    //Create function that inserts in direction of last inserted-WARNING REPEATS MIGHT OCCUR
-                    //for (int j = 1; i < this.totalRooms; i++)
+                    bool north = Vector3.Dot(displacement, room.transform.forward) > 0;
+                    bool south = Vector3.Dot(displacement, room.transform.forward) < 0;
+                    bool east = Vector3.Dot(displacement, room.transform.right) < 0;
+                    bool west = Vector3.Dot(displacement, room.transform.right) > 0;
+
+                    if (north)
+                    {
+                        Debug.Log("North");
+                    }
+
+                    else if (south)
+                    {
+                        Debug.Log("South");
+                    }
+
+                    else if (east)
+                    {
+                        Debug.Log("East");
+                    }
+
+                    else if (west)
+                    {
+                        Debug.Log("West");
+                    }
+
+                    else
+                    {
+                        throw new Exception("Something strange happened!");
+                    }
+
+
+
+
+
+
+
+                    //if (!(node.GetChildren().Contains(null)))        //End loop earlier
                     //{
-                    //    GameObject currRoom = rooms[i];
-                    //    //noLinks.Add(currRoom);
-                    //    //Check if angle and distance matches from queue list
-                    //    float dist = Vector3.Distance(this.centralRoom.transform.position, currRoom.transform.position);
-
-
-                    //    float angle = Vector3.SignedAngle(Vector3.right, rooms[i].transform.position, Vector3.down);
-                    //    //Note: By default max angle [-180,180]
-                    //    bool north = angle >= 45 && angle <= 135;
-                    //    bool south = angle <= -45 && angle >= -135;
-                    //    bool east = angle < 45 && angle > -45;
-                    //    bool west = angle > 135 && angle < -135;
-
-                    //    if (north)
-                    //    {
-
-                    //    }
-
-                    //    else if (south)
-                    //    {
-
-                    //    }
-
-                    //    else if (east)
-                    //    {
-                    //    }
-
-                    //    else if (west)
-                    //    {
-
-                    //    }
-
-                    //    else
-                    //    {
-                    //        throw new Exception("Something strange happened!");
-                    //    }
-
+                    //    break;
                     //}
+
+
+                    //(1)If distance between walls is within distance betwwen centres, they are connected rooms OR
+                    //(2)Share the same door
+                    //(3)Wall Contact
                 }
+
+
+                //if (node.GetChildren().Contains(null))
+                //{
+                //    unlinkedNodes.Add(node);
+                //    unlinkedRooms.Add(room);
+                //}
+
+
+
 
             }
+
+
+        }
+
         //Shift each direction based on room's scene rotation
     }
 
