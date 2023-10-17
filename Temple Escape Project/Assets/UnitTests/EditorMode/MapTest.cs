@@ -12,7 +12,7 @@ using UnityEngine.TestTools;
 public class MapTest
 {
     NTree tree;
-    NTree.CustomNode node;
+    CustomNode node;
     GameObject obj;
     List<GameObject> listObj;
 
@@ -23,7 +23,7 @@ public class MapTest
     public void Make_Node()
     {
         obj = new GameObject();
-        node = new NTree.CustomNode(obj);
+        node = new CustomNode(obj);
         Assert.AreSame(node.GetData(), obj);
     }
 
@@ -34,8 +34,8 @@ public class MapTest
         int max2 = 2;
         int size = 1;
         obj = new GameObject();
-        node = new NTree.CustomNode(obj);
-        NTree.CustomNode node2 = new NTree.CustomNode(node);
+        node = new CustomNode(obj);
+        CustomNode node2 = new CustomNode(node);
         Assert.Throws<ArgumentException>(() => node.SetNodeLimit(max1));
         node.SetNodeLimit(max2);
         node.InsertChildren(node2);
@@ -49,8 +49,8 @@ public class MapTest
     {
         int max = 1;
         obj = new GameObject();
-        node = new NTree.CustomNode(obj);
-        NTree.CustomNode node2 = new NTree.CustomNode(node);
+        node = new CustomNode(obj);
+        CustomNode node2 = new CustomNode(node);
         node.SetNodeLimit(max);
         Assert.IsNotNull(node.GetChildren());
         Assert.IsTrue(node.GetNodeLimit() == max);
@@ -62,8 +62,8 @@ public class MapTest
     public void InsertChildren_Infinite()
     {
         obj = new GameObject();
-        node = new NTree.CustomNode(obj);
-        NTree.CustomNode node2 = new NTree.CustomNode(node);
+        node = new CustomNode(obj);
+        CustomNode node2 = new CustomNode(node);
         node.InsertChildren(node2);
         Assert.IsFalse(node.GetNodeLimit() == 0);
         Assert.IsTrue(node.GetChildren().Count > 0);
@@ -75,10 +75,10 @@ public class MapTest
     {
         int max = 2;
         obj = new GameObject();
-        node = new NTree.CustomNode(obj);
-        NTree.CustomNode node2 = new NTree.CustomNode(node);
-        NTree.CustomNode node3 = new NTree.CustomNode(node2);
-        NTree.CustomNode node4 = new NTree.CustomNode(node2);
+        node = new CustomNode(obj);
+        CustomNode node2 = new CustomNode(node);
+        CustomNode node3 = new CustomNode(node2);
+        CustomNode node4 = new CustomNode(node2);
         node.SetNodeLimit(max);
         node.InsertChildren(node2);
         node.InsertChildren(node3);
@@ -125,7 +125,7 @@ public class MapTest
         {
             tree.InsertTracker();
         }
-        NTree.CustomNode tmp = tree.SelectTracker(pick);
+        CustomNode tmp = tree.SelectTracker(pick);
         Assert.NotNull(tree.GetRoot());
         Assert.IsTrue(tree.GetTrackers().Count == count);
         Assert.AreSame(tmp, tree.GetTrackers()[pick]);
@@ -169,7 +169,7 @@ public class MapTest
         int max = 4;
         obj = new GameObject();
         tree = new NTree(obj);
-        NTree.CustomNode lastNode = null;
+        CustomNode lastNode = null;
         //This is inserted to the same node index
         for(int i = 0; i < max; i++)
         {
@@ -187,7 +187,7 @@ public class MapTest
         int max = 4;
         obj = new GameObject();
         tree = new NTree(obj);
-        NTree.CustomNode lastNode = null;
+        CustomNode lastNode = null;
         //This is inserted at consecutive nodes
         for(int i = 0; i < max; i++)
         {

@@ -31,18 +31,18 @@ public class Map : MonoBehaviour
     //Use FindObjectType<Enemy>
     [Header("Enemy Details")]
     public GameObject Enemy;
-    public NTree.CustomNode SetEnemyAt;
+    public CustomNode SetEnemyAt;
     int EnemyInRoomID;
     RoomType EnemyAtType;
 
-    NTree.CustomNode TargetRoom;
+    CustomNode TargetRoom;
     int TargetRoomID;
     RoomType TargetRoomType;
 
     //Use FindObjectType<PLayer>
     [Header("Player Details")]
     public GameObject Player;
-    public NTree.CustomNode SetPLayerAt;
+    public CustomNode SetPLayerAt;
     int PlayerInRoomID;
     RoomType PlayerAtType;
 
@@ -171,7 +171,7 @@ public class Map : MonoBehaviour
                 unlinkedRooms.Add(room);
                 tree = new NTree(this.centralRoom);
                 
-                room.GetComponent<NTree.CustomNode>().SetChildren(new List<NTree.CustomNode>(maxDoors));
+                room.GetComponent<CustomNode>().SetChildren(new List<CustomNode>(maxDoors));
                 Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
             }
             // Rooms after the root node
@@ -191,7 +191,7 @@ public class Map : MonoBehaviour
                     //do dot product of 4 directions (Change later once know how many doors but assume 4 for now)
                     //Do dot product of direction upon displacement vector between current and previous room
                     //Some will have direction, but some will not contact
-                    room.GetComponent<NTree.CustomNode>().SetChildren(new List<NTree.CustomNode>(maxDoors));
+                    room.GetComponent<CustomNode>().SetChildren(new List<CustomNode>(maxDoors));
 
 
                    //If distance between walls is within distance betwwen centres, they are connected rooms
