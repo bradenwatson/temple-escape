@@ -55,7 +55,7 @@ public class MapTest
         Assert.IsNotNull(node.GetChildren());
         Assert.IsTrue(node.GetNodeLimit() == max);
         node.InsertChildren(node2);
-        Assert.IsTrue(node.GetChildren().Count == max);
+        Assert.IsTrue(node.GetChildren().Length == max);
     }
 
     [Test]
@@ -66,7 +66,7 @@ public class MapTest
         NTree.CustomNode node2 = new NTree.CustomNode(node);
         node.InsertChildren(node2);
         Assert.IsFalse(node.GetNodeLimit() == 0);
-        Assert.IsTrue(node.GetChildren().Count > 0);
+        Assert.IsTrue(node.GetChildren().Length > 0);
         Assert.AreSame(node.GetChildren().First(), node2);
     }
 
@@ -84,7 +84,7 @@ public class MapTest
         node.InsertChildren(node3);
 
         Assert.IsTrue(node.GetNodeLimit() == max);
-        Assert.IsTrue(node.GetChildren().Count > 0);
+        Assert.IsTrue(node.GetChildren().Length > 0);
         Assert.Throws<ArgumentOutOfRangeException>(() => node.InsertChildren(node4));
     }
 
@@ -109,7 +109,7 @@ public class MapTest
     {
         obj = new GameObject();
         tree = new NTree(obj);
-        tree.InsertTracker(obj);
+        tree.InsertTracker();
         Assert.NotNull(tree.GetRoot());
         Assert.IsTrue(tree.GetTrackers().Count == 1);
     }
@@ -123,7 +123,7 @@ public class MapTest
         tree = new NTree(obj);
         for(int i = 0; i < count; i++)
         {
-            tree.InsertTracker(obj);
+            tree.InsertTracker();
         }
         NTree.CustomNode tmp = tree.SelectTracker(pick);
         Assert.NotNull(tree.GetRoot());
@@ -169,6 +169,7 @@ public class MapTest
         int max = 4;
         obj = new GameObject();
         tree = new NTree(obj);
+        tree
         NTree.CustomNode lastNode = null;
         //This is inserted to the same node index
         for(int i = 0; i < max; i++)
@@ -198,7 +199,7 @@ public class MapTest
         }
         Assert.IsTrue(tree.GetCount() == max+1);
         tree.InsertNodeAt(tree.GetRoot(), obj);
-        Assert.IsTrue(tree.GetRoot().GetChildren().Count == 2);
+        Assert.IsTrue(tree.GetRoot().GetChildren().Length == 2);
         Assert.IsNotNull(tree.FindNode(lastNode.GetIndex()), $"Parent oflastNode = {lastNode.GetParent().GetIndex()}");
         //This fails, why does root have 2 elements but also why is the the last node in it has index of 5
         //Assert.AreEqual(lastNode.GetIndex(), tree.GetRoot().GetChildren().Last().GetIndex(), $"lastNode P = {lastNode.GetParent().GetIndex()}, " +
@@ -219,7 +220,7 @@ public class MapTest
         }
         Assert.IsTrue(tree.GetCount() == max + 1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
-        tree.InsertTracker(obj);
+        tree.InsertTracker();
         Assert.IsTrue(tree.GetTrackers().Count == 1);
         Assert.Throws<IndexOutOfRangeException>(() => tree.SetTrackerTo(-1, 2));
         Assert.Throws<NullReferenceException>(() => tree.SetTrackerTo(0, 5));
@@ -237,7 +238,7 @@ public class MapTest
         }
         Assert.IsTrue(tree.GetCount() == max + 1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
-        tree.InsertTracker(obj);
+        tree.InsertTracker();
         Assert.IsTrue(tree.GetTrackers().Count == 1);
         tree.SetTrackerTo(0, 3);
         Assert.IsTrue(tree.SelectTracker(0).GetIndex() == 3);

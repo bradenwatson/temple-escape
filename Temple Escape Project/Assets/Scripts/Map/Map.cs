@@ -10,15 +10,10 @@
     * Uses enum called Compass which is used to indicate how list of child rooms are connected by index
 /************************************************************************************************************************************************************************************/
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Security;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 //using System.Numerics;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
 
 public enum Compass { N, S, E, W};      //Global orientation assigned to respective index
 public class Map : MonoBehaviour
@@ -171,7 +166,7 @@ public class Map : MonoBehaviour
                 unlinkedRooms.Add(room);
                 tree = new NTree(this.centralRoom);
                 
-                room.GetComponent<NTree.CustomNode>().SetChildren(new List<NTree.CustomNode>(maxDoors));
+                room.GetComponent<NTree.CustomNode>().SetChildren(new NTree.CustomNode[maxDoors]);
                 Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
             }
             // Rooms after the root node
@@ -191,7 +186,7 @@ public class Map : MonoBehaviour
                     //do dot product of 4 directions (Change later once know how many doors but assume 4 for now)
                     //Do dot product of direction upon displacement vector between current and previous room
                     //Some will have direction, but some will not contact
-                    room.GetComponent<NTree.CustomNode>().SetChildren(new List<NTree.CustomNode>(maxDoors));
+                    room.GetComponent<NTree.CustomNode>().SetChildren(new NTree.CustomNode[maxDoors]);
 
 
                    //If distance between walls is within distance betwwen centres, they are connected rooms
@@ -279,7 +274,7 @@ public class Map : MonoBehaviour
     //add marker (fixed)
     public void AddMarker(GameObject gameObject)
     {
-        tree.InsertTracker(gameObject);
+        tree.InsertTracker();
     }
     //Pass by ref https://forum.unity.com/threads/what-is-out-syntax-of-c-and-what-does-it-actually-do.404585/
     //Use ref in parameter to input variable and change it simultaneously 

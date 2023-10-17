@@ -8,8 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 public class NTree
@@ -37,7 +35,7 @@ public class NTree
     {
         root = null;        //Root node should be central to all the _data
         counter = 0;
-        tracker = null;
+        tracker = null;     //Placeholder to retain the current room persistently
     }
 
     //Create Tree with root
@@ -50,9 +48,10 @@ public class NTree
         else
         {
             this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs 
-        }
-            
+        } 
     }
+
+
 
     //GETTERS
     public  CustomNode GetRoot() { return this.root; }
@@ -68,15 +67,15 @@ public class NTree
     //METHODS
     /***************************************************************************************/
     /* Method: InsertTracker
-     * Input: data (GameObject)
+     * Input: N/A
      * Output: N/A
      * Purpose: Creates a unique node separate to the tree containing GameObject data
     /***************************************************************************************/
-    public void InsertTracker(GameObject data)
+    public void InsertTracker()
     {
         if (this.tracker == null) { this.tracker = new List<CustomNode>(); }
 
-        CustomNode tmp = new CustomNode(data);
+        CustomNode tmp = new CustomNode();
         this.tracker.Add(tmp);
     }
     
@@ -92,11 +91,6 @@ public class NTree
         if(this.tracker == null)
         {
             throw new NoNullAllowedException("Tracker node has not been instantiated.");
-        }
-
-        if (index < 0 || index >= tracker.Count)
-        {
-            throw new IndexOutOfRangeException("Tracker does not exist.");
         }
 
         targetNode = tracker[index];
@@ -209,8 +203,8 @@ public class NTree
         nodeToFind.InsertChildren(child);
 
         //Get the inserted node through the located node's children.
-        CustomNode nodeInserted = nodeToFind.GetChildren().Find(x => x.Equals(child));
-        if(nodeInserted == null)
+        CustomNode nodeInserted = Array.Find<NTree.CustomNode>(nodeToFind.GetChildren(), n => n == child);
+        if (nodeInserted == null)
         {
             throw new NullReferenceException("Node does not exist.");
         }
@@ -235,7 +229,7 @@ public class NTree
         node.InsertChildren(child);
 
         //Get the inserted node through the located node's children.
-        CustomNode nodeInserted = node.GetChildren().Find(x => x.Equals(child));
+        CustomNode nodeInserted = Array.Find<NTree.CustomNode>(node.GetChildren(), n => n == child);
         if (nodeInserted == null)
         {
             throw new NullReferenceException("Node does not exist.");
@@ -249,11 +243,11 @@ public class NTree
      * Output: N/A
      * Purpose: Select a tracker(node) and assign to a specific node within the tree
     /***************************************************************************************/
-    public void SetTrackerTo(int trackerIdx, int nodeIdx)    
+    public void SetTrackerTo(int trackerIdx, int nodeIdx)
     {
-        if(trackerIdx < 0 || trackerIdx >= this.counter) 
+        if (trackerIdx < 0 || trackerIdx >= this.counter)
         {
-            throw new IndexOutOfRangeException("Tracker node does not exist.");  
+            throw new IndexOutOfRangeException("Tracker node does not exist.");
         }
 
         if (!CheckNodeExists(nodeIdx))
@@ -261,11 +255,9 @@ public class NTree
             throw new NullReferenceException("Node does not belong within tree.");
         }
 
-        //Copy node details except for data as the tracker's data is its own entity
+        //Create a copy at the specific element
         CustomNode tmp = this.FindNode(nodeIdx);
-        this.tracker[trackerIdx].SetIndex(tmp.GetIndex());
-        this.tracker[trackerIdx].SetParent(tmp.GetParent());
-        this.tracker[trackerIdx].SetChildren(tmp.GetChildren());
+        this.tracker[trackerIdx] = new CustomNode(tmp);
     }
 
 
@@ -367,7 +359,7 @@ public class NTree
         *   index (int)
         *   data (GameObject)
         *   parent (CustomNode)
-        *   children (List<CustomNode>)
+        *   children (CustomNode[])     (NOTE:PRE-DETERMINED FIXED SIZE)
     /************************************************************************************************************************************************************************************/
     public class CustomNode
     {
@@ -375,7 +367,7 @@ public class NTree
         int index;
         GameObject data;
         CustomNode parent;      // For traversal
-        List<CustomNode> children { get; set; }
+        CustomNode[] children;
 
 
         //CONSTRUCTORS
@@ -394,7 +386,7 @@ public class NTree
         public CustomNode(GameObject _data, int limit)
         {
             this.data = _data;
-            this.children = new List<CustomNode>(limit);
+            this.children = new CustomNode[limit];
         }
 
         public CustomNode(int _index, GameObject _data)
@@ -407,7 +399,7 @@ public class NTree
         {
             this.index = _index;
             this.data = _data;
-            this.children = new List<CustomNode>(limit);
+            this.children = new CustomNode[limit];
         }
 
         public CustomNode(CustomNode _node)
@@ -423,15 +415,15 @@ public class NTree
         public int GetIndex() { return index; } 
         public GameObject GetData() { return data; } 
         public CustomNode GetParent() { return parent; }
-        public List<CustomNode> GetChildren() { return children; }
-        public int GetNodeLimit() {  return this.children.Capacity; }
+        public CustomNode[] GetChildren() { return children; }
+        public int GetNodeLimit() {  return this.children.Length; }
 
         
         //SETTERS
         public void SetIndex(int _index) { index = _index; }
         public void SetData(GameObject _data) { this.data = _data; }
         public void SetParent(CustomNode _parent) {  this.parent = _parent; }
-        public void SetChildren(List<CustomNode> _children) {  this.children = _children; }
+        public void SetChildren(CustomNode[] _children) {  this.children = _children; }
         public void SetNodeLimit(int limit)
         {
             if(limit < 0)
@@ -441,16 +433,11 @@ public class NTree
 
             if(this.children == null)
             {
-                this.children= new List<CustomNode>();
-            }
-
-            if (limit == 0 || this.children.Count <= limit)
-            {
-                this.children.Capacity = limit;
+                this.children = new CustomNode[limit];
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Cannot reduce existing capacity.");
+                throw new ArgumentException("Resize children not allowed.");
             }
         }
 
@@ -461,22 +448,37 @@ public class NTree
         {
             if(this.children == null)
             {
-                this.children = new List<CustomNode>();
+                throw new NullReferenceException("Children array hasnot been initialised.");
             }
 
-            if(this.children.Capacity == 0 || this.children.Count < this.children.Capacity) 
+            //Insert at the next available position
+            for(int i = 0;  i < this.children.Length; i++)
             {
-
-                this.children.Add(node);
-                this.children.Last().parent = new CustomNode(this);         //Assign child to parent node
+                if (this.children[i] != null)
+                {
+                    this.children[i] = node;
+                    break;
+                }
             }
+
+        }
+
+        public void InsertChildrenAtIndex(CustomNode node, int index)
+        {
+            if (this.children == null)
+            {
+                throw new NullReferenceException("Child array has not been initialised.");
+            }
+            
+            else if (this.children[index] != null)
+            {
+                throw new NotSupportedException("Not allowed to overwrite existing element.");
+            }
+            //Add at allocated index (assuming within range)
             else
             {
-                throw new ArgumentOutOfRangeException("List has reached its maximum already.");
+                this.children[index] = node;
             }
-
-            //Should not return node for ease of access because it must only exists
-            //if conditions are met.
         }
     }
 
