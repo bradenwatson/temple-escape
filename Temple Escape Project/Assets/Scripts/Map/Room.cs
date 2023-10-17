@@ -9,8 +9,9 @@ public class Room : MonoBehaviour
 {
     
     //dropdown
-    public RoomType roomType;
+    public readonly RoomType roomType;
     public readonly int roomID;
+    public readonly int doors; 
 
     //FUTURE
     //https://docs.unity3d.com/Manual/InstantiatingPrefabs.html
@@ -24,9 +25,9 @@ public class Room : MonoBehaviour
     //Should it be able to lock and unlock doors
     //room should have control over doors
     [Header("Debug")]
-    bool hasPlayerVisited; //{ get; set; }
-    bool hasEnemyVisisted; //{ get; set; }
-    bool isTeleportable; //{ get; set; } 
+    bool hasPlayerVisited; 
+    bool hasEnemyVisisted; 
+    bool isTeleportable; 
 
     private void Start()
     {

@@ -4,21 +4,15 @@
  *          defined as the root, the class will connect all the rooms as a tree which can be 
  *          used to traverse and navigate and perform calculations. The map is designed to be 
  *          shared amongst the enemy and the player and interacting with the game manager.
- *  Last updated: 31/08/23
+ *  Last updated: 17/10/23
  *  Notes: 
     * Uses NTree and Room class
     * Uses enum called Compass which is used to indicate how list of child rooms are connected by index
 /************************************************************************************************************************************************************************************/
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Security;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
-//using System.Numerics;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
 
 public enum Compass { N, S, E, W};      //Global orientation assigned to respective index
 public class Map : MonoBehaviour
@@ -64,22 +58,8 @@ public class Map : MonoBehaviour
     {
         try
         {
-
-            //GameObject[] test = FindObjectsOfType<GameObject>();
-            //foreach (GameObject testObj in test) 
-            //{
-            //    if(testObj.CompareTag("Room"))
-            //    {
-            //        this.totalRooms++;
-            //    }
-            //}
-
-            //Debug.Log("Rooms present = " + this.totalRooms);            //Gameobjects in awake method
-
+            //tree = gameObject.AddComponent<NTree>();
             DetectRooms();
-
-            //this.totalRooms = tree.GetCount();
-            //totalRooms = normalRooms = puzzleRooms = secretRooms = safeRooms = 0;
             //Debug.Log("Map made in awake.");
         }
         catch (NullReferenceException e)
@@ -153,25 +133,41 @@ public class Map : MonoBehaviour
         Debug.Log("Rooms present = " + this.totalRooms);
 
 
+
+
         //List<GameObject> unattached = new List<GameObject>();
         //Use queue as FIRST COME FIRST SERVED SINCE CLOSEST TO CENTRE
         List<GameObject> unlinkedRooms = new List<GameObject>();       //Determined by how many door objects -> create function to detect
+        List<CustomNode> unlinkedNodes = new List<CustomNode>();     //NEW TEST
         foreach (GameObject room in rooms)
         {
             //Transform direction of every room individually : https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html
             int maxDoors = 4;
+            Debug.Log($"Room = {room.name}");
 
-            if (tree == null)
+            //if (tree == null)
+            if(room.Equals(rooms.First()))
             {
+
                 //Assign central room
                 this.centralRoom = rooms.First();
-                
 
-                //Check if its children (doors/rooms) have connections
-                unlinkedRooms.Add(room);
-                tree = new NTree(this.centralRoom);
-                
-                room.GetComponent<CustomNode>().SetChildren(new List<CustomNode>(maxDoors));
+                //Create tree with central room
+                //tree = gameObject.AddComponent<NTree>();
+                tree.SetRoot(this.centralRoom);
+
+
+                //Check if its the GameObject contains room class and get it number of doors and initialise its children
+                //if(room.GetComponent<Room>() != null )
+                //{
+                //    maxDoors = room.GetComponent<Room>().doors;
+                //    tree.GetRoot().SetChildren(new List<CustomNode>(maxDoors));
+                //}
+
+                //          ####TMP#####
+                tree.GetRoot().SetChildren(new List<CustomNode>(maxDoors));     //Edit to insert only amount of door attached to GameObject OR detected in the Room class
+                unlinkedRooms.Add(room);    //TMP: Immediately add to unlinkedRooms since it will be connected somehow (START WITH 4 ROOMS)
+                unlinkedNodes.Add(tree.GetRoot());
                 Debug.Log("Root node set to central room at " + rooms.First().name + " = " + rooms.First().transform.position);
             }
             // Rooms after the root node
@@ -183,7 +179,6 @@ public class Map : MonoBehaviour
                 //Use function to check connected
                 foreach(GameObject prevRoom in unlinkedRooms)
                 {
-                    
                     //Initialise rooms children
                     //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre and world rotation
                     //Only insertion in the correct following order N,S,E,W
@@ -194,7 +189,9 @@ public class Map : MonoBehaviour
                     room.GetComponent<CustomNode>().SetChildren(new List<CustomNode>(maxDoors));
 
 
-                   //If distance between walls is within distance betwwen centres, they are connected rooms
+                   //(1)If distance between walls is within distance betwwen centres, they are connected rooms OR
+                   //(2)Share the same door
+                   //(3)Wall Contact
                 }
 
 

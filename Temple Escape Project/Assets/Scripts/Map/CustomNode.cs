@@ -18,7 +18,7 @@ using UnityEngine;
     *   parent (CustomNode)
     *   children (List<CustomNode>)
 *************************************************************************************************************************************************************************************/
-public class CustomNode
+public class CustomNode : MonoBehaviour
 {
     //PROPERTIES
     int index;

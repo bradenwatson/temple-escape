@@ -3317,7 +3317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
   Player: {fileID: 0}
-  centralRoom: {fileID: 1365903737}
   isFinalLvl: 0
 --- !u!4 &1124902554
 Transform:
@@ -4312,12 +4311,6 @@ PrefabInstance:
 --- !u!4 &1365903736 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1365903735}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1365903737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5060697206152025115, guid: af3faaa3b2f0f8747becf026633c59bd,
     type: 3}
   m_PrefabInstance: {fileID: 1365903735}
   m_PrefabAsset: {fileID: 0}

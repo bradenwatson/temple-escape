@@ -25,7 +25,7 @@ using UnityEngine;
     * Assumes nodes are fixed and will not be deleted
     * Assumes existence of central node and is not optimised for unbalanced trees
 /************************************************************************************************************************************************************************************/
-public class NTree
+public class NTree : MonoBehaviour
 {
 
     //PROPERTIES
@@ -40,9 +40,10 @@ public class NTree
         root = null;        //Root node should be central to all the _data
         counter = 0;
         tracker = null;
+        Debug.Log($"NTree instantiated to default.");
     }
 
-    //Create Tree with root
+    //Create Tree using GameObject to create root node
     public NTree(GameObject data)
     {
         if(this.root != null)
@@ -51,9 +52,24 @@ public class NTree
         }
         else
         {
-            this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs 
+            this.SetRoot(data);
         }
-            
+    }
+
+    //Create Tree with a node containing GameObject
+    public NTree(CustomNode node)
+    {
+        if (this.root != null)
+        {
+            throw new NotSupportedException("Tree instantiated with root already exists.");
+        }
+        else
+        {
+            node.SetIndex(this.counter++);     //Counter increments after method runs 
+            this.root = node;
+            Debug.Log($"NTree instantiated with root as ({node.GetData().name}) " 
+                    + $"@ [{this.root.GetIndex()}].");
+        }
     }
 
     //GETTERS
@@ -63,8 +79,12 @@ public class NTree
     
 
     //SETTERS
-    public void SetRoot(CustomNode root) {  this.root = root; }
-
+    public void SetRoot(CustomNode root) {  this.root = root; Debug.Log($"Set root to node({root.GetData()})"); }
+    public void SetRoot(GameObject data) 
+    {
+        this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs 
+        Debug.Log($"NTree instantiated with root as ({data.name}) @ [{this.root.GetIndex()}].");
+    }
 
 
     //METHODS
