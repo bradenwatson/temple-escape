@@ -109,7 +109,7 @@ public class MapTest
     {
         obj = new GameObject();
         tree = new NTree(obj);
-        tree.InsertTracker(obj);
+        tree.InsertTracker();
         Assert.NotNull(tree.GetRoot());
         Assert.IsTrue(tree.GetTrackers().Count == 1);
     }
@@ -123,7 +123,7 @@ public class MapTest
         tree = new NTree(obj);
         for(int i = 0; i < count; i++)
         {
-            tree.InsertTracker(obj);
+            tree.InsertTracker();
         }
         NTree.CustomNode tmp = tree.SelectTracker(pick);
         Assert.NotNull(tree.GetRoot());
@@ -219,7 +219,7 @@ public class MapTest
         }
         Assert.IsTrue(tree.GetCount() == max + 1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
-        tree.InsertTracker(obj);
+        tree.InsertTracker();
         Assert.IsTrue(tree.GetTrackers().Count == 1);
         Assert.Throws<IndexOutOfRangeException>(() => tree.SetTrackerTo(-1, 2));
         Assert.Throws<NullReferenceException>(() => tree.SetTrackerTo(0, 5));
@@ -237,7 +237,7 @@ public class MapTest
         }
         Assert.IsTrue(tree.GetCount() == max + 1);
         Assert.IsTrue(tree.GetRoot().GetChildren().Last().GetIndex() == max);
-        tree.InsertTracker(obj);
+        tree.InsertTracker();
         Assert.IsTrue(tree.GetTrackers().Count == 1);
         tree.SetTrackerTo(0, 3);
         Assert.IsTrue(tree.SelectTracker(0).GetIndex() == 3);

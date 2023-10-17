@@ -68,15 +68,15 @@ public class NTree
     //METHODS
     /***************************************************************************************/
     /* Method: InsertTracker
-     * Input: data (GameObject)
+     * Input: N/A
      * Output: N/A
      * Purpose: Creates a unique node separate to the tree containing GameObject data
     /***************************************************************************************/
-    public void InsertTracker(GameObject data)
+    public void InsertTracker()
     {
         if (this.tracker == null) { this.tracker = new List<CustomNode>(); }
 
-        CustomNode tmp = new CustomNode(data);
+        CustomNode tmp = new CustomNode();
         this.tracker.Add(tmp);
     }
     
@@ -251,7 +251,7 @@ public class NTree
     /***************************************************************************************/
     public void SetTrackerTo(int trackerIdx, int nodeIdx)    
     {
-        if(trackerIdx < 0 || trackerIdx >= this.counter) 
+        if(trackerIdx < 0 || trackerIdx >= this.counter - 1) 
         {
             throw new IndexOutOfRangeException("Tracker node does not exist.");  
         }
@@ -263,9 +263,7 @@ public class NTree
 
         //Copy node details except for data as the tracker's data is its own entity
         CustomNode tmp = this.FindNode(nodeIdx);
-        this.tracker[trackerIdx].SetIndex(tmp.GetIndex());
-        this.tracker[trackerIdx].SetParent(tmp.GetParent());
-        this.tracker[trackerIdx].SetChildren(tmp.GetChildren());
+        this.tracker[trackerIdx] = new CustomNode(tmp);
     }
 
 

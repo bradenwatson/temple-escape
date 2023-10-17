@@ -279,7 +279,7 @@ public class Map : MonoBehaviour
     //add marker (fixed)
     public void AddMarker(GameObject gameObject)
     {
-        tree.InsertTracker(gameObject);
+        tree.InsertTracker();
     }
     //Pass by ref https://forum.unity.com/threads/what-is-out-syntax-of-c-and-what-does-it-actually-do.404585/
     //Use ref in parameter to input variable and change it simultaneously 
