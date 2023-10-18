@@ -446,7 +446,7 @@ PrefabInstance:
     - target: {fileID: 1521707919112434301, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
       propertyPath: m_Name
-      value: Corner Room 2 Way
+      value: Corner Room 2 Way (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
