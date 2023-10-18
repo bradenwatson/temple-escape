@@ -22,21 +22,21 @@ using UnityEngine;
 *************************************************************************************************************************************************************************************/
 public class CustomNode : MonoBehaviour
 {
-    //PROPERTIES
+    // PROPERTIES
     int index;
     GameObject data;
-    List<CustomNode> parent;       // For traversal
-    List<CustomNode> children;
+    CustomNode[] parent; // Use an array instead of List
+    CustomNode[] children; // Use an array instead of List
 
-
-    //CONSTRUCTORS
+    // CONSTRUCTORS
     public CustomNode()
     {
-        index = -1;     //Defaults to 1 if node is not connected to the tree
+        index = -1; // Defaults to -1 if the node is not connected to the tree
         data = null;
         parent = null;
         children = null;
     }
+
     public CustomNode(GameObject _data)
     {
         this.data = _data;
@@ -45,7 +45,7 @@ public class CustomNode : MonoBehaviour
     public CustomNode(GameObject _data, int limit)
     {
         this.data = _data;
-        this.children = new List<CustomNode>(limit);
+        this.children = new CustomNode[limit];
     }
 
     public CustomNode(int _index, GameObject _data)
@@ -58,7 +58,7 @@ public class CustomNode : MonoBehaviour
     {
         this.index = _index;
         this.data = _data;
-        this.children = new List<CustomNode>(limit);
+        this.children = new CustomNode[limit];
     }
 
     public CustomNode(CustomNode _node)
@@ -69,20 +69,18 @@ public class CustomNode : MonoBehaviour
         this.children = _node.children;
     }
 
-
-    //GETTERS
+    // GETTERS
     public int GetIndex() { return index; }
     public GameObject GetData() { return data; }
-    public List<CustomNode> GetParent() { return parent; }
-    public List<CustomNode> GetChildren() { return children; }
-    public int GetNodeLimit() { return this.children.Capacity; }
+    public CustomNode[] GetParent() { return parent; }
+    public CustomNode[] GetChildren() { return children; }
+    public int GetNodeLimit() { return this.children.Length; }
 
-
-    //SETTERS
+    // SETTERS
     public void SetIndex(int _index) { index = _index; }
     public void SetData(GameObject _data) { this.data = _data; }
-    public void SetParent(List<CustomNode> _parent) { this.parent = _parent; }
-    public void SetChildren(List<CustomNode> _children) { this.children = _children; }
+    public void SetParent(CustomNode[] _parent) { this.parent = _parent; }
+    public void SetChildren(CustomNode[] _children) { this.children = _children; }
     public void SetNodeLimit(int limit)
     {
         if (limit < 0)
@@ -90,72 +88,50 @@ public class CustomNode : MonoBehaviour
             throw new ArgumentException("Capacity cannot be negative.");
         }
 
-        if (this.children == null)
+        else if(this.children != null)
         {
-            this.children = new List<CustomNode>();
+            throw new ArgumentOutOfRangeException("Cannot resize the existing capacity.");
         }
 
-        if (limit == 0 || this.children.Count <= limit)
-        {
-            this.children.Capacity = limit;
-        }
         else
         {
-            throw new ArgumentOutOfRangeException("Cannot reduce existing capacity.");
+            this.children = new CustomNode[limit];
         }
     }
 
-
-
-    //METHODS
-    public void InsertChildren(CustomNode node)     //Insert consecutively
+    // METHODS
+    public void InsertChildren(CustomNode node)
     {
         if (this.children == null)
         {
-            this.children = new List<CustomNode>();
-        }
-
-        if (this.children.Capacity == 0 || this.children.Count < this.children.Capacity)
-        {
-
-            this.children.Add(node);
-            this.children.Last().parent.Add(this);         //Assign child to parent node as a ref
-            //this.children.Last().parent = this;         //Assign child to parent node as a ref
-
+            throw new NullReferenceException("Array has not been initialised.");
         }
         else
         {
-            throw new ArgumentOutOfRangeException("List has reached its maximum already.");
-        }
-
-        //Should not return node for ease of access because it must only exists
-        //if conditions are met.
-    }
-
-    public void InsertChildrenAt(int childIdx, CustomNode node)     //Insert consecutively
-    {
-        if (this.children == null)
-        {
-            this.children = new List<CustomNode>();
-        }
-
-        if (this.children.Capacity == 0 || this.children.Count < this.children.Capacity)
-        {
-            if (this.children[childIdx] != null)
+            for (int i = 0; i < this.children.Length; i++)
             {
-                throw new NotSupportedException("Element already assigned.");
+                if (this.children[i] == null)
+                {
+                    this.children[i] = node;
+                    //this.children[i].parent = new CustomNode[] { this }; // Assign parent to child node as an array with a single parent
+                    break;
+                }
             }
-            this.children[childIdx] = node;
-            //this.children[childIdx].parent = this;         //Assign child to parent node as a ref
-
         }
-        else
+    }
+
+    public void InsertChildrenAt(int childIdx, CustomNode node)
+    {
+        if (this.children == null)
         {
-            throw new ArgumentOutOfRangeException("List has reached its maximum already.");
+            throw new NullReferenceException("Array has not been initialised.");
         }
 
-        //Should not return node for ease of access because it must only exists
-        //if conditions are met.
+        else if (this.children[childIdx] == null)
+        {
+            this.children[childIdx] = node;
+            
+        }      
     }
 
     /****************************************************************************************

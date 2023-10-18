@@ -242,13 +242,7 @@ public class NTree : MonoBehaviour
         }
         nodeToFind.InsertChildren(child);
 
-        //Get the inserted node through the located node's children.
-        CustomNode nodeInserted = nodeToFind.GetChildren().Find(x => x.Equals(child));
-        if(nodeInserted == null)
-        {
-            throw new NullReferenceException("Node does not exist.");
-        }
-        return nodeInserted;
+        return child;
     }
 
     /***************************************************************************************
@@ -270,13 +264,7 @@ public class NTree : MonoBehaviour
         CustomNode(child, data);
         node.InsertChildren(child);
 
-        //Get the inserted node through the located node's children.
-        CustomNode nodeInserted = node.GetChildren().Find(x => x.Equals(child));
-        if (nodeInserted == null)
-        {
-            throw new NullReferenceException("Node does not exist.");
-        }
-        return nodeInserted;
+        return child;
     }
 
     /***************************************************************************************

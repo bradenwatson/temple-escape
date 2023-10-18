@@ -149,13 +149,9 @@ public class Map : MonoBehaviour
                 CustomNode prevRoom = rooms[j];
 
                 //If that room's children does not contain null then remove from the list
-                if (prevRoom.GetChildren().Count == prevRoom.GetChildren().Capacity)
+                if (prevRoom.GetChildren().Contains(null))
                 { 
-                    Debug.Log($"Removing idx({j}) room({prevRoom.name})");
-                    rooms.RemoveAt(j);
-                }
-                else
-                {
+
                     //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre and world rotation
                     //Only insertion in the correct following order N,S,E,W
                     // https://docs.unity3d.com/ScriptReference/Vector3.Dot.html
@@ -182,7 +178,7 @@ public class Map : MonoBehaviour
                     //Intersections do work but may need more than 1 condition
                     bool adjacent = currRoom.GetData().GetComponent<BoxCollider>().bounds.Intersects(prevRoom.GetData().GetComponent<BoxCollider>().bounds);    
 
-                    Debug.Log($"Adjacent rooms [{adjacent}]: C({currRoom.name}[{currRoom.transform.position}]) <=> P({prevRoom.name}[{prevRoom.transform.position}])");
+                    Debug.Log($"(i:{i},j:{j}) Adjacent rooms [{adjacent}]: C({currRoom.name}[{currRoom.transform.position}]) <=> P({prevRoom.name}[{prevRoom.transform.position}])");
                     if (adjacent)
                     {
                         //Debug.Log($"Adjacent rooms: C({currRoom.name}) <=> P({prevRoom.name})");
