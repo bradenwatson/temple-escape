@@ -46,6 +46,7 @@ public class Room : MonoBehaviour
         Match roomPassages = Regex.Match(gameObject.name, @"\b\d+\b");
         passageCount = int.Parse(roomPassages.Value);
         node.SetNodeLimit(passageCount);
+        node.SetData(gameObject);
         //Debug.Log($"Passages = ({passageCount})");
     }
 

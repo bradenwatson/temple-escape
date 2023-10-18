@@ -136,31 +136,23 @@ public class Map : MonoBehaviour
         tree.SetRoot(this.centralRoom);
         Debug.Log("Root node set to central room at (" + rooms.First().name + ") @ " + rooms.First().transform.position);
 
-        //List<GameObject> unattached = new List<GameObject>();
-        //Use queue as FIRST COME FIRST SERVED SINCE CLOSEST TO CENTRE
-        //List<CustomNode> unlinkedRooms= new List<CustomNode>();
         for (int i = 1; i < this.totalRooms; i++) 
         {
             //Transform direction of every room individually : https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html
             CustomNode currRoom = rooms[i];
             //Check if rooms contain number of passages
-            //Debug.Log($"i:({i})\t{currRoom.name}\tChildren: ({currRoom.GetChildren().Capacity})");
-
-            Debug.Log($"{currRoom.name}\tChildren:{currRoom.GetChildren().Count == currRoom.GetChildren().Capacity}");
-
 
             //Check if room currently connects to any in the list. If disconnected room becomes fully connected, remove from list.
             //Add current to disconnected if still has connections remaining
-            for(int j = 0; j < i; j++) 
+            for (int j = 0; j < i; j++) 
             {
                 CustomNode prevRoom = rooms[j];
-                Debug.Log($"(i:{i},j{j}:)\t{prevRoom.name}\tChildren: ({prevRoom.GetChildren().Capacity})");
+
                 //If that room's children does not contain null then remove from the list
                 if (prevRoom.GetChildren().Count == prevRoom.GetChildren().Capacity)
                 { 
                     Debug.Log($"Removing idx({j}) room({prevRoom.name})");
                     rooms.RemoveAt(j);
-                    //break;
                 }
                 else
                 {
@@ -170,52 +162,81 @@ public class Map : MonoBehaviour
                     //do dot product of 4 directions (Change later once know how many doors but assume 4 for now)
                     //Do dot product of direction upon displacement vector between current and previous room
                     //Some will have direction, but some will not contact
-
                     //Dot product test-if truly connected then they are alteat beside each other so the dot product is 0
                     //Obtain dot of 1 mean in same direction
+
+                    
+                    
                     
                     //Debug.Log($"C:{currRoom.name} ({currRoom.transform.position})\tP:{prevRoom.name} ({prevRoom.transform.position})");
-                    //Vector3 displacement = room.transform.position - prevRoom.transform.position;
-                    Vector3 displacement = prevRoom.transform.position - currRoom.transform.position;
 
 
-
-                    Debug.Log($"{currRoom.name} ({displacement}) Mag = {displacement.sqrMagnitude}");
-
-
-                    bool north = Vector3.Dot(displacement, currRoom.transform.forward) < 0;
-                    bool south = Vector3.Dot(displacement, currRoom.transform.forward) > 0;
-                    bool east = Vector3.Dot(displacement, currRoom.transform.right) < 0;
-                    bool west = Vector3.Dot(displacement, currRoom.transform.right) > 0;
 
                     //Conditions of Inserting node leaf:
-                    //(1)If distance between walls is within distance betwwen centres, they are connected rooms OR
-                    //(2)Share the same door
+                    //(1)If the mid point magnitude ~ magnitude of half the rooms size (centre to edge = 1/2 perpendicular distance from center >> Use box collider size)
+                    //(2)Share the same door == Check the door object's relationship
                     //(3)Wall Contact
 
-                    if (north)
-                    {
-                        Debug.Log("North");
-                    }
+                    Vector3 displacement = prevRoom.transform.position - currRoom.transform.position;
+                    Debug.Log($"Displacement = ({displacement})");
+                    //Intersections do work but may need more than 1 condition
+                    bool adjacent = currRoom.GetData().GetComponent<BoxCollider>().bounds.Intersects(prevRoom.GetData().GetComponent<BoxCollider>().bounds);    
 
-                    else if (south)
+                    Debug.Log($"Adjacent rooms [{adjacent}]: C({currRoom.name}[{currRoom.transform.position}]) <=> P({prevRoom.name}[{prevRoom.transform.position}])");
+                    if (adjacent)
                     {
-                        Debug.Log("South");
-                    }
+                        //Debug.Log($"Adjacent rooms: C({currRoom.name}) <=> P({prevRoom.name})");
 
-                    else if (east)
-                    {
-                        Debug.Log("East");
-                    }
+                        bool north = Vector3.Dot(displacement, Vector3.forward) > 0;
+                        bool south = Vector3.Dot(displacement, Vector3.back) > 0;
+                        bool east = Vector3.Dot(displacement, Vector3.right) > 0;
+                        bool west = Vector3.Dot(displacement, Vector3.left) > 0;
 
-                    else if (west)
-                    {
-                        Debug.Log("West");
-                    }
+                        //Because capacity has been set, it is possible to select index
+                        if (north)
+                        {
+                            Debug.Log("North");
+                            //Connect forwarda and backwards
+                            //Backward
+                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.N);
+                            //Forward 
+                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.S);
+                        }
 
-                    else
-                    {
-                        throw new Exception("Something strange happened!");
+                        else if (south)
+                        {
+                            Debug.Log("South");
+                            //Connect forwarda and backwards
+                            //Backward
+                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.S);
+                            //Forward 
+                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.N);
+                        }
+
+                        else if (east)
+                        {
+                            Debug.Log("East");
+                            //Connect forwarda and backwards
+                            //Backward
+                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.E);
+                            //Forward 
+                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.W);
+                        }
+
+                        else if (west)
+                        {
+                            Debug.Log("West");
+                            //Connect forwarda and backwards
+                            //Backward
+                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.W);
+                            //Forward 
+                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.E);
+                        }
+
+                        else
+                        {
+                            throw new Exception("Something strange happened!");
+                        }
                     }
 
                 }

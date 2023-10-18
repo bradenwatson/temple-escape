@@ -17,14 +17,16 @@ using UnityEngine;
     *   data (GameObject)
     *   parent (CustomNode)
     *   children (List<CustomNode>)
+    *   
+    *   NOTE: NODE ATTACHED DO NOT HAVE TO BE UNIQUE, THEY CAN BE PREVIOUS EXISTING NODES
 *************************************************************************************************************************************************************************************/
 public class CustomNode : MonoBehaviour
 {
     //PROPERTIES
     int index;
     GameObject data;
-    CustomNode parent;      // For traversal
-    List<CustomNode> children { get; set; }
+    List<CustomNode> parent;       // For traversal
+    List<CustomNode> children;
 
 
     //CONSTRUCTORS
@@ -71,7 +73,7 @@ public class CustomNode : MonoBehaviour
     //GETTERS
     public int GetIndex() { return index; }
     public GameObject GetData() { return data; }
-    public CustomNode GetParent() { return parent; }
+    public List<CustomNode> GetParent() { return parent; }
     public List<CustomNode> GetChildren() { return children; }
     public int GetNodeLimit() { return this.children.Capacity; }
 
@@ -79,7 +81,7 @@ public class CustomNode : MonoBehaviour
     //SETTERS
     public void SetIndex(int _index) { index = _index; }
     public void SetData(GameObject _data) { this.data = _data; }
-    public void SetParent(CustomNode _parent) { this.parent = _parent; }
+    public void SetParent(List<CustomNode> _parent) { this.parent = _parent; }
     public void SetChildren(List<CustomNode> _children) { this.children = _children; }
     public void SetNodeLimit(int limit)
     {
@@ -106,7 +108,7 @@ public class CustomNode : MonoBehaviour
 
 
     //METHODS
-    public void InsertChildren(CustomNode node)
+    public void InsertChildren(CustomNode node)     //Insert consecutively
     {
         if (this.children == null)
         {
@@ -117,7 +119,9 @@ public class CustomNode : MonoBehaviour
         {
 
             this.children.Add(node);
-            this.children.Last().parent = new CustomNode(this);         //Assign child to parent node
+            this.children.Last().parent.Add(this);         //Assign child to parent node as a ref
+            //this.children.Last().parent = this;         //Assign child to parent node as a ref
+
         }
         else
         {
@@ -128,6 +132,31 @@ public class CustomNode : MonoBehaviour
         //if conditions are met.
     }
 
+    public void InsertChildrenAt(int childIdx, CustomNode node)     //Insert consecutively
+    {
+        if (this.children == null)
+        {
+            this.children = new List<CustomNode>();
+        }
+
+        if (this.children.Capacity == 0 || this.children.Count < this.children.Capacity)
+        {
+            if (this.children[childIdx] != null)
+            {
+                throw new NotSupportedException("Element already assigned.");
+            }
+            this.children[childIdx] = node;
+            //this.children[childIdx].parent = this;         //Assign child to parent node as a ref
+
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException("List has reached its maximum already.");
+        }
+
+        //Should not return node for ease of access because it must only exists
+        //if conditions are met.
+    }
 
     /****************************************************************************************
     *

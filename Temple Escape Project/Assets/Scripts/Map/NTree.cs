@@ -254,7 +254,7 @@ public class NTree : MonoBehaviour
     /***************************************************************************************
      * Method: InsertNode
      * Input: node(CustomNode), data (GameObject)  
-     * Output: N/A
+     * Output: nodeInserted (CustomNode)
      * Purpose: Inserts node within the tree at a specific node
      ***************************************************************************************/
     public CustomNode InsertNodeAt(CustomNode node, GameObject data)
@@ -279,6 +279,47 @@ public class NTree : MonoBehaviour
         return nodeInserted;
     }
 
+    /***************************************************************************************
+     * Method: InsertNode
+     * Input: node1(CustomNode), node2(CustomNode)  
+     * Output: nodeInserted (CustomNode)
+     * Purpose: Inserts node within the tree at a specific node
+     ***************************************************************************************/
+    public CustomNode InsertNodeAt(CustomNode node1, CustomNode node2)
+    {
+        if (root == null)
+        {
+            throw new NoNullAllowedException("Tree has not been built.");
+        }
+
+        node2.SetIndex(this.counter++);
+        //Add child node at index
+        node1.InsertChildren(node2);
+
+        //Get the inserted node through the located node's children.
+        return node2;
+    }
+
+    /***************************************************************************************
+     * Method: InsertNode
+     * Input: node1(CustomNode), node2(CustomNode)  
+     * Output: nodeInserted (CustomNode)
+     * Purpose: Inserts node within the tree at a specific node
+     ***************************************************************************************/
+    public CustomNode InsertNodeAt(CustomNode node1, CustomNode node2, int childIdx)
+    {
+        if (root == null)
+        {
+            throw new NoNullAllowedException("Tree has not been built.");
+        }
+
+        node2.SetIndex(this.counter++);
+        //Add child node at index
+        node1.InsertChildrenAt(childIdx, node2);
+
+        //Get the inserted node through the located node's children.
+        return node2;
+    }
     /***************************************************************************************
      * Method: SetTrackerTo
      * Input: trackerIdx(int), nodeIdx (int)
