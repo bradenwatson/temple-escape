@@ -20,7 +20,6 @@ public class Map : MonoBehaviour
     //PROPERTIES
     [SerializeField]
     private static NTree tree;
-    //private BoxCollider Area;
 
     //Use FindObjectType<Enemy>
     [Header("Enemy Details")]
@@ -41,7 +40,7 @@ public class Map : MonoBehaviour
     RoomType PlayerAtType;
 
     [Header("Central room")]
-    private GameObject centralRoom;      
+    private CustomNode centralRoom;      
 
     [Header("Room Count")]
     int totalRooms = 0;
@@ -112,89 +111,59 @@ public class Map : MonoBehaviour
    
     private void DetectRooms()
     {
-        //Get all rooms
-        List<GameObject> rooms = GameObject.FindGameObjectsWithTag("Room").ToList<GameObject>();
+        //Get all rooms by node. This list is temporary, remove elements from list (not destroy object) when room is linked
+        List<CustomNode> rooms = GameObject.FindObjectsOfType<CustomNode>().ToList<CustomNode>();
         
         //https://discussions.unity.com/t/sorting-an-array-of-gameobjects-by-their-position/86640
         //Sort rooms from closest to center on x, then shortest distance from center
         rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ThenBy(rooms => rooms.transform.position.sqrMagnitude).ToList();
-
         //Tranform all rooms fast: https://docs.unity3d.com/ScriptReference/Transform.TransformDirections.html
-        
 
-        //foreach (GameObject pos in rooms)
-        //{
-        //    Debug.Log(pos.name + " = " + pos.transform.position);
-        //}
-        
 
         //Set field total rooms
         this.totalRooms = rooms.Count;
         Debug.Log("Rooms present = " + this.totalRooms);
+        
+        //Assign central room
+        this.centralRoom = rooms.First();
 
+        //Create tree with central room
+        if (tree == null)
+        {
+            tree = gameObject.AddComponent<NTree>();
+        }
 
-
+        tree.SetRoot(this.centralRoom);
+        Debug.Log("Root node set to central room at (" + rooms.First().name + ") @ " + rooms.First().transform.position);
 
         //List<GameObject> unattached = new List<GameObject>();
         //Use queue as FIRST COME FIRST SERVED SINCE CLOSEST TO CENTRE
-        List<GameObject> unlinkedRooms = new List<GameObject>();       //Determined by how many door objects -> create function to detect
-        List<CustomNode> unlinkedNodes = new List<CustomNode>();     //NEW TEST
-        foreach (GameObject room in rooms)
+        //List<CustomNode> unlinkedRooms= new List<CustomNode>();
+        for (int i = 1; i < this.totalRooms; i++) 
         {
             //Transform direction of every room individually : https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html
-            int maxDoors = 4;
+            CustomNode currRoom = rooms[i];
+            //Check if rooms contain number of passages
+            //Debug.Log($"i:({i})\t{currRoom.name}\tChildren: ({currRoom.GetChildren().Capacity})");
+
+            Debug.Log($"{currRoom.name}\tChildren:{currRoom.GetChildren().Count == currRoom.GetChildren().Capacity}");
 
 
-            //if (tree == null)
-            if (room.Equals(rooms.First()))
+            //Check if room currently connects to any in the list. If disconnected room becomes fully connected, remove from list.
+            //Add current to disconnected if still has connections remaining
+            for(int j = 0; j < i; j++) 
             {
-                Debug.Log($"Room = {room.name}");
-                //Assign central room
-                this.centralRoom = rooms.First();
-
-                //Create tree with central room
-                tree = gameObject.AddComponent<NTree>();
-                tree.SetRoot(this.centralRoom);
-
-
-                //Check if its the GameObject contains room class and get it number of doors and initialise its children
-                //if(room.GetComponent<Room>() != null )
-                //{
-                //    maxDoors = room.GetComponent<Room>().doors;
-                //    tree.GetRoot().SetChildren(new List<CustomNode>(maxDoors));
-                //}
-
-                //          ####TMP#####
-                tree.GetRoot().SetChildren(new List<CustomNode>(maxDoors));     //Edit to insert only amount of door attached to GameObject OR detected in the Room class
-                unlinkedRooms.Add(room);    //TMP: Immediately add to unlinkedRooms since it will be connected somehow (START WITH 4 ROOMS)
-                //unlinkedNodes.Add(tree.GetRoot());
-                Debug.Log("Root node set to central room at (" + rooms.First().name + ") @ " + rooms.First().transform.position);
-            }
-            // Rooms after the root node
-            else
-            {
-                //Create a node for room object and initialise its children
-                //CustomNode node = gameObject.AddComponent<CustomNode>();
-                ////if(room.GetComponent<Room>() != null )
-                ////{
-                ////    maxDoors = room.GetComponent<Room>().doors;
-                ////    node.SetChildren(new List<CustomNode>(maxDoors));
-                ////}
-                //node.SetChildren(new List<CustomNode>(maxDoors));   //TMP
-
-
-
-
-
-                //Check if room currently connects to any in the list. If disconnected room becomes fully connected, remove from list.
-                //Add current to disconnected if still has connections remaining
-
-
-
-                //Use function to check connected
-                foreach (GameObject prevRoom in unlinkedRooms)
+                CustomNode prevRoom = rooms[j];
+                Debug.Log($"(i:{i},j{j}:)\t{prevRoom.name}\tChildren: ({prevRoom.GetChildren().Capacity})");
+                //If that room's children does not contain null then remove from the list
+                if (prevRoom.GetChildren().Count == prevRoom.GetChildren().Capacity)
+                { 
+                    Debug.Log($"Removing idx({j}) room({prevRoom.name})");
+                    rooms.RemoveAt(j);
+                    //break;
+                }
+                else
                 {
-
                     //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre and world rotation
                     //Only insertion in the correct following order N,S,E,W
                     // https://docs.unity3d.com/ScriptReference/Vector3.Dot.html
@@ -204,19 +173,25 @@ public class Map : MonoBehaviour
 
                     //Dot product test-if truly connected then they are alteat beside each other so the dot product is 0
                     //Obtain dot of 1 mean in same direction
-                    Debug.Log($"C:{room.name} ({room.transform.position})\tP:{prevRoom.name} ({prevRoom.transform.position})");
+                    
+                    //Debug.Log($"C:{currRoom.name} ({currRoom.transform.position})\tP:{prevRoom.name} ({prevRoom.transform.position})");
                     //Vector3 displacement = room.transform.position - prevRoom.transform.position;
-                    Vector3 displacement = prevRoom.transform.position - room.transform.position;
+                    Vector3 displacement = prevRoom.transform.position - currRoom.transform.position;
 
 
 
-                    Debug.Log($"{room.name} ({displacement})");
+                    Debug.Log($"{currRoom.name} ({displacement}) Mag = {displacement.sqrMagnitude}");
 
 
-                    bool north = Vector3.Dot(displacement, room.transform.forward) > 0;
-                    bool south = Vector3.Dot(displacement, room.transform.forward) < 0;
-                    bool east = Vector3.Dot(displacement, room.transform.right) < 0;
-                    bool west = Vector3.Dot(displacement, room.transform.right) > 0;
+                    bool north = Vector3.Dot(displacement, currRoom.transform.forward) < 0;
+                    bool south = Vector3.Dot(displacement, currRoom.transform.forward) > 0;
+                    bool east = Vector3.Dot(displacement, currRoom.transform.right) < 0;
+                    bool west = Vector3.Dot(displacement, currRoom.transform.right) > 0;
+
+                    //Conditions of Inserting node leaf:
+                    //(1)If distance between walls is within distance betwwen centres, they are connected rooms OR
+                    //(2)Share the same door
+                    //(3)Wall Contact
 
                     if (north)
                     {
@@ -243,39 +218,11 @@ public class Map : MonoBehaviour
                         throw new Exception("Something strange happened!");
                     }
 
-
-
-
-
-
-
-                    //if (!(node.GetChildren().Contains(null)))        //End loop earlier
-                    //{
-                    //    break;
-                    //}
-
-
-                    //(1)If distance between walls is within distance betwwen centres, they are connected rooms OR
-                    //(2)Share the same door
-                    //(3)Wall Contact
                 }
-
-
-                //if (node.GetChildren().Contains(null))
-                //{
-                //    unlinkedNodes.Add(node);
-                //    unlinkedRooms.Add(room);
-                //}
-
-
-
 
             }
 
-
         }
-
-        //Shift each direction based on room's scene rotation
     }
 
 
@@ -330,7 +277,7 @@ public class Map : MonoBehaviour
     public void ChangeTeleport(int idx, bool state)
     {
         GameObject room = tree.FindNode(idx).GetData();
-        room.GetComponent<Room>().IsTeleportable = state;
+        //room.GetComponent<Room>().IsTeleportable = state;
     }
 
 
