@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class PauseControl : MonoBehaviour
 {
@@ -23,7 +20,8 @@ public class PauseControl : MonoBehaviour
     public GameObject pauseMenu;
     bool paused = false;
 
-    [Header("Input Controls to Disable")]
+    [Header("GameObjects to Disable")]
+    public GameObject levelDisplay;
     public GameObject leftTeleportRay;
     public GameObject rightTeleportRay;
 
@@ -51,6 +49,8 @@ public class PauseControl : MonoBehaviour
 
     void Pause()
     {
+        levelDisplay.SetActive(false);
+
         paused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
