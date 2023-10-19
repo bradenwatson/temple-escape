@@ -18,12 +18,12 @@ public class ButtonVR : MonoBehaviour
         isPressed = false;
     }
 
-    private void OnMouseDown()
+    private void OnTriggerEnter(Collider other)
     {
-        if (!isPressed)
+        if (!isPressed && presser.tag == "player")
         {
             button.transform.Translate(0, -0.03f, 0, parent.transform);
-            
+            presser = other.gameObject;
             onPress.Invoke();
             isPressed = true;
         }
