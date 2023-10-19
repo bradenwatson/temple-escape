@@ -97,6 +97,16 @@ public class DoorControl : MonoBehaviour
         isMoving = true;
     }
 
+    public void EnablePlayerProxy()
+    {
+        playerProxyTrigger = true;
+    }
+
+    public void DoorStaysOpen()
+    {
+        delay = float.MaxValue;
+    }
+
     void Update()
     {
         if (isMoving)
