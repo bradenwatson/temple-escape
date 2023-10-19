@@ -45,7 +45,7 @@ public class Room : MonoBehaviour
         //For now use their string object name to determine amount of rooms
         Match roomPassages = Regex.Match(gameObject.name, @"\b\d+\b");
         passageCount = int.Parse(roomPassages.Value);
-        node.SetNodeLimit(passageCount);
+        node.SetNodeLimit(4);       //Due to orientation is indexed based, all rooms has up to max of 4 spaces for passages
         node.SetData(gameObject);
         //Debug.Log($"Passages = ({passageCount})");
     }

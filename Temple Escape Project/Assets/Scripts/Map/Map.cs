@@ -153,20 +153,6 @@ public class Map : MonoBehaviour
                 //If that room's children does not contain null then remove from the list
                 if (prevRoom.GetChildren().Contains(null))
                 {
-                    /*
-                     * What if the intersect ray and get its vector, then check atleast perpendicular line from point of contact to centre of room
-                     * https://discussions.unity.com/t/how-do-i-find-the-intercept-with-bounds/255796/2
-                     */
-
-
-                    //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre and world rotation
-                    //Only insertion in the correct following order N,S,E,W
-                    // https://docs.unity3d.com/ScriptReference/Vector3.Dot.html
-                    //do dot product of 4 directions (Change later once know how many doors but assume 4 for now)
-                    //Do dot product of direction upon displacement vector between current and previous room
-                    //Some will have direction, but some will not contact
-                    //Dot product test-if truly connected then they are alteat beside each other so the dot product is 0
-                    //Obtain dot of 1 mean in same direction
 
 
 
@@ -180,7 +166,7 @@ public class Map : MonoBehaviour
                     //(2)Share the same door == Check the door object's relationship
                     //(3)Wall Contact
 
-                    Vector3 displacement = prevRoom.transform.position - currRoom.transform.position;       //POSSIBLE ISSUE WITH DIAGNOLS
+                    //Vector3 displacement = prevRoom.transform.position - currRoom.transform.position;       
                     //Debug.Log($"Displacement = ({displacement})");
                     //Intersections do work but may need more than 1 condition
                     bool state1 = currRoom.GetData().GetComponent<BoxCollider>().bounds.Intersects(prevRoom.GetData().GetComponent<BoxCollider>().bounds);      //CURRENTLY ISSUES WITH CORNERS (EG ROOM2WAY + ROOM4WAY) >> AT THE CORNER IT CAN INTERSECT IN 2 DIRECTIONS TECHNICALLY
@@ -190,93 +176,39 @@ public class Map : MonoBehaviour
                     if (adjacent)
                     {
                         //Debug.Log($"Adjacent rooms: C({currRoom.name}) <=> P({prevRoom.name})");
-                        /*
-                        //float n = Vector3.Dot(displacement, Vector3.forward);
-                        //float s = Vector3.Dot(displacement, Vector3.back);
-                        //float e = Vector3.Dot(displacement, Vector3.right);
-                        //float w = Vector3.Dot(displacement, Vector3.left);
-
-                        //Debug.Log($"N={n}   S={s}    E={e}    W={w}");
-
-                        //bool north = Vector3.Dot(displacement, Vector3.forward) > 0;
-                        //bool south = Vector3.Dot(displacement, Vector3.back) > 0;
-                        //bool east = Vector3.Dot(displacement, Vector3.right) > 0;
-                        //bool west = Vector3.Dot(displacement, Vector3.left) > 0;
 
 
-                        //bool north = Vector3.Dot(displacement, Vector3.forward) == 1;
-                        //bool south = Vector3.Dot(displacement, Vector3.back) == 1;
-                        //bool east = Vector3.Dot(displacement, Vector3.right) == 1;
-                        //bool west = Vector3.Dot(displacement, Vector3.left) == 1;
+                        //Use angles to differentiate between adjacent rooms including contact with corners (reference from current room center)
+                        Vector3 displacement = prevRoom.transform.position - currRoom.transform.position;
+                        float angle = Vector3.SignedAngle(Vector3.right, displacement, Vector3.down);
+                        //Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}]) <{angle} -> P({prevRoom.name}[{prevRoom.transform.position}])");
 
+                        int error = 5;
+                        bool north = (angle >= (90 - error)) && (angle <= (90 + error));
+                        bool south = (angle >= (-90 - error)) && (angle <= (-90 + error));
+                        bool east = (angle >= (-error)) && (angle <= (error));
+                        bool west = (angle >= (180 - error)) && (angle <= (-180 + error));
 
-                        //DISPLAY ALL TO SEE IF THEY ARE PUT CORRECTLY
-                        //Debug.Log($"N={north}   S={south}    E={east}    W={west}");
-
-                        //Because capacity has been set, it is possible to select index
-                        //if (north)
-                        //{
-                        //    Debug.Log("North");
-                        //    //Connect forwarda and backwards
-                        //    //Backward
-                        //    tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.N);
-                        //    //Forward 
-                        //    //tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.S);
-                        //}
-
-                        //else if (south)
-                        //{
-                        //    Debug.Log("South");
-                        //    //Connect forwarda and backwards
-                        //    //Backward
-                        //    tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.S);
-                        //    //Forward 
-                        //    //tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.N);
-                        //}
-
-                        //else if (east)
-                        //{
-                        //    Debug.Log("East");
-                        //    //Connect forwarda and backwards
-                        //    //Backward
-                        //    tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.E);
-                        //    //Forward 
-                        //    //tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.W);
-                        //}
-
-                        //else if (west)
-                        //{
-                        //    Debug.Log("West");
-                        //    //Connect forwarda and backwards
-                        //    //Backward
-                        //    tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.W);
-                        //    //Forward 
-                        //    //tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.E);
-                        //}
-
-                        //else      //CASE WITH CORNERS, THERE WILL ATLEAST 2 ARE TRUE BECAUSE A BOTH CORNERS INTERSECT IT MEANS 2 DIRECTIONS 
-                        //{
-                        //    
-                        //}
-                        */
-                        //DO POSITIVE AND NEGATIVE VALUES
-                        float n = Vector3.Dot(displacement, Vector3.forward);
-                        float e = Vector3.Dot(displacement, Vector3.right);
-
-                        bool north = n > 0;
-                        bool south = n < 0;
-                        bool east = e > 0;
-                        bool west = e < 0;
-                        //Debug.Log($"N={north}   S={south}    E={east}    W={west}");
-
-                        //Failed: (4,0) 3W1 && 3W2 | (4,1) 3W && 3W3 (4,2)
-                        //WORKS FOR ALL: bool perpendicular = ((north ^ east) || (south ^ west)) && ((south ^ east) || (north ^ west));
-                        bool perpendicular = ((north ^ east) || (south ^ west)) && ((south ^ east) || (north ^ west));
-                        //if (perpendicular)  //Only 1, not both
-                        //{
-                        //    Debug.Log($"Perpendicular");
-                        //}
-                        Debug.Log($"(i:{i},j:{j}) Perpendicular [{perpendicular}]: C({currRoom.name}[{currRoom.transform.position}]) <=> P({prevRoom.name}[{prevRoom.transform.position}])");
+                        if(north)
+                        {
+                            Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}])  >>  (North) >>  P({prevRoom.name}[{prevRoom.transform.position}])");
+                        }
+                        else if(south)
+                        {
+                            Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}])  >>  (South) >>  P({prevRoom.name}[{prevRoom.transform.position}])");
+                        }
+                        else if (east)
+                        {
+                            Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}])  >>  (East) >>  P({prevRoom.name}[{prevRoom.transform.position}])");
+                        }
+                        else if (west)
+                        {
+                            Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}])  >>  (West) >>  P({prevRoom.name}[{prevRoom.transform.position}])");
+                        }
+                        else
+                        {
+                            Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}])  --None--  P({prevRoom.name}[{prevRoom.transform.position}])");
+                        }
                     }
 
                 }
