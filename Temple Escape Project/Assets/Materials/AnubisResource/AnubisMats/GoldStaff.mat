@@ -79,6 +79,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Metallic: 1
+    - _Smoothness: 1
     - _WorkflowMode: 1
     m_Colors: []
   m_BuildTextureStacks: []
