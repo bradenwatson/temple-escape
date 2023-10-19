@@ -127,7 +127,7 @@ public class mBrain_brain : MonoBehaviour
         {
             if (GetDistance(player.transform.position) == 0)
             {
-                print("distance equal to 0");
+                //print("distance equal to 0");
                 return false;
             }
 
