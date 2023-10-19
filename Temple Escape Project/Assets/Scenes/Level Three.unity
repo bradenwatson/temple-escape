@@ -24328,7 +24328,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 822988384}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 525263292783515682, guid: d220d5ecfb79bf64eb549fda3ca8bde0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 972820115}
   m_SourcePrefab: {fileID: 100100000, guid: d220d5ecfb79bf64eb549fda3ca8bde0, type: 3}
 --- !u!4 &972820113 stripped
 Transform:
@@ -24336,6 +24340,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 972820112}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &972820114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 525263292783515682, guid: d220d5ecfb79bf64eb549fda3ca8bde0,
+    type: 3}
+  m_PrefabInstance: {fileID: 972820112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &972820115
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972820114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.03174001, y: 0.069321856, z: 0.04508001}
+  m_Center: {x: 0.00019703158, y: 0.004195921, z: 0.007007002}
 --- !u!4 &973225474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1514089033811187747, guid: af3faaa3b2f0f8747becf026633c59bd,
@@ -29809,41 +29840,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 99105409}
     m_Modifications:
-    - target: {fileID: 323296615943481151, guid: 25d732fb4ac58c94ab0eb36396e92c28,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 635786643}
-    - target: {fileID: 905957936964492375, guid: 25d732fb4ac58c94ab0eb36396e92c28,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1175977156}
-    - target: {fileID: 1258592460023388892, guid: 25d732fb4ac58c94ab0eb36396e92c28,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 658979998}
-    - target: {fileID: 1482472937358786537, guid: 25d732fb4ac58c94ab0eb36396e92c28,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1175977156}
-    - target: {fileID: 4016151656893344694, guid: 25d732fb4ac58c94ab0eb36396e92c28,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 658979998}
-    - target: {fileID: 7666865518366301689, guid: 25d732fb4ac58c94ab0eb36396e92c28,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1175977156}
-    - target: {fileID: 8566680356266858550, guid: 25d732fb4ac58c94ab0eb36396e92c28,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 658979998}
     - target: {fileID: 1807056291264842017, guid: 24faf8885a587f647ac83f565769555c,
         type: 3}
       propertyPath: m_Mesh
@@ -29914,6 +29910,41 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 635786643}
+    - target: {fileID: 323296615943481151, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 635786643}
+    - target: {fileID: 905957936964492375, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1175977156}
+    - target: {fileID: 1258592460023388892, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 658979998}
+    - target: {fileID: 1482472937358786537, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1175977156}
+    - target: {fileID: 4016151656893344694, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 658979998}
+    - target: {fileID: 7666865518366301689, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1175977156}
+    - target: {fileID: 8566680356266858550, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 658979998}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -31628,8 +31659,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.103058554, y: 0.102393314, z: 0.044591196}
-  m_Center: {x: -0.00064898655, y: 0.00077567995, z: -0.0012893518}
+  m_Size: {x: 0.13767624, y: 0.14412957, z: 0.074380875}
+  m_Center: {x: 0.0012969971, y: -0.001500994, z: -0.0036649704}
 --- !u!114 &1148429538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34154,8 +34185,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.10094732, y: 0.100966826, z: 0.043737568}
-  m_Center: {x: 0.0003990028, y: 0.00011213124, z: -0.00008998811}
+  m_Size: {x: 0.14691639, y: 0.13320416, z: 0.07908058}
+  m_Center: {x: 0.0016341209, y: 0.0022691786, z: -0.0006952286}
 --- !u!114 &1343050929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50498,8 +50529,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.10635921, y: 0.09052291, z: 0.040363822}
-  m_Center: {x: 0.000052042305, y: 0.0004740022, z: -0.00023562275}
+  m_Size: {x: 0.13774109, y: 0.124676585, z: 0.067399025}
+  m_Center: {x: -0.0010719299, y: 0.0015711188, z: -0.0009999275}
 --- !u!114 &1974564341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57406,8 +57437,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.104046926, y: 0.10609138, z: 0.096055694}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.14014435, y: 0.1571917, z: 0.12362862}
+  m_Center: {x: 0.0028648376, y: 0.002584368, z: 0.0048093796}
 --- !u!114 &2115727895
 MonoBehaviour:
   m_ObjectHideFlags: 0
