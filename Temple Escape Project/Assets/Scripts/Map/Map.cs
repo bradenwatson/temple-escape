@@ -152,7 +152,12 @@ public class Map : MonoBehaviour
 
                 //If that room's children does not contain null then remove from the list
                 if (prevRoom.GetChildren().Contains(null))
-                { 
+                {
+                    /*
+                     * What if the intersect ray and get its vector, then check atleast perpendicular line from point of contact to centre of room
+                     * https://discussions.unity.com/t/how-do-i-find-the-intercept-with-bounds/255796/2
+                     */
+
 
                     //Check the following: angle & contact between current and prev room//Regardless of left or right side of the centre and world rotation
                     //Only insertion in the correct following order N,S,E,W
@@ -163,9 +168,9 @@ public class Map : MonoBehaviour
                     //Dot product test-if truly connected then they are alteat beside each other so the dot product is 0
                     //Obtain dot of 1 mean in same direction
 
-                    
-                    
-                    
+
+
+
                     //Debug.Log($"C:{currRoom.name} ({currRoom.transform.position})\tP:{prevRoom.name} ({prevRoom.transform.position})");
 
 
@@ -262,10 +267,11 @@ public class Map : MonoBehaviour
                         bool south = n < 0;
                         bool east = e > 0;
                         bool west = e < 0;
-                        Debug.Log($"N={north}   S={south}    E={east}    W={west}");
-                        
+                        //Debug.Log($"N={north}   S={south}    E={east}    W={west}");
 
-                        bool perpendicular = ((north ^ east) || (south ^ west)) ;
+                        //Failed: (4,0) 3W1 && 3W2 | (4,1) 3W && 3W3 (4,2)
+                        //WORKS FOR ALL: bool perpendicular = ((north ^ east) || (south ^ west)) && ((south ^ east) || (north ^ west));
+                        bool perpendicular = ((north ^ east) || (south ^ west)) && ((south ^ east) || (north ^ west));
                         //if (perpendicular)  //Only 1, not both
                         //{
                         //    Debug.Log($"Perpendicular");
