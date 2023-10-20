@@ -25,7 +25,7 @@ using UnityEngine;
     * Assumes nodes are fixed and will not be deleted
     * Assumes existence of central node and is not optimised for unbalanced trees
 /************************************************************************************************************************************************************************************/
-public class NTree : MonoBehaviour
+public class NTree
 {
 
     //PROPERTIES
@@ -67,7 +67,8 @@ public class NTree : MonoBehaviour
         }
         else
         {
-            node.SetIndex(this.counter++);     //Counter increments after method runs 
+            node.SetIndex(this.counter);     //Counter increments after method runs 
+            this.counter += 1;
             this.root = node;
             Debug.Log($"NTree instantiated with root as ({node.GetData().name}) " 
                     + $"@ [{this.root.GetIndex()}].");
@@ -82,17 +83,25 @@ public class NTree : MonoBehaviour
 
     //SETTERS
     public void SetRoot(CustomNode root) {  this.root = root; Debug.Log($"Set root to node({root.GetData()})"); }
-    public void SetRoot(GameObject data) 
+    //public void SetRoot(GameObject data) 
+    //{
+    //    //this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs 
+    //    this.root = gameObject.AddComponent<CustomNode>();
+    //    CustomNode(this.root, data);
+    //    Debug.Log($"NTree root set as ({data.name}) @ [{this.root.GetIndex()}].");
+    //}
+
+    public void SetRoot(GameObject data)
     {
         //this.root = new CustomNode(this.counter++, data);     //Counter increments after method runs 
-        this.root = gameObject.AddComponent<CustomNode>();
-        CustomNode(this.root, data);
+        this.root = new CustomNode(data);
         Debug.Log($"NTree root set as ({data.name}) @ [{this.root.GetIndex()}].");
     }
 
     private void CustomNode(CustomNode node, GameObject data)
     {
-        node.SetIndex(this.counter++);
+        node.SetIndex(this.counter);
+        this.counter += 1;
         node.SetData(data);
     }
 
@@ -104,14 +113,22 @@ public class NTree : MonoBehaviour
      * Output: N/A
      * Purpose: Creates a unique node separate to the tree containing GameObject data
     ***************************************************************************************/
+    //public void InsertTracker()
+    //{
+    //    if (this.tracker == null) { this.tracker = new List<CustomNode>(); }
+
+    //    CustomNode tmp = gameObject.AddComponent<CustomNode>();
+    //    this.tracker.Add(tmp);
+    //}
+
     public void InsertTracker()
     {
         if (this.tracker == null) { this.tracker = new List<CustomNode>(); }
 
-        CustomNode tmp = gameObject.AddComponent<CustomNode>();
+        CustomNode tmp = new CustomNode();
         this.tracker.Add(tmp);
     }
-    
+
     /***************************************************************************************
      * Method: SelectTracker
      * Input: index(int)
@@ -224,19 +241,39 @@ public class NTree : MonoBehaviour
      * Output: nodeInserted (CustomNode)
      * Purpose: Inserts node within the tree at a specific key
      ***************************************************************************************/
-    public CustomNode InsertNodeAt(int key, GameObject data) 
+    //public CustomNode InsertNodeAt(int key, GameObject data) 
+    //{
+    //    if(root == null) 
+    //    {
+    //        throw new NoNullAllowedException("Tree has not been built."); 
+    //    }
+
+    //    //Add child node at index
+    //    //CustomNode child = new CustomNode(this.counter++, data);
+    //    CustomNode child = gameObject.AddComponent<CustomNode>();
+    //    CustomNode(child, data);
+    //    CustomNode nodeToFind = FindNode(key);
+    //    if (nodeToFind == null) 
+    //    {
+    //        throw new NullReferenceException("Node does not exist.");
+    //    }
+    //    nodeToFind.InsertChildren(child);
+
+    //    return child;
+    //}
+
+    public CustomNode InsertNodeAt(int key, GameObject data)
     {
-        if(root == null) 
+        if (root == null)
         {
-            throw new NoNullAllowedException("Tree has not been built."); 
+            throw new NoNullAllowedException("Tree has not been built.");
         }
 
         //Add child node at index
-        //CustomNode child = new CustomNode(this.counter++, data);
-        CustomNode child = gameObject.AddComponent<CustomNode>();
-        CustomNode(child, data);
+        CustomNode child = new CustomNode(this.counter, data);
+        this.counter += 1;
         CustomNode nodeToFind = FindNode(key);
-        if (nodeToFind == null) 
+        if (nodeToFind == null)
         {
             throw new NullReferenceException("Node does not exist.");
         }
@@ -251,6 +288,22 @@ public class NTree : MonoBehaviour
      * Output: nodeInserted (CustomNode)
      * Purpose: Inserts node within the tree at a specific node
      ***************************************************************************************/
+    //public CustomNode InsertNodeAt(CustomNode node, GameObject data)
+    //{
+    //    if (root == null)
+    //    {
+    //        throw new NoNullAllowedException("Tree has not been built.");
+    //    }
+
+    //    //Add child node at index
+    //    //CustomNode child = new CustomNode(this.counter++, data);
+    //    CustomNode child = gameObject.AddComponent<CustomNode>();
+    //    CustomNode(child, data);
+    //    node.InsertChildren(child);
+
+    //    return child;
+    //}
+
     public CustomNode InsertNodeAt(CustomNode node, GameObject data)
     {
         if (root == null)
@@ -259,9 +312,8 @@ public class NTree : MonoBehaviour
         }
 
         //Add child node at index
-        //CustomNode child = new CustomNode(this.counter++, data);
-        CustomNode child = gameObject.AddComponent<CustomNode>();
-        CustomNode(child, data);
+        CustomNode child = new CustomNode(this.counter, data);
+        this.counter += 1;
         node.InsertChildren(child);
 
         return child;
@@ -280,7 +332,8 @@ public class NTree : MonoBehaviour
             throw new NoNullAllowedException("Tree has not been built.");
         }
 
-        node2.SetIndex(this.counter++);
+        node2.SetIndex(this.counter);
+        this.counter += 1;
         //Add child node at index
         node1.InsertChildren(node2);
 
@@ -301,7 +354,8 @@ public class NTree : MonoBehaviour
             throw new NoNullAllowedException("Tree has not been built.");
         }
 
-        node2.SetIndex(this.counter++);
+        node2.SetIndex(this.counter);
+        this.counter += 1;
         //Add child node at index
         node1.InsertChildrenAt(childIdx, node2);
 
@@ -356,6 +410,7 @@ public class NTree : MonoBehaviour
         string data = string.Empty;
         currLvl.Enqueue(this.GetRoot());
         allPrevNodes.Enqueue(this.GetRoot());
+
         //Loop until last node contains no children
         while (currLvl.Count > 0 && nextLvl.Count > 0)
         {
@@ -364,8 +419,13 @@ public class NTree : MonoBehaviour
             //Enqueue all currLvl children onto the nextLvl for next cycle
             foreach (CustomNode node in currNode.GetChildren())
             {
-                nextLvl.Enqueue(node);
-                allPrevNodes.Enqueue(node);
+                if(node !=null)
+                {
+                    nextLvl.Enqueue(node);
+                    allPrevNodes.Enqueue(node);
+                    Debug.Log($"{currNode.GetIndex()}: Child ({node.GetIndex()})");
+                }
+                
             }
 
 

@@ -20,7 +20,7 @@ using UnityEngine;
     *   
     *   NOTE: NODE ATTACHED DO NOT HAVE TO BE UNIQUE, THEY CAN BE PREVIOUS EXISTING NODES
 *************************************************************************************************************************************************************************************/
-public class CustomNode : MonoBehaviour
+public class CustomNode 
 {
     // PROPERTIES
     int index;
