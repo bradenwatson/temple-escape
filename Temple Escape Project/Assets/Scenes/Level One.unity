@@ -2485,7 +2485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &568056292
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2500,7 +2500,7 @@ RectTransform:
   m_Children:
   - {fileID: 201774646}
   - {fileID: 202291730}
-  m_Father: {fileID: 1549195876}
+  m_Father: {fileID: 1873300247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4244,7 +4244,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772275183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9907,7 +9907,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 568056292}
   - {fileID: 1873300247}
   m_Father: {fileID: 1555030256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12143,6 +12142,7 @@ Transform:
   - {fileID: 789886962}
   - {fileID: 648989465}
   - {fileID: 781558958}
+  - {fileID: 568056292}
   m_Father: {fileID: 1549195876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1896392432 stripped
@@ -17915,8 +17915,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeScreen: {fileID: 772275184}
-  finishedFading: 1
-  valueToBeDividedByDeltaTimeForSpeedChanging: 2
+  finishedFading: 0
+  valueToBeDividedByDeltaTimeForSpeedChanging: 0.3
 --- !u!114 &2124482858
 MonoBehaviour:
   m_ObjectHideFlags: 0
