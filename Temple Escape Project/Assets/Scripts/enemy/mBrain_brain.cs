@@ -127,20 +127,22 @@ public class mBrain_brain : MonoBehaviour
         {
             if (GetDistance(player.transform.position) == 0)
             {
-                print("distance equal to 0");
                 return false;
             }
 
             RaycastHit hit;
-            Vector3 direction = (player.transform.position - transform.position).normalized;
-            Vector3 startingPosition = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
-            if (Physics.Raycast(startingPosition, direction, out hit, distanceMonsterCanSee, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
+            Vector3 direction = (player.transform.position - transform.position);
+            Ray ray = new Ray(transform.position, direction);
+
+            if (Physics.Raycast(ray, out hit, direction.magnitude, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
             {
                 print(hit.collider.gameObject.layer);
+                print(hit.collider.gameObject.name);
                 if (hit.collider.gameObject == player)
                 {
+                    print("hit player");
                     return true;
-                }                
+                }
             }
         }
         return false;
