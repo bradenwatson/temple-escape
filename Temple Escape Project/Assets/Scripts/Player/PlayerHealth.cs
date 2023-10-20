@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     public bool isRespawning = false;
     public bool playerIsDead = false;
 
+    [SerializeField] AudioSource gameOverSource;
 
     void Start()
     {
@@ -77,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
     private void GameOverState()
     {
         Debug.Log("Player Died");
+        PlaySound.PlaySoundOnce("Game_Over", gameOverSource);
         playerIsDead = true;
     }
 }
