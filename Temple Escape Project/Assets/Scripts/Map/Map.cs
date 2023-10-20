@@ -9,11 +9,9 @@
     * Uses NTree and Room class
     * Uses enum called Compass which is used to indicate how list of child rooms are connected by index
 /************************************************************************************************************************************************************************************/
-using NUnit.Framework.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public enum Compass { N, S, E, W};      //Global orientation assigned to respective index
@@ -54,28 +52,17 @@ public class Map : MonoBehaviour
     [Header("Other options")]
     public bool isFinalLvl;
 
+
+
+
     //CONSTRUCTORS
     public void Awake()
     {
-        try
-        {
-            //tree = gameObject.AddComponent<NTree>();
-            DetectRooms();
-            //Debug.Log("Map made in awake.");
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.LogWarning("Caught in Map(): " + e);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
+        CreateRooms();
     }
 
 
-    //https://docs.unity3d.com/ScriptReference/MonoBehaviour.Awake.html
-    //https://gamedevbeginner.com/start-vs-awake-in-unity/
+    
 
 
     //GETTERS
@@ -93,42 +80,107 @@ public class Map : MonoBehaviour
 
 
     //METHODS
-    /***************************************************************************************/
-    /* Method: TestOverlap (WIP)
-     * Input: N/A
-     * Output: isOverlapping(bool)
-     * Purpose: Check if central node walls overlaps with other acdcessible walls within delta range
-    /***************************************************************************************/
 
-   
-    private void DetectRooms()
+    /*********************************************************************************************************
+    * Method: TestOverlap 
+    * Input: N/A
+    * Output: N/A
+    * Purpose: Connects rooms beginning from the center and spanning outward horizontally
+    *********************************************************************************************************/
+
+    /************************
+     * CORE METHOD
+     ***********************/
+    private void CreateRooms()
     {
-        //Get all rooms by node. This list is temporary, remove elements from list (not destroy object) when room is linked
-        List<CustomNode> rooms = GameObject.FindObjectsOfType<CustomNode>().ToList<CustomNode>();
-        
-        //https://discussions.unity.com/t/sorting-an-array-of-gameobjects-by-their-position/86640
-        //Sort rooms from closest to center on x, then shortest distance from center
-        rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ThenBy(rooms => rooms.transform.position.sqrMagnitude).ToList();
-        //Tranform all rooms fast: https://docs.unity3d.com/ScriptReference/Transform.TransformDirections.html
-
-
-        //Set field total rooms
-        this.totalRooms = rooms.Count;
-        Debug.Log("Rooms present = " + this.totalRooms);
-        
-        //Assign central room
-        this.centralRoom = rooms.First();
-
-        //Create tree with central room
-        if (tree == null)
+        try
         {
-            tree = gameObject.AddComponent<NTree>();
+            List<CustomNode> rooms = null;
+            //Get all rooms by node. This list is temporary for inserting nodes.
+            if (GameObject.FindObjectOfType<CustomNode>() != null)
+            {
+                rooms = GameObject.FindObjectsOfType<CustomNode>().ToList<CustomNode>();
+            }
+            else if (GameObject.FindGameObjectWithTag("Room") != null)
+            {
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Room"))
+                {
+                    CustomNode node = obj.GetComponent<CustomNode>();
+                    if (node != null)
+                    {
+                        rooms.Add(node);
+                    }
+                }
+            }
+            else
+            {
+                throw new NullReferenceException("Rooms is not present in the scene. Ensure the gameObject has 'Room' script.");
+            }
+
+
+            //https://discussions.unity.com/t/sorting-an-array-of-gameobjects-by-their-position/86640
+            //Sort rooms from closest to center on x, then shortest distance from center
+            rooms = rooms.OrderBy(rooms => Math.Abs(rooms.transform.position.x)).ThenBy(rooms => rooms.transform.position.sqrMagnitude).ToList();
+            //Tranform all rooms fast: https://docs.unity3d.com/ScriptReference/Transform.TransformDirections.html
+
+
+            //Set Map field total rooms
+            this.totalRooms = rooms.Count;
+            Debug.Log("Rooms present = " + this.totalRooms);        //MODIFY FOR FUNCTION BELOW
+
+            /**** -SUB METHOD- ****/
+            CountTotalRoomType(rooms);
+            /**********************/
+
+
+            //Assign central room
+            this.centralRoom = rooms.First();
+
+            //Create tree with central room
+            if (tree == null)
+            {
+                tree = gameObject.AddComponent<NTree>();
+            }
+
+            tree.SetRoot(this.centralRoom);
+            Debug.Log("Root node set to central room at (" + rooms.First().name + ") @ " + rooms.First().transform.position);
+
+
+            /**** -SUB METHOD- ****/
+            IterateRooms(rooms);
+            /**********************/
+
+
+            /**** -SUB METHOD- ****/
+            //(DEBUGGING ONLY) : Do one last check if all rooms are full
+            VerifyConnections(rooms);
+            /**********************/
         }
+        catch (NullReferenceException e)
+        {
+            Debug.LogWarning($"Caught in Map [CreateRooms()]:  {e}.");
+        }
+        catch (Exception e) 
+        {
+            Debug.LogWarning($"Caught in Map [CreateRooms()]:  {e}.");
+        }
+    }
 
-        tree.SetRoot(this.centralRoom);
-        Debug.Log("Root node set to central room at (" + rooms.First().name + ") @ " + rooms.First().transform.position);
 
-        for (int i = 1; i < rooms.Count; i++) 
+    /************************
+    * SUB METHOD
+    ***********************/
+    private void CountTotalRoomType(List<CustomNode> rooms)          //WIP
+    {
+
+    }
+
+    /************************
+     * SUB METHOD
+     ***********************/
+    private void IterateRooms(List<CustomNode> rooms)
+    {
+        for (int i = 1; i < rooms.Count; i++)
         {
             //Transform direction of every room individually : https://docs.unity3d.com/ScriptReference/Transform.TransformDirection.html
             CustomNode currRoom = rooms[i];
@@ -136,116 +188,156 @@ public class Map : MonoBehaviour
 
             //Check if room currently connects to any in the list.
             //Add current to disconnected if still has connections remaining
-            for (int j = 0; j < i; j++)             
+            for (int j = 0; j < i; j++)
             {
                 CustomNode prevRoom = rooms[j];
 
                 //If that room's children does not contain null ignore but do not delete reference.
                 if (prevRoom.GetChildren().Count(x => x != null) <= prevRoom.GetData().GetComponent<Room>().PassageCount)
                 {
-                    //Conditions of Inserting node leaf:
-                    //(1)Wall Contact
-                    //(2)If the mid point magnitude ~ magnitude of half the rooms size (centre to edge = 1/2 perpendicular distance from center >> Use box collider size)
-                    //(Optional) Share the same door == Check the door object's relationship
-                    //(3) Check perpendicular direction within error limit
-
-
-                    //Intersections do work but may need more than 1 condition
-                    //CURRENTLY ISSUES WITH CORNERS (EG ROOM2WAY + ROOM4WAY) >> AT THE CORNER IT CAN INTERSECT IN 2 DIRECTIONS TECHNICALLY                                                                                                                                            
-                    //FOR THIS TO WORK, IT NEEDS ONLY ONE AXIS NOT ZERO
-                    bool state1 = currRoom.GetData().GetComponent<BoxCollider>().bounds.Intersects(prevRoom.GetData().GetComponent<BoxCollider>().bounds);      
-                    
-
-
-                    //Test if the extends distance of currRoom is ~90 of the half of the displacement length
-                    Vector3 displacement = prevRoom.transform.position - currRoom.transform.position;
-                    Vector3 toCurrCenter = currRoom.GetData().GetComponent<BoxCollider>().bounds.extents;
-                    float percentMin = 0.90f;
-
-
-
-                    bool adjacent = state1;
-                    //Check if half of room size is within the half of the displacement vector which can be done by comparing lengths based on their position as well
-                    if (!adjacent)
-                    {
-                        bool state2 = (toCurrCenter.magnitude > (percentMin * displacement.magnitude)) && (toCurrCenter.magnitude <= displacement.magnitude);
-                        adjacent = state1 || state2;
-                        Debug.Log($"Exact = {state1}     Approx = {state2}       disp = ({displacement}) |{displacement.magnitude}      extends = ({toCurrCenter}) |{toCurrCenter.magnitude}");
-                    }
-
-                    //Debug.Log($"(i:{i},j:{j}) Adjacent rooms [{adjacent}]: C({currRoom.name}[{currRoom.transform.position}]) <=> P({prevRoom.name}[{prevRoom.transform.position}])");
-                    if (adjacent)
-                    {
-                        //Use angles to differentiate between adjacent rooms including contact with corners (reference from current room center, anglemeasured from horizontal)
-                        float angle = Vector3.SignedAngle(Vector3.right, displacement, Vector3.down);
-                        //Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}]) <{angle} -> P({prevRoom.name}[{prevRoom.transform.position}])");
-
-                        int error = 5;
-                        bool north = (angle >= (90 - error)) && (angle <= (90 + error));
-                        bool south = (angle >= (-90 - error)) && (angle <= (-90 + error));
-                        bool east = (angle >= (-error)) && (angle <= (error));
-                        bool west = (angle >= (180 - error) && angle <= 180) || (angle >= -180 && angle <= (-180 + error));
-
-
-
-                        //Its is possible the tree does not have the currNode inserted yet so insert from previous, THEN the currNode
-                        if (north)
-                        {
-
-                            Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   >>  (North) >>  C({prevRoom.name}[{prevRoom.transform.position}])");
-                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.S);
-                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.N);
-                        }
-                        else if (south)
-                        {
-
-                            Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   >>  (South) >>  C({prevRoom.name}[{prevRoom.transform.position}])");
-                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.N);
-                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.S);
-                        }
-                        else if (east)
-                        {
-
-                            Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   >>  (East) >>  C({prevRoom.name}[{prevRoom.transform.position}])");
-                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.W);
-                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.E);
-                        }
-                        else if (west)
-                        {
-
-                            Debug.Log($"D=({displacement}):   P({currRoom.name} [ {currRoom.transform.position} ])   >>  (West) >>  C( {prevRoom.name} [ {prevRoom.transform.position}])");
-                            tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.E);
-                            tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.W);
-                        }
-                        else
-                        {
-                            //Debug.Log($"D=({displacement}):   P({prevRoom.name}[{prevRoom.transform.position}])   --None--  C({currRoom.name}[{currRoom.transform.position}])");
-                            Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   --None--  C({prevRoom.name}[{prevRoom.transform.position}])");
-                        }
-                    }
+                    /****************************** ------SUB METHODS------ ****************************/
+                    if (IsAdjacentRoom(prevRoom, currRoom)) {   InsertByOrientation(prevRoom, currRoom);    }
+                    /***********************************************************************************/
                 }
+            }
+        }
+    }
+        /************************
+         * SUB METHOD
+         ***********************/
+        //FUTURE ADD DOORS TOO
+        private bool IsAdjacentRoom(CustomNode prevRoom, CustomNode currRoom, float percentMin=0.9f)
+        {
+            //Conditions of Inserting node leaf:
+            //(1)Wall Contact
+            //(2)If the mid point magnitude ~ magnitude of half the rooms size (centre to edge = 1/2 perpendicular distance from center >> Use box collider size)
+            //(Optional) Share the same door == Check the door object's relationship
+            //(3) Check perpendicular direction within error limit
 
+
+            //CURRENTLY ISSUES WITH CORNERS (EG ROOM2WAY + ROOM4WAY) >> AT THE CORNER IT CAN INTERSECT IN 2 DIRECTIONS TECHNICALLY
+            ////Intersections do work but may need more than 1 condition
+            bool state1 = currRoom.GetData().GetComponent<BoxCollider>().bounds.Intersects(prevRoom.GetData().GetComponent<BoxCollider>().bounds);
+
+
+            //Test if the extends distance of currRoom is ~90 of the half of the displacement length
+            /****************************** ------SUB METHOD------ ****************************/
+            Vector3 displacement = DisplacementFromCurrentRoom(prevRoom, currRoom);
+            /***********************************************************************************/
+
+            Vector3 toCurrCenter = currRoom.GetData().GetComponent<BoxCollider>().bounds.extents;
+            
+            bool adjacent = state1;
+            //Check if half of room size is within the half of the displacement vector which can be done by comparing lengths based on their position as well
+            if (!adjacent)
+            {
+                bool state2 = (toCurrCenter.magnitude > (percentMin * displacement.magnitude)) && (toCurrCenter.magnitude <= displacement.magnitude);
+                adjacent = state1 || state2;
+                Debug.Log($"Exact = {state1}     Approx = {state2}       disp = ({displacement}) |{displacement.magnitude}      extends = ({toCurrCenter}) |{toCurrCenter.magnitude}");
             }
 
+            //Debug.Log($"(i:{i},j:{j}) Adjacent rooms [{adjacent}]: C({currRoom.name}[{currRoom.transform.position}]) <=> P({prevRoom.name}[{prevRoom.transform.position}])");
+            return adjacent;
         }
-        //Do one last check if all rooms are full
-        Debug.Log($"Rooms all connected = {rooms.All(x => x.GetChildren().Count(x => x != null) == x.GetData().GetComponent<Room>().PassageCount)}");
-        
-        //foreach(CustomNode room in rooms)
-        //{
-        //    int count = room.GetChildren().Count(x => x != null);
-        //    int max = room.GetData().GetComponent<Room>().PassageCount;
-        //    //if (count == max)
-        //    //{
-        //    //    Debug.Log($"{room.name} Counted = {count}   Max = {max}");
-        //    //}
-        //    //else
-        //    //{
 
-        //    //}
-        //    Debug.Log($"{room.name} ({count == max}): Counted = {count}   Max = {max}");
-        //}
+        /************************
+         * SUB METHOD
+         ***********************/
+        //FUTURE ADD DOORS TOO
+        private void InsertByOrientation(CustomNode prevRoom, CustomNode currRoom, int error=5)
+        {
+            //Use angles to differentiate between adjacent rooms including contact with corners (reference from current room center, anglemeasured from horizontal)
+            /****************************** ------SUB METHOD------ ****************************/
+            Vector3 displacement = DisplacementFromCurrentRoom(prevRoom, currRoom);
+            /***********************************************************************************/
+
+            float angle = Vector3.SignedAngle(Vector3.right, displacement, Vector3.down);
+            //Debug.Log($"D=({displacement}):     C({currRoom.name}[{currRoom.transform.position}]) <{angle} -> P({prevRoom.name}[{prevRoom.transform.position}])");
+
+            bool north = (angle >= (90 - error)) && (angle <= (90 + error));
+            bool south = (angle >= (-90 - error)) && (angle <= (-90 + error));
+            bool east = (angle >= (-error)) && (angle <= (error));
+            bool west = (angle >= (180 - error) && angle <= 180) || (angle >= -180 && angle <= (-180 + error));
+
+
+            //Its is possible the tree does not have the currNode inserted yet so insert from previous, THEN the currNode (WORKING)
+            if (north)
+            {
+                Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   >>  (North) >>  C({prevRoom.name}[{prevRoom.transform.position}])");
+                tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.S);
+                tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.N);
+            }
+            else if (south)
+            {
+
+                Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   >>  (South) >>  C({prevRoom.name}[{prevRoom.transform.position}])");
+                tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.N);
+                tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.S);
+            }
+            else if (east)
+            {
+
+                Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   >>  (East) >>  C({prevRoom.name}[{prevRoom.transform.position}])");
+                tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.W);
+                tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.E);
+            }
+            else if (west)
+            {
+
+                Debug.Log($"D=({displacement}):   P({currRoom.name} [ {currRoom.transform.position} ])   >>  (West) >>  C( {prevRoom.name} [ {prevRoom.transform.position}])");
+                tree.InsertNodeAt(prevRoom, currRoom, (int)Compass.E);
+                tree.InsertNodeAt(currRoom, prevRoom, (int)Compass.W);
+            }
+            else
+            {
+                //Debug.Log($"D=({displacement}):   P({prevRoom.name}[{prevRoom.transform.position}])   --None--  C({currRoom.name}[{currRoom.transform.position}])");
+                Debug.Log($"D=({displacement}):   P({currRoom.name}[{currRoom.transform.position}])   --None--  C({prevRoom.name}[{prevRoom.transform.position}])");
+            }
+        }
+
+            /************************
+             * SUB METHOD
+             ***********************/
+            private Vector3 DisplacementFromCurrentRoom(CustomNode prevRoom, CustomNode currRoom)
+            {
+                return prevRoom.transform.position - currRoom.transform.position; 
+            }
+
+
+    /************************
+     * SUB METHOD
+     ***********************/
+    private void VerifyConnections(List<CustomNode> rooms)
+    {
+        Debug.Log($"Rooms all connected = {rooms.All(x => x.GetChildren().Count(x => x != null) == x.GetData().GetComponent<Room>().PassageCount)}");
+
+        //(DEBUGGING ONLY) : ITERATE EVERY ELEMENT 
+        /*
+        foreach (CustomNode room in rooms)
+        {
+            int count = room.GetChildren().Count(x => x != null);
+            int max = room.GetData().GetComponent<Room>().PassageCount;
+            //if (count == max)
+            //{
+            //    Debug.Log($"{room.name} Counted = {count}   Max = {max}");
+            //}
+            //else
+            //{
+
+            //}
+            Debug.Log($"{room.name} ({count == max}): Counted = {count}   Max = {max}");
+        }
+        */
     }
+
+
+    /*********************************************************************************************************
+    ************************************     END     OF      METHOD     **************************************
+    *********************************************************************************************************/
+
+
+
+
 
 
 
