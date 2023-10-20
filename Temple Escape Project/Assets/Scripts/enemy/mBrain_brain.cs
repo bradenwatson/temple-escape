@@ -65,9 +65,9 @@ public class mBrain_brain : MonoBehaviour
     public float distanceToStopFromSound = 10f;
 
     [Header("audio source")]
-    [Tooltip("the audio source to be used for footsteps (doesn't need a sound attached just the audio source")]
+    [Tooltip("the audio source to be used for footsteps")]
     public AudioSource footSteps;
-    [Tooltip("the audio source to be used for attacking and growling (doesn't need a sound attached just the audio source")]
+    [Tooltip("the audio source to be used for attacking and growling")]
     public AudioSource growlingAndAttack;
 
     /// <summary>
