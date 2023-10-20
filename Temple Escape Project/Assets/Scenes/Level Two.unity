@@ -11870,7 +11870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeScreen: {fileID: 662053546}
-  finishedFading: 1
+  finishedFading: 0
   valueToBeDividedByDeltaTimeForSpeedChanging: 0.3
 --- !u!114 &874234272
 MonoBehaviour:
