@@ -2493,20 +2493,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568056291}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 201774646}
   - {fileID: 202291730}
-  m_Father: {fileID: 1873300247}
+  m_Father: {fileID: 1549195876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 497, y: 271.8824}
+  m_SizeDelta: {x: 994, y: 546}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568056293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2565,7 +2565,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &568056296
 Canvas:
   m_ObjectHideFlags: 0
@@ -2575,7 +2575,7 @@ Canvas:
   m_GameObject: {fileID: 568056291}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 2
   m_Camera: {fileID: 1549195881}
   m_PlaneDistance: 0.1
   m_PixelPerfect: 0
@@ -2584,10 +2584,10 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &575825503 stripped
 GameObject:
@@ -4244,7 +4244,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772275183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1145}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4436,6 +4436,12 @@ PrefabInstance:
 --- !u!4 &789886962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2618283759299788674, guid: 2fb5806b5d760764696e64b3741ba58d,
+    type: 3}
+  m_PrefabInstance: {fileID: 789886961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &789886963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8838731809934960401, guid: 2fb5806b5d760764696e64b3741ba58d,
     type: 3}
   m_PrefabInstance: {fileID: 789886961}
   m_PrefabAsset: {fileID: 0}
@@ -9907,6 +9913,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 568056292}
   - {fileID: 1873300247}
   m_Father: {fileID: 1555030256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12142,7 +12149,6 @@ Transform:
   - {fileID: 789886962}
   - {fileID: 648989465}
   - {fileID: 781558958}
-  - {fileID: 568056292}
   m_Father: {fileID: 1549195876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1896392432 stripped
@@ -17895,6 +17901,7 @@ GameObject:
   - component: {fileID: 2124482858}
   - component: {fileID: 2124482857}
   - component: {fileID: 2124482866}
+  - component: {fileID: 2124482867}
   m_Layer: 3
   m_Name: XR Origin (XR Rig)
   m_TagString: Player
@@ -17916,7 +17923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeScreen: {fileID: 772275184}
   finishedFading: 0
-  valueToBeDividedByDeltaTimeForSpeedChanging: 0.3
+  valueToBeDividedByDeltaTimeForSpeedChanging: 0.6
 --- !u!114 &2124482858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17929,7 +17936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3a736597a06144f9c16384d6c1d1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   isRespawning: 0
   playerIsDead: 0
   gameOverSource: {fileID: 2124482866}
@@ -18162,6 +18169,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2124482867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124482856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81703dbddb0a84c47a3f1a1838c4d0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1549195881}
+  player: {fileID: 2124482856}
+  GameOverMenu: {fileID: 789886963}
+  leftTeleportRay: {fileID: 1421652725}
+  rightTeleportRay: {fileID: 1016312092}
 --- !u!4 &2133499066 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 382426111913498800, guid: 49f0fe4c8eb34aa488ccbcc93db9fd61,
