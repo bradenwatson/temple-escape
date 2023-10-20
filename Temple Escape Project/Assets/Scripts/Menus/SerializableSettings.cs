@@ -17,14 +17,18 @@ public class SerializableSettings
     {
         get { return volume; }
     }
-    public SerializableSettings()
-    {
 
+    int movement;
+
+    public int Movement
+    {
+        get { return movement; }
     }
 
-    public SerializableSettings(float _brightness, float _volume)
+    public SerializableSettings(float _brightness, float _volume, int _movement)
     {
         brightness = _brightness;
         volume = _volume;
+        movement = _movement;
     }
 }
