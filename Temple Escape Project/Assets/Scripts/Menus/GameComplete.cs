@@ -39,14 +39,14 @@ public class GameComplete : MonoBehaviour
         leftTeleportRay.gameObject.SetActive(false);
         rightTeleportRay.gameObject.SetActive(false);
 
-        Vector3 headPosition = mainCamera.transform.position;
-        Vector3 headDirection = mainCamera.transform.forward;
-        GameCompleteMenu.transform.position = (headPosition + headDirection * -3f)
-            + new Vector3(0.75f, -1.0f, 0.0f);
+        //Vector3 headPosition = mainCamera.transform.position;
+        //Vector3 headDirection = mainCamera.transform.forward;
+        //GameCompleteMenu.transform.position = (headPosition + headDirection * -3f)
+        //    + new Vector3(0.75f, -1.0f, 0.0f);
 
-        Vector3 headRotation = mainCamera.transform.eulerAngles;
-        headRotation.z = 0;
-        GameCompleteMenu.transform.eulerAngles = headRotation;
+        //Vector3 headRotation = mainCamera.transform.eulerAngles;
+        //headRotation.z = 0;
+        //GameCompleteMenu.transform.eulerAngles = headRotation;
     }
 
     public void Resume()

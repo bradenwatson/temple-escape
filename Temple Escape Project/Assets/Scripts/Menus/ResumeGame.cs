@@ -19,5 +19,7 @@ public class ResumeGame : MonoBehaviour
             rightControllerPauseControl.Resume();
             PlaySound.PlaySoundOnce("Menu_Click", menuSounds);
         }
+
+        Time.timeScale = 1f;
     }
 }
