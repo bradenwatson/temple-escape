@@ -18,6 +18,7 @@ public class GameOver : MonoBehaviour
     public GameObject GameOverMenu;
     bool paused = false;
 
+
     [Header("Input Controls to Disable")]
     public GameObject leftTeleportRay;
     public GameObject rightTeleportRay;
@@ -31,6 +32,7 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
+        if (paused) return;
         CheckIfPlayerDied();
     }
 
@@ -47,9 +49,10 @@ public class GameOver : MonoBehaviour
     void Pause()
     {
         paused = true;
+        Debug.Log("in Pause(gameover) function");
         GameOverMenu.SetActive(true);
         Debug.Log("Set Active");
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
 
         leftTeleportRay.gameObject.SetActive(false);
         rightTeleportRay.gameObject.SetActive(false);
