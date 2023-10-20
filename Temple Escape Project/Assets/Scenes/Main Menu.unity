@@ -7522,7 +7522,7 @@ GameObject:
   - component: {fileID: 2020945469381227353}
   - component: {fileID: 3463297014937943223}
   - component: {fileID: 785986247259366597}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7688,7 +7688,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 1642298021
+  m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &3108447561446058684
@@ -8369,12 +8369,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8680505941026341966}
-<<<<<<< Updated upstream
   - component: {fileID: 8680505941026341967}
   m_Layer: 0
-=======
-  m_Layer: 5
->>>>>>> Stashed changes
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
