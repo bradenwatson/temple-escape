@@ -8,7 +8,7 @@ public class Fade : MonoBehaviour
 {
     public Image fadeScreen;
     public bool finishedFading = false;
-    public float valueToBeDividedByDeltaTimeForSpeedChanging = 2f;
+    public float valueToBeDividedByDeltaTimeForSpeedChanging = 0.6f;
 
     bool isFading = false;
     float alphaValue;

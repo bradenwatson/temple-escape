@@ -2504,7 +2504,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 497, y: 271.8824}
+  m_AnchoredPosition: {x: 135, y: 271.8824}
   m_SizeDelta: {x: 994, y: 546}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568056293
@@ -17923,7 +17923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeScreen: {fileID: 772275184}
   finishedFading: 0
-  valueToBeDividedByDeltaTimeForSpeedChanging: 0.6
+  valueToBeDividedByDeltaTimeForSpeedChanging: 0.3
 --- !u!114 &2124482858
 MonoBehaviour:
   m_ObjectHideFlags: 0
