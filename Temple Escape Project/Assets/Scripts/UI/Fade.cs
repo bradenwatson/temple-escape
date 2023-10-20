@@ -7,17 +7,15 @@ using UnityEngine.UI;
 public class Fade : MonoBehaviour
 {
     public Image fadeScreen;
-    public bool finishedFading;
+    public bool finishedFading = false;
     public float valueToBeDividedByDeltaTimeForSpeedChanging = 2f;
 
-    bool isFading;
+    bool isFading = false;
     float alphaValue;
 
     private void Start()
     {
         alphaValue = fadeScreen.color.a;
-        finishedFading = false;
-        isFading = false;
     }
 
     void Update()
