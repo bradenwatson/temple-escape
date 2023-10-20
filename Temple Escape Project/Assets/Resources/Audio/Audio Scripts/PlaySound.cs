@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -19,15 +18,10 @@ public class PlaySound : MonoBehaviour
     public static void PlaySoundOnce(string clipName, AudioSource source)
     {
         if (source == null) { return; } // if no source exists, no sound will play
-        // find sound clip by name 
-        foreach (AudioClip c in allClips)
+        // play sound clip from given source
+        if (!source.isPlaying)
         {
-            if (c.name == clipName)
-            {
-                // play sound clip from given source
-                source.PlayOneShot(c);
-                break;
-            }
+            source.PlayOneShot(FindSound(clipName));
         }
     }
 
@@ -35,17 +29,13 @@ public class PlaySound : MonoBehaviour
     public static IEnumerator PlaySoundOnRepeat(string clipName, AudioSource source, float durationInSeconds)
     {
         if (source == null) { yield return null; } // if no source exists, no sound will play
-        // find sound clip by name 
-        foreach (AudioClip c in allClips)
-        {
-            if (c.name == clipName)
-            {
-                source.clip = c;
-                break;
-            }
-        }
+        // find sound clip by name         
+        source.clip = FindSound(clipName);
         // start playing sound on loop
-        source.Play();
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
         source.loop = true;
         // wait for specified duration
         yield return new WaitForSeconds(durationInSeconds);
@@ -58,16 +48,12 @@ public class PlaySound : MonoBehaviour
     {
         if (source == null) { return; } // if no source exists, no sound will play
         // find sound clip by name 
-        foreach (AudioClip c in allClips)
-        {
-            if (c.name == clipName)
-            {
-                source.clip = c;
-                break;
-            }
-        }
+        source.clip = FindSound(clipName);
         // start playing sound on loop
-        source.Play();
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
         source.loop = true;    
     }
 
@@ -78,5 +64,18 @@ public class PlaySound : MonoBehaviour
         {
             source.Stop();
         }
+    }
+
+    public static AudioClip FindSound(string clipName)
+    {
+        // find sound clip by name 
+        foreach (AudioClip c in allClips)
+        {
+            if (c.name == clipName)
+            {
+                return c;
+            }
+        }
+        return null;
     }
 }

@@ -10,15 +10,13 @@ public class Scuttle : MonoBehaviour
 {
     [SerializeField]
     AudioSource source;
-    void Start()
+
+    private void OnTriggerEnter(Collider other)
     {
         if (source == null)
         {
-            source = gameObject.GetComponent<AudioSource>();
-        } 
-    }
-    private void OnTriggerEnter(Collider other)
-    {
+            AudioSource.PlayClipAtPoint(PlaySound.FindSound("Bugs"), transform.position);
+        }
         PlaySound.PlaySoundOnce("Bugs", source);
     }
 }
