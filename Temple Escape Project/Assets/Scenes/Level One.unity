@@ -33809,7 +33809,7 @@ GameObject:
   - component: {fileID: 1839610830}
   - component: {fileID: 9115853573555661016}
   m_Layer: 10
-  m_Name: Monster Anubis
+  m_Name: Enemy Anubis
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34380,12 +34380,12 @@ SceneRoots:
   m_Roots:
   - {fileID: 1673398777}
   - {fileID: 2124482865}
+  - {fileID: 9115853573555661015}
   - {fileID: 652770674}
   - {fileID: 694714130}
   - {fileID: 603626357}
   - {fileID: 369136500}
   - {fileID: 1648417206}
-  - {fileID: 9115853573555661015}
   - {fileID: 685989793}
   - {fileID: 1032986300}
   - {fileID: 1366153495}
