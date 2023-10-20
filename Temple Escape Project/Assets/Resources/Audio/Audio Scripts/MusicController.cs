@@ -12,7 +12,7 @@ public class MusicController : MonoBehaviour
     [SerializeField] 
     bool musicPlaying = true;
     [SerializeField]
-    KeyCode toggleMusicKey = KeyCode.X;
+    KeyCode toggleMusicKey = KeyCode.M;
     void Start()
     {
         if (musicSource == null)

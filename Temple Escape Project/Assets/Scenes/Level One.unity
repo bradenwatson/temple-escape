@@ -9774,6 +9774,7 @@ GameObject:
   - component: {fileID: 1549195879}
   - component: {fileID: 1549195878}
   - component: {fileID: 1549195877}
+  - component: {fileID: 1549195882}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9809,7 +9810,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7074783060435995805, guid: 658d49a29ad15514ca7b395004731258,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 52372d337dc6a6f4084fe3f4585fdb36, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9817,7 +9818,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 140
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -10108,6 +10109,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1549195882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549195875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad89343dd708da143b5e9e67da6978f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 1549195877}
+  musicPlaying: 1
+  toggleMusicKey: 109
 --- !u!1 &1555030255
 GameObject:
   m_ObjectHideFlags: 0
