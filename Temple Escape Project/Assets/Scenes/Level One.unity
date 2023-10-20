@@ -1191,7 +1191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201774646}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 202291730}
   - component: {fileID: 202291732}
   - component: {fileID: 202291731}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Telegram UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2447,13 +2447,13 @@ GameObject:
   - component: {fileID: 568056295}
   - component: {fileID: 568056294}
   - component: {fileID: 568056293}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &568056292
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2462,9 +2462,9 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568056291}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0.2}
+  m_LocalScale: {x: 0.5, y: 1, z: 6.580034}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 201774646}
   - {fileID: 202291730}
@@ -2472,7 +2472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 135, y: 271.8824}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 994, y: 546}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568056293
@@ -3904,7 +3904,7 @@ GameObject:
   - component: {fileID: 772275186}
   - component: {fileID: 772275185}
   - component: {fileID: 772275184}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17312,6 +17312,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1549195881}
   player: {fileID: 2124482856}
   GameOverMenu: {fileID: 8838731809514246368}
+  paused: 0
   leftTeleportRay: {fileID: 1421652725}
   rightTeleportRay: {fileID: 1016312092}
 --- !u!4 &2133499066 stripped
@@ -23480,6 +23481,11 @@ PrefabInstance:
       propertyPath: rightControllerPauseControl
       value: 
       objectReference: {fileID: 1343116342}
+    - target: {fileID: 825840861706403453, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1549195881}
     - target: {fileID: 871545237699778803, guid: dc465520f0db5864abfc552e464a362f,
         type: 3}
       propertyPath: leftControllerPauseControl
@@ -23490,10 +23496,45 @@ PrefabInstance:
       propertyPath: rightControllerPauseControl
       value: 
       objectReference: {fileID: 1343116342}
+    - target: {fileID: 1245731166628872877, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980277623445646589, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1549195881}
+    - target: {fileID: 2135215006344672136, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1549195881}
+    - target: {fileID: 2221509546545983647, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259016915038208313, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1549195881}
     - target: {fileID: 2979821492039937200, guid: dc465520f0db5864abfc552e464a362f,
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979821492039937200, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168802689916566118, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7680767454481834750, guid: dc465520f0db5864abfc552e464a362f,
         type: 3}
@@ -23544,6 +23585,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826056512239867387, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916007179672025946, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
