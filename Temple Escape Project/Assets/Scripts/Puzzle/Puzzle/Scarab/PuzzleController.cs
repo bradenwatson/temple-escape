@@ -25,7 +25,7 @@ public class PuzzleController : MonoBehaviour
         currentlyCompletedTasks++;
         if (!CheckForPuzzleCompletion())
         {
-            PlaySound.PlaySoundOnce("Puzzle_Solved", puzzleSFX);
+            PlaySound.PlaySoundOnce("Pickup", puzzleSFX);
         }
     }
 
