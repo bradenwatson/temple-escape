@@ -27,6 +27,8 @@ public class CustomNode
     GameObject data;
     CustomNode[] parent; // Use an array instead of List
     CustomNode[] children; // Use an array instead of List
+    int numOfChildrenSpawned;
+    int numOfParentsSpawnsed;
 
     // CONSTRUCTORS
     public CustomNode()
@@ -35,6 +37,8 @@ public class CustomNode
         data = null;
         parent = null;
         children = null;
+        numOfChildrenSpawned = 0;
+        numOfParentsSpawnsed = 0;       //Note root will not have any
     }
 
     public CustomNode(GameObject _data)
@@ -67,6 +71,8 @@ public class CustomNode
         this.data = _node.data;
         this.parent = _node.parent;
         this.children = _node.children;
+        this.numOfChildrenSpawned = _node.numOfChildrenSpawned;
+        this.numOfParentsSpawnsed = _node.numOfParentsSpawnsed;
     }
 
     // GETTERS
@@ -75,12 +81,24 @@ public class CustomNode
     public CustomNode[] GetParent() { return parent; }
     public CustomNode[] GetChildren() { return children; }
     public int GetNodeLimit() { return this.children.Length; }
+    public int GetParentLimit() { return this.parent.Length; }
+    public int GetNumberOfChildren() { return this.numOfChildrenSpawned; }
+    public int GetNumberOfParents() { return this.numOfParentsSpawnsed; }
+
 
     // SETTERS
     public void SetIndex(int _index) { index = _index; }
     public void SetData(GameObject _data) { this.data = _data; }
-    public void SetParent(CustomNode[] _parent) { this.parent = _parent; }
-    public void SetChildren(CustomNode[] _children) { this.children = _children; }
+    public void SetParent(CustomNode[] _parent) 
+    { 
+        this.parent = _parent; 
+        this.numOfParentsSpawnsed = this.parent.Count(x=> x != null);
+    }
+    public void SetChildren(CustomNode[] _children) 
+    { 
+        this.children = _children; 
+        this.numOfChildrenSpawned = this.children.Count(x=> x != null);
+    }
     public void SetNodeLimit(int limit)
     {
         if (limit < 0)
@@ -132,6 +150,20 @@ public class CustomNode
             this.children[childIdx] = node;
             
         }      
+    }
+
+    public void InsertParentAt(int parentIdx, CustomNode node)
+    {
+        if (this.parent == null)
+        {
+            throw new NullReferenceException("Array has not been initialised.");
+        }
+
+        else if (this.parent[parentIdx] == null)
+        {
+            this.parent[parentIdx] = node;
+
+        }
     }
 
     /****************************************************************************************
