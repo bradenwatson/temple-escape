@@ -10,12 +10,7 @@ public class State_CheckOnCollectables : mBrain_base
     public float timeToStayAtEachCollectable = 1f;
     private int currentIndex = 0;
 
-    private float timeAtCollectable = 0f;
-    private bool goingToCollectable = false;
-    private int totalCollectablesFound = 0;
-
-    private List<int> randomInts = new List<int>();     
-    private List<Vector3> collectablesTransform = new List<Vector3>();
+    bool goingToCollectable = false;    
 
     public override void UpdateState()
     {
@@ -24,27 +19,17 @@ public class State_CheckOnCollectables : mBrain_base
 
     internal override void OnStateEnterArgs()
     {
-        totalCollectablesFound = 0;
-        timeAtCollectable = 0;
         currentIndex = 0;
+
         animator.SetBool("walking", true);
         animator.SetBool("playerSeen", false);
         animator.SetBool("closeEnoughToPlayer", false);
+
         brain.PlayFootSteps();
     }
 
-    private void Start()
-    {
-        GetTransformPositionOfCollectables();
-    }
-
     private void CheckCollectablesRoutine()
-    {
-        if (collectables.Count == 0)
-        {
-            TransitionToNextState(patrolState);
-            return;
-        }        
+    {       
         if (brain.SeeIfPlayerIsSeen())
         {
             TransitionToNextState(attackState);
@@ -56,68 +41,46 @@ public class State_CheckOnCollectables : mBrain_base
     }
 
     private bool SeeIfPieceMissing()
-    {
-        bool whatToReturn = false;
-        if (randomInts.Count == 0)
+    {       
+        bool pieceMissing = false;
+
+        if (currentIndex < 0 || currentIndex >= collectables.Count)
         {
-            while (randomInts.Count < collectables.Count)
-            {
-                int rnd = Random.Range(0, collectables.Count);             
-                if (!randomInts.Contains(rnd))
-                {
-                    randomInts.Add(rnd);
-                }
-            }
+            TransitionToNextState(patrolState);
+            return false;
         }
+
+        PuzzleInformation puzzleInformation = collectables[currentIndex].GetComponent<PuzzleInformation>();
+
+        if (puzzleInformation == null)
+        {
+            print("there is no puzzle information on the puzzle piece");
+            return false;
+        }
+
         if (!goingToCollectable)
         {
-            GoToCollectable();
+            GoToCollectable(puzzleInformation);
+            goingToCollectable = true;
         }
-        if (brain.GetDistance(collectablesTransform[randomInts[currentIndex]]) < distanceStopFromTarget)
+
+        float distance = brain.GetDistance(puzzleInformation.startLocation);
+
+        if (distance < distanceStopFromTarget)
         {
-            animator.SetBool("walking", false);
-            brain.StopFootSteps();
-            timeAtCollectable += Time.deltaTime;
-            if (timeAtCollectable > timeToStayAtEachCollectable)
-            {  
-                if (brain.GetDistance(collectables[randomInts[currentIndex]].transform.position) > distanceStopFromTarget)
-                {
-                    Debug.Log("missing collectable" + currentIndex);
-                    whatToReturn = true;
-                }           
-                goingToCollectable = false;
-                totalCollectablesFound++;
-                currentIndex++;
-                if (currentIndex >= collectables.Count)
-                {
-                    TransitionToNextState(patrolState);
-                }
-                timeAtCollectable = 0;            
-            }            
+            if (puzzleInformation.moved)
+            {
+                pieceMissing = true;
+            }
+            goingToCollectable = false;
+            currentIndex += 1;
         }
-        return whatToReturn;
+
+        return pieceMissing;
     }
 
-    private void GoToCollectable()
+    private void GoToCollectable(PuzzleInformation puzzleInformation)
     {
-        goingToCollectable = true;        
-        if (currentIndex < collectables.Count)
-        {
-            brain.SetDestination(collectablesTransform[randomInts[currentIndex]]);
-            animator.SetBool("walking", true);
-            brain.PlayFootSteps();
-        }             
-        if (currentIndex >= collectables.Count)
-        {
-            currentIndex = collectables.Count - 1;
-        }
-    }
-
-    private void GetTransformPositionOfCollectables()
-    {
-        for (int i = 0; i < collectables.Count; i++)
-        {
-            collectablesTransform.Add(collectables[i].transform.position);
-        }
+        brain.SetDestination(puzzleInformation.startLocation);
     }
 }

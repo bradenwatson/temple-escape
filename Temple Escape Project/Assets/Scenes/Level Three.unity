@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25947,6 +25947,7 @@ MonoBehaviour:
   mainCamera: {fileID: 80059205}
   player: {fileID: 932756558}
   GameOverMenu: {fileID: 0}
+  paused: 0
   leftTeleportRay: {fileID: 774752466}
   rightTeleportRay: {fileID: 1848081178}
 --- !u!4 &939819216 stripped
@@ -33536,6 +33537,7 @@ GameObject:
   - component: {fileID: 1148429539}
   - component: {fileID: 1148429538}
   - component: {fileID: 1148429537}
+  - component: {fileID: 1148429541}
   m_Layer: 0
   m_Name: Lapis
   m_TagString: Untagged
@@ -33760,6 +33762,20 @@ Transform:
   - {fileID: 1188312653}
   m_Father: {fileID: 2125761794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1148429541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148429536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752032130728b7b459645bf4dd60b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLocation: {x: 0, y: 0, z: 0}
+  moved: 0
 --- !u!1 &1159283231
 GameObject:
   m_ObjectHideFlags: 0
@@ -36362,6 +36378,7 @@ GameObject:
   - component: {fileID: 1343050930}
   - component: {fileID: 1343050929}
   - component: {fileID: 1343050928}
+  - component: {fileID: 1343050931}
   m_Layer: 0
   m_Name: Jasper
   m_TagString: Untagged
@@ -36586,6 +36603,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1343050931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343050926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752032130728b7b459645bf4dd60b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLocation: {x: 0, y: 0, z: 0}
+  moved: 0
 --- !u!1001 &1347205282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54268,6 +54299,7 @@ GameObject:
   - component: {fileID: 1974564342}
   - component: {fileID: 1974564341}
   - component: {fileID: 1974564340}
+  - component: {fileID: 1974564344}
   m_Layer: 0
   m_Name: Ruby
   m_TagString: Untagged
@@ -54492,6 +54524,20 @@ Transform:
   - {fileID: 1409555813}
   m_Father: {fileID: 2125761794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1974564344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974564339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752032130728b7b459645bf4dd60b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLocation: {x: 0, y: 0, z: 0}
+  moved: 0
 --- !u!1001 &1983954255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60998,6 +61044,7 @@ GameObject:
   - component: {fileID: 2115727896}
   - component: {fileID: 2115727895}
   - component: {fileID: 2115727894}
+  - component: {fileID: 2115727897}
   m_Layer: 0
   m_Name: Emerald
   m_TagString: Untagged
@@ -61222,6 +61269,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2115727897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115727892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752032130728b7b459645bf4dd60b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLocation: {x: 0, y: 0, z: 0}
+  moved: 0
 --- !u!1 &2115961945
 GameObject:
   m_ObjectHideFlags: 0
@@ -63473,7 +63534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7445fb2354eb2634ba10ffb9810fe15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 5650530446698563427}
+  initialState: {fileID: 8152325471217314628}
   patrolState: {fileID: 5650530446698563427}
   attackState: {fileID: 6197988464847127763}
   searchPlayerState: {fileID: 3463503154198628743}
@@ -65321,7 +65382,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  collectables: []
+  collectables:
+  - {fileID: 1974564339}
+  - {fileID: 1148429536}
+  - {fileID: 1343050926}
+  - {fileID: 2115727892}
   distanceStopFromTarget: 1
   timeToStayAtEachCollectable: 1
 --- !u!198 &8186698337968911026
@@ -70136,7 +70201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8497355129563819182
 Transform:
   m_ObjectHideFlags: 0

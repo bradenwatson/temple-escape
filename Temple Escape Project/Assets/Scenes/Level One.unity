@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17696,6 +17696,7 @@ GameObject:
   - component: {fileID: 6095511628779782902}
   - component: {fileID: 2189266287686522262}
   - component: {fileID: 3511794370402811051}
+  - component: {fileID: 6095511628779782903}
   m_Layer: 11
   m_Name: Scarab Left Piece
   m_TagString: ScarabLeft
@@ -24485,7 +24486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7445fb2354eb2634ba10ffb9810fe15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 5650530446698563427}
+  initialState: {fileID: 8152325471217314628}
   patrolState: {fileID: 5650530446698563427}
   attackState: {fileID: 6197988464847127763}
   searchPlayerState: {fileID: 3463503154198628743}
@@ -24637,6 +24638,7 @@ GameObject:
   - component: {fileID: 3535954639921139558}
   - component: {fileID: 3928051477728334378}
   - component: {fileID: 9214529072689742130}
+  - component: {fileID: 9214529072689742131}
   m_Layer: 11
   m_Name: Scarab Right Piece
   m_TagString: ScarabRight
@@ -25585,6 +25587,7 @@ GameObject:
   - component: {fileID: 2946687313965827579}
   - component: {fileID: 8178480888855942938}
   - component: {fileID: 8542682168795663635}
+  - component: {fileID: 8542682168795663636}
   m_Layer: 11
   m_Name: Scarab Top Piece
   m_TagString: ScarabTop
@@ -26189,6 +26192,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6095511628779782903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318084945362061010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752032130728b7b459645bf4dd60b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLocation: {x: 0, y: 0, z: 0}
+  moved: 0
 --- !u!1 &6104391091841487303
 GameObject:
   m_ObjectHideFlags: 0
@@ -32499,6 +32516,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.18, y: 0.05, z: 0.15}
   m_Center: {x: 0, y: 0, z: 0.005}
+--- !u!114 &8542682168795663636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160987950419172563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752032130728b7b459645bf4dd60b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLocation: {x: 0, y: 0, z: 0}
+  moved: 0
 --- !u!4 &8556222401783071250
 Transform:
   m_ObjectHideFlags: 0
@@ -33012,6 +33043,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.12, y: 0.04, z: 0.17}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9214529072689742131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3379218600477507440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752032130728b7b459645bf4dd60b8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLocation: {x: 0, y: 0, z: 0}
+  moved: 0
 --- !u!4 &9216376565136992801
 Transform:
   m_ObjectHideFlags: 0
