@@ -1,17 +1,15 @@
 /************************************************************************************************************************************************************************************
 *  Name: Tony Bui
  *  Purpose: A generic n-list tree made for Unity
- *  Last updated: 17/10/23
+ *  Last updated: 22/10/23
  *  Notes: Requires a CustomNode class
 ************************************************************************************************************************************************************************************/
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
-using static PlasticGui.LaunchDiffParameters;
+using static UnityEngine.EventSystems.StandaloneInputModule;
 
 
 
@@ -28,11 +26,17 @@ using static PlasticGui.LaunchDiffParameters;
 /************************************************************************************************************************************************************************************/
 public class NTree
 {
-
     //PROPERTIES
+    [SerializeField]
     CustomNode root;
+
+    [SerializeField]
     CustomNode lastInserted;
-    int counter;
+
+    [SerializeField]
+    static int counter;
+
+    [SerializeField]
     List<CustomNode> tracker;
     
 
@@ -47,15 +51,15 @@ public class NTree
     }
 
     //Create Tree using GameObject to create root node
-    public NTree(GameObject data)
+    public NTree(GameObject data, int limit=0)
     {
         if(this.root != null) { throw new NotSupportedException("Tree instantiated with root already exists."); }
         else
         {
-            this.root = new CustomNode(this.counter++, data);
-            this.lastInserted = this.root;
-            Debug.Log($"NTree instantiated with root as ({data.name}) "
-                + $"@ [{this.root.GetIndex()}].");
+            counter = 0;
+            this.lastInserted = this.root =  CreateCustomNode(data, limit);     //displays id correctly but not set permanently
+            //Debug.Log($"NTree instantiated with root as ({data.name}) "
+            //    + $"@ [{this.root.GetIndex()}].");
         }
     }
 
@@ -65,14 +69,14 @@ public class NTree
         if (this.root != null) { throw new NotSupportedException("Tree instantiated with root already exists."); }
         else
         {
+            counter = 0;
             node.SetIndex(counter++);     //Counter increments after method runs 
-            //counter += 1;
-            this.root = node;
-            this.lastInserted = this.root;
-            Debug.Log($"NTree instantiated with root as ({node.GetData().name}) " 
-                    + $"@ [{this.root.GetIndex()}].");
+            this.lastInserted = this.root = node;
+            //Debug.Log($"NTree instantiated with root as ({node.GetData().name}) " 
+            //        + $"@ [{this.root.GetIndex()}].");
         }
     }
+
 
     //GETTERS
     public  CustomNode GetRoot() { return this.root; }
@@ -91,6 +95,18 @@ public class NTree
             }
             this.lastInserted = value;
         } 
+    }
+
+    /***************************************************************************************
+     * Method: CreateCustomNode()
+     * Input: data (GameObject)
+     * Output: node (CustomNode)
+     * Purpose: Create node and setting IDs simultaneously
+     ***************************************************************************************/
+
+    public static CustomNode CreateCustomNode(GameObject data, int capacity)
+    {
+        return new CustomNode(counter++, data, capacity);
     }
 
 
@@ -123,13 +139,31 @@ public class NTree
             throw new NoNullAllowedException("Tracker node has not been instantiated.");
         }
 
-        if (index < 0 || index >= tracker.Count)
-        {
-            throw new IndexOutOfRangeException("Tracker does not exist.");
-        }
-
         targetNode = tracker[index];
         return targetNode;
+    }
+
+    /***************************************************************************************
+     * Method: SetTrackerTo
+     * Input: trackerIdx(int), nodeIdx (int)
+     * Output: N/A
+     * Purpose: Retain a reference to desired node
+     ***************************************************************************************/
+    public void SetTrackerTo(int trackerIdx, int nodeIdx)
+    {
+        //NOTE COUNTER IS ALWAYS 1 MORE THAN THE LAST NODE'S INDEX DUE TO POST-INCREMENT
+        if (trackerIdx < 0 || trackerIdx >= counter)
+        {
+            throw new IndexOutOfRangeException("Tracker node does not exist.");
+        }
+
+        if (!CheckNodeExists(nodeIdx))
+        {
+            throw new NullReferenceException("Node does not belong within tree.");
+        }
+
+        //Copy node details except for data as the tracker's data is its own entity
+        this.tracker[trackerIdx] = this.FindNode(nodeIdx);
     }
 
     /***************************************************************************************
@@ -144,6 +178,7 @@ public class NTree
     public bool CheckNodeExists(int key)
     {
         bool isFound = false;
+        //NOTE COUNTER IS ALWAYS 1 MORE THAN THE LAST NODE'S INDEX DUE TO POST-INCREMENT
         if (key >= 0 && key < counter) 
         { 
             isFound = true; 
@@ -158,12 +193,13 @@ public class NTree
      * Purpose: Finds a node within the tree by traversing through a queue of node indexes 
      *          starting from the root node and its children (by row) until their index 
      *          matches with the key
+     * Source: https://chat.openai.com/share/f68a6628-3aad-44ef-a254-33b31dd1aa91
      ***************************************************************************************/
     
-    //THIS MAY NEVER FINISH DUE TO REPEATED CONNECTIONS-WIP
+    //FUTURE: MODIFY TO USE LAST INSERTED NODE IF THE KEY IS CLOSE TO THE LAST INSERTED 
+
     public CustomNode FindNode(int key)
     {
-        /*
         CustomNode node = null;
 
         if(key < 0)
@@ -181,40 +217,52 @@ public class NTree
             throw new NullReferenceException("Node does not exist.");
         }
 
-        Queue<CustomNode> queue = new Queue<CustomNode>();
-        Queue<CustomNode> allPrevNodes  = new Queue<CustomNode>();
-        queue.Enqueue(this.root);
-
-        while (queue.Count > 0 && node == null)    //Queue children at end, pop parent until either queue
-                                                    //is empty or node has been found
+        if (lastInserted.GetIndex() == key)
         {
-            if (queue.Peek().GetIndex() == key)   //If the first node in the queue matches
+            node = lastInserted;
+        }
+        else
+        {
+            Queue<CustomNode> queue = new Queue<CustomNode>();
+            Queue<CustomNode> allPrevNodes = new Queue<CustomNode>();
+            queue.Enqueue(this.root);
+
+            while (queue.Count > 0 && node == null)    //Queue children at end, pop parent until either queue
+                                                       //is empty or node has been found
             {
-                node = queue.Peek();              //Copy the matching node in the queue
-            }
-            else                                   //If keys dont match
-            {
-                if (queue.Peek().GetChildren() != null)
+                if (queue.Peek().GetIndex() == key)   //If the first node in the queue matches
                 {
-                    foreach (CustomNode n in queue.Peek().GetChildren())     //Add child nodes to the back of the queue
-                    {
-                        if(!allPrevNodes.Contains(n))       //Prevent duplicates from being re-added
-                        {
-                            queue.Enqueue(n);     //Queue children
-                        }  
-                    }
+                    node = queue.Peek();              //Copy the matching node in the queue
                 }
-                allPrevNodes.Enqueue(queue.Dequeue());      //Pop parent to restart the process & store its history
+                else                                   //If keys dont match
+                {
+                    if (queue.Peek().GetChildren() != null)
+                    {
+                        foreach (CustomNode n in queue.Peek().GetChildren())     //Add child nodes to the back of the queue
+                        {
+                            if (!allPrevNodes.Contains(n) && n != null)       //Prevent duplicates from being re-added
+                            {
+                                queue.Enqueue(n);     //Queue children
+                            }
+                        }
+                    }
+                    //queue.Dequeue();
+                    allPrevNodes.Enqueue(queue.Dequeue());      //Pop parent to restart the process & store its history
+                }
+            }
+
+            if (node == null)        //If node could not be found throw exception
+            {
+                throw new NoNullAllowedException("The node could not be found.");
             }
         }
-
-        if (node == null)        //If node could not be found throw exception
-        {
-            throw new NoNullAllowedException("The node could not be found.");
-        }
-       
         return node;
-        */
+    }
+
+    //Recursive version
+    /*
+    public CustomNode FindNode(int key)
+    {
         if (this.root == null)
         {
             throw new NoNullAllowedException("Tree has not been built.");
@@ -223,16 +271,41 @@ public class NTree
         {
             throw new NullReferenceException("Node does not exist.");
         }
-        else if(this.lastInserted.GetIndex() == key)
+        else if (this.lastInserted.GetIndex() == key)
         {
             return this.LastInserted;
         }
         else
         {
-
-            return null;
+            return FindNodeDFS(root, key);      //THIS FAILS
         }
     }
+
+
+    // Call the recursive DFS method to search for the node.
+    private CustomNode FindNodeDFS(CustomNode currentNode, int key)
+    {
+        if (currentNode.GetIndex() == key)
+        {
+            return currentNode;
+        }
+
+        // Recursively search in the children of the current node.
+        if (currentNode.GetChildren() != null)
+        {
+            foreach (CustomNode child in currentNode.GetChildren())
+            {
+                CustomNode result = FindNodeDFS(child, key);
+                if (result != null)
+                {
+                    return result; // Return the node if found.
+                }
+            }
+        }
+
+        return null; // Node with the given key not found in the subtree rooted at currentNode.
+    }
+    */
 
     /***************************************************************************************
      * Method: InsertNode
@@ -240,7 +313,7 @@ public class NTree
      * Output: nodeInserted (CustomNode)
      * Purpose: Inserts node within the tree at a specific key
      ***************************************************************************************/
-    public CustomNode InsertNodeAt(int key, GameObject data)
+    public CustomNode InsertNodeAt(int key, CustomNode node)
     {
         if (root == null)
         {
@@ -253,37 +326,19 @@ public class NTree
         {
             throw new NullReferenceException("Node does not exist.");
         }
-        CustomNode child = new CustomNode(counter++, data);
-        nodeToFind.InsertChildren(child);
-        Debug.Log($"Node inserted at Node({key} = {child.Equals(nodeToFind.GetChildren().Last())})");
-        return child;
-    }
 
-    /***************************************************************************************
-     * Method: InsertNode
-     * Input: node(CustomNode), data (GameObject)  
-     * Output: nodeInserted (CustomNode)
-     * Purpose: Inserts node within the tree at a specific node
-     ***************************************************************************************/
-    public CustomNode InsertNodeAt(CustomNode node, GameObject data)
-    {
-        if (root == null)
+        //Checks if node exists previously otherwise it is a new node and set its index
+        //Debug.Log($"Before Counter = {counter} {node.GetData().name} = {this.CheckNodeExists(node.GetIndex())} id({node.GetIndex()})");
+        if (!(this.CheckNodeExists(node.GetIndex())))
         {
-            throw new NoNullAllowedException("Tree has not been built.");
+            node.SetIndex(counter++);
+            //Debug.Log($"After Counter = {counter}");
         }
-        else if(!(this.CheckNodeExists(node.GetIndex())))
-        {
-            throw new NullReferenceException("Node does not exist.");
-        }
-        else
-        {
-            //Add child node at index
-            CustomNode child = new CustomNode(counter++, data);
-            node.InsertChildren(child);
-            Debug.Log($"Node inserted at Node({node.GetIndex()} = {child.Equals(node.GetChildren().Last())})");
-            return child;
-        }
-        
+
+        nodeToFind.InsertChildren(node);
+        //Debug.Log($"Node inserted at Node({key} = {node.Equals(nodeToFind.GetChildren().Last())})");
+        this.lastInserted = node;
+        return node;
     }
 
     /***************************************************************************************
@@ -304,13 +359,19 @@ public class NTree
         }
         else
         {
-            inputNode.SetIndex(counter++);
+            //Checks if node exists previously otherwise it is a new node and set its index
+            //Debug.Log($"Before Counter = {counter} {inputNode.GetData().name} = {this.CheckNodeExists(inputNode.GetIndex())} id({inputNode.GetIndex()})");
+            if (!(this.CheckNodeExists(inputNode.GetIndex())))
+            {
+                inputNode.SetIndex(counter++);
+                //Debug.Log($"After Counter = {counter}");
+            }
 
             //Add child node at index
             selectedNode.InsertChildren(inputNode);
 
-            Debug.Log($"Node inserted at Node({selectedNode.GetIndex()} "
-                        + $"= {inputNode.Equals(selectedNode.GetChildren().Last())})");
+            //Debug.Log($"Node inserted at Node({selectedNode.GetIndex()} "
+            //            + $"= {inputNode.Equals(selectedNode.GetChildren().Last())})");
             return inputNode;
         }
     }
@@ -321,6 +382,8 @@ public class NTree
      * Output: nodeInserted (CustomNode)
      * Purpose: Inserts node within the tree at a specific node
      ***************************************************************************************/
+    //CHECK THE INPUT NODE IS UNITQUE OR NOT OTHERWISE IT KEEPS CREATING NEW NODES
+    
     public CustomNode InsertNodeAt(CustomNode selectedNode, CustomNode inputNode, int index)
     {
         if (root == null)
@@ -333,122 +396,24 @@ public class NTree
         }
         else
         {
-            inputNode.SetIndex(counter++);
+            //Checks if node exists previously otherwise it is a new node and set its index
+            //Debug.Log($"Before Counter = {counter} {inputNode.GetData().name} = {this.CheckNodeExists(inputNode.GetIndex())} id({inputNode.GetIndex()})");
+            if (!(this.CheckNodeExists(inputNode.GetIndex())))
+            {
+                inputNode.SetIndex(counter++);
+                //Debug.Log($"After Counter = {counter}");
+            }
 
             //Add child node at index
             selectedNode.InsertChildrenAt(index, inputNode);
 
-            Debug.Log($"Node inserted at Node({selectedNode.GetIndex()} "
-                        + $"= {inputNode.Equals(selectedNode.GetChildren()[index])})");
+            //Debug.Log($"Node inserted at Node({selectedNode.GetIndex()} "
+            //            + $"= {inputNode.Equals(selectedNode.GetChildren()[index])})");
             return inputNode;
         }
     }
-    /***************************************************************************************
-     * Method: SetTrackerTo
-     * Input: trackerIdx(int), nodeIdx (int)
-     * Output: N/A
-     * Purpose: Retain a reference to desired node
-     ***************************************************************************************/
-    public void SetTrackerTo(int trackerIdx, int nodeIdx)    
-    {
-        if(trackerIdx < 0 || trackerIdx >= counter - 1) 
-        {
-            throw new IndexOutOfRangeException("Tracker node does not exist.");  
-        }
 
-        if (!CheckNodeExists(nodeIdx))
-        {
-            throw new NullReferenceException("Node does not belong within tree.");
-        }
-
-        //Copy node details except for data as the tracker's data is its own entity
-        this.tracker[trackerIdx] = this.FindNode(nodeIdx);
-    }
-
-
-    /***************************************************************************************
-     * Method: Display()
-     * Input: N/A
-     * Output: output(string)
-     * Purpose: Displays all nodes and its children
-     ***************************************************************************************/
-
-    //Needs testing
-
-    public string OutputString()
-    {
-
-        if (root == null)
-        {
-            throw new NoNullAllowedException("Tree has not been built.");
-        }
-
-        CustomNode currNode = null;
-        Queue<CustomNode> currLvl = new Queue<CustomNode>();
-        Queue<CustomNode> nextLvl = new Queue<CustomNode>();
-        Queue<CustomNode> allPrevNodes = new Queue<CustomNode>();
-        //List<string> output = new List<string>();
-        string data = string.Empty;
-        currLvl.Enqueue(this.GetRoot());
-        allPrevNodes.Enqueue(this.GetRoot());
-
-        //Loop until last node contains no children
-        while (currLvl.Count > 0 && nextLvl.Count > 0)
-        {
-            //Get front of currLvl
-            currNode = currLvl.Dequeue();
-            //Enqueue all currLvl children onto the nextLvl for next cycle
-            foreach (CustomNode node in currNode.GetChildren())
-            {
-                if(node !=null)
-                {
-                    nextLvl.Enqueue(node);
-                    allPrevNodes.Enqueue(node);
-                    Debug.Log($"{currNode.GetIndex()}: Child ({node.GetIndex()})");
-                }
-                
-            }
-
-
-            data.Concat($"{currNode.GetIndex()}(");
-            foreach (CustomNode node in currNode.GetChildren())
-            {
-                if (node.Equals(currNode.GetChildren().Last()))
-                {
-                    data.Concat($"{node.GetIndex()})\t");
-                }
-                else
-                {
-                    data.Concat($"{node.GetIndex()},");
-                }
-            }
-
-            //If currLvl has none left, move onto next one and add data string
-            if (currLvl.Count == 0)
-            {
-                //Add data string to output to re-order later
-                //output.Add(data);
-                //Reset string OR add new line
-                data.Concat("\n");
-  
-
-                //When currLvl is empty, transfer from nextLvl
-                while (nextLvl.Count != 0)
-                {
-                    CustomNode tmp = nextLvl.Dequeue();
-                    //Prevents repeated nodes from reoccurring and lock loop
-                    if (!allPrevNodes.Contains(tmp))     
-                    {
-                        currLvl.Enqueue(tmp);
-                    }
-                }
-            }
-        }
-
-        return data;
-    }
-
-    /****************************************************************************************
+    /*************************************************************************************************************************************************************************************
     *
     *                   END     OF      CLASS!
     *

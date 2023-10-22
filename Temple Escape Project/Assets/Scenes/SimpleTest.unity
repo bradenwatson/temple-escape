@@ -589,6 +589,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 802941035}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &841362282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 841362284}
+  - component: {fileID: 841362283}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &841362283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841362282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d35ecfbb55e5c43ad4ed008b96c846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 0}
+  Player: {fileID: 0}
+  isFinalLvl: 0
+--- !u!4 &841362284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841362282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &912871219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -597,6 +644,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1318976986}
     m_Modifications:
+    - target: {fileID: -5407191264760722571, guid: af3faaa3b2f0f8747becf026633c59bd,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
       propertyPath: m_RootOrder
@@ -1012,6 +1064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Corner Room 2 Way
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584809672291169042, guid: ac0e00d4645b61a48989c46c56814af7,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
@@ -1561,7 +1618,6 @@ GameObject:
   - component: {fileID: 2016371761}
   - component: {fileID: 2016371760}
   - component: {fileID: 2016371759}
-  - component: {fileID: 2016371758}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1569,23 +1625,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2016371758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016371757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d35ecfbb55e5c43ad4ed008b96c846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
-  SetEnemyAt: {fileID: 0}
-  Player: {fileID: 0}
-  SetPLayerAt: {fileID: 0}
-  isFinalLvl: 0
 --- !u!23 &2016371759
 MeshRenderer:
   m_ObjectHideFlags: 0
