@@ -1,5 +1,5 @@
 /************************************************************************************************************************************************************************************
-*  Name: Tony Bui
+ *  Name: Tony Bui
  *  Purpose: A generic n-list tree made for Unity
  *  Last updated: 22/10/23
  *  Notes: Requires a CustomNode class
@@ -10,8 +10,6 @@ using System.Data;
 using System.Linq;
 using UnityEngine;
 using static UnityEngine.EventSystems.StandaloneInputModule;
-
-
 
 /************************************************************************************************************************************************************************************/
 /*  Class: NTree 
@@ -136,7 +134,7 @@ public class NTree
         CustomNode targetNode = null; 
         if(this.tracker == null)
         {
-            throw new NoNullAllowedException("Tracker node has not been instantiated.");
+            throw new NullReferenceException("Tracker node has not been instantiated.");
         }
 
         targetNode = tracker[index];
@@ -372,6 +370,7 @@ public class NTree
 
             //Debug.Log($"Node inserted at Node({selectedNode.GetIndex()} "
             //            + $"= {inputNode.Equals(selectedNode.GetChildren().Last())})");
+            this.lastInserted = inputNode;
             return inputNode;
         }
     }
@@ -409,6 +408,7 @@ public class NTree
 
             //Debug.Log($"Node inserted at Node({selectedNode.GetIndex()} "
             //            + $"= {inputNode.Equals(selectedNode.GetChildren()[index])})");
+            this.lastInserted = inputNode;
             return inputNode;
         }
     }

@@ -1,4 +1,11 @@
+/************************************************************************************************************************************************************************************
+ *  Name: Tony Bui
+ *  Purpose: Room class 
+ *  Last updated: 22/10/23
+ *  Notes: Requires a box collider equal to the object size. 
+************************************************************************************************************************************************************************************/
 using System;
+using System.Data;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,7 +17,7 @@ public class Room : MonoBehaviour
     [Header("Customisation")]
     [SerializeField]
     public RoomType roomType = RoomType.Normal;
-    public Boolean randomiserEnabled = false;
+    public bool randomiserEnabled = false;
 
     [Header("Room")]
     [SerializeField]
@@ -23,6 +30,8 @@ public class Room : MonoBehaviour
     GameObject[] doors;     //PLACEHOLDER
     [SerializeField]
     CustomNode node = null;
+    [SerializeField]
+    BoxCollider boxCollider = null;
 
     [Header("Player")]
     [SerializeField]
@@ -36,20 +45,6 @@ public class Room : MonoBehaviour
     [SerializeField]
     bool isEnemyPresent = false;
 
-    private void Awake()
-    {
-        //Label game object as room for backup references
-        if (gameObject.CompareTag("Room")) { gameObject.tag = "Room"; }
-
-        //Randomly chose a room (except exit) if enabled
-        Randomiser(randomiserEnabled);
-        
-        //Check for passages instead of door (prevent duplication and find passages without doors)
-        //For now use their string object name to determine amount of passages
-        Match roomPassages = Regex.Match(gameObject.name, @"\b\d+\b");
-        int test = int.Parse(roomPassages.Value);
-        PassageCount = test;
-    }
 
     //Accessors
     //Rooms
@@ -59,26 +54,26 @@ public class Room : MonoBehaviour
     //PLACEHOLDER
     public GameObject[] Doors { get { return doors; } }
 
-    public CustomNode Node 
-    { 
-        get { return node; } 
-        set 
-        { 
+    public CustomNode Node
+    {
+        get { return node; }
+        set
+        {
             node = value;
             roomID = node.GetIndex();
-        } 
+        }
     }
 
     //Player
     public bool HasPlayerVisited { get { return hasPlayerVisited; } }
-    public bool IsPlayerPresent 
+    public bool IsPlayerPresent
     {
         get { return isPlayerPresent; }
-        set 
-        { 
-            isPlayerPresent = value; 
-            if(isPlayerPresent) { hasPlayerVisited = true; }
-        } 
+        set
+        {
+            isPlayerPresent = value;
+            if (isPlayerPresent) { hasPlayerVisited = true; }
+        }
     }
 
     //Enemy
@@ -93,9 +88,64 @@ public class Room : MonoBehaviour
         }
     }
 
+
+    //Events
+    private void Awake()
+    {
+        if(GetComponent<BoxCollider>() == null)
+        {
+            throw new NoNullAllowedException("Room does not contain a box collider as required.");
+        }
+
+        boxCollider = GetComponent<BoxCollider>();
+        //Label game object as room for backup references
+        if (gameObject.CompareTag("Room")) { gameObject.tag = "Room"; }
+
+        //Randomly chose a room (except exit) if enabled
+        Randomiser(randomiserEnabled);
+        
+        //Check for passages instead of door (prevent duplication and find passages without doors)
+        //For now use their string object name to determine amount of passages
+        Match roomPassages = Regex.Match(gameObject.name, @"\b\d+\b");
+        passageCount = int.Parse(roomPassages.Value);
+        
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        //When Player enter the room
+        if(other.GetComponent<GameObject>())        //REPLACE GAMEOBJECT WITH PLAYER
+        {
+            IsPlayerPresent = true;
+        }
+
+
+        //When Enemy enters the room
+        if (other.GetComponent<GameObject>())       //REPLACE GAMEOBJECT WITH ENEMY
+        {
+            IsEnemyPresent = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        //When Player leaves the room
+        if (other.GetComponent<GameObject>())        //REPLACE GAMEOBJECT WITH PLAYER
+        {
+            IsPlayerPresent = false;
+        }
+
+
+        //When Enemy leaves the room
+        if (other.GetComponent<GameObject>())       //REPLACE GAMEOBJECT WITH ENEMY
+        {
+            IsEnemyPresent = false;
+        }
+    }
+
     
-    
-    
+
+
     //METHODS
     /*********************************************************************************************************
     * Method: Randomiser 

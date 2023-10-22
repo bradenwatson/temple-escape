@@ -271,6 +271,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corner Room 2 Way (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1584809672291169042, guid: ac0e00d4645b61a48989c46c56814af7,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
       propertyPath: m_RootOrder
@@ -448,6 +453,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corner Room 2 Way (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1584809672291169042, guid: ac0e00d4645b61a48989c46c56814af7,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
       propertyPath: m_RootOrder
@@ -524,6 +534,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Corner Room 2 Way (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584809672291169042, guid: ac0e00d4645b61a48989c46c56814af7,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
@@ -620,6 +635,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
   Player: {fileID: 0}
+  totalRooms: 0
+  normalRooms: 0
+  puzzleRooms: 0
+  secretRooms: 0
+  safeRooms: 0
+  exitRooms: 0
   isFinalLvl: 0
 --- !u!4 &841362284
 Transform:
@@ -647,7 +668,7 @@ PrefabInstance:
     - target: {fileID: -5407191264760722571, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
       propertyPath: randomiserEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
@@ -829,6 +850,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1318976986}
     m_Modifications:
+    - target: {fileID: -1472191905361430177, guid: 25d732fb4ac58c94ab0eb36396e92c28,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4165955602288952589, guid: 25d732fb4ac58c94ab0eb36396e92c28,
         type: 3}
       propertyPath: m_Name
@@ -906,6 +932,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1318976986}
     m_Modifications:
+    - target: {fileID: -5407191264760722571, guid: af3faaa3b2f0f8747becf026633c59bd,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
       propertyPath: m_RootOrder
@@ -983,6 +1014,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1318976986}
     m_Modifications:
+    - target: {fileID: -5407191264760722571, guid: af3faaa3b2f0f8747becf026633c59bd,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
       propertyPath: m_RootOrder
@@ -1068,7 +1104,7 @@ PrefabInstance:
     - target: {fileID: 1584809672291169042, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
       propertyPath: randomiserEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
@@ -1786,6 +1822,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1318976986}
     m_Modifications:
+    - target: {fileID: -5407191264760722571, guid: af3faaa3b2f0f8747becf026633c59bd,
+        type: 3}
+      propertyPath: randomiserEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
       propertyPath: m_RootOrder

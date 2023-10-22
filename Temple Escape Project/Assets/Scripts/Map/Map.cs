@@ -77,6 +77,7 @@ public class Map : MonoBehaviour
 
         //Connect all the rooms
         CreateMap();
+        DisplayAllRooms();
     }
 
 
@@ -106,6 +107,7 @@ public class Map : MonoBehaviour
     * Notes:
         * Any GameObject in the scene that is a room must contain the tag "Room"
         * All rooms need to be the same size and contain a box collider matching the mesh size
+        * All rooms needs to have the same plane and height
         * Based on fixed global orientation in the following order (N, S, E, W)
     *********************************************************************************************************/
     /************************
@@ -391,6 +393,7 @@ public class Map : MonoBehaviour
     *********************************************************************************************************/
 
 
+
     /*********************************************************************************************************
     * Method: DisplayAllRooms 
     * Input: N/A
@@ -399,10 +402,21 @@ public class Map : MonoBehaviour
     *********************************************************************************************************/
     public void DisplayAllRooms()
     {
-        for (int i = 0; i < totalRooms; i++)
+        try
         {
-            //Debug.Log($"Node({i}):\t{tree.CheckNodeExists(i)}");
-            Debug.Log($"Room ID({i}):\t{tree.FindNode(i).GetData().name}");
+            for (int i = 0; i < totalRooms; i++)
+            {
+                //Debug.Log($"Node({i}):\t{tree.CheckNodeExists(i)}");
+                Debug.Log($"Room ID({i}):\t{tree.FindNode(i).GetData().name}");
+            }
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
         }
     }
 
@@ -426,28 +440,154 @@ public class Map : MonoBehaviour
     *********************************************************************************************************/
     public Room GetRoom(int idx)
     {
-        GameObject room = tree.FindNode(idx).GetData();
-        return room.GetComponent<Room>();
+        try
+        {
+            GameObject room = tree.FindNode(idx).GetData();
+            return room.GetComponent<Room>();
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        return null;
     }
 
     /*********************************************************************************************************
-    * Method: AddMarker 
-    * Input: N/A
+    * Method: AddTrackPoints 
+    * Input: amount(int)
     * Output: N/A
-    * Purpose: Connects rooms beginning from the center and spanning outward horizontally
+    * Purpose: Create a separate CustomNode which can store a reference copy of a node from the tree when set
     *********************************************************************************************************/
-    public void AddMarker(GameObject gameObject)
+    public void AddRecallPoints(int amount=1)
     {
-        tree.InsertTracker();
+        for (int i = 0; i < amount;i++)
+        {
+            tree.InsertTracker();
+        }
     }
 
     /*********************************************************************************************************
-    * Method: TestOverlap 
-    * Input: N/A
-    * Output: N/A
-    * Purpose: Connects rooms beginning from the center and spanning outward horizontally
+    * Method: SelectRecallPoint 
+    * Input: int()
+    * Output: tracker(CustomNode)
+    * Purpose: Select a tracker node from the current list
     *********************************************************************************************************/
-    public void ChangeTeleport(int idx, bool state)
+
+    public CustomNode SelectRecallPoint(int index)
+    {
+        try
+        {
+            return tree.SelectTracker(index);
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        return null;
+    }
+
+    /*********************************************************************************************************
+    * Method: StoreRoomLocation 
+    * Input: amount(int)
+    * Output: N/A
+    * Purpose:  Create a separate CustomNode (tracker) which can store a reference copy of a node from the 
+                tree when set
+    *********************************************************************************************************/
+    public void StoreRoomLocation(int roomID, int index=-1)
+    {
+        try
+        {
+            CustomNode traceRoom = null;
+            if (tree.GetTrackers() == null || tree.GetTrackers().Count == 0)
+            {
+                //Get the first tracker node when list is built
+                traceRoom = tree.InsertTracker();
+            }
+            else if(tree.GetTrackers().Count > 0 && index <= -1)
+            {
+                //Select first unassigned tracker node
+                traceRoom = tree.GetTrackers().First(x => x.GetIndex() == -1);
+            }
+
+            else if (tree.GetTrackers().Count > 0 && index > -1)
+            {
+
+                traceRoom = tree.SelectTracker(index);
+            }
+            else
+            {
+                throw new Exception("Something strange happened.");
+            }
+
+            CustomNode locatedRoom = tree.FindNode(roomID);
+            traceRoom = new CustomNode(locatedRoom);
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
+
+
+    /*********************************************************************************************************
+    * Method: GetStoredLocation 
+    * Input: roomID(int)
+    * Output: tracker(CustomNode)
+    * Purpose: Returns the specific tracker containing the roomID
+    *********************************************************************************************************/
+
+    public CustomNode GetStoredLocation(int roomID)
+    {
+        try
+        {
+            return tree.GetTrackers().Find(x => x.GetIndex().Equals(roomID));
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e.Message);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        return null;
+    }
+
+    /*********************************************************************************************************
+    * Method: GetAllStoredLocations
+    * Input: N/A
+    * Output: trackers(List<CustomNode>)
+    * Purpose: Gets a list of tracker nodes as a list
+    *********************************************************************************************************/
+
+    public List<CustomNode> GetAllStoredLocations()
+    {
+        return tree.GetTrackers();
+    }
+
+    /*********************************************************************************************************
+    * Method: ChangeTeleportation 
+    * Input: idx(int), state(bool)
+    * Output: N/A
+    * Purpose: Change the room's ability to teleport the enemy
+    *********************************************************************************************************/
+    public void ChangeTeleportation(int idx, bool state)
     {
         GameObject room = tree.FindNode(idx).GetData();
         room.GetComponent<Room>().IsTeleportable = state;
