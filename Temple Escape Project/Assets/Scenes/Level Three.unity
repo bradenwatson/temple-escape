@@ -7318,7 +7318,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102726301}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -15158,7 +15158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 513006112}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31311,7 +31311,7 @@ Transform:
   m_GameObject: {fileID: 923654650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0041828156, y: 0.4653, z: 0.2726}
+  m_LocalPosition: {x: -0.0041828156, y: 0.472, z: 0.276}
   m_LocalScale: {x: 0.02, y: 0.39999998, z: 0.030492}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -31503,7 +31503,7 @@ Transform:
   m_GameObject: {fileID: 932756558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -37569,6 +37569,16 @@ PrefabInstance:
       propertyPath: rightControllerPauseControl
       value: 
       objectReference: {fileID: 575790483}
+    - target: {fileID: 825840861706403453, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 80059205}
+    - target: {fileID: 825840861706403453, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1642298021
+      objectReference: {fileID: 0}
     - target: {fileID: 871545237699778803, guid: dc465520f0db5864abfc552e464a362f,
         type: 3}
       propertyPath: leftControllerPauseControl
@@ -37579,10 +37589,60 @@ PrefabInstance:
       propertyPath: rightControllerPauseControl
       value: 
       objectReference: {fileID: 575790483}
+    - target: {fileID: 1245731166628872877, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980277623445646589, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 80059205}
+    - target: {fileID: 1980277623445646589, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1642298021
+      objectReference: {fileID: 0}
+    - target: {fileID: 2135215006344672136, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 80059205}
+    - target: {fileID: 2135215006344672136, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1642298021
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221509546545983647, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2259016915038208313, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 80059205}
+    - target: {fileID: 2259016915038208313, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1642298021
+      objectReference: {fileID: 0}
     - target: {fileID: 2979821492039937200, guid: dc465520f0db5864abfc552e464a362f,
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979821492039937200, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168802689916566118, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6987696097595084621, guid: dc465520f0db5864abfc552e464a362f,
         type: 3}
@@ -37638,6 +37698,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826056512239867387, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916007179672025946, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39193,7 +39263,7 @@ GameObject:
   - component: {fileID: 1099163763}
   - component: {fileID: 1099163762}
   - component: {fileID: 1099163761}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44398,7 +44468,7 @@ GameObject:
   - component: {fileID: 1339591145}
   - component: {fileID: 1339591144}
   - component: {fileID: 1339591143}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44505,7 +44575,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &1343050926
 GameObject:
@@ -55173,7 +55243,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1642298021
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1001 &1763084876
