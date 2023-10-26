@@ -20,10 +20,12 @@ public class ButtonVR : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isPressed && presser.tag == "player")
+        
+        if (!isPressed && other.tag == "PlayerHand")
         {
+            print("spain");
             button.transform.Translate(0, -0.03f, 0, parent.transform);
-            presser = other.gameObject;
+            
             onPress.Invoke();
             isPressed = true;
         }

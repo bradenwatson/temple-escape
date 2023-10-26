@@ -12,6 +12,7 @@ TagManager:
   - ScarabTop
   - Gem
   - Glow
+  - PlayerHand
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Enemy
   - Grabbable
   - Puzzle
-  - 
+  - PlayerHand
   - 
   - 
   - 

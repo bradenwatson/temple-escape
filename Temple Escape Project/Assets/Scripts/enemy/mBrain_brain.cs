@@ -136,7 +136,7 @@ public class mBrain_brain : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, direction.magnitude, thingsMonsterCanSee, QueryTriggerInteraction.Collide))
             {
-                print(hit.collider.gameObject.layer);
+                //print(hit.collider.gameObject.layer);
                 print(hit.collider.gameObject.name);
                 if (hit.collider.gameObject == player)
                 {

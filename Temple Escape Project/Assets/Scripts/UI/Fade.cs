@@ -13,6 +13,9 @@ public class Fade : MonoBehaviour
     bool isFading = false;
     float alphaValue;
 
+    [Header("Fade Screen")]
+    public GameObject FadeObject;
+
     private void Start()
     {
         alphaValue = fadeScreen.color.a;
@@ -35,6 +38,7 @@ public class Fade : MonoBehaviour
 
     void FadeScreen()
     {
+        FadeObject.SetActive(true);
         if (alphaValue < 1)
         {
             alphaValue += Time.deltaTime * valueToBeDividedByDeltaTimeForSpeedChanging;
@@ -61,6 +65,7 @@ public class Fade : MonoBehaviour
         }
         
         fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, alphaValue);
+        FadeObject.SetActive(false);
     }
 
     public void SetFading(bool fading=true)
