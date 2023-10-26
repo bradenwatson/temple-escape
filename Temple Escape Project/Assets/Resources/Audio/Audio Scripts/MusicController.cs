@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script for toggling on/off music with a bindable key, default 'X'
+/// Script for toggling on/off music with a bindable key, default 'M'
 /// </summary>
 public class MusicController : MonoBehaviour
 {
     [SerializeField]
-    AudioSource musicSource;
-    [SerializeField] 
-    bool musicPlaying = true;
+    static AudioSource musicSource;
+    [SerializeField]
+    static bool musicPlaying = true;
     [SerializeField]
     KeyCode toggleMusicKey = KeyCode.M;
     void Start()
@@ -22,17 +20,22 @@ public class MusicController : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyUp(toggleMusicKey))
+        if (Input.GetKeyUp(toggleMusicKey))
         {
-            if (musicPlaying)
-            {
-                PlaySound.StopSound(musicSource);
-                musicPlaying = false;
-            } else
-            {
-                PlaySound.PlaySoundOnRepeat("The_Secrets_of_Thoth", musicSource);
-                musicPlaying = true;
-            }
+            ToggleMusic();
         }
-    }    
+    }
+    public static void ToggleMusic()
+    {
+        if (musicPlaying)
+        {
+            PlaySound.StopSound(musicSource);
+            musicPlaying = false;
+        }
+        else
+        {
+            PlaySound.PlaySoundOnRepeat("The_Secrets_of_Thoth", musicSource);
+            musicPlaying = true;
+        }
+    }
 }
