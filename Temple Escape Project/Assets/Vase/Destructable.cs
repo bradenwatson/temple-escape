@@ -16,8 +16,13 @@ public class Destructable : MonoBehaviour
         // List of XR Grab items that can break the item
         CollisionDestructableCollection = new()
         {
-            "Ball",
-            "Axe"
+            //"Ground",
+            "Wall", "Brazier", "Vase",
+            "LHS Wall", "LHS Entry Wall",
+            "RHS Wall", "RHS Entry Wall",
+            "Front Wall", "Front Entry Wall",
+            "Back Wall", "Back Entry Wall",
+            "Door", "Stairs", "Table", "Enemy Anubis"
         };
     }
 

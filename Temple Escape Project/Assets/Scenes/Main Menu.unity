@@ -1170,8 +1170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad89343dd708da143b5e9e67da6978f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 214494043}
-  musicPlaying: 1
   toggleMusicKey: 109
 --- !u!82 &214494043
 AudioSource:
@@ -1333,8 +1331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad89343dd708da143b5e9e67da6978f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
-  musicPlaying: 1
   toggleMusicKey: 120
 --- !u!4 &435442052 stripped
 Transform:
@@ -2611,7 +2607,7 @@ GameObject:
   - component: {fileID: 728317806}
   - component: {fileID: 728317805}
   - component: {fileID: 728317804}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3192,7 +3188,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 214494041}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3202,7 +3198,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1642298021
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &827209890
@@ -3768,7 +3764,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 214494041}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3778,7 +3774,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1642298021
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1001 &1032902924
@@ -4244,7 +4240,7 @@ GameObject:
   - component: {fileID: 1180260137}
   - component: {fileID: 1180260136}
   - component: {fileID: 1180260140}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4288,7 +4284,7 @@ MonoBehaviour:
   m_CheckFor3DOcclusion: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
 --- !u!114 &1180260137
 MonoBehaviour:
@@ -4350,8 +4346,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1642298021
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1180260140
 MonoBehaviour:
@@ -6064,6 +6060,7 @@ MonoBehaviour:
   fadeScreen: {fileID: 728317804}
   finishedFading: 0
   valueToBeDividedByDeltaTimeForSpeedChanging: 0.6
+  FadeObject: {fileID: 0}
 --- !u!114 &1851782351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6638,7 +6635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1956521928}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7522,7 +7519,7 @@ GameObject:
   - component: {fileID: 2020945469381227353}
   - component: {fileID: 3463297014937943223}
   - component: {fileID: 785986247259366597}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7678,7 +7675,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 214494041}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -7688,7 +7685,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1642298021
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &3108447561446058684
@@ -7720,6 +7717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6079840580934892506}
+  - component: {fileID: 6079840580934892507}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -8341,6 +8339,22 @@ Transform:
   - {fileID: 2874543580325039926}
   m_Father: {fileID: 8680505941026341966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6079840580934892507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237890580851680367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f491223684ccb834c972ce2814fbb968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeScreen: {fileID: 728317804}
+  finishedFading: 0
+  valueToBeDividedByDeltaTimeForSpeedChanging: 0.3
+  FadeObject: {fileID: 1180260134}
 --- !u!224 &6274776565635808254
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8370,7 +8384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8680505941026341966}
   - component: {fileID: 8680505941026341967}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
