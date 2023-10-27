@@ -16,7 +16,7 @@ public class GameOver : MonoBehaviour
 
     [Header("Game Complete Menu")]
     public GameObject GameOverMenu;
-    //public GameObject FaderScreen;
+    public GameObject FaderScreen;
     public bool paused = false;
 
 
@@ -45,6 +45,7 @@ public class GameOver : MonoBehaviour
         if (playerHealth.playerIsDead == true)
         {
             Debug.Log("open Game Over Menu");
+            FaderScreen.SetActive(true);
             Pause();
         }
 
@@ -54,7 +55,7 @@ public class GameOver : MonoBehaviour
     {
         paused = true;
         Debug.Log("in Pause(gameover) function");
-        //FaderScreen.SetActive(true);
+        FaderScreen.SetActive(false);
         GameOverMenu.SetActive(true);
         Debug.Log("Set Active");
         Time.timeScale = 0f;

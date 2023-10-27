@@ -539,7 +539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LineWidth: 0.01
   m_OverrideInteractorLineLength: 1
-  m_LineLength: 10
+  m_LineLength: 1
   m_AutoAdjustLineLength: 0
   m_MinLineLength: 0.5
   m_UseDistanceToHitAsMaxLineLength: 1
@@ -6060,7 +6060,7 @@ MonoBehaviour:
   fadeScreen: {fileID: 728317804}
   finishedFading: 0
   valueToBeDividedByDeltaTimeForSpeedChanging: 0.6
-  FadeObject: {fileID: 0}
+  FadeObject: {fileID: 1180260134}
 --- !u!114 &1851782351
 MonoBehaviour:
   m_ObjectHideFlags: 0
