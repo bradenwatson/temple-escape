@@ -98,7 +98,8 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: UnderMask
-    second: {fileID: 2100000, guid: b5d8052c8edd9b946a34129b44085bf3, type: 2}
+    second: {fileID: -896534969628974003, guid: aec2f57b82c88d6429c2a256785d3f60,
+      type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

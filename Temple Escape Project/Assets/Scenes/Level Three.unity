@@ -7370,8 +7370,8 @@ Transform:
   m_GameObject: {fileID: 102726301}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.6, y: 23.223858, z: 1.8}
-  m_LocalScale: {x: 86.737495, y: 2.89125, z: 97.85354}
+  m_LocalPosition: {x: 6.38, y: 23.223858, z: 1.8}
+  m_LocalScale: {x: 91.57472, y: 2.89125, z: 97.85354}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 652770674}
@@ -22468,7 +22468,7 @@ MonoBehaviour:
   m_OnSelectExited:
     m_PersistentCalls:
       m_Calls: []
-  m_SelectActionTrigger: 1
+  m_SelectActionTrigger: 0
   m_HideControllerOnSelect: 0
   m_AllowHoveredActivate: 0
   m_TargetPriorityMode: 0
@@ -31642,6 +31642,7 @@ MonoBehaviour:
   mainCamera: {fileID: 80059205}
   player: {fileID: 932756558}
   GameOverMenu: {fileID: 0}
+  FaderScreen: {fileID: 0}
   paused: 0
   leftTeleportRay: {fileID: 774752466}
   rightTeleportRay: {fileID: 1848081178}
@@ -43205,7 +43206,7 @@ PrefabInstance:
     - target: {fileID: 4614794500899003643, guid: 24faf8885a587f647ac83f565769555c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.11
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4614794500899003643, guid: 24faf8885a587f647ac83f565769555c,
         type: 3}
@@ -61790,7 +61791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72efac4af900dcc4e80c0a3b8c93af6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfTasksToComplete: 0
+  numberOfTasksToComplete: 4
   currentlyCompletedTasks: 0
   exitRoomFloor: {fileID: 18994444}
   puzzleSFX: {fileID: 1821694365}
