@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu()]
 public class SettingsManager : ScriptableObject
@@ -15,7 +16,7 @@ public class SettingsManager : ScriptableObject
     public string settingsFileName = "/Settings.dat";
 
     [Header("Brightness")]
-    public Image brightnessLayer;
+    public UnityEngine.UI.Image brightnessLayer;
     public float brightness = 1;
 
     [Header("Volume")]
@@ -30,7 +31,11 @@ public class SettingsManager : ScriptableObject
         brightness = value;
         float bufferValue = 1 - brightness;
         
-        brightnessLayer.color = new Color(brightnessLayer.color.r, brightnessLayer.color.g, brightnessLayer.color.b, bufferValue);
+        brightnessLayer.color = new Color(
+            brightnessLayer.color.r,
+            brightnessLayer.color.g,
+            brightnessLayer.color.b,
+            bufferValue);
     }
 
     // Update volume with new value.

@@ -30,7 +30,7 @@ public class PersistBrightness : MonoBehaviour
         // If brightnesssLayer is not saved, set it as the image component of the first child.
         if (settings.brightnessLayer == null)
         {
-            settings.brightnessLayer = transform.GetChild(0).GetComponent<Image>();
+            settings.brightnessLayer = transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
         }
     }
 }
