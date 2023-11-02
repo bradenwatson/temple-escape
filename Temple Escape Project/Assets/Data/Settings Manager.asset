@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsFileName: /Settings.dat
   brightnessLayer: {fileID: 0}
-  brightness: 1
+  brightness: 0.6
   audioMixer: {fileID: 24100000, guid: 658d49a29ad15514ca7b395004731258, type: 2}
   maxAudio: 0
   minAudio: -50
-  audioVolume: 0.78
+  audioVolume: 0
