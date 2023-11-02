@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SliderTextControl : MonoBehaviour
 {
-    [Header("Slider & Text")]
+    [Header("Slider")]
     public Slider selectedSlider;
     public int multiplierValue = 100;
 
