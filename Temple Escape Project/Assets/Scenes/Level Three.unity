@@ -20363,7 +20363,7 @@ GameObject:
   - component: {fileID: 690346636}
   - component: {fileID: 690346638}
   - component: {fileID: 690346637}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: RightHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31605,7 +31605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3a736597a06144f9c16384d6c1d1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 1
   isRespawning: 0
   playerIsDead: 0
   gameOverSource: {fileID: 0}
@@ -31755,8 +31755,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 80059205}
   player: {fileID: 932756558}
-  GameOverMenu: {fileID: 0}
-  FaderScreen: {fileID: 0}
+  GameOverMenu: {fileID: 1488320079}
+  FaderScreen: {fileID: 1339591141}
   paused: 0
   leftTeleportRay: {fileID: 774752466}
   rightTeleportRay: {fileID: 1848081178}
@@ -50507,6 +50507,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
     type: 3}
   m_PrefabInstance: {fileID: 1488034858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1488320079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8916007179672025946, guid: dc465520f0db5864abfc552e464a362f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008895497}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1490785891
 PrefabInstance:
@@ -74494,7 +74500,7 @@ GameObject:
   - component: {fileID: 2116823356}
   - component: {fileID: 2116823355}
   - component: {fileID: 2116823354}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: LeftHand Direct Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9541,6 +9541,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6956125250439486451, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: leftTeleportRay
+      value: 
+      objectReference: {fileID: 1694834326}
+    - target: {fileID: 6956125250439486451, guid: dc465520f0db5864abfc552e464a362f,
+        type: 3}
+      propertyPath: rightTeleportRay
+      value: 
+      objectReference: {fileID: 774006187}
     - target: {fileID: 6987696097595084621, guid: dc465520f0db5864abfc552e464a362f,
         type: 3}
       propertyPath: m_text
@@ -13193,7 +13203,7 @@ MonoBehaviour:
   mainCamera: {fileID: 246879253}
   player: {fileID: 874234270}
   GameOverMenu: {fileID: 336309491}
-  FaderScreen: {fileID: 0}
+  FaderScreen: {fileID: 227203798}
   paused: 0
   leftTeleportRay: {fileID: 1694834326}
   rightTeleportRay: {fileID: 774006187}
