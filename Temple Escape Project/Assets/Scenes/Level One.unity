@@ -870,12 +870,12 @@ PrefabInstance:
     - target: {fileID: 624124737597179368, guid: 6439b14848cace445acc886338ae09a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4761693
+      value: -2.48
       objectReference: {fileID: 0}
     - target: {fileID: 624124737597179368, guid: 6439b14848cace445acc886338ae09a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.9139605
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 624124737597179368, guid: 6439b14848cace445acc886338ae09a9,
         type: 3}
@@ -2874,6 +2874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 205351122}
+  - component: {fileID: 205351123}
   m_Layer: 0
   m_Name: Tools
   m_TagString: Untagged
@@ -2898,6 +2899,25 @@ Transform:
   - {fileID: 1388004787}
   m_Father: {fileID: 694714130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205351123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205351121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &209217986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5302,6 +5322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583062525}
+  - component: {fileID: 583062526}
   m_Layer: 0
   m_Name: Vases
   m_TagString: Untagged
@@ -5348,6 +5369,25 @@ Transform:
   - {fileID: 1854033313}
   m_Father: {fileID: 694714130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &583062526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583062524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &603626356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6203,7 +6243,7 @@ PrefabInstance:
     - target: {fileID: 382426111913498800, guid: 49f0fe4c8eb34aa488ccbcc93db9fd61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.65
+      value: 15.84
       objectReference: {fileID: 0}
     - target: {fileID: 382426111913498800, guid: 49f0fe4c8eb34aa488ccbcc93db9fd61,
         type: 3}
@@ -6213,7 +6253,7 @@ PrefabInstance:
     - target: {fileID: 382426111913498800, guid: 49f0fe4c8eb34aa488ccbcc93db9fd61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.07
+      value: -12.37
       objectReference: {fileID: 0}
     - target: {fileID: 382426111913498800, guid: 49f0fe4c8eb34aa488ccbcc93db9fd61,
         type: 3}
@@ -10363,6 +10403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032986300}
+  - component: {fileID: 1032986301}
   m_Layer: 0
   m_Name: Scarab Puzzle Pieces
   m_TagString: Untagged
@@ -10388,6 +10429,25 @@ Transform:
   - {fileID: 4266677686959244367}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1032986301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032986299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1049816121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17560,7 +17620,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a20a848aa3d72ef4ebd89b317f4cbb50,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.03348
+      value: 29.93
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a20a848aa3d72ef4ebd89b317f4cbb50,
         type: 3}
@@ -17570,7 +17630,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a20a848aa3d72ef4ebd89b317f4cbb50,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.463963
+      value: -40.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a20a848aa3d72ef4ebd89b317f4cbb50,
         type: 3}
