@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,13 +25,24 @@ public class PersistBrightness : MonoBehaviour
             brightnessObject = gameObject;
         }
 
-        // Don't destroy this game object on load.
-        DontDestroyOnLoad(gameObject);
-
         // If brightnesssLayer is not saved, set it as the image component of the first child.
         if (settings.brightnessLayer == null)
         {
             settings.brightnessLayer = transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
+        }
+
+        SerialisableSettings loadedSettings = settings.LoadSettings();
+
+        if (loadedSettings != null)
+        {
+            Image previousBrightnessImage = settings.brightnessLayer;
+            float bufferValue = 1 - loadedSettings.Brightness;
+
+            settings.brightnessLayer.color = new Color(
+                previousBrightnessImage.color.r,
+                previousBrightnessImage.color.g,
+                previousBrightnessImage.color.b,
+                bufferValue);
         }
     }
 }
