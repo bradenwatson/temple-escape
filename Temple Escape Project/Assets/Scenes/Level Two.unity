@@ -8874,18 +8874,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 549401493}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &549401495 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4870022144260574419, guid: 87791a0285915fa4988c5e7d5025b239,
-    type: 3}
-  m_PrefabInstance: {fileID: 549401493}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fee339c78d2f9244cbb13ec958416391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &549690110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21300,7 +21288,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 90194660}
+      objectReference: {fileID: 1987719335}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[4].m_Target
@@ -21324,7 +21312,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: OpenDoor
+      value: CompletedPuzzleTask
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
@@ -21334,7 +21322,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: DoorControl, Assembly-CSharp
+      value: PuzzleController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
@@ -22135,6 +22123,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1987719334}
+  - component: {fileID: 1987719335}
+  - component: {fileID: 1987719336}
   m_Layer: 0
   m_Name: Pillars
   m_TagString: Untagged
@@ -22160,6 +22150,146 @@ Transform:
   - {fileID: 1865030591}
   m_Father: {fileID: 694714130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1987719335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987719333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72efac4af900dcc4e80c0a3b8c93af6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTasksToComplete: 3
+  currentlyCompletedTasks: 0
+  exitRoomFloor: {fileID: 2057188493}
+  puzzleSFX: {fileID: 0}
+  onPuzzleCompletion:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 90194660}
+        m_TargetAssemblyTypeName: DoorControl, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1987719336}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e2418d967f153bd4fb03dc9f0753d2da,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!82 &1987719336
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987719333}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &2020347376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22440,6 +22570,12 @@ PrefabInstance:
 --- !u!4 &2057188492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 180807313366912917, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2057188491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2057188493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7126943354544432948, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
     type: 3}
   m_PrefabInstance: {fileID: 2057188491}
   m_PrefabAsset: {fileID: 0}
@@ -27898,7 +28034,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
@@ -27939,7 +28075,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 146338061}
+      objectReference: {fileID: 1987719335}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[4].m_Target
@@ -27978,7 +28114,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: EnablePlayerProxy
+      value: CompletedPuzzleTask
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
@@ -27998,7 +28134,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: DoorControl, Assembly-CSharp
+      value: PuzzleController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
@@ -30700,7 +30836,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
@@ -30726,7 +30862,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 549401495}
+      objectReference: {fileID: 1987719335}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[4].m_Target
@@ -30745,7 +30881,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: EnablePlayerProxy
+      value: CompletedPuzzleTask
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
@@ -30755,7 +30891,7 @@ PrefabInstance:
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
       propertyPath: onPress.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: DoorControl, Assembly-CSharp
+      value: PuzzleController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4837422460262721695, guid: 285bb436a198ed948acd23baff43dad0,
         type: 3}
