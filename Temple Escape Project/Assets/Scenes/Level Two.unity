@@ -13006,7 +13006,6 @@ GameObject:
   - component: {fileID: 874234273}
   - component: {fileID: 874234272}
   - component: {fileID: 874234271}
-  - component: {fileID: 874234281}
   - component: {fileID: 874234280}
   m_Layer: 3
   m_Name: XR Origin (XR Rig)
@@ -13198,25 +13197,6 @@ MonoBehaviour:
   paused: 0
   leftTeleportRay: {fileID: 1694834326}
   rightTeleportRay: {fileID: 774006187}
---- !u!114 &874234281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874234270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78620d7a1b0449438c17daca7ac7bd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetController: 0
-  inputAction: {fileID: -944628639613478452, guid: f3a95eaf2eef3694aaa1a79566e44928,
-    type: 3}
-  pauseMenu: {fileID: 652102295}
-  levelDisplay: {fileID: 652102294}
-  leftTeleportRay: {fileID: 1694834326}
-  rightTeleportRay: {fileID: 774006187}
 --- !u!1 &905472429
 GameObject:
   m_ObjectHideFlags: 0
@@ -13251,8 +13231,8 @@ MonoBehaviour:
   targetController: 0
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pauseMenu: {fileID: 0}
-  levelDisplay: {fileID: 0}
+  pauseMenu: {fileID: 652102295}
+  levelDisplay: {fileID: 652102294}
   leftTeleportRay: {fileID: 1694834326}
   rightTeleportRay: {fileID: 774006187}
 --- !u!114 &905472431
@@ -27347,8 +27327,8 @@ MonoBehaviour:
   targetController: 1
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pauseMenu: {fileID: 0}
-  levelDisplay: {fileID: 0}
+  pauseMenu: {fileID: 652102295}
+  levelDisplay: {fileID: 652102294}
   leftTeleportRay: {fileID: 1694834326}
   rightTeleportRay: {fileID: 774006187}
 --- !u!114 &2115840736

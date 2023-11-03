@@ -17528,8 +17528,8 @@ MonoBehaviour:
   targetController: 1
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pauseMenu: {fileID: 0}
-  levelDisplay: {fileID: 0}
+  pauseMenu: {fileID: 1008895500}
+  levelDisplay: {fileID: 1008895499}
   leftTeleportRay: {fileID: 774752466}
   rightTeleportRay: {fileID: 1848081178}
 --- !u!114 &575790484
@@ -38050,6 +38050,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1008895497}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1008895499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5168802689916566118, guid: dc465520f0db5864abfc552e464a362f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008895497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1008895500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7826056512239867387, guid: dc465520f0db5864abfc552e464a362f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008895497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1010271495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48087,8 +48099,8 @@ MonoBehaviour:
   targetController: 0
   inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
-  pauseMenu: {fileID: 0}
-  levelDisplay: {fileID: 0}
+  pauseMenu: {fileID: 1008895500}
+  levelDisplay: {fileID: 1008895499}
   leftTeleportRay: {fileID: 774752466}
   rightTeleportRay: {fileID: 1848081178}
 --- !u!114 &1431020060
