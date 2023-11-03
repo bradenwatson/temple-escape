@@ -43007,7 +43007,7 @@ PrefabInstance:
     - target: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.19
+      value: -2.25
       objectReference: {fileID: 0}
     - target: {fileID: 1806437081809651327, guid: af3faaa3b2f0f8747becf026633c59bd,
         type: 3}
@@ -44275,7 +44275,7 @@ PrefabInstance:
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.5
+      value: -11.35
       objectReference: {fileID: 0}
     - target: {fileID: 5347115217904148505, guid: ac0e00d4645b61a48989c46c56814af7,
         type: 3}
@@ -62238,6 +62238,7 @@ MonoBehaviour:
   numberOfTasksToComplete: 4
   currentlyCompletedTasks: 0
   exitRoomFloor: {fileID: 18994444}
+  exitRoomTrigger: {fileID: 0}
   puzzleSFX: {fileID: 1821694365}
   onPuzzleCompletion:
     m_PersistentCalls:
