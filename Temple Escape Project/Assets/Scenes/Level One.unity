@@ -28717,7 +28717,7 @@ MonoBehaviour:
   mainCamera: {fileID: 1549195881}
   player: {fileID: 2124482856}
   GameOverMenu: {fileID: 8838731809514246368}
-  FaderScreen: {fileID: 0}
+  FaderScreen: {fileID: 183835040}
   paused: 0
   leftTeleportRay: {fileID: 1421652725}
   rightTeleportRay: {fileID: 1016312092}
