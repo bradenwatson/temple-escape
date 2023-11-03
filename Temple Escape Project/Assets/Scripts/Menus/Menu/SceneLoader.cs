@@ -13,7 +13,7 @@ public class SceneLoader : MonoBehaviour
         PlaySound.PlaySoundOnce("Menu_Click", menuSounds);
         Time.timeScale = 1f;
         
-        if (leftTeleportRay != null || rightTeleportRay != null)
+        if (leftTeleportRay != null && rightTeleportRay != null)
         {
             leftTeleportRay.gameObject.SetActive(true);
             rightTeleportRay.gameObject.SetActive(true);

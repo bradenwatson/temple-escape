@@ -9875,6 +9875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242079079}
+  - component: {fileID: 242079080}
   m_Layer: 0
   m_Name: EXIT ROOM (3)
   m_TagString: Untagged
@@ -9905,6 +9906,18 @@ Transform:
   - {fileID: 1845917287}
   m_Father: {fileID: 99105409}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &242079080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242079078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13046311fcb3dc549a4a93ca03c19155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &242556415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21654,6 +21667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 746066949}
+  - component: {fileID: 746066950}
   m_Layer: 0
   m_Name: EXIT ROOM (1)
   m_TagString: Untagged
@@ -21684,6 +21698,18 @@ Transform:
   - {fileID: 286342139}
   m_Father: {fileID: 99105409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &746066950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746066948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13046311fcb3dc549a4a93ca03c19155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &747953653
 GameObject:
   m_ObjectHideFlags: 0
@@ -21693,6 +21719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 747953654}
+  - component: {fileID: 747953655}
   m_Layer: 0
   m_Name: EXIT ROOM (2)
   m_TagString: Untagged
@@ -21723,6 +21750,18 @@ Transform:
   - {fileID: 1828271194}
   m_Father: {fileID: 99105409}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &747953655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747953653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13046311fcb3dc549a4a93ca03c19155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &753347458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62237,7 +62276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfTasksToComplete: 4
   currentlyCompletedTasks: 0
-  exitRoomFloor: {fileID: 18994444}
+  exitRoomFloor: {fileID: 0}
   exitRoomTrigger: {fileID: 0}
   puzzleSFX: {fileID: 1821694365}
   onPuzzleCompletion:
@@ -62398,6 +62437,54 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Glow
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2013219579}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Glow
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 746066948}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Glow
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 747953653}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Glow
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 242079078}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Glow
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1821694362}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -67379,6 +67466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2013219580}
+  - component: {fileID: 2013219581}
   m_Layer: 0
   m_Name: EXIT ROOM
   m_TagString: Untagged
@@ -67409,6 +67497,18 @@ Transform:
   - {fileID: 1369639197}
   m_Father: {fileID: 99105409}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &2013219581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013219579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13046311fcb3dc549a4a93ca03c19155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2020347376
 PrefabInstance:
   m_ObjectHideFlags: 0
