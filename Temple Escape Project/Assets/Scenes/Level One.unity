@@ -31972,7 +31972,6 @@ GameObject:
   - component: {fileID: 9055502534993552405}
   - component: {fileID: 6614422000763549401}
   - component: {fileID: 1751680319640222081}
-  - component: {fileID: 9055502534993552406}
   m_Layer: 0
   m_Name: Fade Canvas
   m_TagString: Untagged
@@ -33523,9 +33522,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f491223684ccb834c972ce2814fbb968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeScreen: {fileID: 1322282717412017088}
-  finishedFading: 1
-  valueToBeDividedByDeltaTimeForSpeedChanging: 2
+  startFadingOnLaunch: 0
+  fadeImage: {fileID: 1322282717412017088}
+  maxAlphaValue: 1
+  minAlphaValue: 0
+  fadeTime: 1.5
+  fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  finishedFading: 0
 --- !u!224 &8876148012240272032
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33690,18 +33716,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &9055502534993552406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7298825900535691270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13046311fcb3dc549a4a93ca03c19155, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!199 &9093860813289003500
 ParticleSystemRenderer:
   serializedVersion: 6

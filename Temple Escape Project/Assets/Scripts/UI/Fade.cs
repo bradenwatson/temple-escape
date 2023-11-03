@@ -6,67 +6,74 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
-    public Image fadeScreen;
-    public bool finishedFading = true;
-    public float valueToBeDividedByDeltaTimeForSpeedChanging = 2f;
+    public bool startFadingOnLaunch = true;
+    public Image fadeImage;
 
-    bool isFading;
-    float alphaValue;
+    public float maxAlphaValue = 1.0f;
+    public float minAlphaValue = 0f;
 
-    private void Start()
+    public float fadeTime = 1.5f;
+    public AnimationCurve fadeCurve;
+
+    public bool finishedFading = false;
+
+    Color fadeColour;
+
+    void Start()
     {
-        alphaValue = fadeScreen.color.a;
+        print("fade");
+        fadeColour = fadeImage.color;
+        SetFading(startFadingOnLaunch);
+    }
+
+    IEnumerator FadeIn()
+    {
         finishedFading = false;
-        isFading = false;
+        float timer = fadeTime;
+        float index;
+        while (fadeColour.a > minAlphaValue)
+        {
+            timer -= Time.deltaTime;
+            index = timer / fadeTime;
+
+            print($"{index} : {timer}");
+            fadeColour.a = fadeCurve.Evaluate(index);
+
+            fadeImage.color = fadeColour;
+            yield return null;
+        }
+        finishedFading = true;
     }
 
-    void Update()
+    IEnumerator FadeOut()
     {
-        if (!finishedFading)
+        finishedFading = false;
+        float timer = 0;
+        float index;
+        while (fadeColour.a < maxAlphaValue)
         {
-            if (isFading)
-            {
-                FadeScreen();
-            }
-            else
-            {
-                UnFadeScreen();
-            }
-        }
-    }
+            timer += Time.deltaTime;
+            index = timer / fadeTime;
 
-    void FadeScreen()
-    {
-        if (alphaValue < 1)
-        {
-            alphaValue += Time.deltaTime * valueToBeDividedByDeltaTimeForSpeedChanging;
-        }
-        else
-        {
-            alphaValue = 1;
-            finishedFading = true;
-        }
-        fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, alphaValue);
-    }
+            print($"{index} : {timer}");
+            fadeColour.a = fadeCurve.Evaluate(index);
 
-    void UnFadeScreen()
-    {
-        if (alphaValue > 0)
-        {
-            alphaValue -= Time.deltaTime * valueToBeDividedByDeltaTimeForSpeedChanging;
+            fadeImage.color = fadeColour;
+            yield return null;
         }
-        else
-        {
-            alphaValue = 0;
-            finishedFading = true;
-        }
-        
-        fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, alphaValue);
+        finishedFading = true;
     }
 
     public void SetFading(bool fading=true)
     {
-        isFading = fading;
-        finishedFading = false;
+        StopAllCoroutines();
+        if (fading)
+        {
+            StartCoroutine(FadeIn());
+        }
+        else
+        {
+            StartCoroutine(FadeOut());
+        }
     }
 }
