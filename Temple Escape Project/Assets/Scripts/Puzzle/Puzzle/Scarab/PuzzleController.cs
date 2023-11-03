@@ -6,6 +6,7 @@ public class PuzzleController : MonoBehaviour
     [SerializeField] private int numberOfTasksToComplete;
     [SerializeField] private int currentlyCompletedTasks = 0;
     [SerializeField] private GameObject exitRoomFloor;
+    [SerializeField] private GameObject exitRoomTrigger;
     [SerializeField] AudioSource puzzleSFX;
 
     [Header("Completion Events")]
@@ -14,6 +15,8 @@ public class PuzzleController : MonoBehaviour
     private void Start()
     {
         exitRoomFloor.gameObject.SetActive(false);
+        exitRoomTrigger.gameObject.SetActive(false);
+
         if (puzzleSFX ==  null)
         {
             puzzleSFX = GetComponent<AudioSource>();
@@ -34,6 +37,8 @@ public class PuzzleController : MonoBehaviour
         if (currentlyCompletedTasks >= numberOfTasksToComplete)
         {
             exitRoomFloor.gameObject.SetActive(true);
+            exitRoomTrigger.gameObject.SetActive(true);
+
             onPuzzleCompletion.Invoke();
             return true;
         }

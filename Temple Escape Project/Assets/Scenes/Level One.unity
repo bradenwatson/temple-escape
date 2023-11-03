@@ -6737,6 +6737,7 @@ MonoBehaviour:
   numberOfTasksToComplete: 3
   currentlyCompletedTasks: 0
   exitRoomFloor: {fileID: 7324375645202300396}
+  exitRoomTrigger: {fileID: 738932740}
   puzzleSFX: {fileID: 0}
   onPuzzleCompletion:
     m_PersistentCalls:
@@ -7236,6 +7237,12 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!1 &738932740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7418428989893669698, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7324375645202300395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &753570961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6534898319475773599, guid: 87791a0285915fa4988c5e7d5025b239,

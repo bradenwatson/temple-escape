@@ -17988,6 +17988,12 @@ ParticleSystem:
     type: 3}
   m_PrefabInstance: {fileID: 1448571937}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1448778534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7418428989893669698, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2057188491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1451321634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22081,6 +22087,7 @@ MonoBehaviour:
   numberOfTasksToComplete: 3
   currentlyCompletedTasks: 0
   exitRoomFloor: {fileID: 2057188493}
+  exitRoomTrigger: {fileID: 1448778534}
   puzzleSFX: {fileID: 0}
   onPuzzleCompletion:
     m_PersistentCalls:
@@ -22477,6 +22484,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Exit Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202826709328455682, guid: 45df189cb00277d4a99b0e3fb2cb18e4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
