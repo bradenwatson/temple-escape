@@ -7290,7 +7290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &102726302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23003,6 +23003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 786434602}
+  - component: {fileID: 786434603}
   m_Layer: 0
   m_Name: GemStoneClue
   m_TagString: Untagged
@@ -23027,6 +23028,25 @@ Transform:
   - {fileID: 923654656}
   m_Father: {fileID: 2026736830}
   m_LocalEulerAnglesHint: {x: 65.764, y: 0, z: 0}
+--- !u!114 &786434603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786434601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!4 &786896059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8615125231351393077, guid: d4cac0f8a3f30e349b728dd4f5944348,
@@ -45535,6 +45555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1365970722}
+  - component: {fileID: 1365970723}
   m_Layer: 0
   m_Name: Vases
   m_TagString: Untagged
@@ -45665,6 +45686,25 @@ Transform:
   - {fileID: 1003171102}
   m_Father: {fileID: 694714130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1365970723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365970721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1366153494
 GameObject:
   m_ObjectHideFlags: 0
@@ -46010,6 +46050,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: External Environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 523369336454461330, guid: 69cfd2ae901038f42b57c8ee7d0ed6e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 747127279329553803, guid: 69cfd2ae901038f42b57c8ee7d0ed6e2,
         type: 3}
@@ -49618,6 +49663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454258564}
+  - component: {fileID: 1454258565}
   m_Layer: 0
   m_Name: Plants
   m_TagString: Untagged
@@ -49665,6 +49711,25 @@ Transform:
   - {fileID: 1386151646}
   m_Father: {fileID: 571556639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1454258565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454258563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1455016773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50322,6 +50387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1477245119}
+  - component: {fileID: 1477245120}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -50397,6 +50463,25 @@ Transform:
   - {fileID: 1339341773}
   m_Father: {fileID: 2072653725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1477245120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477245118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1478841034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52301,7 +52386,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4662925110153091871, guid: 8c86cb1b1cfefd742a278557560d0d65,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1574930463}
   m_SourcePrefab: {fileID: 100100000, guid: 8c86cb1b1cfefd742a278557560d0d65, type: 3}
 --- !u!108 &1574930461 stripped
 Light:
@@ -52309,6 +52398,31 @@ Light:
     type: 3}
   m_PrefabInstance: {fileID: 1574930460}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1574930462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4662925110153091871, guid: 8c86cb1b1cfefd742a278557560d0d65,
+    type: 3}
+  m_PrefabInstance: {fileID: 1574930460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1574930463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574930462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1577594423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67183,6 +67297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2010208891}
+  - component: {fileID: 2010208892}
   m_Layer: 0
   m_Name: WeaponsAsset
   m_TagString: Untagged
@@ -67235,6 +67350,25 @@ Transform:
   - {fileID: 2122157210}
   m_Father: {fileID: 670052891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010208892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010208890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &2013219579
 GameObject:
   m_ObjectHideFlags: 0
@@ -74991,6 +75125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2125761794}
+  - component: {fileID: 2125761795}
   m_Layer: 0
   m_Name: Gems
   m_TagString: Untagged
@@ -75017,6 +75152,25 @@ Transform:
   - {fileID: 1974564343}
   m_Father: {fileID: 2026736830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125761795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125761793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &2128113452
 PrefabInstance:
   m_ObjectHideFlags: 0
