@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b1e6289ec6b434488ae782dd4426ab, type: 3}
   m_Name: MasterSettings
   m_EditorClassIdentifier: 
-  brightnessImage: {fileID: 0}
-  brightness: 1
-  masterMixer: {fileID: 0}
+  brightness: 2
+  bloomIntensity: 0
+  masterMixer: {fileID: 24100000, guid: 658d49a29ad15514ca7b395004731258, type: 2}
   maxAudio: 0
   minAudio: -80
   masterVolume: 1
