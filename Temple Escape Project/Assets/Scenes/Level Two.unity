@@ -13081,7 +13081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3a736597a06144f9c16384d6c1d1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 3
   isRespawning: 0
   playerIsDead: 0
   gameOverSource: {fileID: 874234281}
