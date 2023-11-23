@@ -921,7 +921,7 @@
                 {
                     "name": "",
                     "id": "c9a12dd2-f5cb-4d0b-833a-a3340486008d",
-                    "path": "<XRController>{LeftHand}/menu",
+                    "path": "<XRController>{LeftHand}/menuButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1697,7 +1697,7 @@
                 {
                     "name": "",
                     "id": "343d90f0-9c48-414a-be8a-2421ef3ae066",
-                    "path": "<XRController>{RightHand}/menu",
+                    "path": "<XRController>{RightHand}/menuButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
